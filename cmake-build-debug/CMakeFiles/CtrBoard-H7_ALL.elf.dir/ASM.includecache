@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Core/Startup/startup_stm32h723vgtx.s
+

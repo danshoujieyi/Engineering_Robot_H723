@@ -1,0 +1,2232 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "CtrBoard-H7_ALL.elf"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"add_link_options",
+			"add_compile_options",
+			"add_compile_definitions",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 115,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 27,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 111,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 112,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 113,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 26,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 32,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 52,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 81,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 55,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-mfloat-abi=hard"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-mfpu=fpv4-sp-d16"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mcpu=cortex-m7"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 10,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 10,
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_CM4"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_MATRIX_CHECK"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_ROUNDING"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "STM32H723xx"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "USE_PWR_LDO_SUPPLY"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Core/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/Target"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MahonyAHRS"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MyType"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/PID"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Dwt"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/User_Lib"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Ramp"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Filter"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Bmi088"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Vofa+"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Fdcan"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DM_Motor_Fdcan"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DJ_Motor"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Rc/Sbus"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Imu"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Chassis"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/H_AND_CALLBACK"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Cmd"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Usart10_Rec"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/DMmotor"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Arm"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				140,
+				145,
+				146,
+				147,
+				149,
+				151,
+				152,
+				171,
+				172,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				181,
+				183,
+				185,
+				187,
+				190,
+				192,
+				195,
+				197,
+				199,
+				201,
+				203,
+				206,
+				208,
+				210,
+				212,
+				215,
+				217,
+				219,
+				221,
+				223,
+				225,
+				230,
+				232
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-mfloat-abi=hard"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-mfpu=fpv4-sp-d16"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mcpu=cortex-m7"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 9,
+					"fragment" : "-x"
+				},
+				{
+					"backtrace" : 9,
+					"fragment" : "assembler-with-cpp"
+				},
+				{
+					"backtrace" : 10,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 10,
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_CM4"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_MATRIX_CHECK"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "ARM_MATH_ROUNDING"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "STM32H723xx"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "USE_PWR_LDO_SUPPLY"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Core/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/Target"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MahonyAHRS"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MyType"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/PID"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Dwt"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/User_Lib"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Ramp"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Filter"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Bmi088"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Vofa+"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Fdcan"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DM_Motor_Fdcan"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DJ_Motor"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Rc/Sbus"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Imu"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Chassis"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/H_AND_CALLBACK"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Cmd"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Usart10_Rec"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/DMmotor"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Arm"
+				}
+			],
+			"language" : "ASM",
+			"sourceIndexes" : 
+			[
+				30
+			]
+		}
+	],
+	"id" : "CtrBoard-H7_ALL.elf::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-mfloat-abi=hard",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-mfpu=fpv4-sp-d16",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-Wl,-gc-sections,--print-memory-usage,-Map=C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/cmake-build-debug/CtrBoard-H7_ALL.map",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-mcpu=cortex-m7",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-mthumb",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-mthumb-interwork",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-T",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/STM32H723VGTX_FLASH.ld",
+				"role" : "flags"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "CtrBoard-H7_ALL.elf",
+	"nameOnDisk" : "CtrBoard-H7_ALL.elf",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				31,
+				32,
+				33,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				139,
+				141,
+				142,
+				143,
+				144,
+				150,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				167,
+				168,
+				169,
+				170,
+				173,
+				180,
+				182,
+				184,
+				186,
+				188,
+				191,
+				193,
+				194,
+				196,
+				198,
+				200,
+				202,
+				204,
+				205,
+				207,
+				209,
+				211,
+				213,
+				216,
+				218,
+				220,
+				222,
+				224,
+				226,
+				227,
+				228,
+				229,
+				231,
+				233
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				140,
+				145,
+				146,
+				147,
+				149,
+				151,
+				152,
+				171,
+				172,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				181,
+				183,
+				185,
+				187,
+				190,
+				192,
+				195,
+				197,
+				199,
+				201,
+				203,
+				206,
+				208,
+				210,
+				212,
+				215,
+				217,
+				219,
+				221,
+				223,
+				225,
+				230,
+				232
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				30,
+				34,
+				59,
+				109,
+				148,
+				189,
+				214,
+				234
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/FreeRTOSConfig.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/adc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/dma.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/fdcan.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/gpio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/main.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/memorymap.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/octospi.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/spi.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/stm32h7xx_hal_conf.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/stm32h7xx_it.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/tim.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/usart.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/adc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/dma.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/fdcan.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/freertos.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/gpio.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/main.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/memorymap.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/octospi.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/spi.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/stm32h7xx_hal_msp.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/stm32h7xx_hal_timebase_tim.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/stm32h7xx_it.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/syscalls.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/sysmem.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/system_stm32h7xx.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/tim.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/usart.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Startup/startup_stm32h723vgtx.s",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h723xx.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32H7xx/LICENSE.txt",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_armcc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_armclang.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_armclang_ltm.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_compiler.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_gcc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_iccarm.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_version.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_armv81mml.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_armv8mbl.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_armv8mml.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm0.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm0plus.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm1.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm23.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm3.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm33.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm35p.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm4.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm7.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_sc000.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_sc300.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/mpu_armv7.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/mpu_armv8.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/tz_context.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/LICENSE.txt",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_ospi.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_adc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_bus.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_cortex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_crs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_gpio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_hsem.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_lpuart.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_pwr.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_rcc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_spi.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_system.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_tim.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_utils.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/LICENSE.txt",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/LICENSE.txt",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/croutine.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/StackMacros.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/atomic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/list.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/message_buffer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/mpu_prototypes.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/include/timers.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/list.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/queue.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/tasks.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/Third_Party/FreeRTOS/Source/timers.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usb_device.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usb_device.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usbd_cdc_if.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usbd_cdc_if.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usbd_desc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usbd_desc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/Target/usbd_conf.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/Target/usbd_conf.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/Dwt/drv_dwt.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/Dwt/drv_dwt.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/Dwt/drv_dwt.md",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/Filter/filter32.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/Filter/filter32.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/MahonyAHRS/MahonyAHRS.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/MahonyAHRS/MahonyAHRS.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/MyType/MyType.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/PID/PID.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/PID/PID.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/Ramp/ramp.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/Ramp/ramp.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Algorithm/User_Lib/user_lib.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Algorithm/User_Lib/user_lib.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/Bmi088/BMI088Middleware.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Bmi088/BMI088Middleware.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/Bmi088/BMI088driver.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Bmi088/BMI088driver.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Bmi088/BMI088reg.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/DJ_Motor/dj_motor.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/DJ_Motor/dj_motor.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/DM_Motor_Fdcan/dm_motor_ctrl.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/DM_Motor_Fdcan/dm_motor_ctrl.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/DM_Motor_Fdcan/dm_motor_drv.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/DM_Motor_Fdcan/dm_motor_drv.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/Fdcan/bsp_fdcan.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Fdcan/bsp_fdcan.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Rc/Sbus/README.md",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/Rc/Sbus/rc_sbus.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Rc/Sbus/rc_sbus.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Module/Vofa+/vofa.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Module/Vofa+/vofa.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/Arm/arm_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/Arm/arm_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/Chassis/chassis_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/Chassis/chassis_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/Cmd/cmd_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/Cmd/cmd_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/DMmotor/DMmotor_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/DMmotor/DMmotor_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/H_AND_CALLBACK/motor_def.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/H_AND_CALLBACK/rm_config.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/H_AND_CALLBACK/rm_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/Imu/imu_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/Imu/imu_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USER/Task/Usart10_Rec/usart10rec_task.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USER/Task/Usart10_Rec/usart10rec_task.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "STM32H723VGTX_FLASH.ld",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "EXECUTABLE"
+}
