@@ -163,7 +163,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/cmake-build-debug"
+			"value" : "d:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -719,7 +719,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -779,7 +779,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main"
+			"value" : "D:/GitHub_Project/Engineering_Robot_H723"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/cmake-build-debug"
+			"value" : "D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug"
 		},
 		{
 			"name" : "CtrBoard-H7_ALL_IS_TOP_LEVEL",
@@ -1299,7 +1299,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main"
+			"value" : "D:/GitHub_Project/Engineering_Robot_H723"
 		},
 		{
 			"name" : "ProcessorCount_cmd_getconf",

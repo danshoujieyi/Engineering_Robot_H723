@@ -1,6 +1,6 @@
 CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/MahonyAHRS/MahonyAHRS.c.obj: \
- C:\Users\liujiajun\Desktop\Engineering_Robot_H723-main\Engineering_Robot_H723-main\USER\Algorithm\MahonyAHRS\MahonyAHRS.c \
- C:\Users\liujiajun\Desktop\Engineering_Robot_H723-main\Engineering_Robot_H723-main\USER\Algorithm\MahonyAHRS\MahonyAHRS.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\MahonyAHRS\MahonyAHRS.c \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\MahonyAHRS\MahonyAHRS.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/math.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/reent.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/_ansi.h \

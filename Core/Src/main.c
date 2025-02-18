@@ -131,16 +131,18 @@ int main(void)
     HAL_GPIO_WritePin(PUMP2_1_GPIO_Port, PUMP2_1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_RESET);
     dwt_init(480);
-    //	HAL_UARTEx_ReceiveToIdle_DMA(&huart1, rx_buff, BUFF_SIZE*2);
+    //	HAL_UARTEx_ReceiveToIdle_DMA(&hu art1, rx_buff, BUFF_SIZE*2);
     HAL_UARTEx_ReceiveToIdle_DMA(&huart5, rc_obj, SBUS_RX_BUF_NUM*2);
 //	HAL_UARTEx_ReceiveToIdle_DMA(&huart8, rx_buff, BUFF_SIZE*2);
   // 达妙4310驱动设置
     power(1);
+    bsp_fdcan_set_baud(&hfdcan1, CAN_CLASS, CAN_BR_1M);
     bsp_fdcan_set_baud(&hfdcan2, CAN_CLASS, CAN_BR_1M);
     bsp_fdcan_set_baud(&hfdcan3, CAN_CLASS, CAN_BR_1M);
 ////	bsp_fdcan_set_baud(&hfdcan1, CAN_FD_BRS, CAN_BR_1M);
     bsp_can_init();
     dm_motor_init();
+
 
 //    write_motor_data(motor[Motor1].id, 10, mit_mode, 0, 0, 0);
 //	write_motor_data(motor[Motor1].id, 35, CAN_BR_5M, 0, 0, 0);
@@ -165,8 +167,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-
   while (1)
   {
     /* USER CODE END WHILE */

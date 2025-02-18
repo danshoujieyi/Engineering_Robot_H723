@@ -194,131 +194,131 @@
 			[
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Core/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Core/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/App"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/Target"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MahonyAHRS"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MyType"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MyType"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/PID"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/PID"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Dwt"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/User_Lib"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Ramp"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Filter"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Bmi088"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Vofa+"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Fdcan"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DM_Motor_Fdcan"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DJ_Motor"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Rc/Sbus"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Imu"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Chassis"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/H_AND_CALLBACK"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Cmd"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Usart10_Rec"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/DMmotor"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Arm"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"
 				}
 			],
 			"language" : "C",
@@ -512,131 +512,131 @@
 			[
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Core/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Core/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/App"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USB_DEVICE/Target"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/Drivers/CMSIS/Include"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MahonyAHRS"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/MyType"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MyType"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/PID"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/PID"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Dwt"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/User_Lib"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Ramp"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Algorithm/Filter"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Bmi088"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Vofa+"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Fdcan"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DM_Motor_Fdcan"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/DJ_Motor"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Module/Rc/Sbus"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Imu"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Chassis"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/H_AND_CALLBACK"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Cmd"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Usart10_Rec"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/DMmotor"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/USER/Task/Arm"
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"
 				}
 			],
 			"language" : "ASM",
@@ -671,7 +671,7 @@
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "-Wl,-gc-sections,--print-memory-usage,-Map=C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/cmake-build-debug/CtrBoard-H7_ALL.map",
+				"fragment" : "-Wl,-gc-sections,--print-memory-usage,-Map=D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug/CtrBoard-H7_ALL.map",
 				"role" : "flags"
 			},
 			{
@@ -696,7 +696,7 @@
 			},
 			{
 				"backtrace" : 5,
-				"fragment" : "C:/Users/liujiajun/Desktop/Engineering_Robot_H723-main/Engineering_Robot_H723-main/STM32H723VGTX_FLASH.ld",
+				"fragment" : "D:/GitHub_Project/Engineering_Robot_H723/STM32H723VGTX_FLASH.ld",
 				"role" : "flags"
 			}
 		],
