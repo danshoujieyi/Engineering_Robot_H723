@@ -60,6 +60,8 @@ include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_
         USER/Algorithm/User_Lib
         USER/Algorithm/Ramp
         USER/Algorithm/Filter
+        USER/Algorithm/Crc
+        USER/Algorithm/Fifo
 
         USER/Module/Bmi088
         USER/Module/Vofa+
@@ -88,6 +90,8 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Algorithm/User_Lib/*.*"
         "USER/Algorithm/Ramp/*.*"
         "USER/Algorithm/Filter/*.*"
+        "USER/Algorithm/Crc/*.*"
+        "USER/Algorithm/Fifo/*.*"
 
         "USER/Module/Bmi088/*.*"
         "USER/Module/Vofa+/*.*"

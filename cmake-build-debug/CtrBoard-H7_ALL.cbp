@@ -50,6 +50,8 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
@@ -110,6 +112,8 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
@@ -722,6 +726,12 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target/usbd_conf.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc/crc8_crc16.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc/crc8_crc16.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -729,6 +739,12 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.md">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo/fifo.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo/fifo.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter/filter32.c">

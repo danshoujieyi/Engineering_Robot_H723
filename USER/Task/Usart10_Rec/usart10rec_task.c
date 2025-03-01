@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "usart10rec_task.h"
 #include "usart.h"
+#include "crc8_crc16.h"
 #include <stdio.h>
 // 数据帧长度 (帧头 + 数据区(6 * 4字节) + 校验 + 帧尾)
 
@@ -17,15 +18,6 @@ uint8_t current_rx_buffer = 0;        // 当前缓冲区索引
 volatile uint8_t data_ready = 0;      // 标志位，表示数据接收完成
 float angles[6] = {0.0f};             // 存储解码后的角度值
 
-// CRC校验函数
-uint8_t CalculateChecksum(uint8_t *buffer, uint8_t length) {
-    uint8_t checksum = 0;
-    for (uint8_t i = 0; i < length; i++) {
-        checksum += buffer[i];
-    }
-    return checksum;
-}
-
 void USART10_DMA_Init(void) {
     memset(dma_rx_buffer, 0, sizeof(dma_rx_buffer));
 
@@ -37,30 +29,48 @@ void USART10_DMA_Init(void) {
 
 // 数据帧解析函数
 uint8_t ParseFrame(uint8_t *buffer, float *angles) {
-    // 校验帧头和帧尾
-    if (buffer[0] != 0xAA || buffer[27] != 0x55) {
-      //  printf("Frame error: invalid header or footer\r\n");
-        return 0; // 帧头或帧尾错误
+    RobotArmController_t rx_data;
+    // 将接收到的缓冲区数据复制到结构体中
+    memcpy(&rx_data, buffer, FRAME_SIZE);
+
+    // 校验帧头起始字节
+    if (rx_data.frame_header.sof != HEADER_SOF) {
+        // 帧起始错误
+        return 0;
     }
 
-    // 校验和验证
-    uint8_t checksum = CalculateChecksum(buffer + 1, 25);
-    if (checksum != buffer[26]) {
-      //  printf("Frame error: checksum mismatch\r\n");
-        return 0; // 校验和错误
+    // 校验帧头CRC8
+    uint8_t crc8_received = rx_data.frame_header.crc8;
+    rx_data.frame_header.crc8 = 0;  // 清零后计算
+    append_CRC8_check_sum((uint8_t *)(&rx_data.frame_header), FRAME_HEADER_LENGTH);
+    if (rx_data.frame_header.crc8 != crc8_received) {
+        // CRC8校验失败
+        return 0;
     }
 
-    // 检测帧序号
-    uint8_t frame_seq = buffer[1];
-    if (frame_seq != (last_frame_seq + 1) % 256) {
-       // printf("Frame sequence mismatch: expected %d, got %d\r\n", (last_frame_seq + 1) % 256, frame_seq);
+    // 校验全帧CRC16
+    uint16_t crc16_received = rx_data.frame_tail;
+    rx_data.frame_tail = 0;  // 清零后计算
+    append_CRC16_check_sum((uint8_t *)&rx_data, FRAME_SIZE);
+    if (rx_data.frame_tail != crc16_received) {
+        // CRC16校验失败
+        return 0;
     }
-    last_frame_seq = frame_seq;
 
-    // 解析6个float编码器值
-    for (int i = 0; i < 6; i++) {
-        memcpy(&angles[i], &buffer[2 + i * 4], sizeof(float));
+    if (rx_data.cmd_id != ARM_CONTROLLER_CMD_ID) {
+        // 命令码不匹配
+        return 0;
     }
+
+    // 检查帧序号是否连续（此处仅更新上一次帧序号，可根据需求处理异常）
+    uint8_t expected_seq = (last_frame_seq + 1) % 256;
+    if (rx_data.frame_header.seq != expected_seq) {
+        // 帧序号不连续，可以在此处记录或做特殊处理
+    }
+    last_frame_seq = rx_data.frame_header.seq;
+
+    // 解析数据区中的6个float数值
+    memcpy(angles, rx_data.data, 6 * sizeof(float));
 
     return 1; // 解析成功
 }

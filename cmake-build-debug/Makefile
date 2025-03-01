@@ -1672,6 +1672,30 @@ USB_DEVICE/Target/usbd_conf.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/Target/usbd_conf.c.s
 .PHONY : USB_DEVICE/Target/usbd_conf.c.s
 
+USER/Algorithm/Crc/crc8_crc16.obj: USER/Algorithm/Crc/crc8_crc16.c.obj
+.PHONY : USER/Algorithm/Crc/crc8_crc16.obj
+
+# target to build an object file
+USER/Algorithm/Crc/crc8_crc16.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Crc/crc8_crc16.c.obj
+.PHONY : USER/Algorithm/Crc/crc8_crc16.c.obj
+
+USER/Algorithm/Crc/crc8_crc16.i: USER/Algorithm/Crc/crc8_crc16.c.i
+.PHONY : USER/Algorithm/Crc/crc8_crc16.i
+
+# target to preprocess a source file
+USER/Algorithm/Crc/crc8_crc16.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Crc/crc8_crc16.c.i
+.PHONY : USER/Algorithm/Crc/crc8_crc16.c.i
+
+USER/Algorithm/Crc/crc8_crc16.s: USER/Algorithm/Crc/crc8_crc16.c.s
+.PHONY : USER/Algorithm/Crc/crc8_crc16.s
+
+# target to generate assembly for a file
+USER/Algorithm/Crc/crc8_crc16.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Crc/crc8_crc16.c.s
+.PHONY : USER/Algorithm/Crc/crc8_crc16.c.s
+
 USER/Algorithm/Dwt/drv_dwt.obj: USER/Algorithm/Dwt/drv_dwt.c.obj
 .PHONY : USER/Algorithm/Dwt/drv_dwt.obj
 
@@ -1695,6 +1719,30 @@ USER/Algorithm/Dwt/drv_dwt.s: USER/Algorithm/Dwt/drv_dwt.c.s
 USER/Algorithm/Dwt/drv_dwt.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Dwt/drv_dwt.c.s
 .PHONY : USER/Algorithm/Dwt/drv_dwt.c.s
+
+USER/Algorithm/Fifo/fifo.obj: USER/Algorithm/Fifo/fifo.c.obj
+.PHONY : USER/Algorithm/Fifo/fifo.obj
+
+# target to build an object file
+USER/Algorithm/Fifo/fifo.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Fifo/fifo.c.obj
+.PHONY : USER/Algorithm/Fifo/fifo.c.obj
+
+USER/Algorithm/Fifo/fifo.i: USER/Algorithm/Fifo/fifo.c.i
+.PHONY : USER/Algorithm/Fifo/fifo.i
+
+# target to preprocess a source file
+USER/Algorithm/Fifo/fifo.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Fifo/fifo.c.i
+.PHONY : USER/Algorithm/Fifo/fifo.c.i
+
+USER/Algorithm/Fifo/fifo.s: USER/Algorithm/Fifo/fifo.c.s
+.PHONY : USER/Algorithm/Fifo/fifo.s
+
+# target to generate assembly for a file
+USER/Algorithm/Fifo/fifo.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Fifo/fifo.c.s
+.PHONY : USER/Algorithm/Fifo/fifo.c.s
 
 USER/Algorithm/Filter/filter32.obj: USER/Algorithm/Filter/filter32.c.obj
 .PHONY : USER/Algorithm/Filter/filter32.obj
@@ -2354,9 +2402,15 @@ help:
 	@echo ... USB_DEVICE/Target/usbd_conf.obj
 	@echo ... USB_DEVICE/Target/usbd_conf.i
 	@echo ... USB_DEVICE/Target/usbd_conf.s
+	@echo ... USER/Algorithm/Crc/crc8_crc16.obj
+	@echo ... USER/Algorithm/Crc/crc8_crc16.i
+	@echo ... USER/Algorithm/Crc/crc8_crc16.s
 	@echo ... USER/Algorithm/Dwt/drv_dwt.obj
 	@echo ... USER/Algorithm/Dwt/drv_dwt.i
 	@echo ... USER/Algorithm/Dwt/drv_dwt.s
+	@echo ... USER/Algorithm/Fifo/fifo.obj
+	@echo ... USER/Algorithm/Fifo/fifo.i
+	@echo ... USER/Algorithm/Fifo/fifo.s
 	@echo ... USER/Algorithm/Filter/filter32.obj
 	@echo ... USER/Algorithm/Filter/filter32.i
 	@echo ... USER/Algorithm/Filter/filter32.s
