@@ -58,7 +58,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
@@ -120,7 +119,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
@@ -865,12 +863,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/rm_task.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu/imu_task.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu/imu_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec/usart10rec_task.c">

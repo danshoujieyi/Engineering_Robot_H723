@@ -2152,30 +2152,6 @@ USER/Task/DMmotor/DMmotor_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.s
 .PHONY : USER/Task/DMmotor/DMmotor_task.c.s
 
-USER/Task/Imu/imu_task.obj: USER/Task/Imu/imu_task.c.obj
-.PHONY : USER/Task/Imu/imu_task.obj
-
-# target to build an object file
-USER/Task/Imu/imu_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj
-.PHONY : USER/Task/Imu/imu_task.c.obj
-
-USER/Task/Imu/imu_task.i: USER/Task/Imu/imu_task.c.i
-.PHONY : USER/Task/Imu/imu_task.i
-
-# target to preprocess a source file
-USER/Task/Imu/imu_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.i
-.PHONY : USER/Task/Imu/imu_task.c.i
-
-USER/Task/Imu/imu_task.s: USER/Task/Imu/imu_task.c.s
-.PHONY : USER/Task/Imu/imu_task.s
-
-# target to generate assembly for a file
-USER/Task/Imu/imu_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.s
-.PHONY : USER/Task/Imu/imu_task.c.s
-
 USER/Task/Usart10_Rec/usart10rec_task.obj: USER/Task/Usart10_Rec/usart10rec_task.c.obj
 .PHONY : USER/Task/Usart10_Rec/usart10rec_task.obj
 
@@ -2462,9 +2438,6 @@ help:
 	@echo ... USER/Task/DMmotor/DMmotor_task.obj
 	@echo ... USER/Task/DMmotor/DMmotor_task.i
 	@echo ... USER/Task/DMmotor/DMmotor_task.s
-	@echo ... USER/Task/Imu/imu_task.obj
-	@echo ... USER/Task/Imu/imu_task.i
-	@echo ... USER/Task/Imu/imu_task.s
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.obj
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.i
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.s

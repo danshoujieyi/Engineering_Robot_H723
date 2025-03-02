@@ -95,12 +95,10 @@ void sbus_rc_decode(uint8_t *buff){
 }
 
 
-extern QueueHandle_t xQueueMotor; // FreeRTOS队列句柄，用于存储解码后的角度值
-extern uint8_t last_frame_seq;    // 上一帧的帧序号
+
 extern uint8_t dma_rx_buffer[2][FRAME_SIZE]; // 双缓冲区
 extern uint8_t current_rx_buffer;        // 当前缓冲区索引
 extern volatile uint8_t data_ready;      // 标志位，表示数据接收完成
-extern float angles[6];             // 存储解码后的角度值
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
 {
@@ -110,8 +108,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
         if (Size <= SBUS_RX_BUF_NUM)
         {
             HAL_UARTEx_ReceiveToIdle_DMA(&huart5, sbus_rx_buf, SBUS_RX_BUF_NUM*2); // 接收完毕后重启
-            sbus_rc_decode( sbus_rx_buf);
-		//	memset(rx_buff, 0, BUFF_SIZE);
         }
         else  // 接收数据长度大于BUFF_SIZE，错误处理
         {
@@ -123,24 +119,20 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
     if (huart->Instance == USART10)
     {
         data_ready = 1; // 设置数据接收完成标志位
-        // 解析接收到的数据
-        if (ParseFrame(dma_rx_buffer[current_rx_buffer], angles)) {
-            // 将解码后的角度值写入队列
-            if (xQueueSendFromISR(xQueueMotor, angles, NULL) != pdPASS) {
-               // printf("Queue is full. Data discarded.\r\n"); // 队列已满，错误处理
-            }
-        }
-
         // 切换到另一个接收缓冲区
         current_rx_buffer = (current_rx_buffer == 0) ? 1 : 0;
-
         // 重新启动DMA接收
         HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE);
-
-        // 关闭DMA的传输过半中断，仅保留完成中断
-        __HAL_DMA_DISABLE_IT(huart10.hdmarx, DMA_IT_HT);
     }
 
+//    if (huart->Instance == USART10)
+//    {
+//        data_ready = 1; // 设置数据接收完成标志位
+//        // 切换到另一个接收缓冲区
+//        current_rx_buffer = (current_rx_buffer == 0) ? 1 : 0;
+//        // 重新启动DMA接收
+//        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE);
+//    }
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
@@ -150,160 +142,12 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
         HAL_UARTEx_ReceiveToIdle_DMA(&huart5, sbus_rx_buf, SBUS_RX_BUF_NUM*2); // 接收发生错误后重启
         memset(sbus_rx_buf, 0, SBUS_RX_BUF_NUM);							   // 清除接收缓存
     }
+
+    if(huart->Instance == USART10)
+    {
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE); // 接收发生错误后重启
+        memset(dma_rx_buffer[(current_rx_buffer == 0) ? 1 : 0], 0, FRAME_SIZE);							   // 清除接收缓存
+    }
 }
 
-
-
-///**
-// * @brief 遥控器定时器超时回调函数
-// */
-//static void rc_lost_callback(void *paramete)
-//{
-//    printf("Sbus RC lost!");
-//    memset(&rc_obj[NOW], 0, sizeof(rc_obj[NOW]));
-//    rc_obj[NOW].sw1 = RC_UP;
-//    rc_obj[NOW].sw2 = RC_UP;
-//    rc_obj[NOW].sw3 = RC_UP;
-//    rc_obj[NOW].sw4 = RC_UP;
-//}
-//
-///**
-// * @brief 串口 DMA 双缓冲初始化
-// * @param rx1_buf 缓冲区1
-// * @param rx2_buf 缓冲区2
-// * @param dma_buf_num DMA缓冲区大小
-// */
-//static void rc_doub_dma_init(uint8_t *rx1_buf, uint8_t *rx2_buf, uint16_t dma_buf_num)
-//{
-//    // 使能DMA串口接收
-//    SET_BIT(huart5.Instance->CR1, USART_CR1_RE); // 使能UART5接收
-//
-//    // 使能空闲中断
-//    __HAL_UART_ENABLE_IT(&huart5, UART_IT_IDLE);
-//
-//    // 失效DMA
-//    __HAL_DMA_DISABLE(&hdma_uart5_rx);
-//    while(hdma_uart5_rx.Instance->CR & DMA_SxCR_EN)
-//    {
-//        __HAL_DMA_DISABLE(&hdma_uart5_rx);
-//    }
-//
-//    hdma_uart5_rx.Instance-> = (uint32_t) & (UART5->DR);
-//    // 内存缓冲区1
-//    hdma_uart5_rx.Instance->M0AR = (uint32_t)(rx1_buf);
-//    // 内存缓冲区2
-//    hdma_uart5_rx.Instance->M1AR = (uint32_t)(rx2_buf);
-//    // 数据长度
-//    hdma_uart5_rx.Instance->NDTR = dma_buf_num;
-//    // 使能双缓冲区
-//    SET_BIT(hdma_uart5_rx.Instance->CR, DMA_SxCR_DBM);
-//
-//    // 使能DMA
-//    __HAL_DMA_ENABLE(&hdma_uart5_rx);
-//}
-//
-//
-//
-//void UART5_IRQHandler(void)
-//{
-//    if(huart5.Instance->SR & UART_FLAG_RXNE)
-//    {
-//        __HAL_UART_CLEAR_PEFLAG(&huart5);
-//    }
-//    else if(UART5->SR & UART_FLAG_IDLE)
-//    {
-//        static uint16_t this_time_rx_len = 0;
-//
-//        __HAL_UART_CLEAR_PEFLAG(&huart5);
-//
-//        if ((hdma_uart5_rx.Instance->CR & DMA_SxCR_CT) == RESET)
-//        {
-//            /* Current memory buffer used is Memory 0 */
-//            //失效DMA
-//            __HAL_DMA_DISABLE(&hdma_uart5_rx);
-//
-//            //get receive data length, length = set_data_length - remain_length
-//            //获取接收数据长度,长度 = 设定长度 - 剩余长度
-//            this_time_rx_len = SBUS_RX_BUF_NUM - hdma_uart5_rx.Instance->NDTR;
-//
-//            //重新设定数据长度
-//            hdma_uart5_rx.Instance->NDTR = SBUS_RX_BUF_NUM;
-//
-//            //设定缓冲区1
-//            hdma_uart5_rx.Instance->CR |= DMA_SxCR_CT;
-//
-//            //使能DMA
-//            __HAL_DMA_ENABLE(&hdma_uart5_rx);
-//
-//            if(this_time_rx_len == SBUS_FRAME_SIZE)
-//            {
-//                //处理遥控器数据
-//                sbus_rc_decode(sbus_rx_buf[0]);
-//               // rt_timer_start(rc_timer);
-//            }
-//        }
-//        else
-//        {
-//            /* Current memory buffer used is Memory 1 */
-//            //失效DMA
-//            __HAL_DMA_DISABLE(&hdma_uart5_rx);
-//
-//            //get receive data length, length = set_data_length - remain_length
-//            //获取接收数据长度,长度 = 设定长度 - 剩余长度
-//            this_time_rx_len = SBUS_RX_BUF_NUM - hdma_uart5_rx.Instance->NDTR;
-//
-//            //重新设定数据长度
-//            hdma_uart5_rx.Instance->NDTR = SBUS_RX_BUF_NUM;
-//
-//            //设定缓冲区0
-//            DMA1_Stream1->CR &= ~(DMA_SxCR_CT);
-//
-//            //使能DMA
-//            __HAL_DMA_ENABLE(&hdma_uart5_rx);
-//
-//            if(this_time_rx_len == SBUS_FRAME_SIZE)
-//            {
-//                //处理遥控器数据
-//                sbus_rc_decode(sbus_rx_buf[1]);
-//              //  rt_timer_start(rc_timer);
-//            }
-//        }
-//    }
-//}
-//
-
-///**
-// * @brief 初始化sbus_rc
-// *
-// * @return rc_obj_t* 指向NOW和LAST两次数据的数组起始地址
-// */
-//rc_obj_t *sbus_rc_init(void)
-//{
-//    /* DMA controller clock enable */
-//    __HAL_RCC_DMA1_CLK_ENABLE();
-//    /* DMA1_Stream1_IRQn interrupt configuration */
-//    HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 0, 0);
-//    HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
-//
-//    huart5.Instance = UART5;  // 修改为UART5
-//    huart5.Init.BaudRate = 100000;
-//    huart5.Init.WordLength = UART_WORDLENGTH_9B;
-//    huart5.Init.StopBits = UART_STOPBITS_2;
-//    huart5.Init.Parity = UART_PARITY_EVEN;
-//    huart5.Init.Mode = UART_MODE_TX_RX;
-//    huart5.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-//    huart5.Init.OverSampling = UART_OVERSAMPLING_16;
-//    HAL_UART_Init(&huart5);  // 修改为huart5
-//
-//    rc_doub_dma_init(sbus_rx_buf[0], sbus_rx_buf[1], SBUS_RX_BUF_NUM);
-//
-////    // 遥控器离线检测定时器相关
-////    rc_timer = rt_timer_create("rc_sbus",
-////                             rc_lost_callback,
-////                             RT_NULL, 20,
-////                             RT_TIMER_FLAG_PERIODIC);
-////    rt_timer_start(rc_timer);
-//
-//    return rc_obj;
-//}
 

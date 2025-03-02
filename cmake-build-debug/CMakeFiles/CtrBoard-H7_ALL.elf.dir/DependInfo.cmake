@@ -52,7 +52,6 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
@@ -147,7 +146,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd/cmd_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Imu/imu_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec/usart10rec_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj.d"
   )
 

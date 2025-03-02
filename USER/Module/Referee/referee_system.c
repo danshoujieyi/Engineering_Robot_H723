@@ -6,31 +6,40 @@
 #include "string.h"
 #include "fifo.h"
 #include "crc8_crc16.h"
+#include "cmsis_os.h"
+#include "stm32h7xx_hal.h"
+#include "usart.h"
 
-static fifo_s_t RX_AgreementData_FIFO;           //实例化的裁判系统接收数据FIFO容器
-static uint8_t RX_FIFO_Space[FIFO_BUF_LENGTH];              //FIFO的实际存储区??
+// 在头文件声明队列句柄
+QueueHandle_t xUARTQueue;
+
 /* --------------------------------裁判系统串口句柄 ------------------------------- */
-UART_HandleTypeDef huart6;
-DMA_HandleTypeDef hdma_usart6_rx;
-DMA_HandleTypeDef hdma_usart6_tx;
+extern UART_HandleTypeDef huart1;
+extern DMA_HandleTypeDef hdma_usart1_rx;
+extern DMA_HandleTypeDef hdma_usart1_tx;
 
-static Frame_header_Typedef Referee_Data_Header;   //接收数据帧头结构体
-static uint8_t RX_AgreementData_Buffer0[Agreement_RX_BUF_NUM];   //接收裁判系统返回数据的接收缓冲区0,该缓冲区设置的相当富裕
-static uint8_t RX_AgreementData_Buffer1[Agreement_RX_BUF_NUM];   //接收裁判系统返回数据的接收缓冲区1，该缓冲区设置的相当富裕
-static uint8_t RX_Agreement_Data[Agreement_RX_BUF_NUM];          //用来单独存放接收数据的Data段
+static referee_data_header_t referee_data_header;   //接收数据帧头结构体
+static referee_data_t referee_data;   //接收数据帧头结构体
+
 static unpack_data_t referee_unpack_obj;
+
+static uint8_t referee_rx_buffer_index = 0;  // 当前使用的接收缓冲区
+static uint8_t referee_rx_buffer[2][REFEREE_RX_BUF_SIZE];
+
+volatile uint8_t referee_data_ready = 0;      // 标志位，表示数据接收完成
+
 
 /*!结构体实例化*/
 static game_status_t                           game_status;
 static game_result_t                           game_result;
 static game_robot_HP_t                         game_robot_HP;
-static event_data_t                            field_event;
+static event_data_t                            event_data;
 static referee_warning_t                       referee_warning;
 static dart_info_t                             dart_info;
 static robot_status_t                          robot_status;
 static power_heat_data_t                       power_heat_data;
 static robot_pos_t                             robot_pos;
-static buff_t                                  buff_musk_t;
+static buff_t                                  buff;
 static hurt_data_t                             hurt_data;
 static shoot_data_t                            shoot_data;
 static projectile_allowance_t                  projectile_allowance;
@@ -41,108 +50,58 @@ static radar_mark_data_t                       radar_mark_data;
 static sentry_info_t                           sentry_info;
 static radar_info_t                            radar_info;
 static robot_interaction_data_t                robot_interaction_data;
-static custom_robot_data_t                     custom_robot_data;
 static map_command_t                           map_command;
-static remote_control_t                        remote_control;
 static map_robot_data_t                        map_robot_data;
-static custom_client_data_t                    custom_client_data;
 static map_data_t                              map_data;
 static custom_info_t                           custom_info;
-static Frame_header_Typedef Referee_Data_header;         //实例化一个帧头结构体
-static RX_AgreementData     Referee_Data;                //实例化一个数据帧结构体
+static custom_robot_data_t                     custom_robot_data;
+static robot_custom_data_t                     robot_custom_data;
+static remote_control_t                        remote_control;
+static custom_client_data_t                    custom_client_data;
+
+
+
+
+
+/**
+* @brief 发送数据
+* @param tx_buffer 发送缓冲区
+* @param Size 发送的数据长度
+*/
+void referee_send_data(uint8_t *tx_buffer, uint16_t Size)
+{
+    HAL_UART_Transmit_DMA(&huart1, tx_buffer, Size);
+}
+
 
 /*裁判系统线程入口*/
 void referee_thread_entry(void *argument)
 {
-    /*用户3pin串口初始化*/
-    /* DMA controller clock enable */
-    __HAL_RCC_DMA2_CLK_ENABLE();
-    /* DMA2_Stream1_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
-    /* DMA2_Stream6_IRQn interrupt configuration */
-    /* HAL_NVIC_SetPriority(DMA2_Stream6_IRQn, 0, 0);
-     HAL_NVIC_EnableIRQ(DMA2_Stream6_IRQn);*/
-    huart6.Instance=USART6;
-    huart6.Init.BaudRate=115200;
-    huart6.Init.WordLength=UART_WORDLENGTH_8B;
-    huart6.Init.StopBits = UART_STOPBITS_1;
-    huart6.Init.Parity=UART_PARITY_NONE;
-    huart6.Init.Mode=UART_MODE_TX_RX;
-    huart6.Init.HwFlowCtl=UART_HWCONTROL_NONE;
-    huart6.Init.OverSampling=UART_OVERSAMPLING_16;
-    HAL_UART_Init(&huart6);
     /*裁判系统初始化*/
-    Referee_system_Init(RX_AgreementData_Buffer0,RX_AgreementData_Buffer1,Agreement_RX_BUF_NUM);
+    referee_system_init();
 
     /*裁判系统数据解包*/
     while(1)
     {
-        /*接收数据解包*/
-        if ((hdma_usart6_rx.Instance->CR & DMA_SxCR_CT) == 0U) //如果当前缓冲区是0，解包0缓冲区，否则解包1缓冲区
-        {
-            Referee_Data_Unpack(RX_AgreementData_Buffer0, &Referee_Data_header, &Referee_Data);
+        if (referee_data_ready) {
+            referee_data_ready = 0; // 清除标志位
+            // 解析接收到的数据
+            referee_data_unpack();
+            // 成功发送到队列后，清除当前缓冲区（如果需要）
+            memset(referee_rx_buffer[(referee_rx_buffer_index == 0) ? 1 : 0], 0, REFEREE_RX_BUF_SIZE);
         }
-        else
-        {
-            Referee_Data_Unpack(RX_AgreementData_Buffer1, &Referee_Data_header, &Referee_Data);
-        }
-        /*将裁判系统数据转存要发送的buffer里面*/
-        memcpy(&(referee_fdb.robot_status),&robot_status, sizeof(robot_status_t));
-        memcpy(&(referee_fdb.power_heat_data),&power_heat_data, sizeof(power_heat_data_t));
 
-        rt_thread_mdelay(1);
+        vTaskDelay(1);
     }
 }
 
-/**
- *@brief 裁判系统线程入口函数
- *
- */
-void USART6_IRQHandler(void)
-{
-    if (huart6.Instance->SR & UART_FLAG_RXNE)
-    {
-        __HAL_UART_CLEAR_PEFLAG(&huart6);
-    }
-    else if (USART6->SR & UART_FLAG_IDLE)
-    {
-        static uint16_t this_time_rx_len = 0;
-
-        __HAL_UART_CLEAR_IDLEFLAG(&huart6);      //清除空闲中断
-
-        if ((hdma_usart6_rx.Instance->CR & DMA_SxCR_CT) == RESET) //如果当前的缓冲区是缓冲区0
-        {
-            //计算这一帧接收的数据的长度
-            __HAL_DMA_DISABLE(&hdma_usart6_rx);
-            this_time_rx_len = Agreement_RX_BUF_NUM - hdma_usart6_rx.Instance->NDTR;
-            //重新设定数据长度
-            hdma_usart6_rx.Instance->NDTR = Agreement_RX_BUF_NUM;
-            //把缓冲区设置成缓冲区1
-            hdma_usart6_rx.Instance->CR |= DMA_SxCR_CT;
-
-            __HAL_DMA_ENABLE(&hdma_usart6_rx);
-            //将这1帧数据放入fifo0
-            fifo_s_puts(&RX_AgreementData_FIFO, (char *) RX_AgreementData_Buffer0, this_time_rx_len);
-        }
-        else //如果当前的缓冲区是缓冲区1
-        {
-            //计算这一帧接收的数据的长度
-            __HAL_DMA_DISABLE(&hdma_usart6_rx);
-            this_time_rx_len = Agreement_RX_BUF_NUM -hdma_usart6_rx.Instance->NDTR;
-            //osSemaphoreRelease(RefereeRxOKHandle);  //释放信号量
-            //重新设定数据长度
-            hdma_usart6_rx.Instance->NDTR = Agreement_RX_BUF_NUM;
-            //把缓冲区设置成缓冲区0
-            hdma_usart6_rx.Instance->CR &= ~DMA_SxCR_CT;
-            __HAL_DMA_ENABLE(&hdma_usart6_rx);
-            fifo_s_puts(&RX_AgreementData_FIFO, (char *) RX_AgreementData_Buffer1, this_time_rx_len);
-
-        }
-    }
-    HAL_UART_IRQHandler(&huart6);
+void USART1_DMA_Init(void) {
+    memset(referee_rx_buffer, 0, sizeof(referee_rx_buffer));
+    //使能DMA串口接收
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, referee_rx_buffer[referee_rx_buffer_index], REFEREE_RX_BUF_SIZE);
+    // 关闭DMA的传输过半中断，仅保留完成中断
+    __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_HT);
 }
-
 
 /**
  *@brief 裁判系统初始化串口通信以及实例化结构体
@@ -151,165 +110,138 @@ void USART6_IRQHandler(void)
  * @param dma_buf_num   DMA转送数据的空间大小
  *
  */
-void Referee_system_Init(uint8_t *  rx1_buf, uint8_t *rx2_buf, uint16_t dma_buf_num)
+void referee_system_init()
 {
-    memset(&Referee_Data_header, 0, sizeof(Frame_header_Typedef));
-    memset(&Referee_Data, 0, sizeof(RX_AgreementData));
+    xUARTQueue = xQueueCreate(1024, sizeof(uint8_t));
+    if (xUARTQueue == NULL) {
+        Error_Handler(); // 队列创建失败
+    }
+
+    memset(&referee_data_header, 0, sizeof(referee_data_header_t));
+    memset(&referee_data, 0, sizeof(referee_data_t));
 
     memset(&game_status, 0, sizeof(game_status_t));
     memset(&game_result, 0, sizeof(game_result_t));
     memset(&game_robot_HP, 0, sizeof(game_robot_HP_t));
-    memset(&field_event, 0, sizeof(event_data_t));
+    memset(&event_data, 0, sizeof(event_data_t));
     memset(&referee_warning, 0, sizeof(referee_warning_t));
     memset(&dart_info, 0, sizeof(dart_info_t));
     memset(&robot_status, 0, sizeof(robot_status_t));
     memset(&power_heat_data, 0, sizeof(power_heat_data_t));
     memset(&robot_pos, 0, sizeof(robot_pos_t));
-    memset(&buff_musk_t, 0, sizeof(buff_t));
+    memset(&buff, 0, sizeof(buff_t));
     memset(&hurt_data, 0, sizeof(hurt_data_t));
     memset(&shoot_data, 0, sizeof(shoot_data_t));
     memset(&projectile_allowance, 0, sizeof(projectile_allowance_t));
+    memset(&rfid_status, 0, sizeof(rfid_status_t));
+    memset(&dart_client_cmd, 0, sizeof(dart_client_cmd_t));
     memset(&ground_robot_position, 0, sizeof(ground_robot_position_t));
     memset(&radar_mark_data, 0, sizeof(radar_mark_data_t));
     memset(&sentry_info, 0, sizeof(sentry_info_t));
     memset(&radar_info, 0, sizeof(radar_info_t));
     memset(&robot_interaction_data, 0, sizeof(robot_interaction_data_t));
-    memset(&custom_robot_data, 0, sizeof(custom_robot_data_t));
     memset(&map_command, 0, sizeof(map_command_t));
-    memset(&remote_control, 0, sizeof(remote_control_t));
     memset(&map_robot_data, 0, sizeof(map_robot_data_t ));
-    memset(&custom_client_data, 0, sizeof(custom_client_data_t));
     memset(&map_data, 0, sizeof(map_data_t));
     memset(&custom_info, 0, sizeof(custom_info_t));
-    //使能DMA串口接收
-    SET_BIT(huart6.Instance->CR3, USART_CR3_DMAR);
+    memset(&custom_robot_data, 0, sizeof(custom_robot_data_t));
+    memset(&robot_custom_data, 0, sizeof(robot_custom_data_t));
+    memset(&remote_control, 0, sizeof(remote_control_t));
+    memset(&custom_client_data, 0, sizeof(custom_client_data_t));
 
-    //使能空闲中断
-    __HAL_UART_ENABLE_IT(&huart6, UART_IT_IDLE);
-
-    //失效DMA，并等待直至SxCR_EN寄存器置0，以保证后续的配置数据可以写入
-    __HAL_DMA_DISABLE(&hdma_usart6_rx);
-    while(hdma_usart6_rx.Instance->CR & DMA_SxCR_EN)
-    {
-        __HAL_DMA_DISABLE(&hdma_usart6_rx);
-    }
-
-    hdma_usart6_rx.Instance->PAR = (uint32_t) & (USART6->DR);
-    //内存缓冲区1
-    hdma_usart6_rx.Instance->M0AR = (uint32_t)(rx1_buf);
-    //memory buffer 2
-    //内存缓冲区2
-    hdma_usart6_rx.Instance->M1AR = (uint32_t)(rx2_buf);
-    //data length
-    //数据长度
-    hdma_usart6_rx.Instance->NDTR = dma_buf_num;
-    //enable double memory buffer
-    //使能双缓冲区
-    SET_BIT(hdma_usart6_rx.Instance->CR, DMA_SxCR_DBM);
-    //enable DMA
-    //使能DMA
-    __HAL_DMA_ENABLE(&hdma_usart6_rx);
-    //fifo初始化
-    fifo_s_init(&RX_AgreementData_FIFO,RX_FIFO_Space,FIFO_BUF_LENGTH);    //创建FIFO存储区域
-
+    USART1_DMA_Init();
 }
 
 /**
  * @brief 裁判系统数据解包函数
  */
 
-void Referee_Data_Unpack()
+void referee_data_unpack()
 {
     unpack_data_t *p_obj = &referee_unpack_obj;
     uint8_t byte = 0;
-    uint8_t sof = HEADER_SOF;
-    while(fifo_s_used(&RX_AgreementData_FIFO))
-    {
-        byte = fifo_s_get(&RX_AgreementData_FIFO);
-        switch (p_obj->unpack_step)  //状态转换机
+    for(;;) {
+        // 使用队列接收数据
+        if(xQueueReceive(xUARTQueue, &byte, pdMS_TO_TICKS(10)) == pdPASS)
         {
-            case STEP_HEADER_SOF:      //如果是读取帧头SOF的状态
+            switch (p_obj->unpack_step)  //状态转换机
             {
-                if(byte == sof)       //判断是否为SOF
+                case STEP_HEADER_SOF:      //如果是读取帧头SOF的状态
                 {
-                    p_obj->unpack_step = STEP_LENGTH_LOW;       //改变状态，下次拿出来的byte，去试图照应数据长度的低八位
-                    p_obj->protocol_packet[p_obj->index++] = byte;  //将数据码好，并将索引长度加1
-                }
-                else
-                {
-                    p_obj->index = 0;   //如果不是，就再从fifo中拿出来一个byte，继续读，直到读出来一个sof
-                }
-            }break;
-            case STEP_LENGTH_LOW:       //如果目前的状态是读的数据长度的低八位
-            {
-                p_obj->data_len = byte;           //低八位直接放入
-                p_obj->protocol_packet[p_obj->index++] = byte;   //码好数据
-                p_obj->unpack_step = STEP_LENGTH_HIGH;          //转变状态
-            }break;
-
-            case STEP_LENGTH_HIGH:  //如果目前的状态时读数据长度的高八位
-            {
-                p_obj->data_len |= (byte << 8);     //放入data_len的高八位
-                p_obj->protocol_packet[p_obj->index++] = byte;  //码好数据
-                //整个交互数据的包总共长最大为 128 个字节，减去 frame_header,cmd_id 和 frame_tail 共 9 个字节以及数据段头结构的 6 个字节
-                if(p_obj->data_len < (REF_PROTOCOL_FRAME_MAX_SIZE - REF_HEADER_CRC_CMDID_LEN))
-                {
-                    p_obj->unpack_step = STEP_FRAME_SEQ;        //转变状态，下一个该读包序号
-                }
-                else
-                {
-                    //如果数据长度不合法，就重头开始读取，并且之前码好的数据作废
-                    p_obj->unpack_step = STEP_HEADER_SOF;
-                    p_obj->index = 0;
-                }
-            }break;
-            case STEP_FRAME_SEQ:
-            {
-                p_obj->protocol_packet[p_obj->index++] = byte;  //码好数据
-                p_obj->unpack_step = STEP_HEADER_CRC8;          //转换状态，下一个byte读的是CRC8
-            }break;
-
-            case STEP_HEADER_CRC8:
-            {
-                //先将这一byte数据放入，使帧头结构完整，以便后面可以进行CRC校验
-                p_obj->protocol_packet[p_obj->index++] = byte;
-                //如果这一byte放入之后，数据长度是一个帧头的长度，那么就进行CRC校验
-                if (p_obj->index == REF_PROTOCOL_HEADER_SIZE)
-                {
-                    if ( Verify_CRC8_Check_Sum(p_obj->protocol_packet, REF_PROTOCOL_HEADER_SIZE) )
+                    if (byte == HEADER_SOF)       //判断是否为SOF
                     {
-                        p_obj->unpack_step = STEP_DATA_CRC16;   //如果校验通过，则状态转换成去读取帧尾
+                        p_obj->unpack_step = STEP_LENGTH_LOW;       //改变状态，下次拿出来的byte，去试图照应数据长度的低八位
+                        p_obj->protocol_packet[p_obj->index++] = byte;  //将数据码好，并将索引长度加1
+                    } else {
+                        p_obj->index = 0;   //如果不是，就再从fifo中拿出来一个byte，继续读，直到读出来一个sof
                     }
-                    else
-                    {
-                        //如果校验不通过，则从头开始，之前码好的数据作废
+                }
+                    break;
+
+                case STEP_LENGTH_LOW:       //如果目前的状态是读的数据长度的低八位
+                {
+                    p_obj->data_len = byte;           //低八位直接放入
+                    p_obj->protocol_packet[p_obj->index++] = byte;   //码好数据
+                    p_obj->unpack_step = STEP_LENGTH_HIGH;          //转变状态
+                }
+                    break;
+
+                case STEP_LENGTH_HIGH:  //如果目前的状态时读数据长度的高八位
+                {
+                    p_obj->data_len |= (byte << 8);     //放入data_len的高八位
+                    p_obj->protocol_packet[p_obj->index++] = byte;  //码好数据
+                    //整个交互数据的包总共长最大为 128 个字节，减去 frame_header,cmd_id 和 frame_tail 共 9 个字节以及数据段头结构的 6 个字节
+                    if (p_obj->data_len < (REF_PROTOCOL_FRAME_MAX_SIZE - REF_HEADER_CRC_CMDID_LEN)) {
+                        p_obj->unpack_step = STEP_FRAME_SEQ;        //转变状态，下一个该读包序号
+                    } else {
+                        //如果数据长度不合法，就重头开始读取，并且之前码好的数据作废
                         p_obj->unpack_step = STEP_HEADER_SOF;
                         p_obj->index = 0;
                     }
                 }
-            }break;
+                    break;
 
-            case STEP_DATA_CRC16:
-            {
-                //从帧头到帧尾的过程中的数据一律码好
-                if (p_obj->index < (REF_HEADER_CRC_CMDID_LEN + p_obj->data_len))
-                {
-                    p_obj->protocol_packet[p_obj->index++] = byte;
+                case STEP_FRAME_SEQ: {
+                    p_obj->protocol_packet[p_obj->index++] = byte;  //码好数据
+                    p_obj->unpack_step = STEP_HEADER_CRC8;          //转换状态，下一个byte读的是CRC8
                 }
-                //如果数据读取到data末尾，则转换状态，准备开始新一帧的读取
-                if (p_obj->index >= (REF_HEADER_CRC_CMDID_LEN + p_obj->data_len))
-                {
-                    p_obj->unpack_step = STEP_HEADER_SOF;
-                    p_obj->index = 0;
-                    //整包数据校验
-                    if ( Verify_CRC16_Check_Sum(p_obj->protocol_packet, REF_HEADER_CRC_CMDID_LEN + p_obj->data_len) )
-                    {
-                        //校验通过，则将码好的数据memcp到指定结构体中
-                        Referee_Data_Solve(p_obj->protocol_packet);
+                    break;
+
+                case STEP_HEADER_CRC8: {
+                    //先将这一byte数据放入，使帧头结构完整，以便后面可以进行CRC校验
+                    p_obj->protocol_packet[p_obj->index++] = byte;
+                    //如果这一byte放入之后，数据长度是一个帧头的长度，那么就进行CRC校验
+                    if (p_obj->index == REF_PROTOCOL_HEADER_SIZE) {
+                        if (verify_CRC8_check_sum(p_obj->protocol_packet, REF_PROTOCOL_HEADER_SIZE)) {
+                            p_obj->unpack_step = STEP_DATA_CRC16;   //如果校验通过，则状态转换成去读取帧尾
+                        } else {
+                            //如果校验不通过，则从头开始，之前码好的数据作废
+                            p_obj->unpack_step = STEP_HEADER_SOF;
+                            p_obj->index = 0;
+                        }
                     }
                 }
-            }break;
+                    break;
 
+                case STEP_DATA_CRC16: {
+                    //从帧头到帧尾的过程中的数据一律码好
+                    if (p_obj->index < (REF_HEADER_CRC_CMDID_LEN + p_obj->data_len)) {
+                        p_obj->protocol_packet[p_obj->index++] = byte;
+                    }
+                    //如果数据读取到data末尾，则转换状态，准备开始新一帧的读取
+                    if (p_obj->index >= (REF_HEADER_CRC_CMDID_LEN + p_obj->data_len)) {
+                        p_obj->unpack_step = STEP_HEADER_SOF;
+                        p_obj->index = 0;
+                        //整包数据校验
+                        if (verify_CRC16_check_sum(p_obj->protocol_packet,
+                                                   REF_HEADER_CRC_CMDID_LEN + p_obj->data_len)) {
+                            //校验通过，则将码好的数据memcp到指定结构体中
+                            referee_data_save(p_obj->protocol_packet);
+                        }
+                    }
+                }
+                    break;
+            }
         }
     }
 }
@@ -319,13 +251,13 @@ void Referee_Data_Unpack()
  * @brief 裁判系统命令数据解包函数
  * @param referee_data_frame: 接收到的整帧数据
  */
-void Referee_Data_Solve(uint8_t* frame)
+void referee_data_save(uint8_t* frame)
 {
     uint16_t cmd_id = 0;
 
     uint8_t index = 0;
-    memcpy(&Referee_Data_header, frame, sizeof(Frame_header_Typedef));
-    index += sizeof(Frame_header_Typedef);
+    memcpy(&referee_data_header, frame, sizeof(referee_data_header_t));
+    index += sizeof(referee_data_header_t);
     memcpy(&cmd_id, frame + index, sizeof(uint16_t));
     index += sizeof(uint16_t);
 
@@ -340,7 +272,7 @@ void Referee_Data_Solve(uint8_t* frame)
             memcpy(&game_robot_HP, frame + index, sizeof(game_robot_HP_t));
             break;
         case FIELD_EVENTS_CMD_ID:
-            memcpy(&field_event, frame + index, sizeof(event_data_t));
+            memcpy(&event_data, frame + index, sizeof(event_data_t));
             break;
         case REFEREE_WARNING_CMD_ID:
             memcpy(&referee_warning, frame + index, sizeof(referee_warning_t));
@@ -358,7 +290,7 @@ void Referee_Data_Solve(uint8_t* frame)
             memcpy(&robot_pos, frame + index, sizeof(robot_pos_t));
             break;
         case BUFF_MUSK_CMD_ID:
-            memcpy(&buff_musk_t, frame + index, sizeof(buff_t));
+            memcpy(&buff, frame + index, sizeof(buff_t));
             break;
         case ROBOT_HURT_CMD_ID:
             memcpy(&hurt_data, frame + index, sizeof(hurt_data_t));
@@ -390,7 +322,7 @@ void Referee_Data_Solve(uint8_t* frame)
         case STUDENT_INTERACTIVE_DATA_CMD_ID:
             memcpy(&robot_interaction_data, frame + index, sizeof(robot_interaction_data_t));
             break;
-        case CUSTOMER_CONTROLLER_ROBOT_CMD_ID :
+        case ARM_DATA_FROM_CONTROLLER_CMD_ID_2 :
             memcpy(&custom_robot_data, frame + index, sizeof(custom_robot_data_t));
             break;
         case PLAYER_MINIMAP_CMD_ID :
@@ -410,6 +342,9 @@ void Referee_Data_Solve(uint8_t* frame)
             break;
         case PLAYER_MINIMAP_ROBOT_CMD_ID :
             memcpy(&custom_info, frame + index, sizeof(custom_info_t));
+            break;
+        case ARM_DATA_FROM_CONTROLLER_CMD_ID_9 :
+            memcpy(&robot_custom_data, frame + index, sizeof(robot_custom_data_t));
             break;
     }
 }

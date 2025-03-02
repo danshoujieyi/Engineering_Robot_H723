@@ -124,6 +124,7 @@ int main(void)
   MX_OCTOSPI2_Init();
   MX_UART5_Init();
   MX_UART7_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_GPIO_Port, PUMP2_Pin, GPIO_PIN_RESET);

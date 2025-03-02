@@ -8,39 +8,57 @@
 #include "main.h"
 
 #define HEADER_SOF 0xA5
-#define Agreement_RX_BUF_NUM 512        //DMA要传输的数据项数目NDTR寄存器填充值 200，即收200字节后自动填充并转换缓冲数组
+#define REFEREE_RX_BUF_SIZE 512        //DMA要传输的数据项数目NDTR寄存器填充值 200，即收200字节后自动填充并转换缓冲数组
 #define FIFO_BUF_LENGTH     1024
 
+/**
+*   接收协议数据的帧头数据结构体
+*/
+typedef struct __attribute__((__packed__))
+{
+    uint8_t spf;                           /*! 数据帧起始字节，固定值为 0xA5 */
+    uint16_t data_length;                  /*! 数据帧中 data 的长度 */
+    uint8_t seq;                           /*! 包序号 */
+    uint8_t crc8;                          /*! 帧头 CRC8校验 */
+} referee_data_header_t;
+
+
 #define REF_PROTOCOL_FRAME_MAX_SIZE         128  // 协议帧最大大小
-#define REF_PROTOCOL_HEADER_SIZE            sizeof(Frame_header_Typedef)  // 协议帧头大小
+#define REF_PROTOCOL_HEADER_SIZE            sizeof(referee_data_header_t)  // 协议帧头大小
 #define REF_PROTOCOL_CMD_SIZE               2  // 协议命令字节大小
 #define REF_PROTOCOL_CRC16_SIZE             2  // 协议 CRC16 校验大小
 #define REF_HEADER_CRC_LEN                  (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE)  // 帧头 CRC 长度
 #define REF_HEADER_CRC_CMDID_LEN            (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE + sizeof(uint16_t))  // 帧头加命令码的 CRC 长度
 #define REF_HEADER_CMDID_LEN                (REF_PROTOCOL_HEADER_SIZE + sizeof(uint16_t))  // 帧头加命令码长度
 
-/**
-*   接收协议数据的帧头数据结构体
-*/
-typedef  struct __attribute__((__packed__))
-{
-    uint8_t SOF;                           /*! 数据帧起始字节，固定值为 0xA5 */
-    uint16_t data_length;                  /*! 数据帧中 data 的长度 */
-    uint8_t seq;                           /*! 包序号 */
-    uint8_t CRC8;                          /*! 帧头 CRC8校验 */
-} Frame_header_Typedef;
+/*!
+// 使用 `__attribute__((packed))` 禁用结构体成员的对齐，确保结构体紧凑地排列在内存中。
+// 这样可以避免因为结构体对齐而导致额外的填充字节（例如帧头和数据段之间的多余字节）。
+// 这个属性确保结构体中的成员紧密排列，减少内存浪费，尤其在需要精确控制数据格式时非常重要。
+typedef struct __attribute__((packed)) { // 禁用结构体对齐
+    struct __attribute__((packed)){  // 禁用帧头部分结构体的对齐
+        uint8_t sof;              // 起始字节，固定值为0xA5，表示数据帧的开始
+        uint16_t data_length;     // 数据段长度（2字节），表示数据区的字节数
+        uint8_t seq;              // 包序号（1字节），表示当前数据包的序列号
+        uint8_t crc8;             // 帧头 CRC8 校验（1字节），用于数据校验
+    } frame_header;               // 帧头部分
+    uint16_t cmd_id;              // 命令码（2字节），表示当前帧的命令类型
+    uint8_t *data;              // 数据段（30字节），用于存放实际的数据
+    uint16_t frame_tail;         // 帧尾 CRC16 校验（2字节），用于确保数据传输完整性
+} rx_referee_data_t;
+!*/
+
 
 /**
 *   接收的协议数据
 */
 typedef struct __attribute__((__packed__))
 {
-    Frame_header_Typedef* frame_header;        /*! 帧头数据结构体 */
+    referee_data_header_t* frame_header;        /*! 帧头数据结构体 */
     uint16_t cmd_id;                          /*! 命令码 ID */
     uint8_t* data;                            /*! 接收的数据指针 */
     uint16_t frame_tail;                      /*! frame_tail */
-} RX_AgreementData;
-
+} referee_data_t;
 
 typedef enum
 {
@@ -57,7 +75,7 @@ typedef enum
 */
 typedef struct __attribute__((__packed__))
 {
-    Frame_header_Typedef *p_header;
+    referee_data_header_t *p_header;
     uint16_t       data_len;
     uint8_t        protocol_packet[REF_PROTOCOL_FRAME_MAX_SIZE];
     unpack_step_e  unpack_step;
@@ -86,14 +104,14 @@ typedef enum
     SENTRY_AUTONOMY__CMD_ID           = 0x020D,  // 哨兵自主决策信息同步数据 长度 6
     RADAR_AUTONOMY_CMD_ID             = 0x020E,  // 雷达自主决策信息同步数据 长度 1
     STUDENT_INTERACTIVE_DATA_CMD_ID   = 0x0301,  // 机器人交互数据，发送方触发发送 长度 127
-    CUSTOMER_CONTROLLER_ROBOT_CMD_ID  = 0x0302,  // 自定义控制器与机器人交互数据，发送方触发发送 长度 30
+    ARM_DATA_FROM_CONTROLLER_CMD_ID_2  = 0x0302,  // 自定义控制器与机器人交互数据，发送方触发发送 长度 30
     PLAYER_MINIMAP_CMD_ID             = 0x0303,  // 选手端小地图交互数据 长度 15
     KEYBOARD_MOUSE_CMD_ID             = 0x0304,  // 键鼠遥控数据 长度 12
     RADAR_MINIMAP_CMD_ID              = 0x0305,  // 选手端小地图接收雷达数据 长度 24
     CUSTOMER_CONTROLLER_PLAYER_CMD_ID = 0x0306,  // 自定义控制器与选手端交互数据 长度 8
     PLAYER_MINIMAP_SENTRY_CMD_ID      = 0x0307,  // 选手端小地图接收哨兵数据 长度 103
     PLAYER_MINIMAP_ROBOT_CMD_ID       = 0x0308,  // 选手端小地图接收机器人数据 长度 34
-    ROBOT_DATA_FROM_CONTROLLER_CMD_ID = 0x0309,  // 自定义控制器接收机器人数据 长度 30
+    ARM_DATA_FROM_CONTROLLER_CMD_ID_9   = 0x0309,  // 自定义控制器接收机器人数据 长度 30
 } referee_cmd_id_t;
 
 /**
@@ -256,7 +274,7 @@ typedef struct __attribute__((__packed__))
  *   2 号 17mm 枪口热量
  *   42mm 枪口热量
  */
-typedef  struct __attribute__((__packed__))
+typedef struct __attribute__((__packed__))
 {
     uint16_t reserved_1;                          /*!底盘输出电压*/
     uint16_t reserved_2;                          /*!底盘输出电流*/
@@ -727,18 +745,14 @@ typedef struct __attribute__((__packed__))
 /**
  * @brief 裁判系统接收初始化
  */
-void Referee_system_Init(uint8_t *  rx1_buf, uint8_t *rx2_buf, uint16_t dma_buf_num);
+void referee_system_init();
 /**
  * @brief 裁判系统接收数据帧解包
  */
-void Referee_Data_Unpack();
+void referee_data_unpack();
 /**
  * @brief 裁判系统数据更新并保存
  */
-void Referee_Data_Solve(uint8_t* referee_data_frame);
-/**
- * @brief 线程入口函数
- */
-void referee_thread_entry(void *argument);
+void referee_data_save(uint8_t* referee_data_frame);
 
 #endif //CTRBOARD_H7_ALL_REFEREE_SYSTEM_H

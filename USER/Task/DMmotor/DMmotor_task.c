@@ -270,7 +270,7 @@ void DMmotor_Entry(void const * argument) {
     }
     for (;;) {
         // 从队列中接收角度值（度数），阻塞时间为 10ms
-        if (xQueueReceive(xQueueMotor, dm_motor_angles, pdMS_TO_TICKS(10)) == pdTRUE) {
+        if (xQueueReceive(xQueueMotor, dm_motor_angles, 0) == pdTRUE) {
             printf("Data received (degrees): %f, %f, %f, %f, %f, %f\n",
                    dm_motor_angles[0], dm_motor_angles[1], dm_motor_angles[2],
                    dm_motor_angles[3], dm_motor_angles[4], dm_motor_angles[5]);
@@ -279,9 +279,9 @@ void DMmotor_Entry(void const * argument) {
                 DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
                 DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
                 DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
-               // DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
-                //DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
-               // DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
+                DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
+                DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
+                DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
             }
         } else {
             //printf("Queue read timeout.\n");

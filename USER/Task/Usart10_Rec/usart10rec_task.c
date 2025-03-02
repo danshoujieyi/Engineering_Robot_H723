@@ -20,7 +20,6 @@ float angles[6] = {0.0f};             // 存储解码后的角度值
 
 void USART10_DMA_Init(void) {
     memset(dma_rx_buffer, 0, sizeof(dma_rx_buffer));
-
     // 配置DMA接收到第一个缓冲区
     HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE);
     // 关闭DMA的传输过半中断，仅保留完成中断
@@ -103,7 +102,7 @@ void USART10_RecEntry(void const *argument) {
     /* USER CODE BEGIN USART10_RecEntry */
 
     // 创建队列，队列长度为10，每个队列项大小为6个float
-    xQueueMotor = xQueueCreate(10, 6 * sizeof(float));
+    xQueueMotor = xQueueCreate(40, 6 * sizeof(float));
     if (xQueueMotor == NULL) {
         Error_Handler(); // 队列创建失败
     }
@@ -116,12 +115,14 @@ void USART10_RecEntry(void const *argument) {
 
         if (data_ready) {
             data_ready = 0; // 清除标志位
-
-
-            // 处理已解析的角度值
-            // 此处可以添加额外逻辑，例如打印或传递数据给其他任务
+            // 解析接收到的数据
+            if (ParseFrame(dma_rx_buffer[current_rx_buffer], angles)) {
+                // 将解码后的角度值写入队列
+                if (xQueueSend(xQueueMotor, angles, 0) != pdPASS) {
+                    // printf("Queue is full. Data discarded.\r\n"); // 队列已满，错误处理
+                }
+            }
         }
-
         vTaskDelay(1);
     }
     /* USER CODE END USART10_RecEntry */

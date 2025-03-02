@@ -168,8 +168,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj.d"
   "CtrBoard-H7_ALL.elf"
