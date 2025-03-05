@@ -8,46 +8,25 @@
 #include "main.h"
 
 #define HEADER_SOF 0xA5
-#define REFEREE_RX_BUF_SIZE 512        //DMA要传输的数据项数目NDTR寄存器填充值 200，即收200字节后自动填充并转换缓冲数组
-#define FIFO_BUF_LENGTH     1024
+#define REFEREE_RX_BUF_SIZE (127+9+68+5)        // 209
 
 /**
 *   接收协议数据的帧头数据结构体
 */
 typedef struct __attribute__((__packed__))
 {
-    uint8_t spf;                           /*! 数据帧起始字节，固定值为 0xA5 */
+    uint8_t sof;                           /*! 数据帧起始字节，固定值为 0xA5 */
     uint16_t data_length;                  /*! 数据帧中 data 的长度 */
     uint8_t seq;                           /*! 包序号 */
     uint8_t crc8;                          /*! 帧头 CRC8校验 */
 } referee_data_header_t;
 
-
-#define REF_PROTOCOL_FRAME_MAX_SIZE         128  // 协议帧最大大小
-#define REF_PROTOCOL_HEADER_SIZE            sizeof(referee_data_header_t)  // 协议帧头大小
+#define REF_PROTOCOL_HEADER_SIZE            sizeof(referee_data_header_t)  // 协议帧头大小 5字节
 #define REF_PROTOCOL_CMD_SIZE               2  // 协议命令字节大小
 #define REF_PROTOCOL_CRC16_SIZE             2  // 协议 CRC16 校验大小
-#define REF_HEADER_CRC_LEN                  (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE)  // 帧头 CRC 长度
-#define REF_HEADER_CRC_CMDID_LEN            (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE + sizeof(uint16_t))  // 帧头加命令码的 CRC 长度
-#define REF_HEADER_CMDID_LEN                (REF_PROTOCOL_HEADER_SIZE + sizeof(uint16_t))  // 帧头加命令码长度
-
-/*!
-// 使用 `__attribute__((packed))` 禁用结构体成员的对齐，确保结构体紧凑地排列在内存中。
-// 这样可以避免因为结构体对齐而导致额外的填充字节（例如帧头和数据段之间的多余字节）。
-// 这个属性确保结构体中的成员紧密排列，减少内存浪费，尤其在需要精确控制数据格式时非常重要。
-typedef struct __attribute__((packed)) { // 禁用结构体对齐
-    struct __attribute__((packed)){  // 禁用帧头部分结构体的对齐
-        uint8_t sof;              // 起始字节，固定值为0xA5，表示数据帧的开始
-        uint16_t data_length;     // 数据段长度（2字节），表示数据区的字节数
-        uint8_t seq;              // 包序号（1字节），表示当前数据包的序列号
-        uint8_t crc8;             // 帧头 CRC8 校验（1字节），用于数据校验
-    } frame_header;               // 帧头部分
-    uint16_t cmd_id;              // 命令码（2字节），表示当前帧的命令类型
-    uint8_t *data;              // 数据段（30字节），用于存放实际的数据
-    uint16_t frame_tail;         // 帧尾 CRC16 校验（2字节），用于确保数据传输完整性
-} rx_referee_data_t;
-!*/
-
+#define REF_HEADER_CRC_CMD_SIZE            (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE + REF_PROTOCOL_CMD_SIZE)  // 帧头加命令码的 CRC 长度
+#define REF_PROTOCOL_DATA_MAX_SIZE         127  // 最大可传输数据大小，命令码0x301机器人交互数据最大长度为127字节
+#define REF_PROTOCOL_FRAME_MAX_SIZE         (REF_HEADER_CRC_CMD_SIZE+REF_PROTOCOL_DATA_MAX_SIZE)  // 协议帧最大大小
 
 /**
 *   接收的协议数据
@@ -63,22 +42,21 @@ typedef struct __attribute__((__packed__))
 typedef enum
 {
     STEP_HEADER_SOF  = 0,
-    STEP_LENGTH_LOW  = 1,
-    STEP_LENGTH_HIGH = 2,
+    STEP_DATA_SIZE_LOW  = 1,
+    STEP_DATA_SIZE_HIGH = 2,
     STEP_FRAME_SEQ   = 3,
     STEP_HEADER_CRC8 = 4,
     STEP_DATA_CRC16  = 5,
 } unpack_step_e;
 
 /**
-*   在单字节解包时用来码放从fifo中取出来的字节的容器，将fifo中取出来的字节拾掇成数据帧的结构
+*   解包函数
 */
 typedef struct __attribute__((__packed__))
 {
     referee_data_header_t *p_header;
-    uint16_t       data_len;
-    uint8_t        protocol_packet[REF_PROTOCOL_FRAME_MAX_SIZE];
     unpack_step_e  unpack_step;
+    uint8_t        protocol_packet[REF_PROTOCOL_FRAME_MAX_SIZE];
     uint16_t       index;
 } unpack_data_t;
 
@@ -749,7 +727,7 @@ void referee_system_init();
 /**
  * @brief 裁判系统接收数据帧解包
  */
-void referee_data_unpack();
+void referee_data_unpack(uint8_t *data, uint16_t len);
 /**
  * @brief 裁判系统数据更新并保存
  */

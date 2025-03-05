@@ -2032,6 +2032,30 @@ USER/Module/Rc/Sbus/rc_sbus.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.s
 .PHONY : USER/Module/Rc/Sbus/rc_sbus.c.s
 
+USER/Module/Referee/referee_system.obj: USER/Module/Referee/referee_system.c.obj
+.PHONY : USER/Module/Referee/referee_system.obj
+
+# target to build an object file
+USER/Module/Referee/referee_system.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj
+.PHONY : USER/Module/Referee/referee_system.c.obj
+
+USER/Module/Referee/referee_system.i: USER/Module/Referee/referee_system.c.i
+.PHONY : USER/Module/Referee/referee_system.i
+
+# target to preprocess a source file
+USER/Module/Referee/referee_system.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.i
+.PHONY : USER/Module/Referee/referee_system.c.i
+
+USER/Module/Referee/referee_system.s: USER/Module/Referee/referee_system.c.s
+.PHONY : USER/Module/Referee/referee_system.s
+
+# target to generate assembly for a file
+USER/Module/Referee/referee_system.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.s
+.PHONY : USER/Module/Referee/referee_system.c.s
+
 USER/Module/Vofa+/vofa.obj: USER/Module/Vofa+/vofa.c.obj
 .PHONY : USER/Module/Vofa+/vofa.obj
 
@@ -2151,6 +2175,30 @@ USER/Task/DMmotor/DMmotor_task.s: USER/Task/DMmotor/DMmotor_task.c.s
 USER/Task/DMmotor/DMmotor_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.s
 .PHONY : USER/Task/DMmotor/DMmotor_task.c.s
+
+USER/Task/H_AND_CALLBACK/HAL_Callback.obj: USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.obj
+
+# target to build an object file
+USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
+
+USER/Task/H_AND_CALLBACK/HAL_Callback.i: USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.i
+
+# target to preprocess a source file
+USER/Task/H_AND_CALLBACK/HAL_Callback.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
+
+USER/Task/H_AND_CALLBACK/HAL_Callback.s: USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.s
+
+# target to generate assembly for a file
+USER/Task/H_AND_CALLBACK/HAL_Callback.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
+.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
 
 USER/Task/Usart10_Rec/usart10rec_task.obj: USER/Task/Usart10_Rec/usart10rec_task.c.obj
 .PHONY : USER/Task/Usart10_Rec/usart10rec_task.obj
@@ -2423,6 +2471,9 @@ help:
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.obj
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.i
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.s
+	@echo ... USER/Module/Referee/referee_system.obj
+	@echo ... USER/Module/Referee/referee_system.i
+	@echo ... USER/Module/Referee/referee_system.s
 	@echo ... USER/Module/Vofa+/vofa.obj
 	@echo ... USER/Module/Vofa+/vofa.i
 	@echo ... USER/Module/Vofa+/vofa.s
@@ -2438,6 +2489,9 @@ help:
 	@echo ... USER/Task/DMmotor/DMmotor_task.obj
 	@echo ... USER/Task/DMmotor/DMmotor_task.i
 	@echo ... USER/Task/DMmotor/DMmotor_task.s
+	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.obj
+	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.i
+	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.s
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.obj
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.i
 	@echo ... USER/Task/Usart10_Rec/usart10rec_task.s

@@ -54,6 +54,7 @@ osThreadId ChassisTaskHandle;
 osThreadId CmdTaskHandle;
 osThreadId DMmotorTaskHandle;
 osThreadId ArmTaskHandle;
+osThreadId RefereeTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -67,6 +68,7 @@ void ChassisTask_Entry(void const * argument);
 void CmdTask_Entry(void const * argument);
 void DMmotor_Entry(void const * argument);
 void ArmTask_Entry(void const * argument);
+void Referee_Entry(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -131,7 +133,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of DJmotorTask */
-  osThreadDef(DJmotorTask, DJmotor_Entry, osPriorityNormal, 0, 512);
+  osThreadDef(DJmotorTask, DJmotor_Entry, osPriorityAboveNormal, 0, 512);
   DJmotorTaskHandle = osThreadCreate(osThread(DJmotorTask), NULL);
 
   /* definition and creation of ImuTask */
@@ -143,20 +145,24 @@ void MX_FREERTOS_Init(void) {
   USART10_RecTaskHandle = osThreadCreate(osThread(USART10_RecTask), NULL);
 
   /* definition and creation of ChassisTask */
-  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityNormal, 0, 512);
+  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityAboveNormal, 0, 256);
   ChassisTaskHandle = osThreadCreate(osThread(ChassisTask), NULL);
 
   /* definition and creation of CmdTask */
-  osThreadDef(CmdTask, CmdTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(CmdTask, CmdTask_Entry, osPriorityAboveNormal, 0, 256);
   CmdTaskHandle = osThreadCreate(osThread(CmdTask), NULL);
 
   /* definition and creation of DMmotorTask */
-  osThreadDef(DMmotorTask, DMmotor_Entry, osPriorityAboveNormal, 0, 512);
+  osThreadDef(DMmotorTask, DMmotor_Entry, osPriorityHigh, 0, 512);
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of ArmTask */
-  osThreadDef(ArmTask, ArmTask_Entry, osPriorityAboveNormal, 0, 512);
+  osThreadDef(ArmTask, ArmTask_Entry, osPriorityNormal, 0, 128);
   ArmTaskHandle = osThreadCreate(osThread(ArmTask), NULL);
+
+  /* definition and creation of RefereeTask */
+  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
+  RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -290,6 +296,24 @@ __weak void ArmTask_Entry(void const * argument)
     osDelay(1);
   }
   /* USER CODE END ArmTask_Entry */
+}
+
+/* USER CODE BEGIN Header_Referee_Entry */
+/**
+* @brief Function implementing the RefereeTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Referee_Entry */
+__weak void Referee_Entry(void const * argument)
+{
+  /* USER CODE BEGIN Referee_Entry */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END Referee_Entry */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -52,6 +52,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
@@ -141,11 +142,13 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan/dm_motor_drv.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DM_Motor_Fdcan/dm_motor_drv.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DM_Motor_Fdcan/dm_motor_drv.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan/bsp_fdcan.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Fdcan/bsp_fdcan.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Fdcan/bsp_fdcan.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus/rc_sbus.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.obj.d"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee/referee_system.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+/vofa.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm/arm_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd/cmd_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/HAL_Callback.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec/usart10rec_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj.d"
   )
 

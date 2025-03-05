@@ -1,7 +1,5 @@
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj: \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Imu\imu_task.c \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Imu\imu_task.h \
- D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS/cmsis_os.h \
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj: \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK\HAL_Callback.c \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \
  I:/ARM-GN~1.3/133167~1.3RE/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h \
  I:/ARM-GN~1.3/133167~1.3RE/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h \
@@ -17,6 +15,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/deprecated_definitions.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\portable\GCC\ARM_CM4F/portmacro.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/mpu_wrappers.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Rc\Sbus/rc_sbus.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS/cmsis_os.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
@@ -26,7 +26,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/event_groups.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Bmi088/bmi088driver.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart10_Rec/usart10rec_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/stm32h7xx_hal_conf.h \
@@ -81,7 +82,9 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Imu/imu_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_ll_usb.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\MahonyAHRS/MahonyAHRS.h \
- D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/tim.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/usart.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Vofa+/vofa.h
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/string.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/_locale.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h

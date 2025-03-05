@@ -14,6 +14,7 @@
 #include "rc_sbus.h"
 #include "ramp.h"
 #include "drv_dwt.h"
+#include "filter32.h"
 
 #define BSP_USING_RC_SBUS
 
@@ -46,7 +47,7 @@ ramp_obj_t *km_vy_ramp;//y周控制斜坡
 static float mouse_accumulate_x=0;
 static float mouse_accumulate_y=0;
 /*储存鼠标坐标数据*/
-// First_Order_Filter_t mouse_y_lpf,mouse_x_lpf;
+ First_Order_Filter_t mouse_y_lpf,mouse_x_lpf;
 float Ballistic;  //对自瞄数据进行手动鼠标弹道补偿
 /* --------------------------------- cmd线程入口 -------------------------------- */
 static float cmd_dt;
@@ -266,5 +267,194 @@ static void remote_to_cmd_sbus(void)
 //         shoot_cmd.cover_open=0;
 //    }
 }
+//
+//static void remote_to_cmd_pc_controler(void)
+//{
+//    chassis_cmd.last_mode = chassis_cmd.ctrl_mode;
+//    *rc_last = *rc_now;
+//    float fx=First_Order_Filter_Calculate(&mouse_x_lpf,rc_now->mouse.x);
+//    float fy=First_Order_Filter_Calculate(&mouse_y_lpf,rc_now->mouse.y);
+//
+//    Ballistic += First_Order_Filter_Calculate(&mouse_y_lpf,rc_now->mouse.y)*0.05f;
+//
+//// TODO: 目前状态机转换较为简单，有很多优化和改进空间
+////遥控器的控制信息转化为标准单位，平移为(mm/s)旋转为(degree/s)
+//    /*底盘命令*/
+//    chassis_cmd.vx =  (float)rc_now->ch1 * CHASSIS_RC_MOVE_RATIO_X / RC_DBUS_MAX_VALUE * MAX_CHASSIS_VX_SPEED + km.vx * CHASSIS_PC_MOVE_RATIO_X;
+//    chassis_cmd.vy =  (float)rc_now->ch2 * CHASSIS_RC_MOVE_RATIO_Y / RC_DBUS_MAX_VALUE * MAX_CHASSIS_VY_SPEED + km.vy * CHASSIS_PC_MOVE_RATIO_Y;
+//    chassis_cmd.vw =  (float)rc_now->ch3 * CHASSIS_RC_MOVE_RATIO_R / RC_DBUS_MAX_VALUE * MAX_CHASSIS_VR_SPEED + rc_now->mouse.x * CHASSIS_PC_MOVE_RATIO_R;
+//
+//    /*云台命令*/
+//    if (gim_cmd.ctrl_mode==GIMBAL_GYRO)
+//    {
+//
+//        gim_cmd.yaw +=   (float)rc_now->ch3 * RC_RATIO * GIMBAL_RC_MOVE_RATIO_YAW + fx * KB_RATIO * GIMBAL_PC_MOVE_RATIO_YAW;
+//        gim_cmd.pitch += (float)rc_now->ch4 * RC_RATIO * GIMBAL_RC_MOVE_RATIO_PIT- fy * KB_RATIO * GIMBAL_PC_MOVE_RATIO_PIT;
+//        gyro_yaw_inherit =gim_cmd.yaw;
+//        gyro_pitch_inherit =gim_cmd.pitch;
+//        mouse_accumulate_x=0;
+//        mouse_accumulate_y=0;
+//        //auto_relative_angle_status=RELATIVE_ANGLE_TRANS;
+//    }
+//
+//
+//    /*-------------------------------------------------底盘_云台状态机--------------------------------------------------------------*/
+//    /*TODO:手动模式和自瞄模式状态机*/
+//    if (rc_now->mouse.r==0) {
+//        if (gim_cmd.last_mode == GIMBAL_RELAX)
+//        {/* 判断上次状态是否为RELAX，是则先归中 */
+//            gim_cmd.ctrl_mode = GIMBAL_INIT;
+//            chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+//        }
+//        else {
+//            if (gim_fdb.back_mode == BACK_IS_OK)
+//            {
+//                gim_cmd.ctrl_mode = GIMBAL_GYRO;
+//                chassis_cmd.ctrl_mode = CHASSIS_FOLLOW_GIMBAL;
+//                shoot_cmd.ctrl_mode=SHOOT_COUNTINUE;
+//                memset(r_buffer_point,0,sizeof (*r_buffer_point));
+//            }
+//            else if(gim_fdb.back_mode==BACK_STEP)
+//            {
+//                chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+//                gim_cmd.ctrl_mode=GIMBAL_INIT;
+//            }
+//        }
+//    }
+//
+//    if (rc_now->mouse.r==1||rc_now->sw2==RC_DN)
+//    {
+//
+//        if (gim_cmd.last_mode == GIMBAL_RELAX)
+//        {/* 判断上次状态是否为RELAX，是则先归中 */
+//            gim_cmd.ctrl_mode = GIMBAL_INIT;
+//            chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+//        }
+//        else
+//        {
+//            if (gim_fdb.back_mode == BACK_IS_OK)
+//            {/* 判断归中是否完成 */
+//                gim_cmd.ctrl_mode = GIMBAL_AUTO;
+//                chassis_cmd.ctrl_mode = CHASSIS_FOLLOW_GIMBAL;
+//                shoot_cmd.ctrl_mode=SHOOT_COUNTINUE;
+//            }
+//            else if(gim_fdb.back_mode==BACK_STEP)
+//            {
+//                chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+//                gim_cmd.ctrl_mode=GIMBAL_INIT;
+//            }
+//        }
+//    }
+//
+//    /*TODO:小陀螺*/
+//    if(km.e_sta==KEY_PRESS_ONCE)
+//    {
+//        key_e_status=-key_e_status;
+//    }
+//    if ( key_e_status==1||rc_now->sw1==RC_DN)
+//    {
+//        if (gim_fdb.back_mode==BACK_IS_OK)
+//        {
+//            chassis_cmd.ctrl_mode=CHASSIS_SPIN;
+//        }
+//        else
+//        {
+//            chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+//            gim_cmd.ctrl_mode=GIMBAL_INIT;
+//        }
+//    }
+//    if (chassis_cmd.ctrl_mode==CHASSIS_SPIN)
+//    {
+//        chassis_cmd.vw=ROTATE_RATIO;
+//    }
+//    /*TODO:--------------------------------------------------发射模块状态机--------------------------------------------------------------*/
+//    /*-----------------------------------------开关摩擦轮--------------------------------------------*/
+//    if(km.f_sta==KEY_PRESS_ONCE)
+//    {
+//        key_f_status=-key_f_status;
+//    }
+//    if ( key_f_status==1||rc_now->sw1==RC_MI)
+//    {
+//        shoot_cmd.friction_status=1;
+//    }
+//    else
+//    {
+//        shoot_cmd.friction_status=0;
+//    }
+//    /*TODO:------------------------------------------------------------扳机连发模式---------------------------------------------------------*/
+//    if((rc_now->mouse.l==1||rc_now->wheel>=200)&&shoot_cmd.friction_status==1/*&&(referee_fdb.power_heat_data.shooter_17mm_1_barrel_heat < (referee_fdb.robot_status.shooter_barrel_heat_limit-10))*/)
+//    {
+//        shoot_cmd.ctrl_mode=SHOOT_COUNTINUE;
+//        shoot_cmd.shoot_freq=DBUS_FRICTION_AUTO_SPEED_H;
+//
+////        if(((int16_t)referee_fdb.robot_status.shooter_barrel_heat_limit-(int16_t)referee_fdb.power_heat_data.shooter_17mm_1_barrel_heat)<=30)
+////        {
+////            shoot_cmd.shoot_freq=0;
+////        }
+//
+//        if (km.shift_sta==KEY_PRESS_LONG)
+//        {
+//            shoot_cmd.shoot_freq=DBUS_FRICTION_AUTO_SPEED_H;
+//        }
+//
+//        if(referee_fdb.robot_status.shooter_barrel_heat_limit==0)
+//        {
+//            shoot_cmd.shoot_freq=DBUS_FRICTION_AUTO_SPEED_L;
+//        }
+//        else
+//        {
+//
+//        }
+//
+//    }
+//    else
+//    {
+//        shoot_cmd.ctrl_mode=SHOOT_COUNTINUE;
+//        shoot_cmd.shoot_freq=0;
+//    }
+//    /*-------------------------------------------------------------堵弹反转检测------------------------------------------------------------*/
+//    if (shoot_fdb.trigger_motor_current>=9500||reverse_cnt!=0)
+//    {
+//        shoot_cmd.ctrl_mode=SHOOT_REVERSE;
+//        if (reverse_cnt<120)
+//            reverse_cnt++;
+//        else
+//            reverse_cnt=0;
+//    }
+//    /*-----------------------------------------------------------舵机开盖关盖--------------------------------------------------------------*/
+//    if(rc_now->kb.bit.R==1||rc_now->wheel<=-200)
+//    {
+//        shoot_cmd.cover_open=1;
+//    }
+//    else
+//    {
+//        shoot_cmd.cover_open=0;
+//    }
+//
+//    /*-----------------------------------------使能判断--------------------------------------------*/
+//    if (gim_cmd.ctrl_mode==GIMBAL_GYRO)
+//    {
+//        memset(r_buffer_point,0,sizeof (*r_buffer_point));
+//    }
+//    if (rc_now->sw2==RC_UP)
+//    {
+//        gim_cmd.ctrl_mode = GIMBAL_RELAX;
+//        chassis_cmd.ctrl_mode = CHASSIS_RELAX;
+//        shoot_cmd.ctrl_mode=SHOOT_STOP;
+//        /*放开状态下，gim不接收值*/
+//        gim_cmd.pitch=0;
+//        gim_cmd.yaw=0;
+//        gyro_yaw_inherit=0;
+//        gyro_pitch_inherit=0;
+//        /*摩擦轮停止*/
+//        shoot_cmd.friction_status=0;
+//        /*键盘按键状态标志位*/
+//        key_e_status=-1;
+//        key_f_status=-1;
+//        memset(r_buffer_point,0,sizeof (*r_buffer_point));
+//    }
+//
+//}
+
 
 #endif

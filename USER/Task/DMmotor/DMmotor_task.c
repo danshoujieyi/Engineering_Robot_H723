@@ -259,6 +259,7 @@ void DMcontrol_motor_6(hcan_t* hcan, DMmotorControl* motor_control, float target
 }
 
 extern unsigned char DMmotor_init_flag; // 初始化标志位
+extern float float_values[7]; // 末端齿轮角度
 /**
  * @brief 主任务入口函数
  */
@@ -269,20 +270,19 @@ void DMmotor_Entry(void const * argument) {
         motor_controls[i].calibrated = 0;
     }
     for (;;) {
-        // 从队列中接收角度值（度数），阻塞时间为 10ms
-        if (xQueueReceive(xQueueMotor, dm_motor_angles, 0) == pdTRUE) {
-            printf("Data received (degrees): %f, %f, %f, %f, %f, %f\n",
-                   dm_motor_angles[0], dm_motor_angles[1], dm_motor_angles[2],
-                   dm_motor_angles[3], dm_motor_angles[4], dm_motor_angles[5]);
-            if(DMmotor_init_flag == 1){
-                // 控制每个电机
-                DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
-                DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
-                DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
-                DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
-                DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
-                DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
+        if(DMmotor_init_flag == 1){
+            for (int i = 0; i < 6; i++) {
+                dm_motor_angles[i] = float_values[i];
+                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
+                       float_values[3],float_values[4],float_values[5]);
             }
+            // 控制每个电机
+            DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
+            DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
+            DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
+            DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
+            DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
+            DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
         } else {
             //printf("Queue read timeout.\n");
         }

@@ -42,7 +42,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+// 全局声明信号量
+SemaphoreHandle_t xSemaphoreUART10 = NULL;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -126,6 +127,13 @@ int main(void)
   MX_UART7_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+    // FreeRTOS 初始化
+    xSemaphoreUART10 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    if (xSemaphoreUART10 == NULL) {
+        Error_Handler();  // 信号量创建失败处理
+    }
+
+
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_GPIO_Port, PUMP2_Pin, GPIO_PIN_RESET);
 

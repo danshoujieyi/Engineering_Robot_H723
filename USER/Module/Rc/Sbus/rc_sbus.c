@@ -2,13 +2,8 @@
 #include "rc_sbus.h"
 #include "rm_config.h"
 #include <stm32h723xx.h>
-#include <string.h>
-#include <stdio.h>
-#include "cmsis_os.h"
-#include "usart10rec_task.h"
 
-#define DBG_TAG           "rc.sbus"
-#define DBG_LVL DBG_INFO
+#include "cmsis_os.h"
 
 #define NOW 0
 #define LAST 1
@@ -18,9 +13,6 @@
 extern UART_HandleTypeDef huart5;
 extern DMA_HandleTypeDef hdma_uart5_rx;
 
-// 自定义串口遥控器
-extern UART_HandleTypeDef huart10;
-extern DMA_HandleTypeDef hdma_usart10_rx;
 
 //接收原始数据，为25个字节，给了36个字节长度，防止DMA传输越界
 uint8_t sbus_rx_buf[SBUS_RX_BUF_NUM];
@@ -95,59 +87,5 @@ void sbus_rc_decode(uint8_t *buff){
 }
 
 
-
-extern uint8_t dma_rx_buffer[2][FRAME_SIZE]; // 双缓冲区
-extern uint8_t current_rx_buffer;        // 当前缓冲区索引
-extern volatile uint8_t data_ready;      // 标志位，表示数据接收完成
-
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
-{
-
-    if(huart->Instance == UART5)
-    {
-        if (Size <= SBUS_RX_BUF_NUM)
-        {
-            HAL_UARTEx_ReceiveToIdle_DMA(&huart5, sbus_rx_buf, SBUS_RX_BUF_NUM*2); // 接收完毕后重启
-        }
-        else  // 接收数据长度大于BUFF_SIZE，错误处理
-        {
-            HAL_UARTEx_ReceiveToIdle_DMA(&huart5, sbus_rx_buf, SBUS_RX_BUF_NUM*2); // 接收完毕后重启
-            memset(sbus_rx_buf, 0, SBUS_RX_BUF_NUM);
-        }
-    }
-
-    if (huart->Instance == USART10)
-    {
-        data_ready = 1; // 设置数据接收完成标志位
-        // 切换到另一个接收缓冲区
-        current_rx_buffer = (current_rx_buffer == 0) ? 1 : 0;
-        // 重新启动DMA接收
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE);
-    }
-
-//    if (huart->Instance == USART10)
-//    {
-//        data_ready = 1; // 设置数据接收完成标志位
-//        // 切换到另一个接收缓冲区
-//        current_rx_buffer = (current_rx_buffer == 0) ? 1 : 0;
-//        // 重新启动DMA接收
-//        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE);
-//    }
-}
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
-{
-    if(huart->Instance == UART5)
-    {
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart5, sbus_rx_buf, SBUS_RX_BUF_NUM*2); // 接收发生错误后重启
-        memset(sbus_rx_buf, 0, SBUS_RX_BUF_NUM);							   // 清除接收缓存
-    }
-
-    if(huart->Instance == USART10)
-    {
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE); // 接收发生错误后重启
-        memset(dma_rx_buffer[(current_rx_buffer == 0) ? 1 : 0], 0, FRAME_SIZE);							   // 清除接收缓存
-    }
-}
 
 
