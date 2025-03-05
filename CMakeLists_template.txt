@@ -76,7 +76,7 @@ include_directories(${includes}
         USER/Task/Cmd
         USER/Task/Usart10_Rec
         USER/Task/DMmotor
-        USER/Task/Arm
+       # USER/Task/Arm
         USER/Task/Referee
 
 )
@@ -108,7 +108,7 @@ file(GLOB_RECURSE SOURCES ${sources}
         "USER/Task/Cmd/*.*"
         "USER/Task/Usart10_Rec/*.*"
         "USER/Task/DMmotor/*.*"
-        "USER/Task/Arm/*.*"
+       # "USER/Task/Arm/*.*"
         "USER/Task/Referee/*.*"
 
 )

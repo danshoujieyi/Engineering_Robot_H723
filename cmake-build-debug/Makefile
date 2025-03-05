@@ -2080,30 +2080,6 @@ USER/Module/Vofa+/vofa.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.s
 .PHONY : USER/Module/Vofa+/vofa.c.s
 
-USER/Task/Arm/arm_task.obj: USER/Task/Arm/arm_task.c.obj
-.PHONY : USER/Task/Arm/arm_task.obj
-
-# target to build an object file
-USER/Task/Arm/arm_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj
-.PHONY : USER/Task/Arm/arm_task.c.obj
-
-USER/Task/Arm/arm_task.i: USER/Task/Arm/arm_task.c.i
-.PHONY : USER/Task/Arm/arm_task.i
-
-# target to preprocess a source file
-USER/Task/Arm/arm_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.i
-.PHONY : USER/Task/Arm/arm_task.c.i
-
-USER/Task/Arm/arm_task.s: USER/Task/Arm/arm_task.c.s
-.PHONY : USER/Task/Arm/arm_task.s
-
-# target to generate assembly for a file
-USER/Task/Arm/arm_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.s
-.PHONY : USER/Task/Arm/arm_task.c.s
-
 USER/Task/Chassis/chassis_task.obj: USER/Task/Chassis/chassis_task.c.obj
 .PHONY : USER/Task/Chassis/chassis_task.obj
 
@@ -2477,9 +2453,6 @@ help:
 	@echo ... USER/Module/Vofa+/vofa.obj
 	@echo ... USER/Module/Vofa+/vofa.i
 	@echo ... USER/Module/Vofa+/vofa.s
-	@echo ... USER/Task/Arm/arm_task.obj
-	@echo ... USER/Task/Arm/arm_task.i
-	@echo ... USER/Task/Arm/arm_task.s
 	@echo ... USER/Task/Chassis/chassis_task.obj
 	@echo ... USER/Task/Chassis/chassis_task.i
 	@echo ... USER/Task/Chassis/chassis_task.s

@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
 #include "DMmotor_task.h"
-#include "dm_motor_ctrl.h"
-#include "dm_motor_drv.h"
-#include "fdcan.h"
 
-extern QueueHandle_t xQueueMotor; // 外部队列句柄声明
 static float dm_motor_angles[6] = {0}; // 从队列中读取的角度值（度数）
 static const int INTERPOLATION_STEPS = 5; // 插值步数  // 不再使用插值算法，降低延迟
 static const int TIME_STEP_MS = 1;        // 每步插值的时间间隔（毫秒）
@@ -14,31 +9,65 @@ static float current_angle = 0.0f;        // 当前插值角度
 static int calibrated[6] = {0};           // 校准状态
 const float MAX_ANGLE_CHANGE = 0.05f;
 
-// 转换宏定义
-#define DEG_TO_RAD(x) ((x) * (M_PI / 180.0f)) // 度数转弧度
-#define RAD_TO_DEG(x) ((x) * (180.0f / M_PI)) // 弧度转度数
-#define NUM_INITIAL_READINGS 10 // 设置读取次数
+extern unsigned char DMmotor_init_flag; // 初始化标志位
+extern float float_values[7]; // 实际赋值给关节电机角度
 
-// 齿轮比定义
-#define GEAR_RATIO_6 3.24074f   // 6号电机转动 1圈，末端齿轮转动 3.24圈
-#define GEAR_RATIO_5 1.55556f  // 5号电机转动 1圈，末端齿轮转动 1.5556圈
-#define GEAR_RATIO_2 2.4f      // 2号电机转动 1圈，末端齿轮转动 2.4圈
+unsigned char DMmotor_init_flag = 0; // 初始化标志位
 
-// 末端齿轮角度限制
-#define END_GEAR_MIN_LIMIT_5 -91.0f+180.0f
-#define END_GEAR_MAX_LIMIT_5 91.0f+180.0f  // 编码器从180度开始
+DMmotorControl motor_controls[6] = {
+        { MOTOR_1_MIN_LIMIT, MOTOR_1_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 0 (FDCAN3)
+        { MOTOR_2_MIN_LIMIT, MOTOR_2_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 1 (FDCAN2)
+        { MOTOR_3_MIN_LIMIT, MOTOR_3_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 2 (FDCAN2) — 限制为 0 到 290
+        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 3 (FDCAN2)
+        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 4 (FDCAN2)
+        { -M_PI, M_PI, 0.0f, 0.0f, 0 }  // Motor 5 (FDCAN2)
+};
 
-// 三号电机的角度限制 (0° 到 -290°)
-#define MOTOR_3_MIN_LIMIT -0.5f
-#define MOTOR_3_MAX_LIMIT 0.5f
+/**
+ * @brief 主任务入口函数
+ */
+void DMmotor_Entry(void const * argument) {
+    for (int i = 0; i < 6; i++) {
+        motor_controls[i].last_angle = 0.0f;
+        motor_controls[i].initial_offset = 0.0f;
+        motor_controls[i].calibrated = 0;
+    }
 
-// 计算二号电机的角度限制（通过齿轮比）
-#define MOTOR_2_MIN_LIMIT (-1.0f )//(0.0f * 2.4f)
-#define MOTOR_2_MAX_LIMIT (1.0f)
+    dm_motor_enable(&hfdcan3, &motor[Motor1]);
+    vTaskDelay(220); // 延时，等待电机稳定
+    pos_ctrl(&hfdcan3, motor[Motor1].id, 0, 0.7f); // 发送控制命令
+    vTaskDelay(300); // 延时，等待电机稳定
 
-// 计算一号电机的角度限制
-#define MOTOR_1_MIN_LIMIT -3.05f
-#define MOTOR_1_MAX_LIMIT 3.05f
+    for(int i=1;i<6;i++)
+    {
+        dm_motor_enable(&hfdcan2, &motor[i]);
+        vTaskDelay(220); // 延时，等待电机稳定
+        pos_ctrl(&hfdcan2, motor[i].id, 0, 0.7f); // 发送控制命令
+        vTaskDelay(300); // 延时，等待电机稳定
+    }
+    DMmotor_init_flag = 1; // 标记初始化完成
+
+
+    for (;;) {
+        if(DMmotor_init_flag == 1){
+            for (int i = 0; i < 6; i++) {
+                dm_motor_angles[i] = float_values[i];
+                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
+                       float_values[3],float_values[4],float_values[5]);
+            }
+            // 控制每个电机
+            DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
+            DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
+            DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
+            DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
+            DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
+            DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
+        } else {
+
+        }
+        vTaskDelay(1);
+    }
+}
 
 float normalize_radians(float radians) {
     while (radians >= M_PI) radians -= 2.0f * M_PI;
@@ -99,22 +128,6 @@ float handle_angle_jump(float current_radians, float last_radians) {
     return diff;
 }
 
-typedef struct {
-    float motor_min_limit;       // 电机最小角度限制
-    float motor_max_limit;       // 电机最大角度限制
-    float initial_offset;        // 电机的初始偏差（弧度）
-    float last_angle;            // 电机上一次的角度（弧度）
-    int calibrated;              // 校准状态
-} DMmotorControl;
-
-DMmotorControl motor_controls[6] = {
-        { MOTOR_1_MIN_LIMIT, MOTOR_1_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 0 (FDCAN3)
-        { MOTOR_2_MIN_LIMIT, MOTOR_2_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 1 (FDCAN2)
-        { MOTOR_3_MIN_LIMIT, MOTOR_3_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 2 (FDCAN2) — 限制为 0 到 290
-        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 3 (FDCAN2)
-        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 4 (FDCAN2)
-        { -M_PI, M_PI, 0.0f, 0.0f, 0 }  // Motor 5 (FDCAN2)
-};
 
 void DMcontrol_motor_1(hcan_t* hcan, DMmotorControl* motor_control, float target_angle) {
     if (!motor_control->calibrated) {
@@ -255,38 +268,6 @@ void DMcontrol_motor_6(hcan_t* hcan, DMmotorControl* motor_control, float target
         smooth_motion_1(hcan, &motor[Motor6], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
 
-    }
-}
-
-extern unsigned char DMmotor_init_flag; // 初始化标志位
-extern float float_values[7]; // 末端齿轮角度
-/**
- * @brief 主任务入口函数
- */
-void DMmotor_Entry(void const * argument) {
-    for (int i = 0; i < 6; i++) {
-        motor_controls[i].last_angle = 0.0f;
-        motor_controls[i].initial_offset = 0.0f;
-        motor_controls[i].calibrated = 0;
-    }
-    for (;;) {
-        if(DMmotor_init_flag == 1){
-            for (int i = 0; i < 6; i++) {
-                dm_motor_angles[i] = float_values[i];
-                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
-                       float_values[3],float_values[4],float_values[5]);
-            }
-            // 控制每个电机
-            DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
-            DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
-            DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
-            DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
-            DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
-            DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
-        } else {
-            //printf("Queue read timeout.\n");
-        }
-        vTaskDelay(1);
     }
 }
 

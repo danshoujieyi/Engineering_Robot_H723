@@ -58,7 +58,6 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"
   )
 
 # The set of dependency files which are needed:
@@ -144,7 +143,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus/rc_sbus.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee/referee_system.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+/vofa.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj.d"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm/arm_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd/cmd_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"

@@ -3,15 +3,9 @@
 //
 #include "FreeRTOS.h"
 #include "rc_sbus.h"
-#include "usart10rec_task.h"
 #include "referee_system.h"
 #include "usart.h"
 #include <string.h>
-
-
-extern uint8_t dma_rx_buffer[2][FRAME_SIZE]; // 双缓冲区
-extern uint8_t current_rx_buffer;        // 当前缓冲区索引
-extern volatile uint8_t data_ready;      // 标志位，表示数据接收完成
 
 extern uint8_t referee_rx_buffer_index;  // 当前使用的接收缓冲区
 extern uint8_t referee_rx_buffer[2][REFEREE_RX_BUF_SIZE];
@@ -65,11 +59,11 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
         memset(sbus_rx_buf, 0, SBUS_RX_BUF_NUM);							   // 清除接收缓存
     }
 
-    if(huart->Instance == USART10)
-    {
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE); // 接收发生错误后重启
-        memset(dma_rx_buffer, 0, sizeof(dma_rx_buffer));// 清除双缓存
-    }
+//    if(huart->Instance == USART10)
+//    {
+//        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, dma_rx_buffer[current_rx_buffer], FRAME_SIZE); // 接收发生错误后重启
+//        memset(dma_rx_buffer, 0, sizeof(dma_rx_buffer));// 清除双缓存
+//    }
 
 //    if(huart->Instance == USART1)
 //    {

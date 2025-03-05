@@ -162,8 +162,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj.d"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Arm/arm_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj"

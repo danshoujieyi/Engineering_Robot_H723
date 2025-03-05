@@ -64,7 +64,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -126,7 +125,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -838,12 +836,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+/vofa.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm/arm_task.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm/arm_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c">

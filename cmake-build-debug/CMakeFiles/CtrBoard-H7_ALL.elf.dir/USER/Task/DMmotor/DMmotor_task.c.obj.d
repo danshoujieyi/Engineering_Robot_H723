@@ -18,10 +18,6 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj: \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/lock.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/stdio.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/math.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/string.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/_locale.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\DMmotor\DMmotor_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS/cmsis_os.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \

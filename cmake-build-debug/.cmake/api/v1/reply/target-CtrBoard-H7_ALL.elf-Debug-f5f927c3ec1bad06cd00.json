@@ -323,10 +323,6 @@
 				{
 					"backtrace" : 13,
 					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
-				},
-				{
-					"backtrace" : 13,
-					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"
 				}
 			],
 			"language" : "C",
@@ -425,8 +421,7 @@
 				227,
 				229,
 				231,
-				233,
-				237
+				235
 			]
 		},
 		{
@@ -652,10 +647,6 @@
 				{
 					"backtrace" : 13,
 					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
-				},
-				{
-					"backtrace" : 13,
-					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Arm"
 				}
 			],
 			"language" : "ASM",
@@ -875,10 +866,9 @@
 				228,
 				230,
 				232,
+				233,
 				234,
-				235,
-				236,
-				238
+				236
 			]
 		},
 		{
@@ -970,8 +960,7 @@
 				227,
 				229,
 				231,
-				233,
-				237
+				235
 			]
 		},
 		{
@@ -985,7 +974,7 @@
 				148,
 				191,
 				218,
-				239
+				237
 			]
 		}
 	],
@@ -2196,17 +2185,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "USER/Module/Vofa+/vofa.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "USER/Task/Arm/arm_task.c",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "USER/Task/Arm/arm_task.h",
 			"sourceGroupIndex" : 0
 		},
 		{

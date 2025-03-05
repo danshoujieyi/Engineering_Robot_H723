@@ -733,4 +733,16 @@ void referee_data_unpack(uint8_t *data, uint16_t len);
  */
 void referee_data_save(uint8_t* referee_data_frame);
 
+/* ------------------------------ referee反馈状态数据 ------------------------------ */
+/**
+ * @brief 上位机反馈状态数据,由referee发布
+ */
+struct referee_fdb_msg
+{
+    robot_status_t robot_status;
+    power_heat_data_t power_heat_data;
+    remote_control_t remote_control;
+    custom_robot_data_t custom_robot_data;
+};
+
 #endif //CTRBOARD_H7_ALL_REFEREE_SYSTEM_H

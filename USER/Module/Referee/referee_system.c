@@ -13,6 +13,8 @@ static referee_data_header_t referee_data_header;   //接收数据帧头结构体
 static referee_data_t referee_data;   //接收数据帧头结构体
 static unpack_data_t referee_unpack_obj;
 
+static struct referee_fdb_msg referee_fdb;
+
 /*!结构体实例化*/
 static game_status_t                           game_status;
 static game_result_t                           game_result;
@@ -149,24 +151,15 @@ void referee_data_unpack(uint8_t *data, uint16_t len)
                 break;
 
             case STEP_DATA_CRC16: {
-//                //从帧头到帧尾的过程中的数据一律码好
-//                if (referee_unpack_obj.index < (REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
-//                    referee_unpack_obj.protocol_packet[referee_unpack_obj.index++] = byte;
-//                }
                 //从帧头到帧尾的过程中的数据一律码好
-                if (referee_unpack_obj.index < (REF_HEADER_CRC_CMD_SIZE + 30)) {
+                if (referee_unpack_obj.index < (REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
                     referee_unpack_obj.protocol_packet[referee_unpack_obj.index++] = byte;
                 }
                 //如果数据读取到data末尾，则转换状态，准备开始新一帧的读取
-//                if (referee_unpack_obj.index >= (REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
-//                    //整包数据校验
-//                    if (verify_CRC16_check_sum(referee_unpack_obj.protocol_packet,
-//                                               REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
-                if (referee_unpack_obj.index >= (REF_HEADER_CRC_CMD_SIZE + 30)) {
+                if (referee_unpack_obj.index >= (REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
                     //整包数据校验
                     if (verify_CRC16_check_sum(referee_unpack_obj.protocol_packet,
-                                               REF_HEADER_CRC_CMD_SIZE + 30)) {
-                        //校验通过，则将码好的数据memcp到指定结构体中
+                                               REF_HEADER_CRC_CMD_SIZE + referee_unpack_obj.p_header->data_length)) {
                         referee_data_save(referee_unpack_obj.protocol_packet);
                     }
                     memset(&referee_unpack_obj, 0, sizeof(unpack_data_t));
@@ -229,6 +222,7 @@ void referee_data_save(uint8_t* frame)
             break;
         case ROBOT_STATUS_CMD_ID:
             memcpy(&robot_status, frame + index, sizeof(robot_status_t));
+            memcpy(&(referee_fdb.robot_status),&robot_status, sizeof(robot_status_t));
             break;
         case POWER_HEAT_DATA_CMD_ID:
             memcpy(&power_heat_data, frame + index, sizeof(power_heat_data_t));
@@ -271,11 +265,11 @@ void referee_data_save(uint8_t* frame)
             break;
         case ARM_DATA_FROM_CONTROLLER_CMD_ID_2 :
             memcpy(&custom_robot_data, frame + index, sizeof(custom_robot_data_t));
+            memcpy(&(referee_fdb.custom_robot_data),&custom_robot_data, sizeof(custom_robot_data_t));
             for (int i = 0; i < 7; i++) {
                 uint8_t* byte_ptr = &custom_robot_data.data[i * 4];
                 memcpy(&float_values[i], byte_ptr, sizeof(float));
             }
-
             break;
         case PLAYER_MINIMAP_CMD_ID :
             memcpy(&map_command, frame + index, sizeof(map_command_t));

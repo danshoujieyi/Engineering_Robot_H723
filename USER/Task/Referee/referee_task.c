@@ -24,8 +24,6 @@ void USART1_DMA_Init(void) {
     __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_HT);
 }
 
-extern QueueHandle_t xQueueMotor;
-
 /*裁判系统线程入口*/
 void Referee_Entry(void const * argument)
 {
