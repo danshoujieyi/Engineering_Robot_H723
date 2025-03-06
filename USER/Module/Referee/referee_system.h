@@ -10,6 +10,9 @@
 #define HEADER_SOF 0xA5
 #define REFEREE_RX_BUF_SIZE (127+9+68+5)        // 209
 
+#define CUSTOMER_CONTROLLER_BUF_SIZE (30+9+20+4)   // 63
+
+
 /**
 *   接收协议数据的帧头数据结构体
 */

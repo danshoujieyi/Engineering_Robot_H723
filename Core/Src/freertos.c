@@ -47,13 +47,11 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-osThreadId DJmotorTaskHandle;
-osThreadId ImuTaskHandle;
-osThreadId USART10_RecTaskHandle;
+osThreadId TaskHandle;
+osThreadId USART1_RecTaskHandle;
 osThreadId ChassisTaskHandle;
 osThreadId CmdTaskHandle;
 osThreadId DMmotorTaskHandle;
-osThreadId ArmTaskHandle;
 osThreadId RefereeTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,13 +59,11 @@ osThreadId RefereeTaskHandle;
 
 /* USER CODE END FunctionPrototypes */
 
-void DJmotor_Entry(void const * argument);
-void ImuTask_Entry(void const * argument);
-void USART10_RecEntry(void const * argument);
+void Task_Entry(void const * argument);
+void USART1_RecEntry(void const * argument);
 void ChassisTask_Entry(void const * argument);
 void CmdTask_Entry(void const * argument);
 void DMmotor_Entry(void const * argument);
-void ArmTask_Entry(void const * argument);
 void Referee_Entry(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
@@ -132,17 +128,13 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* definition and creation of DJmotorTask */
-  osThreadDef(DJmotorTask, DJmotor_Entry, osPriorityAboveNormal, 0, 512);
-  DJmotorTaskHandle = osThreadCreate(osThread(DJmotorTask), NULL);
+  /* definition and creation of Task */
+  osThreadDef(Task, Task_Entry, osPriorityLow, 0, 128);
+  TaskHandle = osThreadCreate(osThread(Task), NULL);
 
-  /* definition and creation of ImuTask */
-  osThreadDef(ImuTask, ImuTask_Entry, osPriorityBelowNormal, 0, 128);
-  ImuTaskHandle = osThreadCreate(osThread(ImuTask), NULL);
-
-  /* definition and creation of USART10_RecTask */
-  osThreadDef(USART10_RecTask, USART10_RecEntry, osPriorityHigh, 0, 128);
-  USART10_RecTaskHandle = osThreadCreate(osThread(USART10_RecTask), NULL);
+  /* definition and creation of USART1_RecTask */
+  osThreadDef(USART1_RecTask, USART1_RecEntry, osPriorityHigh, 0, 512);
+  USART1_RecTaskHandle = osThreadCreate(osThread(USART1_RecTask), NULL);
 
   /* definition and creation of ChassisTask */
   osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityAboveNormal, 0, 256);
@@ -156,12 +148,8 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(DMmotorTask, DMmotor_Entry, osPriorityHigh, 0, 512);
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
-  /* definition and creation of ArmTask */
-  osThreadDef(ArmTask, ArmTask_Entry, osPriorityNormal, 0, 128);
-  ArmTaskHandle = osThreadCreate(osThread(ArmTask), NULL);
-
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(RefereeTask, Referee_Entry, osPriorityNormal, 0, 512);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -170,60 +158,42 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_DJmotor_Entry */
+/* USER CODE BEGIN Header_Task_Entry */
 /**
-  * @brief  Function implementing the DJmotorTask thread.
+  * @brief  Function implementing the Task thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_DJmotor_Entry */
-__weak void DJmotor_Entry(void const * argument)
+/* USER CODE END Header_Task_Entry */
+__weak void Task_Entry(void const * argument)
 {
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
-  /* USER CODE BEGIN DJmotor_Entry */
+  /* USER CODE BEGIN Task_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END DJmotor_Entry */
+  /* USER CODE END Task_Entry */
 }
 
-/* USER CODE BEGIN Header_ImuTask_Entry */
+/* USER CODE BEGIN Header_USART1_RecEntry */
 /**
-* @brief Function implementing the Imu thread.
+* @brief Function implementing the USART1_RecTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_ImuTask_Entry */
-__weak void ImuTask_Entry(void const * argument)
+/* USER CODE END Header_USART1_RecEntry */
+__weak void USART1_RecEntry(void const * argument)
 {
-  /* USER CODE BEGIN ImuTask_Entry */
+  /* USER CODE BEGIN USART1_RecEntry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END ImuTask_Entry */
-}
-
-/* USER CODE BEGIN Header_USART10_RecEntry */
-/**
-* @brief Function implementing the USART10_RecTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_USART10_RecEntry */
-__weak void USART10_RecEntry(void const * argument)
-{
-  /* USER CODE BEGIN USART10_RecEntry */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END USART10_RecEntry */
+  /* USER CODE END USART1_RecEntry */
 }
 
 /* USER CODE BEGIN Header_ChassisTask_Entry */
@@ -278,24 +248,6 @@ __weak void DMmotor_Entry(void const * argument)
     osDelay(1);
   }
   /* USER CODE END DMmotor_Entry */
-}
-
-/* USER CODE BEGIN Header_ArmTask_Entry */
-/**
-* @brief Function implementing the ArmTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_ArmTask_Entry */
-__weak void ArmTask_Entry(void const * argument)
-{
-  /* USER CODE BEGIN ArmTask_Entry */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END ArmTask_Entry */
 }
 
 /* USER CODE BEGIN Header_Referee_Entry */

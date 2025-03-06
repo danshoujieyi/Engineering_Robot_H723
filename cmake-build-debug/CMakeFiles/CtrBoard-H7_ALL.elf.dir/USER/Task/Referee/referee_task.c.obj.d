@@ -16,9 +16,6 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/deprecated_definitions.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\portable\GCC\ARM_CM4F/portmacro.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/mpu_wrappers.h \
- D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
- D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
- D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/usart.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal.h \
@@ -76,6 +73,10 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/semphr.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/string.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/_locale.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \

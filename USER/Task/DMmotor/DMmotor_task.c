@@ -17,9 +17,9 @@ unsigned char DMmotor_init_flag = 0; // 初始化标志位
 DMmotorControl motor_controls[6] = {
         { MOTOR_1_MIN_LIMIT, MOTOR_1_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 0 (FDCAN3)
         { MOTOR_2_MIN_LIMIT, MOTOR_2_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 1 (FDCAN2)
-        { MOTOR_3_MIN_LIMIT, MOTOR_3_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 2 (FDCAN2) — 限制为 0 到 290
-        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 3 (FDCAN2)
-        { -M_PI, M_PI, 0.0f, 0.0f, 0 }, // Motor 4 (FDCAN2)
+        { MOTOR_3_MIN_LIMIT, MOTOR_3_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 2 (FDCAN2)
+        { MOTOR_4_MIN_LIMIT, MOTOR_4_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 3 (FDCAN2)
+        { MOTOR_5_MIN_LIMIT, MOTOR_5_MAX_LIMIT, 0.0f, 0.0f, 0 }, // Motor 4 (FDCAN2)
         { -M_PI, M_PI, 0.0f, 0.0f, 0 }  // Motor 5 (FDCAN2)
 };
 
@@ -34,14 +34,14 @@ void DMmotor_Entry(void const * argument) {
     }
 
     dm_motor_enable(&hfdcan3, &motor[Motor1]);
-    vTaskDelay(220); // 延时，等待电机稳定
+    vTaskDelay(100); // 延时，等待电机稳定
     pos_ctrl(&hfdcan3, motor[Motor1].id, 0, 0.7f); // 发送控制命令
     vTaskDelay(300); // 延时，等待电机稳定
 
     for(int i=1;i<6;i++)
     {
         dm_motor_enable(&hfdcan2, &motor[i]);
-        vTaskDelay(220); // 延时，等待电机稳定
+        vTaskDelay(200); // 延时，等待电机稳定
         pos_ctrl(&hfdcan2, motor[i].id, 0, 0.7f); // 发送控制命令
         vTaskDelay(300); // 延时，等待电机稳定
     }
@@ -85,26 +85,68 @@ float ease_in_out(float t) {
     return t < 0.5f ? 2.0f * t * t : -1.0f + (4.0f - 2.0f * t) * t;
 }
 
+////    current_angle = target_angle;  // 直接目标角度
+////    // 发送控制命令，不再使用平滑过渡
+////    pos_ctrl(hcan, motor->id, current_angle, 10.0f); // 发送控制命令
+////    // 延时，每一步之间的延时
+////    vTaskDelay(pdMS_TO_TICKS(time_step_ms)); // 插值步之间的延时
+
 void smooth_motion_1(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
-    // 插值算法
     for (int step = 0; step <= steps; step++) {
-        float t = (float)step / steps; // 归一化时间
-        float smooth_t = ease_in_out(t); // 应用平滑函数
+        float t = (float)step / steps;
+        float smooth_t = ease_in_out(t);
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        // 保留三位小数
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, current_angle, 10.0f); // 发送控制命令
-        //pos_ctrl(hcan, motor->id, current_angle, 10.0f); // 发送控制命令
-        vTaskDelay(pdMS_TO_TICKS(time_step_ms)); // 插值步之间的延时
+        pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
-//    current_angle = target_angle;  // 直接目标角度
-//    // 发送控制命令，不再使用平滑过渡
-//    pos_ctrl(hcan, motor->id, current_angle, 10.0f); // 发送控制命令
-//    // 延时，每一步之间的延时
-//    vTaskDelay(pdMS_TO_TICKS(time_step_ms)); // 插值步之间的延时
 }
 
-void smooth_motion_0(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
+void smooth_motion_2(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
+    for (int step = 0; step <= steps; step++) {
+        float t = (float)step / steps;
+        float smooth_t = ease_in_out(t);
+        current_angle = start_angle + smooth_t * (target_angle - start_angle);
+        current_angle = ((roundf(current_angle * 1000.0f) / 1000.0f)*GEAR_RATIO_2);  //加上齿轮比
+        pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+    }
+}
+
+void smooth_motion_3(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
+    for (int step = 0; step <= steps; step++) {
+        float t = (float)step / steps;
+        float smooth_t = ease_in_out(t);
+        current_angle = start_angle + smooth_t * (target_angle - start_angle);
+        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
+        pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+    }
+}
+
+void smooth_motion_4(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
+    for (int step = 0; step <= steps; step++) {
+        float t = (float)step / steps;
+        float smooth_t = ease_in_out(t);
+        current_angle = start_angle + smooth_t * (target_angle - start_angle);
+        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
+        pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+    }
+}
+
+void smooth_motion_5(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
+    for (int step = 0; step <= steps; step++) {
+        float t = (float)step / steps;
+        float smooth_t = ease_in_out(t);
+        current_angle = start_angle + smooth_t * (target_angle - start_angle);
+        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
+        pos_ctrl(hcan, motor->id, current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+    }
+}
+
+void smooth_motion_6(hcan_t* hcan, motor_t* motor, float start_angle, float target_angle, int steps, int time_step_ms) {
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
@@ -147,7 +189,7 @@ void DMcontrol_motor_1(hcan_t* hcan, DMmotorControl* motor_control, float target
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff,motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_0(hcan, &motor[Motor1], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS,TIME_STEP_MS);
+        smooth_motion_1(hcan, &motor[Motor1], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS,TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
     }
 }
@@ -170,7 +212,7 @@ void DMcontrol_motor_2(hcan_t* hcan, DMmotorControl* motor_control, float target
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff, motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_0(hcan, &motor[Motor2], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
+        smooth_motion_2(hcan, &motor[Motor2], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
     }
 }
@@ -193,7 +235,7 @@ void DMcontrol_motor_3(hcan_t* hcan, DMmotorControl* motor_control, float target
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff, motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_0(hcan, &motor[Motor3], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
+        smooth_motion_3(hcan, &motor[Motor3], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
     }
 }
@@ -215,7 +257,7 @@ void DMcontrol_motor_4(hcan_t* hcan, DMmotorControl* motor_control, float target
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff, motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_0(hcan, &motor[Motor4], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
+        smooth_motion_4(hcan, &motor[Motor4], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
     }
 }
@@ -229,21 +271,15 @@ void DMcontrol_motor_5(hcan_t* hcan, DMmotorControl* motor_control, float target
             motor_control->calibrated = 1;
         }
     }else if(motor_control->calibrated == 1){
-        // 限制末端齿轮角度在 -91° 到 91° 之间
-        if (target_angle < END_GEAR_MIN_LIMIT_5) {
-            target_angle = END_GEAR_MIN_LIMIT_5;
-        } else if (target_angle > END_GEAR_MAX_LIMIT_5) {
-            target_angle = END_GEAR_MAX_LIMIT_5;
-        }
-        target_angle = target_angle / GEAR_RATIO_5; // 将末端齿轮的角度转换为电机角度
-        float target_radians = normalize_radians(DEG_TO_RAD(target_angle) - motor_control->initial_offset/ GEAR_RATIO_5);
+        target_angle = target_angle; // 将末端齿轮的角度转换为电机角度
+        float target_radians = normalize_radians(DEG_TO_RAD(target_angle) - motor_control->initial_offset);
         float angle_diff = handle_angle_jump(target_radians, motor_control->last_angle);
         // 限制角度变化幅度
         if (fabs(angle_diff) > MAX_ANGLE_CHANGE) {
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff, motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_1(hcan, &motor[Motor5], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
+        smooth_motion_5(hcan, &motor[Motor5], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
     }
 }
@@ -265,7 +301,7 @@ void DMcontrol_motor_6(hcan_t* hcan, DMmotorControl* motor_control, float target
             angle_diff = (angle_diff > 0) ? MAX_ANGLE_CHANGE : -MAX_ANGLE_CHANGE;
         }
         float clamped_target_angle = clamp_radians(motor_control->last_angle + angle_diff, motor_control->motor_min_limit, motor_control->motor_max_limit);
-        smooth_motion_1(hcan, &motor[Motor6], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
+        smooth_motion_6(hcan, &motor[Motor6], motor_control->last_angle, clamped_target_angle, INTERPOLATION_STEPS, TIME_STEP_MS);
         motor_control->last_angle = clamped_target_angle;
 
     }

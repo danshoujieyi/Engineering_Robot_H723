@@ -75,10 +75,10 @@ include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_
         USER/Task/Chassis
         USER/Task/H_AND_CALLBACK
         USER/Task/Cmd
-        USER/Task/Usart10_Rec
+        USER/Task/Usart1_Rec
         USER/Task/DMmotor
-#        USER/Task/Arm
-#        USER/Task/Referee
+       # USER/Task/Arm
+        USER/Task/Referee
 
 )
 
@@ -107,10 +107,10 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Task/Chassis/*.*"
         "USER/Task/H_AND_CALLBACK/*.*"
         "USER/Task/Cmd/*.*"
-        "USER/Task/Usart10_Rec/*.*"
+        "USER/Task/Usart1_Rec/*.*"
         "USER/Task/DMmotor/*.*"
-#        "USER/Task/Arm/*.*"
-#        "USER/Task/Referee/*.*"
+       # "USER/Task/Arm/*.*"
+        "USER/Task/Referee/*.*"
 
 )
 

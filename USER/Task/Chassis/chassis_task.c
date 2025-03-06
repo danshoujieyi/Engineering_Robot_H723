@@ -13,9 +13,13 @@
 #include "user_lib.h"
 #include "motor_def.h"
 #include "rm_task.h"
+#include "referee_system.h"
 
 /* -------------------------------- 线程间通讯话题相关 ------------------------------- */
 struct chassis_cmd_msg chassis_cmd;
+
+extern struct referee_fdb_msg referee_fdb;
+
 static struct chassis_controller_t
 {
     pid_obj_t *speed_pid;
@@ -28,22 +32,6 @@ static void chassis_motor_init();
 static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed);
 void (*chassis_calc_moto_speed)(struct chassis_cmd_msg *cmd, int16_t* out_speed) = mecanum_calc;
 
-/**
-  * @brief  将云台坐标转换为底盘坐标
-  * @param  cmd 底盘指令值，使用其中的速度
-  * @param  angle 云台相对于底盘的角度
-  */
-static void absolute_cal(struct chassis_cmd_msg *cmd, float angle)
-{
-    float angle_hd = -(angle/RADIAN_COEF);
-    float vx = cmd->vx;
-    float vy = cmd->vy;
-
-    //保证底盘是相对摄像头做移动
-    cmd->vx = vx * cos(angle_hd) + vy * sin(angle_hd);
-    cmd->vy = -vx * sin(angle_hd) + vy * cos(angle_hd);
-}
-
 
 /* --------------------------------- 电机控制相关 --------------------------------- */
 #define CURRENT_POWER_LIMIT_RATE 80
@@ -52,9 +40,24 @@ static int16_t motor_control_0(dji_motor_measure_t measure)
     static int16_t set = 0;
     static int16_t chassis_max_current=0;
     static int16_t chassis_power_limit=0;
+//    /*传参给局部变量防止被更改抽风*/
+//    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
+//    /*底盘功率限制防止buffer溢出*/
+//    if(chassis_power_limit>=120)
+//    {
+//        chassis_power_limit=120;
+//    }
+//    if(referee_fdb.power_heat_data.buffer_energy<20)
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE*(referee_fdb.power_heat_data.buffer_energy/50);
+//    }
+//    else
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
+//    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        chassis_max_current=4000;
     }
     set =(int16_t) pid_calculate(chassis_controller[0].speed_pid, measure.speed_rpm, motor_ref[0]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -67,9 +70,24 @@ static int16_t motor_control_1(dji_motor_measure_t measure)
     static int16_t set = 0;
     static int16_t chassis_max_current=0;
     static int16_t chassis_power_limit=0;
+//    /*传参给局部变量防止被更改抽风*/
+//    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
+//    /*底盘功率限制防止buffer溢出*/
+//    if(chassis_power_limit>=120)
+//    {
+//        chassis_power_limit=120;
+//    }
+//    if(referee_fdb.power_heat_data.buffer_energy<20)
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE*(referee_fdb.power_heat_data.buffer_energy/50);
+//    }
+//    else
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
+//    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        chassis_max_current=4000;
     }
     set =(int16_t) pid_calculate(chassis_controller[1].speed_pid, measure.speed_rpm, motor_ref[1]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -81,9 +99,24 @@ static int16_t motor_control_2(dji_motor_measure_t measure)
     static int16_t set = 0;
     static int16_t chassis_max_current=0;
     static int16_t chassis_power_limit=0;
+//    /*传参给局部变量防止被更改抽风*/
+//    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
+//    /*底盘功率限制防止buffer溢出*/
+//    if(chassis_power_limit>=120)
+//    {
+//        chassis_power_limit=120;
+//    }
+//    if(referee_fdb.power_heat_data.buffer_energy<20)
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE*(referee_fdb.power_heat_data.buffer_energy/50);
+//    }
+//    else
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
+//    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        chassis_max_current=4000;
     }
     set =(int16_t) pid_calculate(chassis_controller[2].speed_pid, measure.speed_rpm, motor_ref[2]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -95,9 +128,24 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
     static int16_t set = 0;
     static int16_t chassis_max_current=0;
     static int16_t chassis_power_limit=0;
+//    /*传参给局部变量防止被更改抽风*/
+//    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
+//    /*底盘功率限制防止buffer溢出*/
+//    if(chassis_power_limit>=120)
+//    {
+//        chassis_power_limit=120;
+//    }
+//    if(referee_fdb.power_heat_data.buffer_energy<20)
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE*(referee_fdb.power_heat_data.buffer_energy/50);
+//    }
+//    else
+//    {
+//        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
+//    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        chassis_max_current=4000;
     }
     set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_ref[3]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -105,13 +153,7 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
 }
 
 /* 底盘每个电机对应的控制函数 */
-static void *motor_control[4] =
-        {
-                motor_control_0,
-                motor_control_1,
-                motor_control_2,
-                motor_control_3,
-        };
+static void *motor_control[4] ={motor_control_0,motor_control_1,motor_control_2,motor_control_3};
 
 // TODO：将参数都放到配置文件中，通过宏定义进行替换
 motor_config_t chassis_motor_config[4] =
@@ -160,15 +202,12 @@ static void chassis_motor_init()
         chassis_controller[i].speed_pid = pid_register(&chassis_speed_config);
         chassis_motor[i] = dji_motor_register(&chassis_motor_config[i], motor_control[i]);
     }
-    // follow_pid = pid_register(&chassis_follow_config);
 }
 
 static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
 {
+    static float wheel_rpm_ratio = 60.0f / (WHEEL_PERIMETER * CHASSIS_DECELE_RATIO);
     int16_t wheel_rpm[4];
-    float wheel_rpm_ratio;
-
-    wheel_rpm_ratio = 60.0f / (WHEEL_PERIMETER * CHASSIS_DECELE_RATIO);
 
     //限制底盘各方向速度
     VAL_LIMIT(cmd->vx, -MAX_CHASSIS_VX_SPEED, MAX_CHASSIS_VX_SPEED);  //mm/s
@@ -201,7 +240,7 @@ void ChassisTask_Entry(void const * argument)
             dji_motor_enable(chassis_motor[i]);
         }
 
-//        switch (CHASSIS_FOLLOW_GIMBAL)
+//        switch (chassis_cmd.ctrl_mode)
 //        {
 //            case CHASSIS_RELAX:
 //                for (uint8_t i = 0; i < 4; i++)
@@ -213,9 +252,6 @@ void ChassisTask_Entry(void const * argument)
 //                // chassis_cmd.vw = pid_calculate(follow_pid, chassis_cmd.offset_angle, SIDEWAYS_ANGLE);
 //                /* 底盘运动学解算 */
                 // absolute_cal(&chassis_cmd, chassis_cmd.offset_angle);
-                chassis_calc_moto_speed(&chassis_cmd, motor_ref);
-                dji_motor_control();
-
 //                break;
 //            case CHASSIS_SPIN:
 //                absolute_cal(&chassis_cmd, chassis_cmd.offset_angle);
@@ -238,6 +274,8 @@ void ChassisTask_Entry(void const * argument)
 //                }
 //                break;
 //        }
+        chassis_calc_moto_speed(&chassis_cmd, motor_ref);
+        dji_motor_control();
 
         /* 用于调试监测线程调度使用 */
         cmd_dt = dwt_get_time_ms() - cmd_start;

@@ -13,7 +13,7 @@ static referee_data_header_t referee_data_header;   //接收数据帧头结构体
 static referee_data_t referee_data;   //接收数据帧头结构体
 static unpack_data_t referee_unpack_obj;
 
-static struct referee_fdb_msg referee_fdb;
+struct referee_fdb_msg referee_fdb;
 
 /*!结构体实例化*/
 static game_status_t                           game_status;
@@ -79,6 +79,8 @@ void referee_system_init()
     memset(&robot_custom_data, 0, sizeof(robot_custom_data_t));
     memset(&remote_control, 0, sizeof(remote_control_t));
     memset(&custom_client_data, 0, sizeof(custom_client_data_t));
+
+    memset(&referee_fdb, 0, sizeof(struct referee_fdb_msg));
 }
 
 
@@ -176,11 +178,11 @@ void referee_data_unpack(uint8_t *data, uint16_t len)
                 break;
         }
         // 防止缓冲区溢出
-        if(referee_unpack_obj.index >= REF_PROTOCOL_FRAME_MAX_SIZE) {
-            memset(&referee_unpack_obj, 0, sizeof(unpack_data_t));
-            referee_unpack_obj.unpack_step = STEP_HEADER_SOF;
-            referee_unpack_obj.index = 0;
-        }
+//        if(referee_unpack_obj.index >= REF_PROTOCOL_FRAME_MAX_SIZE) {
+//            memset(&referee_unpack_obj, 0, sizeof(unpack_data_t));
+//            referee_unpack_obj.unpack_step = STEP_HEADER_SOF;
+//            referee_unpack_obj.index = 0;
+//        }
     }
 }
 

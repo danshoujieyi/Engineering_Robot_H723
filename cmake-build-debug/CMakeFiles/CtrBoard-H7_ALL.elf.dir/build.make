@@ -1271,19 +1271,33 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.s"
 	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK\HAL_Callback.c -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\H_AND_CALLBACK\HAL_Callback.c.s
 
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/flags.make
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj: D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart10_Rec/usart10rec_task.c
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj"
-	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj -MF CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart10_Rec\usart10rec_task.c.obj.d -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart10_Rec\usart10rec_task.c.obj -c D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart10_Rec\usart10rec_task.c
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/flags.make
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj: D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.c
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj -MF CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Referee\referee_task.c.obj.d -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Referee\referee_task.c.obj -c D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Referee\referee_task.c
 
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.i"
-	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart10_Rec\usart10rec_task.c > CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart10_Rec\usart10rec_task.c.i
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.i"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Referee\referee_task.c > CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Referee\referee_task.c.i
 
-CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.s"
-	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart10_Rec\usart10rec_task.c -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart10_Rec\usart10rec_task.c.s
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.s"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Referee\referee_task.c -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Referee\referee_task.c.s
+
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/flags.make
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj: D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec/usart1rec_task.c
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj: CMakeFiles/CtrBoard-H7_ALL.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj -MF CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart1_Rec\usart1rec_task.c.obj.d -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart1_Rec\usart1rec_task.c.obj -c D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart1_Rec\usart1rec_task.c
+
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.i"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart1_Rec\usart1rec_task.c > CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart1_Rec\usart1rec_task.c.i
+
+CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.s"
+	I:\ARM-GN~1.3\133167~1.3RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart1_Rec\usart1rec_task.c -o CMakeFiles\CtrBoard-H7_ALL.elf.dir\USER\Task\Usart1_Rec\usart1rec_task.c.s
 
 # Object files for target CtrBoard-H7_ALL.elf
 CtrBoard__H7_ALL_elf_OBJECTS = \
@@ -1373,7 +1387,8 @@ CtrBoard__H7_ALL_elf_OBJECTS = \
 "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" \
 "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" \
 "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj" \
-"CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj"
+"CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj" \
+"CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj"
 
 # External object files for target CtrBoard-H7_ALL.elf
 CtrBoard__H7_ALL_elf_EXTERNAL_OBJECTS =
@@ -1464,11 +1479,12 @@ CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassi
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
-CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart10_Rec/usart10rec_task.c.obj
+CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj
+CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/build.make
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/objects1.rsp
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Linking C executable CtrBoard-H7_ALL.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Linking C executable CtrBoard-H7_ALL.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CtrBoard-H7_ALL.elf.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug/CtrBoard-H7_ALL.hex"
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug/CtrBoard-H7_ALL.bin"

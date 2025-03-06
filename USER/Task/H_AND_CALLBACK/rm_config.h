@@ -91,8 +91,8 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /******** 底盘最大速度设置 *******/
 /* 底盘移动最大速度，单位是毫米每秒 */
-#define MAX_CHASSIS_VX_SPEED 7000
-#define MAX_CHASSIS_VY_SPEED 7000
+#define MAX_CHASSIS_VX_SPEED 4000
+#define MAX_CHASSIS_VY_SPEED 4000
 
 #define MAX_CHASSIS_VX_SPEED_HIGH 11000
 #define MAX_CHASSIS_VY_SPEED_HIGH 11000

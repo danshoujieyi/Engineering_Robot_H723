@@ -26,7 +26,6 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj: 
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/event_groups.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Usart10_Rec/usart10rec_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal.h \

@@ -96,4 +96,6 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Filter/filter32.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/stdlib.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/machine/stdlib.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/alloca.h
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/alloca.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/usart.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h

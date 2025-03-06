@@ -97,4 +97,5 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Dwt/drv_dwt.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\User_Lib/user_lib.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_task.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Chassis/chassis_task.h
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Chassis/chassis_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h

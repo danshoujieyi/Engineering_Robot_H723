@@ -44,6 +44,8 @@
 /* USER CODE BEGIN PTD */
 // 全局声明信号量
 SemaphoreHandle_t xSemaphoreUART10 = NULL;
+SemaphoreHandle_t xSemaphoreUART1 = NULL;
+SemaphoreHandle_t xSemaphoreUART5 = NULL;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -132,6 +134,14 @@ int main(void)
     if (xSemaphoreUART10 == NULL) {
         Error_Handler();  // 信号量创建失败处理
     }
+    xSemaphoreUART1 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    if (xSemaphoreUART1 == NULL) {
+        Error_Handler();  // 信号量创建失败处理
+    }
+    xSemaphoreUART5 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    if (xSemaphoreUART5 == NULL) {
+        Error_Handler();  // 信号量创建失败处理
+    }
 
 
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
@@ -140,9 +150,6 @@ int main(void)
     HAL_GPIO_WritePin(PUMP2_1_GPIO_Port, PUMP2_1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_RESET);
     dwt_init(480);
-    //	HAL_UARTEx_ReceiveToIdle_DMA(&hu art1, rx_buff, BUFF_SIZE*2);
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart5, rc_obj, SBUS_RX_BUF_NUM*2);
-//	HAL_UARTEx_ReceiveToIdle_DMA(&huart8, rx_buff, BUFF_SIZE*2);
   // 达妙4310驱动设置
     power(1);
     bsp_fdcan_set_baud(&hfdcan1, CAN_CLASS, CAN_BR_1M);
