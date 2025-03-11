@@ -9,9 +9,7 @@ static float current_angle = 0.0f;        // 当前插值角度
 static int calibrated[6] = {0};           // 校准状态
 const float MAX_ANGLE_CHANGE = 0.05f;
 
-extern unsigned char DMmotor_init_flag; // 初始化标志位
 extern float float_values[7]; // 实际赋值给关节电机角度
-
 unsigned char DMmotor_init_flag = 0; // 初始化标志位
 
 DMmotorControl motor_controls[6] = {
@@ -52,8 +50,8 @@ void DMmotor_Entry(void const * argument) {
         if(DMmotor_init_flag == 1){
             for (int i = 0; i < 6; i++) {
                 dm_motor_angles[i] = float_values[i];
-                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
-                       float_values[3],float_values[4],float_values[5]);
+//                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
+//                       float_values[3],float_values[4],float_values[5]);
             }
             // 控制每个电机
             DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);

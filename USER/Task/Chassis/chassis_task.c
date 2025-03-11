@@ -143,10 +143,10 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
 //    {
 //        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
 //    }
-    if (chassis_power_limit==0)
-    {
+//    if (chassis_power_limit==0)
+//    {
         chassis_max_current=4000;
-    }
+//    }
     set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_ref[3]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
     return set;
@@ -232,13 +232,15 @@ void ChassisTask_Entry(void const * argument)
     bsp_can_init();
     can_filter_init();
 
+    for (uint8_t i = 0; i < 4; i++)
+    {
+        dji_motor_enable(chassis_motor[i]);
+    }
+
     for(;;)
     {
         cmd_start = dwt_get_time_ms();
-        for (uint8_t i = 0; i < 4; i++)
-        {
-            dji_motor_enable(chassis_motor[i]);
-        }
+
 
 //        switch (chassis_cmd.ctrl_mode)
 //        {

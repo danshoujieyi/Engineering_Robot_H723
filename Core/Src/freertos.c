@@ -137,11 +137,11 @@ void MX_FREERTOS_Init(void) {
   USART1_RecTaskHandle = osThreadCreate(osThread(USART1_RecTask), NULL);
 
   /* definition and creation of ChassisTask */
-  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityAboveNormal, 0, 256);
+  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 256);
   ChassisTaskHandle = osThreadCreate(osThread(ChassisTask), NULL);
 
   /* definition and creation of CmdTask */
-  osThreadDef(CmdTask, CmdTask_Entry, osPriorityAboveNormal, 0, 256);
+  osThreadDef(CmdTask, CmdTask_Entry, osPriorityHigh, 0, 256);
   CmdTaskHandle = osThreadCreate(osThread(CmdTask), NULL);
 
   /* definition and creation of DMmotorTask */
@@ -149,7 +149,7 @@ void MX_FREERTOS_Init(void) {
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, Referee_Entry, osPriorityNormal, 0, 512);
+  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */

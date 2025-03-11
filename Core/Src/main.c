@@ -44,7 +44,7 @@
 /* USER CODE BEGIN PTD */
 // 全局声明信号量
 SemaphoreHandle_t xSemaphoreUART10 = NULL;
-SemaphoreHandle_t xSemaphoreUART1 = NULL;
+SemaphoreHandle_t xSemaphoreUART1 = NULL;           // 通知任务处理信号量
 SemaphoreHandle_t xSemaphoreUART5 = NULL;
 /* USER CODE END PTD */
 

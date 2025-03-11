@@ -23,6 +23,6 @@ CMake Deprecation Warning:
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Minimal optimization, debug info included
--- Configuring done (2.6s)
+-- Configuring done (3.4s)
 -- Generating done (0.1s)
 -- Build files have been written to: D:/GitHub_Project/Engineering_Robot_H723/cmake-build-debug

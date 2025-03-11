@@ -17,20 +17,24 @@
 #include "filter32.h"
 #include "usart.h"
 
-#define BSP_USING_RC_SBUS
+volatile uint8_t usart5_rx_buffer_index = 0;      // 当前使用的接收缓冲区索引
+volatile uint16_t usart5_rx_size = 0;               // 本次接收到的数据长度
+uint8_t usart5_rx_buffer[2][SBUS_RX_BUF_SIZE];      // 双缓冲区
+extern SemaphoreHandle_t xSemaphoreUART5;           // 通知任务处理信号量
 
-uint8_t usart5_rx_buffer_index = 0;  // 当前使用的接收缓冲区
-uint8_t usart5_rx_buffer[2][SBUS_RX_BUF_SIZE];
-extern SemaphoreHandle_t xSemaphoreUART5;
-extern uint16_t usart5_rec_size;
+extern sbus_data_t sbus_data_fdb;
 
 extern struct chassis_cmd_msg chassis_cmd;
+
+// 声明互斥锁句柄
+static SemaphoreHandle_t  sbus_cmd_mutex;
 
 /* ------------------------------- 遥控数据转换为控制指令 ------------------------------ */
 static void remote_to_cmd_sbus(void);
 
-extern sbus_data_t sbus_data[2];
-
+/*键盘加速度的斜坡*/
+ramp_obj_t *km_vx_ramp;//x轴控制斜坡
+ramp_obj_t *km_vy_ramp;//y周控制斜坡
 
 void USART5_DMA_Init(void) {
     memset(usart5_rx_buffer, 0, SBUS_RX_BUF_SIZE);
@@ -41,38 +45,37 @@ void USART5_DMA_Init(void) {
 
 static float cmd_dt;
 
-static sbus_data_t *sbus_data_now = NULL;
-static sbus_data_t *sbus_data_last = NULL;
 
 void CmdTask_Entry(void const * argument)
 {
-    static float cmd_start;
+//    static float cmd_start;
     sbus_data_init();
     USART5_DMA_Init();
-    uint8_t* active_buff = NULL;
+    sbus_cmd_mutex = xSemaphoreCreateMutex();  // 初始化互斥锁
+    uint8_t finishedBuffer;
 
-    sbus_data_now = sbus_data;
-    sbus_data_last = (sbus_data_now + 1);   // rc_obj[0]:当前数据NOW,[1]:上一次的数据LAST
     /* 初始化拨杆为上位 */
-    sbus_data_now->sw1 = RC_UP;
-    sbus_data_now->sw2 = RC_UP;
-    sbus_data_now->sw3 = RC_UP;
-    sbus_data_now->sw4 = RC_UP;
+    sbus_data_fdb.sw1 = RC_UP;
+    sbus_data_fdb.sw2 = RC_UP;
+    sbus_data_fdb.sw3 = RC_UP;
+    sbus_data_fdb.sw4 = RC_UP;
 
-    printf("Cmd Task Start");
+
     for (;;)
     {
-        cmd_start = dwt_get_time_ms();
+//        cmd_start = dwt_get_time_ms();
         if (xSemaphoreTake(xSemaphoreUART5, portMAX_DELAY) == pdTRUE) {
-            //TODO：有一个BUG
-            active_buff = usart5_rx_buffer[usart5_rx_buffer_index];  // 暂时不切换缓冲区 ^1, 有bug
-            sbus_data_unpack(active_buff, usart5_rec_size);
+            /* 使用刚完成接收数据的缓冲区 */
+            finishedBuffer = usart5_rx_buffer_index ^ 1;
+            sbus_data_unpack(usart5_rx_buffer[finishedBuffer], usart5_rx_size);
+            memset(usart5_rx_buffer[finishedBuffer], 0, SBUS_RX_BUF_SIZE);
             remote_to_cmd_sbus();
+
         }
 
-        cmd_dt = dwt_get_time_ms() - cmd_start;
-        if (cmd_dt > 1)
-            printf("Cmd Task is being DELAY! dt = [%f]", &cmd_dt);
+//        cmd_dt = dwt_get_time_ms() - cmd_start;
+//        if (cmd_dt > 1)
+//            printf("Cmd Task is being DELAY! dt = [%f]", &cmd_dt);
         vTaskDelay(1);
     }
 }
@@ -81,18 +84,19 @@ void CmdTask_Entry(void const * argument)
 /**
  * @brief 将遥控器数据转换为控制指令
  */
-#ifdef BSP_USING_RC_SBUS
 static void remote_to_cmd_sbus(void)
 {
     chassis_cmd.last_mode = chassis_cmd.ctrl_mode;
-    *sbus_data_last = *sbus_data_now;
+    xSemaphoreTake(sbus_cmd_mutex, portMAX_DELAY);
+    sbus_data_t tmp_data = sbus_data_fdb;  // 复制到临时变量
+    xSemaphoreGive(sbus_cmd_mutex);
 
 // TODO: 目前状态机转换较为简单，有很多优化和改进空间
 //遥控器的控制信息转化为标准单位，平移为(mm/s)旋转为(degree/s)
     /*底盘命令*/
-    chassis_cmd.vx = (float)sbus_data_now->ch1 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE * MAX_CHASSIS_VX_SPEED ;
-    chassis_cmd.vy = (float)sbus_data_now->ch2 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE * MAX_CHASSIS_VY_SPEED ;
-    chassis_cmd.vw = (float)sbus_data_now->ch4 * CHASSIS_RC_MOVE_RATIO_R / RC_MAX_VALUE * MAX_CHASSIS_VR_SPEED ;
+    chassis_cmd.vx = tmp_data.ch1 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE * MAX_CHASSIS_VX_SPEED ;
+    chassis_cmd.vy = tmp_data.ch2 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE * MAX_CHASSIS_VY_SPEED ;
+    chassis_cmd.vw = tmp_data.ch4 * CHASSIS_RC_MOVE_RATIO_R / RC_MAX_VALUE * MAX_CHASSIS_VR_SPEED ;
 //    chassis_cmd.offset_angle = gim_fdb.yaw_relative_angle;
 //    /*云台命令*/
 //    if (gim_cmd.ctrl_mode==GIMBAL_GYRO)
@@ -120,7 +124,7 @@ static void remote_to_cmd_sbus(void)
 //        gim_cmd.yaw=0;
 //
 //    }
-    switch (sbus_data_now->sw2)
+    switch (sbus_data_fdb.sw2)
     {
     case RC_UP:
         HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
@@ -130,7 +134,7 @@ static void remote_to_cmd_sbus(void)
         break;
     }
     /* 因为左拨杆值会影响到底盘RELAX状态，所以后判断 */
-    switch(sbus_data_now->sw3)
+    switch(sbus_data_fdb.sw3)
     {
     case RC_UP:
         HAL_GPIO_WritePin(PUMP2_GPIO_Port, PUMP2_Pin, GPIO_PIN_RESET);
@@ -405,4 +409,3 @@ static void remote_to_cmd_sbus(void)
 //}
 
 
-#endif

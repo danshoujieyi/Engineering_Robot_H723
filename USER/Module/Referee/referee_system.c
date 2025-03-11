@@ -177,17 +177,8 @@ void referee_data_unpack(uint8_t *data, uint16_t len)
                 referee_unpack_obj.index = 0;
                 break;
         }
-        // 防止缓冲区溢出
-//        if(referee_unpack_obj.index >= REF_PROTOCOL_FRAME_MAX_SIZE) {
-//            memset(&referee_unpack_obj, 0, sizeof(unpack_data_t));
-//            referee_unpack_obj.unpack_step = STEP_HEADER_SOF;
-//            referee_unpack_obj.index = 0;
-//        }
     }
 }
-
-float float_values[7] = {0}; // 存储转换后的6个float
-
 
 /**
  * @brief 裁判系统命令数据解包函数
@@ -268,16 +259,13 @@ void referee_data_save(uint8_t* frame)
         case ARM_DATA_FROM_CONTROLLER_CMD_ID_2 :
             memcpy(&custom_robot_data, frame + index, sizeof(custom_robot_data_t));
             memcpy(&(referee_fdb.custom_robot_data),&custom_robot_data, sizeof(custom_robot_data_t));
-            for (int i = 0; i < 7; i++) {
-                uint8_t* byte_ptr = &custom_robot_data.data[i * 4];
-                memcpy(&float_values[i], byte_ptr, sizeof(float));
-            }
             break;
         case PLAYER_MINIMAP_CMD_ID :
             memcpy(&map_command, frame + index, sizeof(map_command_t));
             break;
         case KEYBOARD_MOUSE_CMD_ID :
             memcpy(&remote_control, frame + index, sizeof(remote_control_t));
+            memcpy(&(referee_fdb.remote_control), &remote_control, sizeof(remote_control_t));
             break;
         case RADAR_MINIMAP_CMD_ID :
             memcpy(&map_robot_data, frame + index, sizeof(map_robot_data_t));

@@ -9,10 +9,11 @@
 #include "semphr.h"
 #include <string.h>
 
-uint8_t referee_rx_buffer_index = 0;  // 当前使用的接收缓冲区
-uint8_t referee_rx_buffer[2][REFEREE_RX_BUF_SIZE];
-extern SemaphoreHandle_t xSemaphoreUART10;
-extern uint16_t refree_rec_size;
+/* USART10：裁判系统接收 */
+volatile uint8_t referee_rx_buffer_index = 0;       // 当前使用的接收缓冲区索引
+volatile uint16_t referee_rx_size = 0;              // 本次接收到的数据长度
+uint8_t referee_rx_buffer[2][REFEREE_RX_BUF_SIZE];    // 双缓冲区
+extern SemaphoreHandle_t xSemaphoreUART10;          // 通知任务处理信号量
 
 void USART10_DMA_Init(void) {
     memset(referee_rx_buffer, 0, sizeof(referee_rx_buffer));
@@ -28,12 +29,13 @@ void Referee_Entry(void const * argument)
     /*裁判系统初始化*/
     referee_system_init();
     USART10_DMA_Init();
-    uint8_t* active_buff = NULL;
+    uint8_t finishedBuffer;
 
     for (;;) {
         if (xSemaphoreTake(xSemaphoreUART10, portMAX_DELAY) == pdTRUE) {
-            active_buff = referee_rx_buffer[referee_rx_buffer_index ^ 1];  // 交替缓冲区
-            referee_data_unpack(active_buff, refree_rec_size);
+            finishedBuffer = referee_rx_buffer_index ^ 1;
+            referee_data_unpack(referee_rx_buffer[finishedBuffer], referee_rx_size);
+            memset(referee_rx_buffer[finishedBuffer], 0, REFEREE_RX_BUF_SIZE);
         }
         vTaskDelay(1);
     }

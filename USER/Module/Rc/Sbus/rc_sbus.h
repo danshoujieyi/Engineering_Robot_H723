@@ -10,6 +10,7 @@
 #define SBUS_END 0X00
 #define SBUS_RX_BUF_SIZE (25+12+4) //41
 
+
 /**
   * @brief 遥控器拨杆值
   */
@@ -19,7 +20,7 @@ enum {
     RC_DN = 15,
 };
 
-typedef struct
+typedef struct __attribute__((__packed__))
 {
     uint16_t online;
     /* 摇杆最终值为：-784~783 */

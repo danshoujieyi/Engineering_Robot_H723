@@ -130,6 +130,11 @@ extern FDCAN_HandleTypeDef hfdcan3;
 /* pitch轴最大俯角 */
 #define PIT_ANGLE_MIN        -32.9f
 
+/* 云台控制周期 (ms) */
+#define GIMBAL_PERIOD 1
+/* 云台回中初始化时间 (ms) */
+#define BACK_CENTER_TIME 10
+
 /* -------------------------------- 云台电机PID参数 ------------------------------- */
 /* 云台yaw轴电机PID参数 */
 /* imu速度环 */
