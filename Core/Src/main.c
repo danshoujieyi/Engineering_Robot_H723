@@ -46,6 +46,8 @@
 SemaphoreHandle_t xSemaphoreUART10 = NULL;
 SemaphoreHandle_t xSemaphoreUART1 = NULL;           // 通知任务处理信号量
 SemaphoreHandle_t xSemaphoreUART5 = NULL;
+// 声明互斥锁句柄
+SemaphoreHandle_t  sbus_cmd_mutex = NULL;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -142,6 +144,8 @@ int main(void)
     if (xSemaphoreUART5 == NULL) {
         Error_Handler();  // 信号量创建失败处理
     }
+
+    sbus_cmd_mutex = xSemaphoreCreateMutex();  // 初始化互斥锁
 
 
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);

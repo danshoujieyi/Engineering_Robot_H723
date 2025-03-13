@@ -25,7 +25,7 @@ static struct chassis_controller_t
     pid_obj_t *speed_pid;
 }chassis_controller[4];
 
-static dji_motor_object_t *chassis_motor[4];  // 底盘电机实例
+ dji_motor_object_t *chassis_motor[4];  // 底盘电机实例
 static int16_t motor_ref[4]; // 电机控制期望值
 
 static void chassis_motor_init();
@@ -57,7 +57,7 @@ static int16_t motor_control_0(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=4000;
+        chassis_max_current=8000;
     }
     set =(int16_t) pid_calculate(chassis_controller[0].speed_pid, measure.speed_rpm, motor_ref[0]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -87,7 +87,7 @@ static int16_t motor_control_1(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=4000;
+        chassis_max_current=8000;
     }
     set =(int16_t) pid_calculate(chassis_controller[1].speed_pid, measure.speed_rpm, motor_ref[1]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -116,7 +116,7 @@ static int16_t motor_control_2(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=4000;
+        chassis_max_current=8000;
     }
     set =(int16_t) pid_calculate(chassis_controller[2].speed_pid, measure.speed_rpm, motor_ref[2]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -145,7 +145,7 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
 //    }
 //    if (chassis_power_limit==0)
 //    {
-        chassis_max_current=4000;
+        chassis_max_current=8000;
 //    }
     set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_ref[3]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
@@ -235,6 +235,7 @@ void ChassisTask_Entry(void const * argument)
     for (uint8_t i = 0; i < 4; i++)
     {
         dji_motor_enable(chassis_motor[i]);
+        chassis_cmd.ctrl_mode = CHASSIS_OPEN_LOOP;
     }
 
     for(;;)

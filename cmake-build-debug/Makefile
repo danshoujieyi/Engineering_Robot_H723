@@ -2008,6 +2008,30 @@ USER/Module/Fdcan/bsp_fdcan.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Fdcan/bsp_fdcan.c.s
 .PHONY : USER/Module/Fdcan/bsp_fdcan.c.s
 
+USER/Module/Keyboard/keyboard.obj: USER/Module/Keyboard/keyboard.c.obj
+.PHONY : USER/Module/Keyboard/keyboard.obj
+
+# target to build an object file
+USER/Module/Keyboard/keyboard.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj
+.PHONY : USER/Module/Keyboard/keyboard.c.obj
+
+USER/Module/Keyboard/keyboard.i: USER/Module/Keyboard/keyboard.c.i
+.PHONY : USER/Module/Keyboard/keyboard.i
+
+# target to preprocess a source file
+USER/Module/Keyboard/keyboard.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.i
+.PHONY : USER/Module/Keyboard/keyboard.c.i
+
+USER/Module/Keyboard/keyboard.s: USER/Module/Keyboard/keyboard.c.s
+.PHONY : USER/Module/Keyboard/keyboard.s
+
+# target to generate assembly for a file
+USER/Module/Keyboard/keyboard.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.s
+.PHONY : USER/Module/Keyboard/keyboard.c.s
+
 USER/Module/Rc/Sbus/rc_sbus.obj: USER/Module/Rc/Sbus/rc_sbus.c.obj
 .PHONY : USER/Module/Rc/Sbus/rc_sbus.obj
 
@@ -2468,6 +2492,9 @@ help:
 	@echo ... USER/Module/Fdcan/bsp_fdcan.obj
 	@echo ... USER/Module/Fdcan/bsp_fdcan.i
 	@echo ... USER/Module/Fdcan/bsp_fdcan.s
+	@echo ... USER/Module/Keyboard/keyboard.obj
+	@echo ... USER/Module/Keyboard/keyboard.i
+	@echo ... USER/Module/Keyboard/keyboard.s
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.obj
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.i
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.s

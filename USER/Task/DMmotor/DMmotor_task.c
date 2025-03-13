@@ -50,8 +50,8 @@ void DMmotor_Entry(void const * argument) {
         if(DMmotor_init_flag == 1){
             for (int i = 0; i < 6; i++) {
                 dm_motor_angles[i] = float_values[i];
-//                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
-//                       float_values[3],float_values[4],float_values[5]);
+                printf("dm_motor_angles: %f %f %f %f %f %f\n",float_values[0],float_values[1],float_values[2],
+                       float_values[3],float_values[4],float_values[5]);
             }
             // 控制每个电机
             DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);

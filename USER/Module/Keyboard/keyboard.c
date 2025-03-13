@@ -8,6 +8,9 @@
 #include "referee_system.h"
 #include "user_lib.h"
 #include "ramp.h"
+#include "chassis_task.h"
+#include "rm_task.h"
+#include "dj_motor.h"
 
 /* mouse button long press time */
 #define LONG_PRESS_TIME  800   //ms
@@ -17,8 +20,14 @@
 extern struct referee_fdb_msg referee_fdb;
 extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
+extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
 
-int16_t delta_spd = MAX_CHASSIS_VX_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
+extern dji_motor_object_t *chassis_motor[4];
+
+float delta_spd = MAX_CHASSIS_VX_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
+float delta_spd_w = MAX_CHASSIS_VW_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
+
+extern struct chassis_cmd_msg chassis_cmd;
 
 keyboard_control_t keyboard = {0};
 mouse_control_t mouse = {0};
@@ -27,71 +36,70 @@ mouse_control_t mouse = {0};
   * @param[in] state: 按键状态指针
   * @param[in] key: 按键键值
   */
-static void key_state_machine(key_state_e state, uint8_t key)
+void key_state_machine(key_state_e *state, uint8_t key)
 {
-    switch (state)
+    switch (*state)
     {
         case KEY_RELEASE:
         {
             if (key)
-                state = KEY_WAIT_EFFECTIVE;
+                *state = KEY_WAIT_EFFECTIVE;
             else
-                state = KEY_RELEASE;
-        }break;
+                *state = KEY_RELEASE;
+        } break;
 
         case KEY_WAIT_EFFECTIVE:
         {
             if (key)
-                state = KEY_PRESS_ONCE;
+                *state = KEY_PRESS_ONCE;
             else
-                state = KEY_RELEASE;
-        }break;
-
+                *state = KEY_RELEASE;
+        } break;
 
         case KEY_PRESS_ONCE:
         {
             if (key)
             {
-                state = KEY_PRESS_DOWN;
-                if (state == mouse.lk_state)
+                *state = KEY_PRESS_DOWN;
+                // 根据具体情况选择左键还是右键计数重置
+                if (*state == mouse.lk_state)
                     mouse.lk_cnt = 0;
                 else
                     mouse.rk_cnt = 0;
             }
             else
-                state = KEY_RELEASE;
-        }break;
+                *state = KEY_RELEASE;
+        } break;
 
         case KEY_PRESS_DOWN:
         {
             if (key)
             {
-                if (state == mouse.lk_state)
+                if (*state == mouse.lk_state)
                 {
-                    if (mouse.lk_cnt++ > LONG_PRESS_TIME/GIMBAL_PERIOD)
-                        state = KEY_PRESS_LONG;
+                    if (mouse.lk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
+                        *state = KEY_PRESS_LONG;
                 }
                 else
                 {
-                    if (mouse.rk_cnt++ > LONG_PRESS_TIME/GIMBAL_PERIOD)
-                        state = KEY_PRESS_LONG;
+                    if (mouse.rk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
+                        *state = KEY_PRESS_LONG;
                 }
             }
             else
-                state = KEY_RELEASE;
-        }break;
+                *state = KEY_RELEASE;
+        } break;
 
         case KEY_PRESS_LONG:
         {
             if (!key)
             {
-               state = KEY_RELEASE;
+                *state = KEY_RELEASE;
             }
-        }break;
+        } break;
 
         default:
             break;
-
     }
 }
 
@@ -126,24 +134,31 @@ pc_control_t convert_remote_to_pc(const remote_control_t *remote)
     return pc;
 }
 
+//// 气泵控制函数示例（需根据实际硬件实现）
+//void set_pump(uint8_t state)
+//{
+//    if(state) {
+//        HAL_GPIO_WritePin(PUMP_GPIO_Port, PUMP_Pin, GPIO_PIN_SET);
+//    } else {
+//        HAL_GPIO_WritePin(PUMP_GPIO_Port, PUMP_Pin, GPIO_PIN_RESET);
+//    }
+//}
 
-/**
-  * @brief     PC 处理键盘鼠标数据函数
-  */
-void PC_keyboard_mouse(pc_control_t pc_control)
+
+void PC_keyboard_mouse(const pc_control_t *pc_control)
 {
     // 假设referee_fdb.remote_control已经填充好数据
-    pc_control = convert_remote_to_pc(&referee_fdb.remote_control);
 
-    if (pc_control.keyboard.bit.SHIFT)
+
+    if (pc_control->keyboard.bit.SHIFT )
     {
         keyboard.move_mode = FAST_MODE;
         keyboard.max_spd = 3500;
     }
-    else if (pc_control.keyboard.bit.CTRL)
+    if (pc_control->keyboard.bit.CTRL)
     {
         keyboard.move_mode = SLOW_MODE;
-        keyboard.max_spd = 2500;
+        keyboard.max_spd = 2000;
     }
     else
     {
@@ -151,35 +166,81 @@ void PC_keyboard_mouse(pc_control_t pc_control)
         keyboard.max_spd = 3000;
     }
 
-    //add ramp
-    if (pc_control.keyboard.bit.W)
-        keyboard.vy += (float)delta_spd;
-    else if (pc_control.keyboard.bit.S)
-        keyboard.vy -= (float)delta_spd;
-    else
-    {
-        keyboard.vy =(float)keyboard.vy* ( 1 - km_vy_ramp->calc(km_vy_ramp));
+
+    // 前后方向处理（W/S）
+    if (pc_control->keyboard.bit.W) {
+        keyboard.vy += delta_spd;
+    } else if (pc_control->keyboard.bit.S) {
+        keyboard.vy -= delta_spd;
+    } else {
+        keyboard.vy *= (1 - km_vy_ramp->calc(km_vy_ramp));
     }
 
-    if (pc_control.keyboard.bit.A)
-        keyboard.vx -= (float)delta_spd;
-    else if (pc_control.keyboard.bit.D)
-        keyboard.vx += (float)delta_spd;
-    else
-    {
-        keyboard.vx = (float) keyboard.vx* ( 1 - km_vx_ramp->calc(km_vx_ramp));
+    // 左右方向处理（A/D）
+    if (pc_control->keyboard.bit.A) {
+        keyboard.vx -= delta_spd;
+    } else if (pc_control->keyboard.bit.D) {
+        keyboard.vx += delta_spd;
+    } else {
+        keyboard.vx *= (1 - km_vx_ramp->calc(km_vx_ramp)); // 无输入时速度衰减
     }
+
+    /* 旋转控制（Q/E）*/
+    if (pc_control->keyboard.bit.Q) {
+        keyboard.vw -= delta_spd_w; // 左旋
+    } else if (pc_control->keyboard.bit.E) {
+        keyboard.vw += delta_spd_w; // 右旋
+    } else {
+        keyboard.vw *= (1 - km_vw_ramp->calc(km_vw_ramp)); // 使用旋转斜坡
+    }
+
 
     VAL_LIMIT(keyboard.vx, -keyboard.max_spd, keyboard.max_spd);
     VAL_LIMIT(keyboard.vy, -keyboard.max_spd, keyboard.max_spd);
+    VAL_LIMIT(keyboard.vw, -keyboard.max_spd, keyboard.max_spd);
 
     VAL_LIMIT(keyboard.vx, -MAX_CHASSIS_VX_SPEED, MAX_CHASSIS_VX_SPEED);
     VAL_LIMIT(keyboard.vy, -MAX_CHASSIS_VY_SPEED, MAX_CHASSIS_VY_SPEED);
+    VAL_LIMIT(keyboard.vw, -MAX_CHASSIS_VW_SPEED, MAX_CHASSIS_VW_SPEED);
 
-    key_state_machine(mouse.lk_state, pc_control.mouse.l);
-    key_state_machine(mouse.rk_state, pc_control.mouse.r);
-    key_state_machine(keyboard.e_state, pc_control.keyboard.bit.E);
-    key_state_machine(keyboard.f_state, pc_control.keyboard.bit.F);
-    key_state_machine(keyboard.shift_state, pc_control.keyboard.bit.SHIFT);
-    key_state_machine(keyboard.v_state, pc_control.keyboard.bit.V);
+    /* 气泵控制（V键）*/
+//    static uint8_t pump_state = 0;
+    key_state_machine(&keyboard.v_state, pc_control->keyboard.bit.V);
+//
+//    // 按下V键触发气泵动作
+//    if (keyboard.v_state == KEY_PRESS_ONCE) {
+//        pump_state = !pump_state; // 切换气泵状态
+////        set_pump(pump_state);      // 需实现气泵控制函数
+//    }
+    key_state_machine(&keyboard.g_state,pc_control->keyboard.bit.G);
+    if (keyboard.g_state == KEY_PRESS_ONCE)
+    {
+
+
+            for (uint8_t i = 0; i < 4; i++)
+            {
+                dji_motor_relax(chassis_motor[i]);
+            }
+        chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+
+    }
+
+    key_state_machine(&keyboard.f_state,pc_control->keyboard.bit.F);
+    if (keyboard.f_state == KEY_PRESS_ONCE)
+    {
+
+        for (uint8_t i = 0; i < 4; i++)
+        {
+            dji_motor_enable(chassis_motor[i]);
+        }
+        chassis_cmd.ctrl_mode=CHASSIS_OPEN_LOOP;
+
+    }
+
+//    key_state_machine(&mouse.lk_state, pc_control->mouse.l);
+//    key_state_machine(&mouse.rk_state, pc_control->mouse.r);
+//    key_state_machine(keyboard.e_state, pc_control.keyboard.bit.E);
+    key_state_machine(&keyboard.shift_state, pc_control->keyboard.bit.SHIFT);
+
+//    key_state_machine(&keyboard.v_state, pc_control->keyboard.bit.V);
 }

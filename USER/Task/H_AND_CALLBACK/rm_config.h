@@ -56,6 +56,14 @@ extern FDCAN_HandleTypeDef hfdcan3;
 /* 底盘旋转速度，只在底盘开环模式下使用 */
 #define CHASSIS_RC_MOVE_RATIO_R 1.0f
 
+/* 鼠标键盘模式下的底盘最大速度限制 */
+/* 底盘平移速度 */
+#define CHASSIS_PC_MOVE_RATIO_X 1.0f
+/* 底盘前进速度 */
+#define CHASSIS_PC_MOVE_RATIO_Y 1.0f
+/* 底盘旋转速度，只在底盘开环模式下使用 */
+#define MAX_CHASSIS_VW_SPEED 5.0f
+
 /* 遥控器模式下的云台速度限制 */
 /* 云台pitch轴速度 */
 #define GIMBAL_RC_MOVE_RATIO_PIT 0.5f
