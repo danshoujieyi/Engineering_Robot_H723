@@ -71,6 +71,7 @@ include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_
         USER/Module/Rc/Sbus
         USER/Module/Referee
         USER/Module/Keyboard
+        USER/Module/Pump
 
        # USER/Task/Imu
         USER/Task/Chassis
@@ -104,6 +105,7 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Module/Rc/Sbus/*.*"
         "USER/Module/Referee/*.*"
         "USER/Module/Keyboard/*.*"
+        "USER/Module/Pump/*.*"
 
        # "USER/Task/Imu/*.*"
         "USER/Task/Chassis/*.*"

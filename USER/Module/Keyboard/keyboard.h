@@ -109,21 +109,11 @@ typedef struct
     } keyboard;
 
 } pc_control_t;
+
 void key_state_machine(key_state_e *state, uint8_t key);
 
-
-/**
-* @brief 将裁判系统解析后的键盘鼠标数据转换成方便使用的遥控器数据结构体
-* @param remote 指向原始裁判系统数据的指针
-* @return 转换后的遥控器数据结构体
-*/
 pc_control_t convert_remote_to_pc(const remote_control_t *remote);
 
-
-/**
-  * @brief     PC 处理键盘鼠标数据函数
-  */
 void PC_keyboard_mouse(const pc_control_t *pc_control);
-
 
 #endif //CTRBOARD_H7_ALL_KEYBOARD_H

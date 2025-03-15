@@ -113,10 +113,10 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /* --------------------------------- 底盘PID参数 -------------------------------- */
 /* 电机速度环 */
-#define CHASSIS_KP_V_MOTOR              6
-#define CHASSIS_KI_V_MOTOR              15
-#define CHASSIS_KD_V_MOTOR              0
-#define CHASSIS_INTEGRAL_V_MOTOR        8000
+#define CHASSIS_KP_V_MOTOR              4.5
+#define CHASSIS_KI_V_MOTOR              0.5
+#define CHASSIS_KD_V_MOTOR              0.0001
+#define CHASSIS_INTEGRAL_V_MOTOR        1500
 #define CHASSIS_MAX_V_MOTOR             16000
 // TODO: 参数待整定
 /* 跟随云台PID */

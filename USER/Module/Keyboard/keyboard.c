@@ -10,7 +10,7 @@
 #include "ramp.h"
 #include "chassis_task.h"
 #include "rm_task.h"
-#include "dj_motor.h"
+#include "pump.h"
 
 /* mouse button long press time */
 #define LONG_PRESS_TIME  800   //ms
@@ -18,16 +18,13 @@
 #define KEY_ACC_TIME     1700  //ms
 
 extern struct referee_fdb_msg referee_fdb;
+extern struct chassis_cmd_msg chassis_cmd;
 extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
 extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
 
-extern dji_motor_object_t *chassis_motor[4];
-
-float delta_spd = MAX_CHASSIS_VX_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
-float delta_spd_w = MAX_CHASSIS_VW_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
-
-extern struct chassis_cmd_msg chassis_cmd;
+static float delta_spd = MAX_CHASSIS_VX_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
+static float delta_spd_w = MAX_CHASSIS_VW_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
 
 keyboard_control_t keyboard = {0};
 mouse_control_t mouse = {0};
@@ -134,21 +131,22 @@ pc_control_t convert_remote_to_pc(const remote_control_t *remote)
     return pc;
 }
 
-//// 气泵控制函数示例（需根据实际硬件实现）
-//void set_pump(uint8_t state)
-//{
-//    if(state) {
-//        HAL_GPIO_WritePin(PUMP_GPIO_Port, PUMP_Pin, GPIO_PIN_SET);
-//    } else {
-//        HAL_GPIO_WritePin(PUMP_GPIO_Port, PUMP_Pin, GPIO_PIN_RESET);
-//    }
-//}
 
 
 void PC_keyboard_mouse(const pc_control_t *pc_control)
 {
-    // 假设referee_fdb.remote_control已经填充好数据
 
+    key_state_machine(&keyboard.g_state,pc_control->keyboard.bit.G);
+    if (keyboard.g_state == KEY_PRESS_ONCE)
+    {
+        chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+    }
+
+    key_state_machine(&keyboard.f_state,pc_control->keyboard.bit.F);
+    if (keyboard.f_state == KEY_PRESS_ONCE)
+    {
+        chassis_cmd.ctrl_mode=CHASSIS_ENABLE;
+    }
 
     if (pc_control->keyboard.bit.SHIFT )
     {
@@ -165,7 +163,6 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
         keyboard.move_mode = NORMAL_MODE;
         keyboard.max_spd = 3000;
     }
-
 
     // 前后方向处理（W/S）
     if (pc_control->keyboard.bit.W) {
@@ -203,44 +200,7 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
     VAL_LIMIT(keyboard.vy, -MAX_CHASSIS_VY_SPEED, MAX_CHASSIS_VY_SPEED);
     VAL_LIMIT(keyboard.vw, -MAX_CHASSIS_VW_SPEED, MAX_CHASSIS_VW_SPEED);
 
-    /* 气泵控制（V键）*/
-//    static uint8_t pump_state = 0;
     key_state_machine(&keyboard.v_state, pc_control->keyboard.bit.V);
-//
-//    // 按下V键触发气泵动作
-//    if (keyboard.v_state == KEY_PRESS_ONCE) {
-//        pump_state = !pump_state; // 切换气泵状态
-////        set_pump(pump_state);      // 需实现气泵控制函数
-//    }
-    key_state_machine(&keyboard.g_state,pc_control->keyboard.bit.G);
-    if (keyboard.g_state == KEY_PRESS_ONCE)
-    {
+    set_pump(keyboard.v_state == KEY_PRESS_LONG);
 
-
-            for (uint8_t i = 0; i < 4; i++)
-            {
-                dji_motor_relax(chassis_motor[i]);
-            }
-        chassis_cmd.ctrl_mode=CHASSIS_RELAX;
-
-    }
-
-    key_state_machine(&keyboard.f_state,pc_control->keyboard.bit.F);
-    if (keyboard.f_state == KEY_PRESS_ONCE)
-    {
-
-        for (uint8_t i = 0; i < 4; i++)
-        {
-            dji_motor_enable(chassis_motor[i]);
-        }
-        chassis_cmd.ctrl_mode=CHASSIS_OPEN_LOOP;
-
-    }
-
-//    key_state_machine(&mouse.lk_state, pc_control->mouse.l);
-//    key_state_machine(&mouse.rk_state, pc_control->mouse.r);
-//    key_state_machine(keyboard.e_state, pc_control.keyboard.bit.E);
-    key_state_machine(&keyboard.shift_state, pc_control->keyboard.bit.SHIFT);
-
-//    key_state_machine(&keyboard.v_state, pc_control->keyboard.bit.V);
 }

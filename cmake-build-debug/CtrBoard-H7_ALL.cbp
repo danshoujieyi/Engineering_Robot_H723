@@ -60,6 +60,7 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
@@ -123,6 +124,7 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
@@ -825,6 +827,12 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard/keyboard.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump/pump.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump/pump.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Rc/Sbus/README.md">

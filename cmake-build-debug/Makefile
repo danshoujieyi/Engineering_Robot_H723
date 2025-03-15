@@ -2032,6 +2032,30 @@ USER/Module/Keyboard/keyboard.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.s
 .PHONY : USER/Module/Keyboard/keyboard.c.s
 
+USER/Module/Pump/pump.obj: USER/Module/Pump/pump.c.obj
+.PHONY : USER/Module/Pump/pump.obj
+
+# target to build an object file
+USER/Module/Pump/pump.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Pump/pump.c.obj
+.PHONY : USER/Module/Pump/pump.c.obj
+
+USER/Module/Pump/pump.i: USER/Module/Pump/pump.c.i
+.PHONY : USER/Module/Pump/pump.i
+
+# target to preprocess a source file
+USER/Module/Pump/pump.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Pump/pump.c.i
+.PHONY : USER/Module/Pump/pump.c.i
+
+USER/Module/Pump/pump.s: USER/Module/Pump/pump.c.s
+.PHONY : USER/Module/Pump/pump.s
+
+# target to generate assembly for a file
+USER/Module/Pump/pump.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Pump/pump.c.s
+.PHONY : USER/Module/Pump/pump.c.s
+
 USER/Module/Rc/Sbus/rc_sbus.obj: USER/Module/Rc/Sbus/rc_sbus.c.obj
 .PHONY : USER/Module/Rc/Sbus/rc_sbus.obj
 
@@ -2495,6 +2519,9 @@ help:
 	@echo ... USER/Module/Keyboard/keyboard.obj
 	@echo ... USER/Module/Keyboard/keyboard.i
 	@echo ... USER/Module/Keyboard/keyboard.s
+	@echo ... USER/Module/Pump/pump.obj
+	@echo ... USER/Module/Pump/pump.i
+	@echo ... USER/Module/Pump/pump.s
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.obj
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.i
 	@echo ... USER/Module/Rc/Sbus/rc_sbus.s

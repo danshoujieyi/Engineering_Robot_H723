@@ -25,7 +25,7 @@ static struct chassis_controller_t
     pid_obj_t *speed_pid;
 }chassis_controller[4];
 
- dji_motor_object_t *chassis_motor[4];  // 底盘电机实例
+dji_motor_object_t *chassis_motor[4];  // 底盘电机实例
 static int16_t motor_ref[4]; // 电机控制期望值
 
 static void chassis_motor_init();
@@ -143,10 +143,10 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
 //    {
 //        chassis_max_current=chassis_power_limit*CURRENT_POWER_LIMIT_RATE;
 //    }
-//    if (chassis_power_limit==0)
-//    {
+    if (chassis_power_limit==0)
+    {
         chassis_max_current=8000;
-//    }
+    }
     set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_ref[3]);
     VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
     return set;
@@ -222,68 +222,22 @@ static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
     memcpy(out_speed, wheel_rpm, 4*sizeof(int16_t));//copy the rpm to out_speed
 }
 
-static float cmd_dt;
+
 /* USER CODE END Header_ChassisTask_Entry */
 void ChassisTask_Entry(void const * argument)
 {
-    /* USER CODE BEGIN ChassisTask_Entry */
-    static float cmd_start;
+
     chassis_motor_init();
     bsp_can_init();
     can_filter_init();
 
-    for (uint8_t i = 0; i < 4; i++)
-    {
-        dji_motor_enable(chassis_motor[i]);
-        chassis_cmd.ctrl_mode = CHASSIS_OPEN_LOOP;
-    }
-
     for(;;)
     {
-        cmd_start = dwt_get_time_ms();
 
-
-//        switch (chassis_cmd.ctrl_mode)
-//        {
-//            case CHASSIS_RELAX:
-//                for (uint8_t i = 0; i < 4; i++)
-//                {
-//                    dji_motor_relax(chassis_motor[i]);
-//                }
-//                break;
-//            case CHASSIS_FOLLOW_GIMBAL:
-//                // chassis_cmd.vw = pid_calculate(follow_pid, chassis_cmd.offset_angle, SIDEWAYS_ANGLE);
-//                /* 底盘运动学解算 */
-                // absolute_cal(&chassis_cmd, chassis_cmd.offset_angle);
-//                break;
-//            case CHASSIS_SPIN:
-//                absolute_cal(&chassis_cmd, chassis_cmd.offset_angle);
-//                chassis_calc_moto_speed(&chassis_cmd, motor_ref);
-//                break;
-//            case CHASSIS_OPEN_LOOP:
-//                chassis_calc_moto_speed(&chassis_cmd, motor_ref);
-//                break;
-//            case CHASSIS_STOP:
-//                memset(motor_ref, 0, sizeof(motor_ref));
-//                break;
-//            case CHASSIS_FLY:
-//                break;
-//            case CHASSIS_AUTO:
-//                break;
-//            default:
-//                for (uint8_t i = 0; i < 4; i++)
-//                {
-//                    dji_motor_relax(chassis_motor[i]);
-//                }
-//                break;
-//        }
         chassis_calc_moto_speed(&chassis_cmd, motor_ref);
         dji_motor_control();
 
-        /* 用于调试监测线程调度使用 */
-        cmd_dt = dwt_get_time_ms() - cmd_start;
-        if (cmd_dt > 1)
-            printf("Chassis Task is being DELAY! dt = [%f]", &cmd_dt);
+
 
         vTaskDelay(1);
     }

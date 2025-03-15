@@ -32,14 +32,14 @@ void DMmotor_Entry(void const * argument) {
     }
 
     dm_motor_enable(&hfdcan3, &motor[Motor1]);
-    vTaskDelay(100); // 延时，等待电机稳定
+    vTaskDelay(300); // 延时，等待电机稳定
     pos_ctrl(&hfdcan3, motor[Motor1].id, 0, 0.7f); // 发送控制命令
     vTaskDelay(300); // 延时，等待电机稳定
 
     for(int i=1;i<6;i++)
     {
         dm_motor_enable(&hfdcan2, &motor[i]);
-        vTaskDelay(200); // 延时，等待电机稳定
+        vTaskDelay(300); // 延时，等待电机稳定
         pos_ctrl(&hfdcan2, motor[i].id, 0, 0.7f); // 发送控制命令
         vTaskDelay(300); // 延时，等待电机稳定
     }
