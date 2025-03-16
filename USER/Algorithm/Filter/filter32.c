@@ -128,4 +128,48 @@ float IIR_Filter_Calculate(IIR_Filter_t *iir_filter, float input)
     return iir_filter->Output;
 }
 
+/** 滑动平均滤波器 */
+
+// 初始化平均滤波器结构体
+void ave_fil_init(ave_filter_t *ave_fil)
+{
+    // 将value数组的所有元素清零
+    memset(ave_fil->value, 0, ave_filter_times_max * sizeof(float));
+    // 将平均值初始化为0
+    ave_fil->value_ave = 0;
+    // 将当前索引位置初始化为0
+    ave_fil->index = 0;
+    // 将滤波次数初始化为0
+    ave_fil->filter_times = 0;
+}
+
+// 更新平均滤波器的值并计算新的平均值
+float ave_fil_update(ave_filter_t *ave_fil, float value, uint16_t max)
+{
+    // 如果传入的滤波次数大于最大允许的滤波次数，则将其设为最大允许值
+    if(max > ave_filter_times_max)
+    {
+        max = ave_filter_times_max;
+    }
+    // 如果传入的滤波次数与当前的滤波次数不同，则重新初始化滤波器
+    if(max != ave_fil->filter_times)
+    {
+        ave_fil_init(ave_fil);
+        // 更新滤波器的滤波次数
+        ave_fil->filter_times = max;
+    }
+    // 从当前的平均值中减去即将被替换的值的贡献
+    ave_fil->value_ave -= ave_fil->value[ave_fil->index] / (float)max;
+    // 更新value数组中当前索引位置的值
+    ave_fil->value[ave_fil->index] = value;
+    // 将新值的贡献加到平均值中
+    ave_fil->value_ave += ave_fil->value[ave_fil->index] / (float)max;
+    // 增加索引位置，如果达到最大滤波次数，则回绕到0
+    ave_fil->index++;
+    ave_fil->index %= max;
+
+    // 返回更新后的平均值
+    return ave_fil->value_ave;
+}
+
 //#endif

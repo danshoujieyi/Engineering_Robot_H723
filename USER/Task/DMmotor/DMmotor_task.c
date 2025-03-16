@@ -21,6 +21,67 @@ DMmotorControl motor_controls[6] = {
         { -M_PI, M_PI, 0.0f, 0.0f, 0 }  // Motor 5 (FDCAN2)
 };
 
+struct arm_cmd_msg arm_cmd = {
+        .ctrl_mode = ARM_DISABLE,
+        .last_mode = ARM_DISABLE
+};
+
+
+void arm_cmd_enable(void) {
+    if (arm_cmd.last_mode == ARM_DISABLE && arm_cmd.ctrl_mode == ARM_ENABLE) {
+        dm_motor_enable(&hfdcan3, &motor[Motor1]);
+        for(int i=1;i<6;i++)
+        {
+            dm_motor_enable(&hfdcan2, &motor[i]);
+        }
+        arm_cmd.last_mode = ARM_ENABLE;
+    }
+}
+void arm_cmd_disable(void) {
+    if (arm_cmd.last_mode == ARM_ENABLE && arm_cmd.ctrl_mode == ARM_DISABLE) {
+        dm_motor_disable(&hfdcan3, &motor[Motor1]);
+        for(int i=1;i<6;i++)
+        {
+            dm_motor_disable(&hfdcan2, &motor[i]);
+        }
+        arm_cmd.last_mode = ARM_DISABLE;
+    }
+}
+
+void arm_cmd_init(void) {
+    if (arm_cmd.last_mode == ARM_ENABLE && arm_cmd.ctrl_mode == ARM_INIT) {
+        pos_ctrl(&hfdcan3, motor[Motor1].id, 0, 0.7f); // 发送控制命令
+        vTaskDelay(200); // 延时，等待电机稳定
+
+        for(int i=1;i<6;i++)
+        {
+            dm_motor_enable(&hfdcan2, &motor[i]);
+            pos_ctrl(&hfdcan2, motor[i].id, 0, 0.7f); // 发送控制命令
+            vTaskDelay(200); // 延时，等待电机稳定
+        }
+        arm_cmd.last_mode = ARM_ENABLE;  //TODO:BUG一个
+    }
+}
+
+void arm_cmd_state_machine(void) {
+
+    switch (arm_cmd.ctrl_mode) {
+        case ARM_ENABLE:
+            arm_cmd_enable();
+            break;
+        case ARM_DISABLE:
+            arm_cmd_disable();
+            break;
+//        case ARM_INIT:
+//            arm_cmd_init();
+//            break;
+        default:
+//            arm_cmd_disable();
+            break;
+    }
+}
+
+
 /**
  * @brief 主任务入口函数
  */
@@ -32,20 +93,18 @@ void DMmotor_Entry(void const * argument) {
     }
 
     dm_motor_enable(&hfdcan3, &motor[Motor1]);
-    vTaskDelay(300); // 延时，等待电机稳定
     pos_ctrl(&hfdcan3, motor[Motor1].id, 0, 0.7f); // 发送控制命令
     vTaskDelay(300); // 延时，等待电机稳定
 
     for(int i=1;i<6;i++)
     {
         dm_motor_enable(&hfdcan2, &motor[i]);
-        vTaskDelay(300); // 延时，等待电机稳定
         pos_ctrl(&hfdcan2, motor[i].id, 0, 0.7f); // 发送控制命令
         vTaskDelay(300); // 延时，等待电机稳定
     }
     DMmotor_init_flag = 1; // 标记初始化完成
-
-
+    arm_cmd.ctrl_mode = ARM_ENABLE; // 使能机械臂
+    arm_cmd.last_mode = ARM_ENABLE;
     for (;;) {
         if(DMmotor_init_flag == 1){
             for (int i = 0; i < 6; i++) {
@@ -60,12 +119,15 @@ void DMmotor_Entry(void const * argument) {
             DMcontrol_motor_4(&hfdcan2, &motor_controls[Motor4], dm_motor_angles[Motor4]);
             DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
             DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
-        } else {
-
         }
+
+
         vTaskDelay(1);
     }
 }
+
+
+
 
 float normalize_radians(float radians) {
     while (radians >= M_PI) radians -= 2.0f * M_PI;
@@ -139,7 +201,7 @@ void smooth_motion_5(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         float smooth_t = ease_in_out(t);
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
         vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -291,8 +353,8 @@ void DMcontrol_motor_6(hcan_t* hcan, DMmotorControl* motor_control, float target
             motor_control->calibrated = 1;
         }
     }else if(motor_control->calibrated == 1){
-        target_angle = target_angle/GEAR_RATIO_6; // 将末端齿轮的角度转换为电机角度
-        float target_radians = normalize_radians(DEG_TO_RAD(target_angle) - motor_control->initial_offset/GEAR_RATIO_6);
+        target_angle = target_angle; // 将末端齿轮的角度转换为电机角度
+        float target_radians = normalize_radians(DEG_TO_RAD(target_angle) - motor_control->initial_offset);
         float angle_diff = handle_angle_jump(target_radians, motor_control->last_angle);
         // 限制角度变化幅度
         if (fabs(angle_diff) > MAX_ANGLE_CHANGE) {

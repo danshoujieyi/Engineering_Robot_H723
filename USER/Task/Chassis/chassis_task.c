@@ -201,6 +201,8 @@ static void chassis_motor_init()
     {
         chassis_controller[i].speed_pid = pid_register(&chassis_speed_config);
         chassis_motor[i] = dji_motor_register(&chassis_motor_config[i], motor_control[i]);
+        chassis_cmd.ctrl_mode = CHASSIS_ENABLE;
+        chassis_cmd.last_mode = CHASSIS_ENABLE;
     }
 }
 
@@ -222,6 +224,46 @@ static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
     memcpy(out_speed, wheel_rpm, 4*sizeof(int16_t));//copy the rpm to out_speed
 }
 
+void chassis_cmd_enable(void) {
+    if (chassis_cmd.last_mode == CHASSIS_RELAX && chassis_cmd.ctrl_mode == CHASSIS_ENABLE)
+    {
+        for (uint8_t i = 0; i < 4; i++)
+        {
+            dji_motor_enable(chassis_motor[i]);
+        }
+    }
+    chassis_cmd.last_mode = CHASSIS_ENABLE;
+}
+
+void chassis_cmd_disable(void) {
+    if (chassis_cmd.last_mode == CHASSIS_ENABLE && chassis_cmd.ctrl_mode == CHASSIS_RELAX) {
+        for (uint8_t i = 0; i < 4; i++)
+        {
+            dji_motor_relax(chassis_motor[i]);
+        }
+        chassis_cmd.last_mode = CHASSIS_RELAX;
+    }
+}
+
+void chassis_cmd_state_machine(void)
+{
+    switch (chassis_cmd.ctrl_mode)
+    {
+        case CHASSIS_RELAX:
+            chassis_cmd_disable();
+            break;
+        case CHASSIS_ENABLE:
+            chassis_cmd_enable();
+            break;
+        case CHASSIS_STOP:
+            memset(motor_ref, 0, sizeof(motor_ref));
+            break;
+        default:
+           // chassis_cmd_disable();
+            break;
+    }
+}
+
 
 /* USER CODE END Header_ChassisTask_Entry */
 void ChassisTask_Entry(void const * argument)
@@ -236,8 +278,6 @@ void ChassisTask_Entry(void const * argument)
 
         chassis_calc_moto_speed(&chassis_cmd, motor_ref);
         dji_motor_control();
-
-
 
         vTaskDelay(1);
     }

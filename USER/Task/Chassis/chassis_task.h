@@ -20,5 +20,6 @@ typedef enum
     CHASSIS_AUTO           //底盘自动模式
 } chassis_mode_e;
 
+void chassis_cmd_state_machine(void);
 
 #endif //CTRBOARD_H7_ALL_CHASSIS_TASK_H

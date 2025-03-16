@@ -101,4 +101,10 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Keyboard/keyboard.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\User_Lib/user_lib.h
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\User_Lib/user_lib.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\DMmotor/DMmotor_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_ctrl.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h

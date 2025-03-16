@@ -86,4 +86,12 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Ramp/ramp.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Chassis/chassis_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_task.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Pump/pump.h
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Pump/pump.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Keyboard/keyboard.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\DMmotor/DMmotor_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_ctrl.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h

@@ -1,0 +1,8 @@
+//
+// Created by Áõ¼Î¿¡ on 25-3-15.
+//
+
+#ifndef CTRBOARD_H7_ALL_UI_ALGORITHM_H
+#define CTRBOARD_H7_ALL_UI_ALGORITHM_H
+
+#endif //CTRBOARD_H7_ALL_UI_ALGORITHM_H

@@ -18,6 +18,7 @@
 #define GEAR_RATIO_6 3.24074f   // 6号电机转动 1圈，末端齿轮转动 3.24圈   // 可以修改来消除齿轮间隙误差
 #define GEAR_RATIO_5 1.55556f  // 5号电机转动 1圈，末端齿轮转动 1.5556圈
 #define GEAR_RATIO_2 2.4f                  // 2号电机转动 1圈，末端齿轮转动 2.4圈
+//#define GEAR_RATIO_diff 0.68f      // 6号电机补偿参数
 
 // 五号电机的角度限制
 #define MOTOR_5_MIN_LIMIT (-1.0f)  //  5号电机转动 1圈，末端齿轮转动 1.5556圈,限幅九十度
@@ -29,7 +30,7 @@
 
 // 三号电机的角度限制
 #define MOTOR_3_MIN_LIMIT 0.0f
-#define MOTOR_3_MAX_LIMIT 2.0f    // 点位说明，2为即将越过点位，2.6朝天，3.1越出点位，4.2反向垂直，4.9垂直吸盘，5.2极限
+#define MOTOR_3_MAX_LIMIT 2.4f    // 点位说明，2为即将越过点位，2.6朝天，3.1越出点位，4.2反向垂直，4.9垂直吸盘，5.2极限
 
 // 计算二号电机的角度限制（通过齿轮比）
 #define MOTOR_2_MIN_LIMIT (-5.82f/GEAR_RATIO_2) // 先除齿轮比等接收编码器数据后再乘回来
@@ -39,6 +40,8 @@
 #define MOTOR_1_MIN_LIMIT (-3.05f)
 #define MOTOR_1_MAX_LIMIT 3.05f
 
+void arm_cmd_state_machine(void);
+
 typedef struct {
     float motor_min_limit;       // 电机最小角度限制
     float motor_max_limit;       // 电机最大角度限制
@@ -47,6 +50,18 @@ typedef struct {
     int calibrated;              // 校准状态
 } DMmotorControl;
 
+typedef enum
+{
+    ARM_DISABLE,
+    ARM_ENABLE,
+    ARM_INIT,
+} arm_mode_e;
+
+struct arm_cmd_msg
+{
+    arm_mode_e ctrl_mode;
+    arm_mode_e last_mode;
+};
 
 float normalize_radians(float radians);
 

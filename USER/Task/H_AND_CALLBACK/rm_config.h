@@ -62,7 +62,7 @@ extern FDCAN_HandleTypeDef hfdcan3;
 /* 底盘前进速度 */
 #define CHASSIS_PC_MOVE_RATIO_Y 1.0f
 /* 底盘旋转速度，只在底盘开环模式下使用 */
-#define MAX_CHASSIS_VW_SPEED 5.0f
+#define MAX_CHASSIS_VW_SPEED 4.0f
 
 /* 遥控器模式下的云台速度限制 */
 /* 云台pitch轴速度 */
@@ -113,11 +113,11 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /* --------------------------------- 底盘PID参数 -------------------------------- */
 /* 电机速度环 */
-#define CHASSIS_KP_V_MOTOR              4.5
-#define CHASSIS_KI_V_MOTOR              0.5
-#define CHASSIS_KD_V_MOTOR              0.0001
+#define CHASSIS_KP_V_MOTOR              3.0f
+#define CHASSIS_KI_V_MOTOR              0.01
+#define CHASSIS_KD_V_MOTOR              0.001
 #define CHASSIS_INTEGRAL_V_MOTOR        1500
-#define CHASSIS_MAX_V_MOTOR             16000
+#define CHASSIS_MAX_V_MOTOR             12000  //16000
 // TODO: 参数待整定
 /* 跟随云台PID */
 #define CHASSIS_KP_V_FOLLOW             0.05

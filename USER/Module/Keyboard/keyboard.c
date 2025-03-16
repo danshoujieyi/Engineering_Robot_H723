@@ -11,9 +11,8 @@
 #include "chassis_task.h"
 #include "rm_task.h"
 #include "pump.h"
+#include "DMmotor_task.h"
 
-/* mouse button long press time */
-#define LONG_PRESS_TIME  800   //ms
 /* key acceleration time */
 #define KEY_ACC_TIME     1700  //ms
 
@@ -23,75 +22,100 @@ extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
 extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
 
-static float delta_spd = MAX_CHASSIS_VX_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
-static float delta_spd_w = MAX_CHASSIS_VW_SPEED*1.0f/KEY_ACC_TIME*GIMBAL_PERIOD;
+static float base_delta = MAX_CHASSIS_VX_SPEED * GIMBAL_PERIOD / KEY_ACC_TIME;
+static float base_delta_w = MAX_CHASSIS_VW_SPEED * GIMBAL_PERIOD / KEY_ACC_TIME;
 
-keyboard_control_t keyboard = {0};
-mouse_control_t mouse = {0};
-/**
-  * @brief     鼠标按键状态机
-  * @param[in] state: 按键状态指针
-  * @param[in] key: 按键键值
-  */
-void key_state_machine(key_state_e *state, uint8_t key)
+/* 时间参数宏定义 */
+#define LONG_PRESS_DEFAULT_MS   800   // 默认长按时间
+#define SHIFT_LONG_PRESS_MS     500   // SHIFT长按时间
+#define FUNCTION_KEY_PRESS_MS   300   // 功能键长按时间
+/* 控制参数定义 ------------------------------------------------------------*/
+#define LONG_PRESS_TIME       600     // 长按判定时间(ms)
+#define DEBOUNCE_TIME         10      // 消抖时间(ms)
+#define MICRO_SENSITIVITY     0.3f    // CTRL微调灵敏度系数
+#define BOOST_FACTOR          1.5f    // SHIFT加速倍率
+#define NORMAL_DECAY          0.85f   // 常规衰减系数
+#define MICRO_DECAY           0.95f   // 微调模式衰减系数
+#define DEAD_ZONE             5.0f    // 速度死区(mm/s)
+
+pump_mode_e pump_mode = PUMP_CLOSE;
+
+// 全局键盘控制对象定义
+keyboard_control_t keyboard = {
+        .vx = 0, .vy = 0, .vw = 0,
+        .max_spd = 3000,
+        .move_mode = NORMAL_MODE,
+        .shift = {KEY_RELEASE, 0, 500, 0},   // SHIFT长按500ms
+        .ctrl  = {KEY_RELEASE, 0, 500, 0},   // CTRL长按800ms
+        .v     = {KEY_RELEASE, 0, 800, 0},   // V键短按500ms
+        .b     = {KEY_RELEASE, 0, 800, 0},   // V键短按500ms
+        .g     = {KEY_RELEASE, 0, 800, 0},   // G键快速响应
+        .f     = {KEY_RELEASE, 0, 800, 0},    // F键快速响应
+        .x     = {KEY_RELEASE, 0, 800, 0},    // F键快速响应
+        .r     = {KEY_RELEASE, 0, 800, 0}    // F键快速响应
+};
+
+mouse_control_t mouse = {0} ;
+
+void key_state_machine(key_status_t *key, uint8_t key_input)
 {
-    switch (*state)
+    switch (key->state)
     {
         case KEY_RELEASE:
         {
-            if (key)
-                *state = KEY_WAIT_EFFECTIVE;
+            if (key_input)
+                key->state = KEY_WAIT_EFFECTIVE;
             else
-                *state = KEY_RELEASE;
+                key->state = KEY_RELEASE;
         } break;
 
         case KEY_WAIT_EFFECTIVE:
         {
-            if (key)
-                *state = KEY_PRESS_ONCE;
+            if (key_input)
+                key->state = KEY_PRESS_DOWN;
             else
-                *state = KEY_RELEASE;
+                key->state = KEY_RELEASE;
         } break;
 
-        case KEY_PRESS_ONCE:
+        case KEY_PRESS_DOWN:
         {
-            if (key)
+            if (key_input)
             {
-                *state = KEY_PRESS_DOWN;
+                key->state = KEY_PRESS_ONCE;
                 // 根据具体情况选择左键还是右键计数重置
-                if (*state == mouse.lk_state)
+                if (key->state == mouse.lk_state)
                     mouse.lk_cnt = 0;
                 else
                     mouse.rk_cnt = 0;
             }
             else
-                *state = KEY_RELEASE;
+                key->state = KEY_RELEASE;
         } break;
 
-        case KEY_PRESS_DOWN:
+        case KEY_PRESS_ONCE:
         {
-            if (key)
+            if (key_input)
             {
-                if (*state == mouse.lk_state)
+                if (key->state == mouse.lk_state)
                 {
                     if (mouse.lk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
-                        *state = KEY_PRESS_LONG;
+                        key->state = KEY_PRESS_LONG;
                 }
                 else
                 {
                     if (mouse.rk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
-                        *state = KEY_PRESS_LONG;
+                        key->state = KEY_PRESS_LONG;
                 }
             }
             else
-                *state = KEY_RELEASE;
+                key->state = KEY_RELEASE;
         } break;
 
         case KEY_PRESS_LONG:
         {
-            if (!key)
+            if (!key_input)
             {
-                *state = KEY_RELEASE;
+                key->state = KEY_RELEASE;
             }
         } break;
 
@@ -133,63 +157,100 @@ pc_control_t convert_remote_to_pc(const remote_control_t *remote)
 
 
 
+extern struct arm_cmd_msg arm_cmd;
+
 void PC_keyboard_mouse(const pc_control_t *pc_control)
 {
 
-    key_state_machine(&keyboard.g_state,pc_control->keyboard.bit.G);
-    if (keyboard.g_state == KEY_PRESS_ONCE)
+    key_state_machine(&keyboard.x, pc_control->keyboard.bit.X);
+    pump_control(keyboard.x);
+
+    key_state_machine(&keyboard.g,pc_control->keyboard.bit.G);
+    if (keyboard.g.state == KEY_PRESS_ONCE)
     {
-        chassis_cmd.ctrl_mode=CHASSIS_RELAX;
+        chassis_cmd.last_mode= chassis_cmd.ctrl_mode;
+        chassis_cmd.ctrl_mode =CHASSIS_RELAX;
     }
 
-    key_state_machine(&keyboard.f_state,pc_control->keyboard.bit.F);
-    if (keyboard.f_state == KEY_PRESS_ONCE)
+    key_state_machine(&keyboard.f,pc_control->keyboard.bit.F);
+    if (keyboard.f.state == KEY_PRESS_ONCE)
     {
+        chassis_cmd.last_mode= chassis_cmd.ctrl_mode;
         chassis_cmd.ctrl_mode=CHASSIS_ENABLE;
     }
 
-    if (pc_control->keyboard.bit.SHIFT )
+    key_state_machine(&keyboard.b,pc_control->keyboard.bit.B);
+    if (keyboard.b.state == KEY_PRESS_ONCE)
     {
+        arm_cmd.last_mode = arm_cmd.ctrl_mode;
+        arm_cmd.ctrl_mode = ARM_DISABLE;
+    }
+
+    key_state_machine(&keyboard.v,pc_control->keyboard.bit.V);
+    if (keyboard.v.state == KEY_PRESS_ONCE)
+    {
+        arm_cmd.last_mode = arm_cmd.ctrl_mode;
+        arm_cmd.ctrl_mode = ARM_ENABLE;
+    }
+
+    /* 模式优先级处理 */
+    keyboard.move_mode = NORMAL_MODE;
+    keyboard.max_spd = 2500;
+    // 先处理CTRL
+    key_state_machine(&keyboard.ctrl, pc_control->keyboard.bit.CTRL);
+    if(keyboard.ctrl.state == KEY_PRESS_LONG) {
+        keyboard.move_mode = SLOW_MODE;
+        keyboard.max_spd = 1500;
+    }
+    // 后处理SHIFT（更高优先级）
+    key_state_machine(&keyboard.shift, pc_control->keyboard.bit.SHIFT);
+    if(keyboard.shift.state == KEY_PRESS_LONG) {
         keyboard.move_mode = FAST_MODE;
         keyboard.max_spd = 3500;
     }
-    if (pc_control->keyboard.bit.CTRL)
-    {
-        keyboard.move_mode = SLOW_MODE;
-        keyboard.max_spd = 2000;
-    }
-    else
-    {
-        keyboard.move_mode = NORMAL_MODE;
-        keyboard.max_spd = 3000;
+
+    /* 计算动态参数 */
+    float delta = (keyboard.move_mode == FAST_MODE) ?
+                  (base_delta * BOOST_FACTOR) :
+                  (keyboard.move_mode == SLOW_MODE) ?
+                  (base_delta * MICRO_SENSITIVITY) :
+                  base_delta;
+
+    float decay = (keyboard.move_mode == SLOW_MODE) ?
+                  MICRO_DECAY : NORMAL_DECAY;
+
+
+    // 前后方向（W/S -> vy）
+    if(pc_control->keyboard.bit.W) {
+        keyboard.vy += delta;
+    } else if(pc_control->keyboard.bit.S) {
+        keyboard.vy -= delta;
+    } else {
+        keyboard.vy *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
     }
 
-    // 前后方向处理（W/S）
-    if (pc_control->keyboard.bit.W) {
-        keyboard.vy += delta_spd;
-    } else if (pc_control->keyboard.bit.S) {
-        keyboard.vy -= delta_spd;
-    } else {
-        keyboard.vy *= (1 - km_vy_ramp->calc(km_vy_ramp));
+    // 左右方向（A/D -> vx）
+    if(pc_control->keyboard.bit.A) {
+        keyboard.vx -= delta;
+    } else if(pc_control->keyboard.bit.D) {
+        keyboard.vx += delta;
+    } else {     //TODO: 加速斜坡函数反转，变成减速斜坡函数，加速阶段不使用斜坡函数
+        keyboard.vx *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
     }
 
-    // 左右方向处理（A/D）
-    if (pc_control->keyboard.bit.A) {
-        keyboard.vx -= delta_spd;
-    } else if (pc_control->keyboard.bit.D) {
-        keyboard.vx += delta_spd;
+    // 旋转控制（Q/E）
+    if(pc_control->keyboard.bit.Q) {
+        keyboard.vw -= base_delta_w * 1.2f;  // 旋转灵敏度系数
+    } else if(pc_control->keyboard.bit.E) {
+        keyboard.vw += base_delta_w * 1.2f;
     } else {
-        keyboard.vx *= (1 - km_vx_ramp->calc(km_vx_ramp)); // 无输入时速度衰减
+        keyboard.vw *= (1 - km_vw_ramp->calc(km_vw_ramp) * decay);
     }
 
-    /* 旋转控制（Q/E）*/
-    if (pc_control->keyboard.bit.Q) {
-        keyboard.vw -= delta_spd_w; // 左旋
-    } else if (pc_control->keyboard.bit.E) {
-        keyboard.vw += delta_spd_w; // 右旋
-    } else {
-        keyboard.vw *= (1 - km_vw_ramp->calc(km_vw_ramp)); // 使用旋转斜坡
-    }
+//    // 死区处理
+//    if(fabs(keyboard.vx) < DEAD_ZONE) keyboard.vx = 0;
+//    if(fabs(keyboard.vy) < DEAD_ZONE) keyboard.vy = 0;
+//    if(fabs(keyboard.vw) < DEAD_ZONE) keyboard.vw = 0;
 
 
     VAL_LIMIT(keyboard.vx, -keyboard.max_spd, keyboard.max_spd);
@@ -200,7 +261,13 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
     VAL_LIMIT(keyboard.vy, -MAX_CHASSIS_VY_SPEED, MAX_CHASSIS_VY_SPEED);
     VAL_LIMIT(keyboard.vw, -MAX_CHASSIS_VW_SPEED, MAX_CHASSIS_VW_SPEED);
 
-    key_state_machine(&keyboard.v_state, pc_control->keyboard.bit.V);
-    set_pump(keyboard.v_state == KEY_PRESS_LONG);
 
+
+//    key_state_machine(&keyboard.r,pc_control->keyboard.bit.R);
+//    if (keyboard.r.state == KEY_PRESS_ONCE)
+//    {
+//        arm_cmd.last_mode = arm_cmd.ctrl_mode;
+//        arm_cmd.ctrl_mode = ARM_INIT;
+//    }
 }
+

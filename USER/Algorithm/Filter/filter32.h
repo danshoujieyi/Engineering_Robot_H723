@@ -55,6 +55,25 @@ typedef struct
     float *ybuf;
 } __attribute__((__packed__)) IIR_Filter_t;
 
+
+
+/** 平均滤波器 */
+#define ave_filter_times_max 10
+
+typedef struct
+{
+    int16_t index;
+    float value[ave_filter_times_max];
+    float value_ave;
+    float filter_times;
+}ave_filter_t;
+
+void ave_fil_init(ave_filter_t *ave_fil);
+float ave_fil_update(ave_filter_t *ave_fil, float value, uint16_t max);
+/** 平均滤波器 */
+
+
+
 void First_Order_Filter_Init(First_Order_Filter_t *first_order_filter, float frame_period, float num);
 float First_Order_Filter_Calculate(First_Order_Filter_t *first_order_filter, float input);
 void Window_Filter_Init(Window_Filter_t *window_filter, uint8_t windowSize);

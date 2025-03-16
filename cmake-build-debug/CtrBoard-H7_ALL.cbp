@@ -51,7 +51,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
@@ -115,7 +114,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
@@ -743,12 +741,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.md">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo/fifo.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Fifo/fifo.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter/filter32.c">

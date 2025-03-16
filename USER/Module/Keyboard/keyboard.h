@@ -16,6 +16,7 @@ typedef enum
     SLOW_MODE,          //慢速模式
 } key_move_e;
 
+
 /**
   * @brief     鼠标按键状态类型枚举
   */
@@ -27,6 +28,17 @@ typedef enum
     KEY_PRESS_DOWN,     //按键已经被按下
     KEY_PRESS_LONG,     //按键长按状态
 } key_state_e;
+
+
+// 在键盘控制结构体中添加时间戳记录
+typedef struct {
+    key_state_e state;
+    uint32_t press_timestamp;  // 精确到毫秒的按下时间
+    uint32_t long_press_time;  // 长按时间阈值（ms）
+    uint32_t key_cnt;  // 计数值，用于延时检测短按与长按
+} key_status_t;
+
+
 
 /**
   * @brief     键盘鼠标数据结构体
@@ -43,11 +55,16 @@ typedef struct
     float max_spd;     //运动最大速度
 
     /* 键盘按键状态 */
-    key_state_e e_state; //E键按键状态
-    key_state_e f_state; //F键按键状态
-    key_state_e shift_state; //SHIFT键按键状态
-    key_state_e v_state; //V键按键状态
-    key_state_e g_state; //V键按键状态
+    key_status_t e; //E键按键状态
+    key_status_t f; //F键按键状态
+    key_status_t shift; //SHIFT键按键状态
+    key_status_t ctrl; //SHIFT键按键状态
+    key_status_t v; //V键按键状态
+    key_status_t g; //V键按键状态
+    key_status_t x; //V键按键状态
+    key_status_t b; //V键按键状态
+
+    key_status_t r; //V键按键状态
 
     /* 运动模式，键盘控制底盘运动快慢 */
     key_move_e move_mode;
@@ -110,7 +127,7 @@ typedef struct
 
 } pc_control_t;
 
-void key_state_machine(key_state_e *state, uint8_t key);
+void key_state_machine(key_status_t *key, uint8_t key_input);
 
 pc_control_t convert_remote_to_pc(const remote_control_t *remote);
 

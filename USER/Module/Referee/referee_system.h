@@ -535,6 +535,192 @@ typedef struct __attribute__((__packed__))
     uint8_t user_data[112];                              /*! 内容数据段 内容最大为112字节*/
 } robot_interaction_data_t;
 //TODO:机器人交互数据子内容的完善
+//TODO:未添加自主决策指令
+/** 交互数据包绘图子命令 内容ID */
+typedef enum
+{
+    //0x200-0x02ff 	队伍自定义命令 格式  INTERACT_ID_XXXX
+    DELETE_GRAPHIC_ID = 0x0100,  //客户端删除图形
+    DRAW_ONE_GRAPHIC_ID = 0x0101,  //客户端绘制一个图形
+    DRAW_TWO_GRAPHIC_ID = 0x0102,  //客户端绘制二个图形
+    DRAW_FIVE_GRAPHIC_ID = 0x0103,  //客户端绘制五个图形
+    DRAW_SEVEN_GRAPHIC_ID = 0x0104,  //客户端绘制七个图形
+    DRAW_CHAR_GRAPHIC_ID = 0x0110,  //客户端绘制字符图形
+
+    ID_delete_graphic 			= 0x0100,  //客户端删除图形
+    ID_draw_one_graphic 		= 0x0101,  //客户端绘制一个图形
+    ID_draw_two_graphic 		= 0x0102,  //客户端绘制二个图形
+    ID_draw_five_graphic 	  = 0x0103,  //客户端绘制五个图形
+    ID_draw_seven_graphic 	= 0x0104,  //客户端绘制七个图形
+    ID_draw_char_graphic 	  = 0x0110,  //客户端绘制字符图形
+} ui_cmd_id_e;
+
+/* 数据段长度 */
+enum
+{
+    DELETE_GRAPHIC_LEN = 8,
+    DRAW_ONE_GRAPHIC_LEN = 21,
+    DRAW_TWO_GRAPHIC_LEN = 36,
+    DRAW_FIVE_GRAPHIC_LEN = 81,
+    DRAW_SEVEN_GRAPHIC_LEN = 111,
+    DRAW_CHAR_GRAPHIC_LEN = 51,
+
+    LEN_ID_delete_graphic     = 8,  //6+2
+    LEN_ID_draw_one_graphic   = 21, //6+15
+    LEN_ID_draw_two_graphic   = 36, //6+15*2
+    LEN_ID_draw_five_graphic  = 81, //6+15*5
+    LEN_ID_draw_seven_graphic = 111,//6+15*7
+    LEN_ID_draw_char_graphic  = 51, //6+15+30（字符串内容）
+};
+
+/* 操作类型 */
+typedef enum
+{
+    NONE   = 0,/*空操作*/
+    ADD    = 1,/*增加图层*/
+    MODIFY = 2,/*修改图层*/
+    DELETE = 3,/*删if除图层*/
+} operate_tpye_e;
+
+/* 颜色 */
+typedef enum
+{
+    RED_BLUE  = 0,  //红蓝主色
+    YELLOW    = 1,  //黄
+    GREEN     = 2,  //绿
+    ORANGE    = 3,  //橙
+    FUCHSIA   = 4,	//紫红色
+    PINK      = 5,   //粉
+    CYAN_BLUE = 6,	//青色
+    BLACK     = 7,
+    WHITE     = 8
+}graphic_color_e;
+
+typedef struct __attribute__((__packed__))
+{
+    uint8_t operate_tpye;
+    uint8_t layer;
+} ext_client_custom_graphic_delete_t;
+
+typedef struct __attribute__((__packed__))
+{
+    uint8_t delete_type;
+    uint8_t layer;
+} interaction_layer_delete_t;
+
+/* 图形数据 */
+typedef struct __attribute__((__packed__))
+{
+    uint8_t graphic_name[3];
+    uint32_t operate_tpye:3;       /* 0:空操作;1:增加;2:修改;3:删除	*/
+    uint32_t graphic_tpye:3;        /*	0:直线;1:矩形;2:正圆;3:椭圆;4:圆弧;5:浮点数;6:整形;7:字符 */
+    uint32_t layer:4;
+    uint32_t color:4;
+    uint32_t start_angle:9;
+    uint32_t end_angle:9;
+    uint32_t width:10;
+    uint32_t start_x:11;
+    uint32_t start_y:11;
+    uint32_t radius:10;
+    uint32_t end_x:11;
+    uint32_t end_y:11;
+} graphic_data_struct_t;
+
+typedef struct __attribute__((__packed__))
+{
+    uint8_t figure_name[3];
+    uint32_t operate_tpye:3;
+    uint32_t figure_tpye:3;
+    uint32_t layer:4;
+    uint32_t color:4;
+    uint32_t details_a:9;
+    uint32_t details_b:9;
+    uint32_t width:10;
+    uint32_t start_x:11;
+    uint32_t start_y:11;
+    uint32_t details_c:10;
+    uint32_t details_d:11;
+    uint32_t details_e:11;
+} interaction_figure_t;
+
+/* 客户端绘制一个图形数据段 */
+typedef struct __attribute__((__packed__))
+{
+    graphic_data_struct_t grapic_data_struct;
+} ext_client_custom_graphic_single_t;
+
+/* 客户端绘制二个图形数据段 */
+typedef struct __attribute__((__packed__))
+{
+    graphic_data_struct_t grapic_data_struct[2];
+} ext_client_custom_graphic_double_t;
+
+typedef struct __attribute__((__packed__))
+{
+    interaction_figure_t interaction_figure[2];
+} interaction_figure_2_t;
+
+/* 客户端绘制五个图形数据段 */
+typedef struct __attribute__((__packed__))
+{
+    graphic_data_struct_t grapic_data_struct[5];
+} ext_client_custom_graphic_five_t;
+
+typedef struct __attribute__((__packed__))
+{
+    interaction_figure_t interaction_figure[5];
+} interaction_figure_3_t;
+
+/* 客户端绘制七个图形数据段 */
+typedef struct __attribute__((__packed__))
+{
+    graphic_data_struct_t grapic_data_struct[7];
+} ext_client_custom_graphic_seven_t;
+
+typedef struct __attribute__((__packed__))
+{
+    interaction_figure_t interaction_figure[7];
+}interaction_figure_4_t;
+
+/* 客户端绘制字符数据段 */
+typedef struct __attribute__((__packed__))
+{
+    graphic_data_struct_t grapic_data_struct;
+    char data[30];
+} ext_client_custom_character_t;
+
+//typedef struct __attribute__((__packed__))
+//{
+//    graphic_data_struct_t grapic_data_struct;
+//    uint8_t data[30];
+//} ext_client_custom_character_t;
+
+///* 机器人间交互数据专用帧结构 */
+//typedef struct __attribute__((__packed__))
+//{
+//    referee_data_header_t frame_header;  //帧头
+//    uint16_t cmd_id;  //命令码 ID
+//    ext_student_interactive_header_data_t data_header;  //数据段头结构
+//    uint16_t frame_tail;  //帧尾
+//} frame_t;
+//
+//typedef struct __attribute__((__packed__))
+//{
+//    referee_data_header_t frame_header;  //帧头
+//    uint16_t cmd_id;  //命令码 ID
+//    ext_student_interactive_header_data_t data_header;  //数据段头结构
+//    uint16_t frame_tail;  //帧尾
+//} interaction_data_frame_t;
+
+/* 客户端信息 */
+typedef struct __attribute__((__packed__))
+{
+    uint8_t robot_id;
+    uint16_t client_id;
+} client_info_t;
+
+
+
 
 /**
 *  云台手可通过选手端大地图向机器人发送固定数据。对应命令码为 0x0303

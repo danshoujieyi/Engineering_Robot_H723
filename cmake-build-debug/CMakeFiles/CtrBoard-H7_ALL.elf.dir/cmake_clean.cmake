@@ -132,8 +132,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Crc/crc8_crc16.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Dwt/drv_dwt.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Dwt/drv_dwt.c.obj.d"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Fifo/fifo.c.obj"
-  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Fifo/fifo.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Filter/filter32.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Filter/filter32.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/MahonyAHRS/MahonyAHRS.c.obj"

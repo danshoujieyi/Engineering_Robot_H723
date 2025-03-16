@@ -18,6 +18,7 @@
 #include "usart.h"
 #include "keyboard.h"
 #include "user_lib.h"
+#include "DMmotor_task.h"
 
 volatile uint8_t usart5_rx_buffer_index = 0;      // 当前使用的接收缓冲区索引
 volatile uint16_t usart5_rx_size = 0;               // 本次接收到的数据长度
@@ -57,7 +58,6 @@ static float cmd_dt;
 static void keyboard_to_chassis_cmd(void);
 void CmdTask_Entry(void const * argument)
 {
-//    static float cmd_start;
     sbus_data_init();
     USART5_DMA_Init();
     uint8_t finishedBuffer;
@@ -67,9 +67,9 @@ void CmdTask_Entry(void const * argument)
     sbus_data_fdb.sw2 = RC_UP;
     sbus_data_fdb.sw3 = RC_UP;
     sbus_data_fdb.sw4 = RC_UP;
-    km_vx_ramp = ramp_register(0, 40000); //2500000
-    km_vy_ramp = ramp_register(0, 40000);
-    km_vw_ramp = ramp_register(0, 1);
+    km_vx_ramp = ramp_register(0, 200); //2500000
+    km_vy_ramp = ramp_register(0, 200);  // 0 -2的累加次数
+    km_vw_ramp = ramp_register(0, 200);
 
     /* 获取原始键盘数据 */
 
@@ -78,7 +78,7 @@ void CmdTask_Entry(void const * argument)
 
     for (;;)
     {
-//        cmd_start = dwt_get_time_ms();
+
 //        if (xSemaphoreTake(xSemaphoreUART5, pdMS_TO_TICKS(10)) == pdTRUE) {
 //            /* 使用刚完成接收数据的缓冲区 */
 //            finishedBuffer = usart5_rx_buffer_index ^ 1;
@@ -89,14 +89,11 @@ void CmdTask_Entry(void const * argument)
 //        }
         pc_data = convert_remote_to_pc(&referee_fdb.remote_control);
         PC_keyboard_mouse(&pc_data);
+        chassis_cmd_state_machine();
+        arm_cmd_state_machine(); // 机械臂状态机
         keyboard_to_chassis_cmd();
 
 
-
-
-//        cmd_dt = dwt_get_time_ms() - cmd_start;
-//        if (cmd_dt > 1)
-//            printf("Cmd Task is being DELAY! dt = [%f]", &cmd_dt);
         vTaskDelay(1);
     }
 }
@@ -114,33 +111,6 @@ static void keyboard_to_chassis_cmd(void)
     chassis_cmd.vx = keyboard.vx * CHASSIS_PC_MOVE_RATIO_X;
     chassis_cmd.vy = keyboard.vy * CHASSIS_PC_MOVE_RATIO_Y;
     chassis_cmd.vw = keyboard.vw * 1.0f;
-
-//        switch (chassis_cmd.ctrl_mode)
-//        {
-//            case CHASSIS_RELAX:
-//                for (uint8_t i = 0; i < 4; i++)
-//                {
-//                    dji_motor_relax(chassis_motor[i]);
-//                }
-//                break;
-//            case CHASSIS_OPEN_LOOP:
-//                chassis_calc_moto_speed(&chassis_cmd, motor_ref);
-//                break;
-//            case CHASSIS_STOP:
-//                memset(motor_ref, 0, sizeof(motor_ref));
-//                break;
-//            case CHASSIS_FLY:
-//                break;
-//            case CHASSIS_AUTO:
-//                break;
-//            default:
-//                for (uint8_t i = 0; i < 4; i++)
-//                {
-//                    dji_motor_relax(chassis_motor[i]);
-//                }
-//                break;
-//        }
-
 }
 
 /* ------------------------------ 将遥控器数据转换为控制指令 ----------------------------- */
