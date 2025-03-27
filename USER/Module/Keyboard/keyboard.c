@@ -32,13 +32,13 @@ static float base_delta_w = MAX_CHASSIS_VW_SPEED * GIMBAL_PERIOD / KEY_ACC_TIME;
 /* 控制参数定义 ------------------------------------------------------------*/
 #define LONG_PRESS_TIME       600     // 长按判定时间(ms)
 #define DEBOUNCE_TIME         10      // 消抖时间(ms)
-#define MICRO_SENSITIVITY     0.3f    // CTRL微调灵敏度系数
-#define BOOST_FACTOR          1.5f    // SHIFT加速倍率
+#define MICRO_SENSITIVITY     0.4f    // CTRL微调灵敏度系数
+#define BOOST_FACTOR          1.2f    // SHIFT加速倍率
 #define NORMAL_DECAY          0.85f   // 常规衰减系数
 #define MICRO_DECAY           0.95f   // 微调模式衰减系数
 #define DEAD_ZONE             5.0f    // 速度死区(mm/s)
 
-pump_mode_e pump_mode = PUMP_CLOSE;
+pump_mode_e pump_mode = PUMP_INIT;
 
 // 全局键盘控制对象定义
 keyboard_control_t keyboard = {
@@ -52,6 +52,7 @@ keyboard_control_t keyboard = {
         .g     = {KEY_RELEASE, 0, 800, 0},   // G键快速响应
         .f     = {KEY_RELEASE, 0, 800, 0},    // F键快速响应
         .x     = {KEY_RELEASE, 0, 800, 0},    // F键快速响应
+        .z     = {KEY_RELEASE, 0, 800, 0},
         .r     = {KEY_RELEASE, 0, 800, 0}    // F键快速响应
 };
 
@@ -163,7 +164,17 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
 {
 
     key_state_machine(&keyboard.x, pc_control->keyboard.bit.X);
-    pump_control(keyboard.x);
+    key_state_machine(&keyboard.z, pc_control->keyboard.bit.Z);
+//    pump_control(keyboard.x);
+    // X按键用于打开气泵
+    if(keyboard.x.state == KEY_PRESS_ONCE) {
+        pump_mode = PUMP_OPEN;
+    }
+    // Z按键用于关闭气泵
+    if(keyboard.z.state == KEY_PRESS_ONCE) {
+        pump_mode = PUMP_CLOSE;
+    }
+
 
     key_state_machine(&keyboard.g,pc_control->keyboard.bit.G);
     if (keyboard.g.state == KEY_PRESS_ONCE)
@@ -240,9 +251,9 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
 
     // 旋转控制（Q/E）
     if(pc_control->keyboard.bit.Q) {
-        keyboard.vw -= base_delta_w * 1.2f;  // 旋转灵敏度系数
+        keyboard.vw -= base_delta_w * 1.0f;  // 旋转灵敏度系数
     } else if(pc_control->keyboard.bit.E) {
-        keyboard.vw += base_delta_w * 1.2f;
+        keyboard.vw += base_delta_w * 1.0f;
     } else {
         keyboard.vw *= (1 - km_vw_ramp->calc(km_vw_ramp) * decay);
     }

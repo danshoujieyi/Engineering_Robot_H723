@@ -47,7 +47,7 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-osThreadId TaskHandle;
+osThreadId AlgorithmTaskHandle;
 osThreadId USART1_RecTaskHandle;
 osThreadId ChassisTaskHandle;
 osThreadId CmdTaskHandle;
@@ -59,14 +59,13 @@ osThreadId RefereeTaskHandle;
 
 /* USER CODE END FunctionPrototypes */
 
-void Task_Entry(void const * argument);
+void AlgorithmTask_Entry(void const * argument);
 void USART1_RecEntry(void const * argument);
 void ChassisTask_Entry(void const * argument);
 void CmdTask_Entry(void const * argument);
 void DMmotor_Entry(void const * argument);
 void Referee_Entry(void const * argument);
 
-extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
@@ -128,9 +127,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* definition and creation of Task */
-  osThreadDef(Task, Task_Entry, osPriorityHigh, 0, 256);
-  TaskHandle = osThreadCreate(osThread(Task), NULL);
+  /* definition and creation of AlgorithmTask */
+  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 256);
+  AlgorithmTaskHandle = osThreadCreate(osThread(AlgorithmTask), NULL);
 
   /* definition and creation of USART1_RecTask */
   osThreadDef(USART1_RecTask, USART1_RecEntry, osPriorityHigh, 0, 512);
@@ -149,7 +148,7 @@ void MX_FREERTOS_Init(void) {
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 128);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -158,24 +157,22 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_Task_Entry */
+/* USER CODE BEGIN Header_AlgorithmTask_Entry */
 /**
-  * @brief  Function implementing the Task thread.
+  * @brief  Function implementing the AlgorithmTask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_Task_Entry */
-__weak void Task_Entry(void const * argument)
+/* USER CODE END Header_AlgorithmTask_Entry */
+__weak void AlgorithmTask_Entry(void const * argument)
 {
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
-  /* USER CODE BEGIN Task_Entry */
+  /* USER CODE BEGIN AlgorithmTask_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END Task_Entry */
+  /* USER CODE END AlgorithmTask_Entry */
 }
 
 /* USER CODE BEGIN Header_USART1_RecEntry */

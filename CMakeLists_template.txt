@@ -62,14 +62,15 @@ include_directories(${includes}
         USER/Algorithm/Crc
        # USER/Algorithm/Fifo
 
-        USER/Module/Bmi088
-        USER/Module/Vofa+
+       # USER/Module/Bmi088
+       # USER/Module/Vofa+
         USER/Module/Fdcan
         USER/Module/DM_Motor_Fdcan
         USER/Module/DJ_Motor
         USER/Module/Rc/Sbus
         USER/Module/Referee
         USER/Module/Keyboard
+        USER/Module/Pump
 
        # USER/Task/Imu
         USER/Task/Chassis
@@ -95,14 +96,15 @@ file(GLOB_RECURSE SOURCES ${sources}
         "USER/Algorithm/Crc/*.*"
        # "USER/Algorithm/Fifo/*.*"
 
-        "USER/Module/Bmi088/*.*"
-        "USER/Module/Vofa+/*.*"
+       # "USER/Module/Bmi088/*.*"
+       # "USER/Module/Vofa+/*.*"
         "USER/Module/Fdcan/*.*"
         "USER/Module/DM_Motor_Fdcan/*.*"
         "USER/Module/DJ_Motor/*.*"
         "USER/Module/Rc/Sbus/*.*"
         "USER/Module/Referee/*.*"
         "USER/Module/Keyboard/*.*"
+        "USER/Module/Pump/*.*"
 
        # "USER/Task/Imu/*.*"
         "USER/Task/Chassis/*.*"

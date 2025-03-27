@@ -63,6 +63,7 @@ typedef struct
     key_status_t g; //V¼ü°´¼ü×´Ì¬
     key_status_t x; //V¼ü°´¼ü×´Ì¬
     key_status_t b; //V¼ü°´¼ü×´Ì¬
+    key_status_t z; //V¼ü°´¼ü×´Ì¬
 
     key_status_t r; //V¼ü°´¼ü×´Ì¬
 

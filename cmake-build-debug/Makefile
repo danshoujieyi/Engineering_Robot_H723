@@ -128,30 +128,6 @@ CtrBoard-H7_ALL.elf/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/build
 .PHONY : CtrBoard-H7_ALL.elf/fast
 
-Core/Src/adc.obj: Core/Src/adc.c.obj
-.PHONY : Core/Src/adc.obj
-
-# target to build an object file
-Core/Src/adc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/adc.c.obj
-.PHONY : Core/Src/adc.c.obj
-
-Core/Src/adc.i: Core/Src/adc.c.i
-.PHONY : Core/Src/adc.i
-
-# target to preprocess a source file
-Core/Src/adc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/adc.c.i
-.PHONY : Core/Src/adc.c.i
-
-Core/Src/adc.s: Core/Src/adc.c.s
-.PHONY : Core/Src/adc.s
-
-# target to generate assembly for a file
-Core/Src/adc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/adc.c.s
-.PHONY : Core/Src/adc.c.s
-
 Core/Src/dma.obj: Core/Src/dma.c.obj
 .PHONY : Core/Src/dma.obj
 
@@ -295,54 +271,6 @@ Core/Src/memorymap.s: Core/Src/memorymap.c.s
 Core/Src/memorymap.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/memorymap.c.s
 .PHONY : Core/Src/memorymap.c.s
-
-Core/Src/octospi.obj: Core/Src/octospi.c.obj
-.PHONY : Core/Src/octospi.obj
-
-# target to build an object file
-Core/Src/octospi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/octospi.c.obj
-.PHONY : Core/Src/octospi.c.obj
-
-Core/Src/octospi.i: Core/Src/octospi.c.i
-.PHONY : Core/Src/octospi.i
-
-# target to preprocess a source file
-Core/Src/octospi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/octospi.c.i
-.PHONY : Core/Src/octospi.c.i
-
-Core/Src/octospi.s: Core/Src/octospi.c.s
-.PHONY : Core/Src/octospi.s
-
-# target to generate assembly for a file
-Core/Src/octospi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/octospi.c.s
-.PHONY : Core/Src/octospi.c.s
-
-Core/Src/spi.obj: Core/Src/spi.c.obj
-.PHONY : Core/Src/spi.obj
-
-# target to build an object file
-Core/Src/spi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.obj
-.PHONY : Core/Src/spi.c.obj
-
-Core/Src/spi.i: Core/Src/spi.c.i
-.PHONY : Core/Src/spi.i
-
-# target to preprocess a source file
-Core/Src/spi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.i
-.PHONY : Core/Src/spi.c.i
-
-Core/Src/spi.s: Core/Src/spi.c.s
-.PHONY : Core/Src/spi.s
-
-# target to generate assembly for a file
-Core/Src/spi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.s
-.PHONY : Core/Src/spi.c.s
 
 Core/Src/stm32h7xx_hal_msp.obj: Core/Src/stm32h7xx_hal_msp.c.obj
 .PHONY : Core/Src/stm32h7xx_hal_msp.obj
@@ -488,30 +416,6 @@ Core/Src/system_stm32h7xx.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/system_stm32h7xx.c.s
 .PHONY : Core/Src/system_stm32h7xx.c.s
 
-Core/Src/tim.obj: Core/Src/tim.c.obj
-.PHONY : Core/Src/tim.obj
-
-# target to build an object file
-Core/Src/tim.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.obj
-.PHONY : Core/Src/tim.c.obj
-
-Core/Src/tim.i: Core/Src/tim.c.i
-.PHONY : Core/Src/tim.i
-
-# target to preprocess a source file
-Core/Src/tim.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.i
-.PHONY : Core/Src/tim.c.i
-
-Core/Src/tim.s: Core/Src/tim.c.s
-.PHONY : Core/Src/tim.s
-
-# target to generate assembly for a file
-Core/Src/tim.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.s
-.PHONY : Core/Src/tim.c.s
-
 Core/Src/usart.obj: Core/Src/usart.c.obj
 .PHONY : Core/Src/usart.obj
 
@@ -567,54 +471,6 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.s: Drivers/STM32H7xx_HAL_Driver/S
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.s
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.s
 
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.obj
@@ -904,78 +760,6 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.s
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.s
 
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c.s
-
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.obj
 
@@ -1072,54 +856,6 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s
 
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
-
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj
 
@@ -1215,126 +951,6 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.s: Drivers/STM32H7xx_HAL_
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.s
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.s
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.obj
-
-# target to build an object file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.obj
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.obj
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.i
-
-# target to preprocess a source file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.i
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.i
-
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.s
-
-# target to generate assembly for a file
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.s
-.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c.s
-
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.obj: Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.obj
-
-# target to build an object file
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.obj
-
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.i: Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.i
-
-# target to preprocess a source file
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.i
-
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.s: Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.s
-
-# target to generate assembly for a file
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.s
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.obj: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.obj
-
-# target to build an object file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.obj
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.i: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.i
-
-# target to preprocess a source file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.i
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.s: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.s
-
-# target to generate assembly for a file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.s
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.obj: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.obj
-
-# target to build an object file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.obj
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.i: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.i
-
-# target to preprocess a source file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.i
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.s: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.s
-
-# target to generate assembly for a file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.s
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.obj: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.obj
-
-# target to build an object file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.i: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.i
-
-# target to preprocess a source file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.i
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.i
-
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.s: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.s
-
-# target to generate assembly for a file
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.s
-.PHONY : Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.s
 
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.obj: Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c.obj
 .PHONY : Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.obj
@@ -1576,102 +1192,6 @@ Middlewares/Third_Party/FreeRTOS/Source/timers.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/Third_Party/FreeRTOS/Source/timers.c.s
 .PHONY : Middlewares/Third_Party/FreeRTOS/Source/timers.c.s
 
-USB_DEVICE/App/usb_device.obj: USB_DEVICE/App/usb_device.c.obj
-.PHONY : USB_DEVICE/App/usb_device.obj
-
-# target to build an object file
-USB_DEVICE/App/usb_device.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usb_device.c.obj
-.PHONY : USB_DEVICE/App/usb_device.c.obj
-
-USB_DEVICE/App/usb_device.i: USB_DEVICE/App/usb_device.c.i
-.PHONY : USB_DEVICE/App/usb_device.i
-
-# target to preprocess a source file
-USB_DEVICE/App/usb_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usb_device.c.i
-.PHONY : USB_DEVICE/App/usb_device.c.i
-
-USB_DEVICE/App/usb_device.s: USB_DEVICE/App/usb_device.c.s
-.PHONY : USB_DEVICE/App/usb_device.s
-
-# target to generate assembly for a file
-USB_DEVICE/App/usb_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usb_device.c.s
-.PHONY : USB_DEVICE/App/usb_device.c.s
-
-USB_DEVICE/App/usbd_cdc_if.obj: USB_DEVICE/App/usbd_cdc_if.c.obj
-.PHONY : USB_DEVICE/App/usbd_cdc_if.obj
-
-# target to build an object file
-USB_DEVICE/App/usbd_cdc_if.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_cdc_if.c.obj
-.PHONY : USB_DEVICE/App/usbd_cdc_if.c.obj
-
-USB_DEVICE/App/usbd_cdc_if.i: USB_DEVICE/App/usbd_cdc_if.c.i
-.PHONY : USB_DEVICE/App/usbd_cdc_if.i
-
-# target to preprocess a source file
-USB_DEVICE/App/usbd_cdc_if.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_cdc_if.c.i
-.PHONY : USB_DEVICE/App/usbd_cdc_if.c.i
-
-USB_DEVICE/App/usbd_cdc_if.s: USB_DEVICE/App/usbd_cdc_if.c.s
-.PHONY : USB_DEVICE/App/usbd_cdc_if.s
-
-# target to generate assembly for a file
-USB_DEVICE/App/usbd_cdc_if.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_cdc_if.c.s
-.PHONY : USB_DEVICE/App/usbd_cdc_if.c.s
-
-USB_DEVICE/App/usbd_desc.obj: USB_DEVICE/App/usbd_desc.c.obj
-.PHONY : USB_DEVICE/App/usbd_desc.obj
-
-# target to build an object file
-USB_DEVICE/App/usbd_desc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_desc.c.obj
-.PHONY : USB_DEVICE/App/usbd_desc.c.obj
-
-USB_DEVICE/App/usbd_desc.i: USB_DEVICE/App/usbd_desc.c.i
-.PHONY : USB_DEVICE/App/usbd_desc.i
-
-# target to preprocess a source file
-USB_DEVICE/App/usbd_desc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_desc.c.i
-.PHONY : USB_DEVICE/App/usbd_desc.c.i
-
-USB_DEVICE/App/usbd_desc.s: USB_DEVICE/App/usbd_desc.c.s
-.PHONY : USB_DEVICE/App/usbd_desc.s
-
-# target to generate assembly for a file
-USB_DEVICE/App/usbd_desc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/App/usbd_desc.c.s
-.PHONY : USB_DEVICE/App/usbd_desc.c.s
-
-USB_DEVICE/Target/usbd_conf.obj: USB_DEVICE/Target/usbd_conf.c.obj
-.PHONY : USB_DEVICE/Target/usbd_conf.obj
-
-# target to build an object file
-USB_DEVICE/Target/usbd_conf.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/Target/usbd_conf.c.obj
-.PHONY : USB_DEVICE/Target/usbd_conf.c.obj
-
-USB_DEVICE/Target/usbd_conf.i: USB_DEVICE/Target/usbd_conf.c.i
-.PHONY : USB_DEVICE/Target/usbd_conf.i
-
-# target to preprocess a source file
-USB_DEVICE/Target/usbd_conf.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/Target/usbd_conf.c.i
-.PHONY : USB_DEVICE/Target/usbd_conf.c.i
-
-USB_DEVICE/Target/usbd_conf.s: USB_DEVICE/Target/usbd_conf.c.s
-.PHONY : USB_DEVICE/Target/usbd_conf.s
-
-# target to generate assembly for a file
-USB_DEVICE/Target/usbd_conf.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USB_DEVICE/Target/usbd_conf.c.s
-.PHONY : USB_DEVICE/Target/usbd_conf.c.s
-
 USER/Algorithm/Crc/crc8_crc16.obj: USER/Algorithm/Crc/crc8_crc16.c.obj
 .PHONY : USER/Algorithm/Crc/crc8_crc16.obj
 
@@ -1839,54 +1359,6 @@ USER/Algorithm/User_Lib/user_lib.s: USER/Algorithm/User_Lib/user_lib.c.s
 USER/Algorithm/User_Lib/user_lib.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/User_Lib/user_lib.c.s
 .PHONY : USER/Algorithm/User_Lib/user_lib.c.s
-
-USER/Module/Bmi088/BMI088Middleware.obj: USER/Module/Bmi088/BMI088Middleware.c.obj
-.PHONY : USER/Module/Bmi088/BMI088Middleware.obj
-
-# target to build an object file
-USER/Module/Bmi088/BMI088Middleware.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.obj
-.PHONY : USER/Module/Bmi088/BMI088Middleware.c.obj
-
-USER/Module/Bmi088/BMI088Middleware.i: USER/Module/Bmi088/BMI088Middleware.c.i
-.PHONY : USER/Module/Bmi088/BMI088Middleware.i
-
-# target to preprocess a source file
-USER/Module/Bmi088/BMI088Middleware.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.i
-.PHONY : USER/Module/Bmi088/BMI088Middleware.c.i
-
-USER/Module/Bmi088/BMI088Middleware.s: USER/Module/Bmi088/BMI088Middleware.c.s
-.PHONY : USER/Module/Bmi088/BMI088Middleware.s
-
-# target to generate assembly for a file
-USER/Module/Bmi088/BMI088Middleware.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.s
-.PHONY : USER/Module/Bmi088/BMI088Middleware.c.s
-
-USER/Module/Bmi088/BMI088driver.obj: USER/Module/Bmi088/BMI088driver.c.obj
-.PHONY : USER/Module/Bmi088/BMI088driver.obj
-
-# target to build an object file
-USER/Module/Bmi088/BMI088driver.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.obj
-.PHONY : USER/Module/Bmi088/BMI088driver.c.obj
-
-USER/Module/Bmi088/BMI088driver.i: USER/Module/Bmi088/BMI088driver.c.i
-.PHONY : USER/Module/Bmi088/BMI088driver.i
-
-# target to preprocess a source file
-USER/Module/Bmi088/BMI088driver.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.i
-.PHONY : USER/Module/Bmi088/BMI088driver.c.i
-
-USER/Module/Bmi088/BMI088driver.s: USER/Module/Bmi088/BMI088driver.c.s
-.PHONY : USER/Module/Bmi088/BMI088driver.s
-
-# target to generate assembly for a file
-USER/Module/Bmi088/BMI088driver.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.s
-.PHONY : USER/Module/Bmi088/BMI088driver.c.s
 
 USER/Module/DJ_Motor/dj_motor.obj: USER/Module/DJ_Motor/dj_motor.c.obj
 .PHONY : USER/Module/DJ_Motor/dj_motor.obj
@@ -2080,30 +1552,6 @@ USER/Module/Referee/referee_system.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.s
 .PHONY : USER/Module/Referee/referee_system.c.s
 
-USER/Module/Vofa+/vofa.obj: USER/Module/Vofa+/vofa.c.obj
-.PHONY : USER/Module/Vofa+/vofa.obj
-
-# target to build an object file
-USER/Module/Vofa+/vofa.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.obj
-.PHONY : USER/Module/Vofa+/vofa.c.obj
-
-USER/Module/Vofa+/vofa.i: USER/Module/Vofa+/vofa.c.i
-.PHONY : USER/Module/Vofa+/vofa.i
-
-# target to preprocess a source file
-USER/Module/Vofa+/vofa.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.i
-.PHONY : USER/Module/Vofa+/vofa.c.i
-
-USER/Module/Vofa+/vofa.s: USER/Module/Vofa+/vofa.c.s
-.PHONY : USER/Module/Vofa+/vofa.s
-
-# target to generate assembly for a file
-USER/Module/Vofa+/vofa.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Vofa+/vofa.c.s
-.PHONY : USER/Module/Vofa+/vofa.c.s
-
 USER/Task/Chassis/chassis_task.obj: USER/Task/Chassis/chassis_task.c.obj
 .PHONY : USER/Task/Chassis/chassis_task.obj
 
@@ -2257,9 +1705,6 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... CtrBoard-H7_ALL.elf
-	@echo ... Core/Src/adc.obj
-	@echo ... Core/Src/adc.i
-	@echo ... Core/Src/adc.s
 	@echo ... Core/Src/dma.obj
 	@echo ... Core/Src/dma.i
 	@echo ... Core/Src/dma.s
@@ -2278,12 +1723,6 @@ help:
 	@echo ... Core/Src/memorymap.obj
 	@echo ... Core/Src/memorymap.i
 	@echo ... Core/Src/memorymap.s
-	@echo ... Core/Src/octospi.obj
-	@echo ... Core/Src/octospi.i
-	@echo ... Core/Src/octospi.s
-	@echo ... Core/Src/spi.obj
-	@echo ... Core/Src/spi.i
-	@echo ... Core/Src/spi.s
 	@echo ... Core/Src/stm32h7xx_hal_msp.obj
 	@echo ... Core/Src/stm32h7xx_hal_msp.i
 	@echo ... Core/Src/stm32h7xx_hal_msp.s
@@ -2302,9 +1741,6 @@ help:
 	@echo ... Core/Src/system_stm32h7xx.obj
 	@echo ... Core/Src/system_stm32h7xx.i
 	@echo ... Core/Src/system_stm32h7xx.s
-	@echo ... Core/Src/tim.obj
-	@echo ... Core/Src/tim.i
-	@echo ... Core/Src/tim.s
 	@echo ... Core/Src/usart.obj
 	@echo ... Core/Src/usart.i
 	@echo ... Core/Src/usart.s
@@ -2312,12 +1748,6 @@ help:
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.s
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.s
@@ -2354,15 +1784,6 @@ help:
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.s
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.s
@@ -2375,12 +1796,6 @@ help:
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.s
@@ -2393,21 +1808,6 @@ help:
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.s
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.obj
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.i
-	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.s
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.obj
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.i
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.s
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.obj
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.i
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.s
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.obj
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.i
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.s
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.obj
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.i
-	@echo ... Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.s
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.obj
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.i
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.s
@@ -2438,18 +1838,6 @@ help:
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/timers.obj
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/timers.i
 	@echo ... Middlewares/Third_Party/FreeRTOS/Source/timers.s
-	@echo ... USB_DEVICE/App/usb_device.obj
-	@echo ... USB_DEVICE/App/usb_device.i
-	@echo ... USB_DEVICE/App/usb_device.s
-	@echo ... USB_DEVICE/App/usbd_cdc_if.obj
-	@echo ... USB_DEVICE/App/usbd_cdc_if.i
-	@echo ... USB_DEVICE/App/usbd_cdc_if.s
-	@echo ... USB_DEVICE/App/usbd_desc.obj
-	@echo ... USB_DEVICE/App/usbd_desc.i
-	@echo ... USB_DEVICE/App/usbd_desc.s
-	@echo ... USB_DEVICE/Target/usbd_conf.obj
-	@echo ... USB_DEVICE/Target/usbd_conf.i
-	@echo ... USB_DEVICE/Target/usbd_conf.s
 	@echo ... USER/Algorithm/Crc/crc8_crc16.obj
 	@echo ... USER/Algorithm/Crc/crc8_crc16.i
 	@echo ... USER/Algorithm/Crc/crc8_crc16.s
@@ -2471,12 +1859,6 @@ help:
 	@echo ... USER/Algorithm/User_Lib/user_lib.obj
 	@echo ... USER/Algorithm/User_Lib/user_lib.i
 	@echo ... USER/Algorithm/User_Lib/user_lib.s
-	@echo ... USER/Module/Bmi088/BMI088Middleware.obj
-	@echo ... USER/Module/Bmi088/BMI088Middleware.i
-	@echo ... USER/Module/Bmi088/BMI088Middleware.s
-	@echo ... USER/Module/Bmi088/BMI088driver.obj
-	@echo ... USER/Module/Bmi088/BMI088driver.i
-	@echo ... USER/Module/Bmi088/BMI088driver.s
 	@echo ... USER/Module/DJ_Motor/dj_motor.obj
 	@echo ... USER/Module/DJ_Motor/dj_motor.i
 	@echo ... USER/Module/DJ_Motor/dj_motor.s
@@ -2501,9 +1883,6 @@ help:
 	@echo ... USER/Module/Referee/referee_system.obj
 	@echo ... USER/Module/Referee/referee_system.i
 	@echo ... USER/Module/Referee/referee_system.s
-	@echo ... USER/Module/Vofa+/vofa.obj
-	@echo ... USER/Module/Vofa+/vofa.i
-	@echo ... USER/Module/Vofa+/vofa.s
 	@echo ... USER/Task/Chassis/chassis_task.obj
 	@echo ... USER/Task/Chassis/chassis_task.i
 	@echo ... USER/Task/Chassis/chassis_task.s

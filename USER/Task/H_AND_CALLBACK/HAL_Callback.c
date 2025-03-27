@@ -41,23 +41,23 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
 
-    if (huart->Instance == USART10)
-    {
-        // 判断接收的数据大小是否限制，如果超过，则不处理
-        if (Size > REFEREE_RX_BUF_SIZE)
-        {
-            return;
-        }
-        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-
-        referee_rx_size = Size;
-        referee_rx_buffer_index = referee_rx_buffer_index ^ 1;
-
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, referee_rx_buffer[referee_rx_buffer_index], REFEREE_RX_BUF_SIZE);
-        __HAL_DMA_DISABLE_IT(huart10.hdmarx, DMA_IT_HT);
-        xSemaphoreGiveFromISR(xSemaphoreUART10,NULL);
-        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-    }
+//    if (huart->Instance == USART10)
+//    {
+//        // 判断接收的数据大小是否限制，如果超过，则不处理
+//        if (Size > REFEREE_RX_BUF_SIZE)
+//        {
+//            return;
+//        }
+//        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+//
+//        referee_rx_size = Size;
+//        referee_rx_buffer_index = referee_rx_buffer_index ^ 1;
+//
+//        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, referee_rx_buffer[referee_rx_buffer_index], REFEREE_RX_BUF_SIZE);
+//        __HAL_DMA_DISABLE_IT(huart10.hdmarx, DMA_IT_HT);
+//        xSemaphoreGiveFromISR(xSemaphoreUART10,NULL);
+//        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+//    }
 
     if (huart->Instance == USART1)  // 修改判断条件
     {
@@ -87,14 +87,14 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
         __HAL_DMA_DISABLE_IT(huart5.hdmarx, DMA_IT_HT);
         memset(usart5_rx_buffer, 0, sizeof(usart5_rx_buffer));							   // 清除接收缓存
     }
-
-    if(huart->Instance == USART10)
-    {
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, referee_rx_buffer[referee_rx_buffer_index], REFEREE_RX_BUF_SIZE); // 接收发生错误后重启
-        // 关闭DMA传输过半中断（HAL库默认开启，但我们只需要接收完成中断）
-        __HAL_DMA_DISABLE_IT(huart10.hdmarx, DMA_IT_HT);
-        memset(referee_rx_buffer, 0, sizeof(referee_rx_buffer));// 清除双缓存
-    }
+//
+//    if(huart->Instance == USART10)
+//    {
+//        HAL_UARTEx_ReceiveToIdle_DMA(&huart10, referee_rx_buffer[referee_rx_buffer_index], REFEREE_RX_BUF_SIZE); // 接收发生错误后重启
+//        // 关闭DMA传输过半中断（HAL库默认开启，但我们只需要接收完成中断）
+//        __HAL_DMA_DISABLE_IT(huart10.hdmarx, DMA_IT_HT);
+//        memset(referee_rx_buffer, 0, sizeof(referee_rx_buffer));// 清除双缓存
+//    }
 
     if(huart->Instance == USART1)
     {

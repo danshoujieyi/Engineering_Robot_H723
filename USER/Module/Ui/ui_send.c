@@ -3,7 +3,7 @@
 //
 
 #include "ui_send.h"
-
+#include "usart.h"
 /**
   ******************************************************************************
   * @file           : my_judge.c\h
@@ -35,11 +35,7 @@
 
 /* 目录end */
 
-
-
-
-/* 配置区 begin */
-#define UI_huart huart4  //串口接口
+#define UI_huart huart10
 
 extern UART_HandleTypeDef UI_huart;
 

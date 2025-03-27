@@ -12,6 +12,7 @@ typedef enum
 {
     PUMP_CLOSE,
     PUMP_OPEN,
+    PUMP_INIT,
 } pump_mode_e;
 
 

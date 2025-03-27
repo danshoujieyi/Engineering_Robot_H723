@@ -32,15 +32,11 @@
 					<Add option="-DSTM32H723xx"/>
 					<Add option="-DUSE_PWR_LDO_SUPPLY"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Device/ST/STM32H7xx/Include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS"/>
@@ -51,8 +47,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
@@ -95,15 +89,11 @@
 					<Add option="-DSTM32H723xx"/>
 					<Add option="-DUSE_PWR_LDO_SUPPLY"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Device/ST/STM32H7xx/Include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS"/>
@@ -114,8 +104,6 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
@@ -167,9 +155,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/FreeRTOSConfig.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/adc.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/dma.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -185,25 +170,13 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/memorymap.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/octospi.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/spi.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/stm32h7xx_hal_conf.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/stm32h7xx_it.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/tim.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/usart.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/adc.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/dma.c">
@@ -224,12 +197,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/memorymap.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/octospi.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/spi.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/stm32h7xx_hal_msp.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -246,9 +213,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/system_stm32h7xx.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/tim.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/usart.c">
@@ -350,12 +314,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc_ex.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -398,15 +356,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_ospi.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -419,12 +368,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -435,9 +378,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_adc.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_bus.h">
@@ -473,19 +413,10 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_rcc.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_spi.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_system.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_tim.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_utils.h">
@@ -495,12 +426,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c">
@@ -539,15 +464,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_ospi.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -560,12 +476,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -576,36 +486,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/LICENSE.txt">
@@ -704,30 +584,6 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/STM32H723VGTX_FLASH.ld">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usb_device.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usb_device.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usbd_cdc_if.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usbd_cdc_if.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usbd_desc.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App/usbd_desc.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target/usbd_conf.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target/usbd_conf.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc/crc8_crc16.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -774,21 +630,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib/user_lib.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088Middleware.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088Middleware.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088driver.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088driver.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088reg.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor/dj_motor.c">
@@ -840,12 +681,6 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee/referee_system.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+/vofa.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Vofa+/vofa.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c">

@@ -28,7 +28,7 @@ typedef struct __attribute__((__packed__))
 #define REF_PROTOCOL_CMD_SIZE               2  // 协议命令字节大小
 #define REF_PROTOCOL_CRC16_SIZE             2  // 协议 CRC16 校验大小
 #define REF_HEADER_CRC_CMD_SIZE            (REF_PROTOCOL_HEADER_SIZE + REF_PROTOCOL_CRC16_SIZE + REF_PROTOCOL_CMD_SIZE)  // 帧头加命令码的 CRC 长度
-#define REF_PROTOCOL_DATA_MAX_SIZE         127  // 最大可传输数据大小，命令码0x301机器人交互数据最大长度为127字节
+#define REF_PROTOCOL_DATA_MAX_SIZE         127  //TODO：交互数据段大小不明意义，以127保险//(127 - REF_HEADER_CRC_CMD_SIZE)   // 最大可传输数据大小，命令码0x301机器人交互数据最大长度为127字节(已经包含帧头帧尾），还有子命令6字节，故数据包大小最终为112字节
 #define REF_PROTOCOL_FRAME_MAX_SIZE         (REF_HEADER_CRC_CMD_SIZE+REF_PROTOCOL_DATA_MAX_SIZE)  // 协议帧最大大小
 
 /**

@@ -12,6 +12,10 @@
 #include "stdio.h"
 #include "crc8_crc16.h"
 
+//1920*1080
+#define CLIENT_MID_POSITION_X 960
+#define CLIENT_MID_POSITION_Y 540
+
 /********************ÆäËûend********************/
 
 void client_info_update(void);

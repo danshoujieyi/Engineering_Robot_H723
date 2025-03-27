@@ -41,6 +41,8 @@
 #define MOTOR_1_MAX_LIMIT 3.05f
 
 void arm_cmd_state_machine(void);
+void arm_cmd_enable(void);
+void arm_cmd_disable(void);
 
 typedef struct {
     float motor_min_limit;       // 电机最小角度限制

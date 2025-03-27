@@ -99,8 +99,8 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /******** 底盘最大速度设置 *******/
 /* 底盘移动最大速度，单位是毫米每秒 */
-#define MAX_CHASSIS_VX_SPEED 4000
-#define MAX_CHASSIS_VY_SPEED 4000
+#define MAX_CHASSIS_VX_SPEED 3000
+#define MAX_CHASSIS_VY_SPEED 3000
 
 #define MAX_CHASSIS_VX_SPEED_HIGH 11000
 #define MAX_CHASSIS_VY_SPEED_HIGH 11000
@@ -113,7 +113,7 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /* --------------------------------- 底盘PID参数 -------------------------------- */
 /* 电机速度环 */
-#define CHASSIS_KP_V_MOTOR              3.0f
+#define CHASSIS_KP_V_MOTOR              3.45f
 #define CHASSIS_KI_V_MOTOR              0.01
 #define CHASSIS_KD_V_MOTOR              0.001
 #define CHASSIS_INTEGRAL_V_MOTOR        1500

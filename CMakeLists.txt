@@ -52,7 +52,7 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Middlewares/ST/STM32_USB_Device_Library/Core/Inc Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include
+include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include
         USER/Algorithm/MahonyAHRS
         USER/Algorithm/MyType
         USER/Algorithm/PID
@@ -61,10 +61,10 @@ include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_
         USER/Algorithm/Ramp
         USER/Algorithm/Filter
         USER/Algorithm/Crc
-      #  USER/Algorithm/Fifo
+       # USER/Algorithm/Fifo
 
-        USER/Module/Bmi088
-        USER/Module/Vofa+
+       # USER/Module/Bmi088
+       # USER/Module/Vofa+
         USER/Module/Fdcan
         USER/Module/DM_Motor_Fdcan
         USER/Module/DJ_Motor
@@ -86,7 +86,7 @@ include_directories(Core/Inc USB_DEVICE/App USB_DEVICE/Target Drivers/STM32H7xx_
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -DUSE_PWR_LDO_SUPPLY)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE/*.*"
+file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*"
         "USER/Algorithm/MahonyAHRS/*.*"
         "USER/Algorithm/MyType/*.*"
         "USER/Algorithm/PID/*.*"
@@ -95,10 +95,10 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Algorithm/Ramp/*.*"
         "USER/Algorithm/Filter/*.*"
         "USER/Algorithm/Crc/*.*"
-     #   "USER/Algorithm/Fifo/*.*"
+       # "USER/Algorithm/Fifo/*.*"
 
-        "USER/Module/Bmi088/*.*"
-        "USER/Module/Vofa+/*.*"
+       # "USER/Module/Bmi088/*.*"
+       # "USER/Module/Vofa+/*.*"
         "USER/Module/Fdcan/*.*"
         "USER/Module/DM_Motor_Fdcan/*.*"
         "USER/Module/DJ_Motor/*.*"
