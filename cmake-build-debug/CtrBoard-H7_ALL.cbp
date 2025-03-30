@@ -24,7 +24,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DARM_MATH_CM4"/>
+					<Add option="-DARM_MATH_CM7"/>
 					<Add option="-DARM_MATH_MATRIX_CHECK"/>
 					<Add option="-DARM_MATH_ROUNDING"/>
 					<Add option="-DDEBUG"/>
@@ -81,7 +81,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DARM_MATH_CM4"/>
+					<Add option="-DARM_MATH_CM7"/>
 					<Add option="-DARM_MATH_MATRIX_CHECK"/>
 					<Add option="-DARM_MATH_ROUNDING"/>
 					<Add option="-DDEBUG"/>

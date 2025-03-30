@@ -4,7 +4,7 @@
 
 static float dm_motor_angles[6] = {0}; // 从队列中读取的角度值（度数）
 static const int INTERPOLATION_STEPS = 5; // 插值步数  // 不再使用插值算法，降低延迟
-static const int TIME_STEP_MS = 0;//0;        // 每步插值的时间间隔（毫秒）
+static const int TIME_STEP_MS = 1;//0;        // 每步插值的时间间隔（毫秒）
 static float current_angle = 0.0f;        // 当前插值角度
 static int calibrated[6] = {0};           // 校准状态
 const float MAX_ANGLE_CHANGE = 0.05f;
@@ -165,7 +165,7 @@ void smooth_motion_1(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-      //  vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 
@@ -176,7 +176,7 @@ void smooth_motion_2(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = ((roundf(current_angle * 1000.0f) / 1000.0f)*GEAR_RATIO_2);  //加上齿轮比
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-      //  vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 
@@ -187,7 +187,7 @@ void smooth_motion_3(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-       // vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 
@@ -198,7 +198,7 @@ void smooth_motion_4(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-      //  vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 
@@ -209,7 +209,7 @@ void smooth_motion_5(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-      //  vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 
@@ -220,7 +220,7 @@ void smooth_motion_6(hcan_t* hcan, motor_t* motor, float start_angle, float targ
         current_angle = start_angle + smooth_t * (target_angle - start_angle);
         current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
         pos_ctrl(hcan, motor->id, -current_angle, 10.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
-      //  vTaskDelay(pdMS_TO_TICKS(time_step_ms));
+        vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
 

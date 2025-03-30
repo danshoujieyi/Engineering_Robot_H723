@@ -3,7 +3,7 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
 cmake_minimum_required(VERSION 3.28)
 
-# specify cross-compilers and tools
+# 指定交叉编译工具链
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
 set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(CMAKE_ASM_COMPILER  arm-none-eabi-gcc)
@@ -13,31 +13,66 @@ set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-# 启用·FPU·指令集
-# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb")
-
-# project settings
+# 项目设置
 project(CtrBoard-H7_ALL C CXX ASM)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 
-#Uncomment for hardware floating point
-add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
-add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
+# 硬件浮点数FPU设置
+#add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
+#add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
+#add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
-#Uncomment for software floating point
+# -------------------- 关键修改：单精度 FPU 和 DSP 配置 --------------------
+# 硬件浮点配置（单精度）
+add_compile_definitions(
+        ARM_MATH_CM7;                  # 指定 CMSIS-DSP 为 M7 内核
+        ARM_MATH_MATRIX_CHECK;
+        ARM_MATH_ROUNDING
+)
+add_compile_options(
+        -mfloat-abi=hard
+        -mfpu=fpv5-sp-d16             # 单精度 FPU（关键修改：sp 表示单精度）
+        -mcpu=cortex-m7               # 指定 M7 架构
+)
+add_link_options(
+        -mfloat-abi=hard
+        -mfpu=fpv5-sp-d16
+        -mcpu=cortex-m7
+)
+
+## 硬件浮点配置（双精度FPU），需要修改FreeRTOSConfig.h文件，configUSE_TASK_FPU_SUPPORT设置为2
+#add_compile_definitions(
+#        ARM_MATH_CM7                  # 指定CMSIS-DSP为M7内核
+#        ARM_MATH_MATRIX_CHECK
+#        ARM_MATH_ROUNDING
+#)
+#add_compile_options(
+#        -mfloat-abi=hard
+#        -mfpu=fpv5-d16                # M7双精度FPU
+#        -mcpu=cortex-m7               # 指定M7架构
+#)
+#add_link_options(
+#        -mfloat-abi=hard
+#        -mfpu=fpv5-d16
+#        -mcpu=cortex-m7
+#)
+
+
+# 软件模拟FPU浮点数运算
 #add_compile_options(-mfloat-abi=soft)
 
+# 通用编译选项
 add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 
-# uncomment to mitigate c++17 absolute addresses warnings
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register")
+# 抑制-Wregister警告。-Wregister警告是 GCC 和 Clang 等编译器在使用 C++17 标准及以后版本时可能发出的警告。
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register")
 
-# Enable assembler files preprocessing
+# 启用汇编预处理器
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
 
+# 构建类型配置
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     message(STATUS "Maximum optimization for speed")
     add_compile_options(-Ofast)
@@ -52,6 +87,7 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
+# 包含目录（根据实际路径调整）
 include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include
         USER/Algorithm/MahonyAHRS
         USER/Algorithm/MyType
@@ -86,6 +122,7 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -DUSE_PWR_LDO_SUPPLY)
 
+# 源文件
 file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*"
         "USER/Algorithm/MahonyAHRS/*.*"
         "USER/Algorithm/MyType/*.*"
@@ -118,14 +155,18 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*"
 
 )
 
+# 链接脚本
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H723VGTX_FLASH.ld)
 
+# 链接选项
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
+# 可执行文件
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 
+# 生成Hex/Bin文件
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 

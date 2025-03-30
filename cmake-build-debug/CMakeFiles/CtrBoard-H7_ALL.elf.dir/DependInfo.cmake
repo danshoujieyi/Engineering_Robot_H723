@@ -14,7 +14,7 @@ set(CMAKE_ASM_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_ASM
-  "ARM_MATH_CM4"
+  "ARM_MATH_CM7"
   "ARM_MATH_MATRIX_CHECK"
   "ARM_MATH_ROUNDING"
   "DEBUG"

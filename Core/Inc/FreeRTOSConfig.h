@@ -45,6 +45,7 @@
 
 /* USER CODE BEGIN Includes */
 /* Section where include file can be added */
+#define configUSE_TASK_FPU_SUPPORT 1       // 单精度 FPU 支持（若为双精度则设为 2）
 /* USER CODE END Includes */
 
 /* Ensure definitions are only used by the compiler, and not by the assembler. */
