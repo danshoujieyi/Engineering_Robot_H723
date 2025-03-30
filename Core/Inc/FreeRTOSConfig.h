@@ -45,7 +45,7 @@
 
 /* USER CODE BEGIN Includes */
 /* Section where include file can be added */
-#define configUSE_TASK_FPU_SUPPORT 1       // µ¥¾«¶È FPU Ö§³Ö£¨ÈôÎªË«¾«¶ÈÔòÉèÎª 2£©
+#define configUSE_TASK_FPU_SUPPORT 1       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FPU Ö§ï¿½Ö£ï¿½ï¿½ï¿½ÎªË«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª 2ï¿½ï¿½
 /* USER CODE END Includes */
 
 /* Ensure definitions are only used by the compiler, and not by the assembler. */

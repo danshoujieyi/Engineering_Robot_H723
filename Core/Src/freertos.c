@@ -128,7 +128,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of AlgorithmTask */
-  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 256);
+  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 1024);
   AlgorithmTaskHandle = osThreadCreate(osThread(AlgorithmTask), NULL);
 
   /* definition and creation of USART1_RecTask */
@@ -136,7 +136,7 @@ void MX_FREERTOS_Init(void) {
   USART1_RecTaskHandle = osThreadCreate(osThread(USART1_RecTask), NULL);
 
   /* definition and creation of ChassisTask */
-  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 256);
+  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 512);
   ChassisTaskHandle = osThreadCreate(osThread(ChassisTask), NULL);
 
   /* definition and creation of CmdTask */
@@ -148,7 +148,7 @@ void MX_FREERTOS_Init(void) {
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 128);
+  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */

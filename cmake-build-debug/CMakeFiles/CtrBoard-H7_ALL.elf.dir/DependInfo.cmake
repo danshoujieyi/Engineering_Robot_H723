@@ -33,6 +33,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
   "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Device/ST/STM32H7xx/Include"
   "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"
+  "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/ARM/DSP/Inc"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MyType"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/PID"

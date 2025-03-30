@@ -10,6 +10,7 @@
 #include <string.h>
 #include "cmd_task.h"
 #include "rc_sbus.h"
+#include "arm_math.h"
 
 ///* USART10：裁判系统接收 */
 //volatile uint8_t referee_rx_buffer_index = 0;       // 当前使用的接收缓冲区索引
@@ -51,14 +52,15 @@ void Referee_Entry(void const * argument)
     sbus_data_init();
     USART5_DMA_Init();
     uint8_t finishedBuffer;
-
+    float cnt = arm_sin_f32(30 * PI/180.0); // 用于DSP测试
+    float a = 0;
     for (;;) {
 //        if (xSemaphoreTake(xSemaphoreUART10, portMAX_DELAY) == pdTRUE) {
 //            finishedBuffer = referee_rx_buffer_index ^ 1;
 //            referee_data_unpack(referee_rx_buffer[finishedBuffer], referee_rx_size);
 //            memset(referee_rx_buffer[finishedBuffer], 0, REFEREE_RX_BUF_SIZE);
 //        }
-
+        a = cnt;
         if (xSemaphoreTake(xSemaphoreUART5, pdMS_TO_TICKS(portMAX_DELAY)) == pdTRUE) {
             /* 使用刚完成接收数据的缓冲区 */
             finishedBuffer = usart5_rx_buffer_index ^ 1;

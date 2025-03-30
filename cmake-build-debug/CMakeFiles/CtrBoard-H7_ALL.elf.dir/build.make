@@ -1130,6 +1130,7 @@ CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/build.make
+CtrBoard-H7_ALL.elf: D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/ARM/DSP/Lib/libarm_cortexM7lfsp_math.a
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/objects1.rsp
 CtrBoard-H7_ALL.elf: CMakeFiles/CtrBoard-H7_ALL.elf.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\GitHub_Project\Engineering_Robot_H723\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Linking C executable CtrBoard-H7_ALL.elf"
