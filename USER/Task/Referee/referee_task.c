@@ -42,7 +42,7 @@ void USART5_DMA_Init(void) {
 }
 
 /*裁判系统线程入口*/
-void Referee_Entry(void const * argument)
+void RefereeTask_Entry(void const * argument)
 {
     /*裁判系统初始化*/
 //    referee_system_init();

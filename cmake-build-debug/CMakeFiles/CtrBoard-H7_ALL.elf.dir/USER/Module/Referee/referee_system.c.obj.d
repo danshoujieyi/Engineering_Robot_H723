@@ -57,6 +57,9 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart_ex.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_ll_usb.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Crc/crc8_crc16.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/FreeRTOSConfig.h \

@@ -53,6 +53,9 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/main.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart_ex.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_ll_usb.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS/cmsis_os.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/FreeRTOS.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/FreeRTOSConfig.h \
@@ -75,6 +78,19 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/main.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/memorymap.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/usart.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USB_DEVICE\App/usb_device.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\ST\STM32_USB_Device_Library\Core\Inc/usbd_def.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USB_DEVICE\Target/usbd_conf.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/stdio.h \
+ I:/ARM-GN~1.3/133167~1.3RE/lib/gcc/arm-none-eabi/13.3.1/include/stdarg.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/stdio.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/stdlib.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/machine/stdlib.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/alloca.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/string.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/_locale.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/gpio.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Dwt/drv_dwt.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Rc\Sbus/rc_sbus.h \

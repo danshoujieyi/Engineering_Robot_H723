@@ -30,7 +30,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 169,
+				"line" : 174,
 				"parent" : 0
 			},
 			{
@@ -42,25 +42,25 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 164,
+				"line" : 169,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 165,
+				"line" : 170,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 166,
+				"line" : 171,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 172,
+				"line" : 177,
 				"parent" : 0
 			},
 			{
@@ -102,7 +102,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 125,
+				"line" : 130,
 				"parent" : 0
 			},
 			{
@@ -233,6 +233,22 @@
 				},
 				{
 					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+				},
+				{
+					"backtrace" : 14,
 					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
@@ -344,9 +360,6 @@
 				19,
 				20,
 				21,
-				91,
-				92,
-				93,
 				94,
 				95,
 				96,
@@ -365,37 +378,51 @@
 				109,
 				110,
 				111,
-				118,
-				120,
-				121,
-				140,
-				141,
-				143,
-				144,
-				145,
-				146,
-				147,
-				148,
-				150,
-				153,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				123,
+				128,
+				129,
+				130,
+				133,
+				135,
+				136,
 				155,
+				156,
 				158,
+				159,
 				160,
+				161,
 				162,
-				164,
-				166,
-				168,
-				170,
-				172,
-				174,
-				177,
-				179,
+				163,
+				165,
+				167,
+				169,
+				171,
+				173,
+				176,
+				178,
 				181,
 				183,
 				185,
 				187,
+				189,
 				191,
-				193
+				193,
+				195,
+				197,
+				200,
+				202,
+				204,
+				206,
+				208,
+				210,
+				214,
+				216
 			]
 		},
 		{
@@ -521,6 +548,22 @@
 				{
 					"backtrace" : 14,
 					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Drivers/CMSIS/Include"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/USB_DEVICE/Target"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/GitHub_Project/Engineering_Robot_H723/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 14,
@@ -766,51 +809,63 @@
 				87,
 				88,
 				89,
-				112,
-				119,
+				90,
+				91,
+				92,
+				118,
 				122,
-				123,
 				124,
 				125,
 				126,
 				127,
-				128,
-				129,
-				130,
-				131,
-				132,
-				133,
 				134,
-				135,
-				136,
 				137,
 				138,
 				139,
+				140,
+				141,
 				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
 				149,
+				150,
 				151,
+				152,
+				153,
 				154,
-				156,
 				157,
-				159,
-				161,
-				163,
-				165,
-				167,
-				169,
-				171,
-				173,
-				175,
-				178,
+				164,
+				166,
+				168,
+				170,
+				172,
+				174,
+				177,
+				179,
 				180,
 				182,
 				184,
 				186,
 				188,
-				189,
 				190,
 				192,
-				194
+				194,
+				196,
+				198,
+				201,
+				203,
+				205,
+				207,
+				209,
+				211,
+				212,
+				213,
+				215,
+				217
 			]
 		},
 		{
@@ -830,9 +885,6 @@
 				19,
 				20,
 				21,
-				91,
-				92,
-				93,
 				94,
 				95,
 				96,
@@ -851,37 +903,51 @@
 				109,
 				110,
 				111,
-				118,
-				120,
-				121,
-				140,
-				141,
-				143,
-				144,
-				145,
-				146,
-				147,
-				148,
-				150,
-				153,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				123,
+				128,
+				129,
+				130,
+				133,
+				135,
+				136,
 				155,
+				156,
 				158,
+				159,
 				160,
+				161,
 				162,
-				164,
-				166,
-				168,
-				170,
-				172,
-				174,
-				177,
-				179,
+				163,
+				165,
+				167,
+				169,
+				171,
+				173,
+				176,
+				178,
 				181,
 				183,
 				185,
 				187,
+				189,
 				191,
-				193
+				193,
+				195,
+				197,
+				200,
+				202,
+				204,
+				206,
+				208,
+				210,
+				214,
+				216
 			]
 		},
 		{
@@ -891,15 +957,15 @@
 				22,
 				26,
 				51,
-				90,
-				113,
-				114,
-				115,
-				116,
-				117,
-				152,
-				176,
-				195
+				93,
+				119,
+				120,
+				121,
+				131,
+				132,
+				175,
+				199,
+				218
 			]
 		}
 	],
@@ -1261,6 +1327,16 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h",
 			"sourceGroupIndex" : 0
 		},
@@ -1366,6 +1442,11 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"path" : "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_utils.h",
 			"sourceGroupIndex" : 0
 		},
@@ -1455,6 +1536,18 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c",
 			"sourceGroupIndex" : 1
 		},
@@ -1502,6 +1595,12 @@
 		},
 		{
 			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "Middlewares/ST/ARM/DSP/Inc/arm_math.h",
 			"sourceGroupIndex" : 0
 		},
@@ -1519,6 +1618,55 @@
 			"backtrace" : 1,
 			"path" : "Middlewares/ST/ARM/DSP/Lib/libarm_cortexM7lfsp_math.a",
 			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -1689,6 +1837,50 @@
 			"compileGroupIndex" : 0,
 			"path" : "Middlewares/Third_Party/FreeRTOS/Source/timers.c",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usb_device.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usb_device.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usbd_cdc_if.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usbd_cdc_if.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/App/usbd_desc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/App/usbd_desc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "USB_DEVICE/Target/usbd_conf.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "USB_DEVICE/Target/usbd_conf.h",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,

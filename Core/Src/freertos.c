@@ -48,11 +48,12 @@
 
 /* USER CODE END Variables */
 osThreadId AlgorithmTaskHandle;
-osThreadId USART1_RecTaskHandle;
+osThreadId USART1RecTaskHandle;
 osThreadId ChassisTaskHandle;
 osThreadId CmdTaskHandle;
 osThreadId DMmotorTaskHandle;
 osThreadId RefereeTaskHandle;
+osThreadId TranmissionTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -60,12 +61,14 @@ osThreadId RefereeTaskHandle;
 /* USER CODE END FunctionPrototypes */
 
 void AlgorithmTask_Entry(void const * argument);
-void USART1_RecEntry(void const * argument);
+void USART1RecTask_Entry(void const * argument);
 void ChassisTask_Entry(void const * argument);
 void CmdTask_Entry(void const * argument);
-void DMmotor_Entry(void const * argument);
-void Referee_Entry(void const * argument);
+void DMmotorTask_Entry(void const * argument);
+void RefereeTask_Entry(void const * argument);
+void TransmissionTask_Entry(void const * argument);
 
+extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
@@ -128,12 +131,12 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of AlgorithmTask */
-  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 1024);
+  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 512);
   AlgorithmTaskHandle = osThreadCreate(osThread(AlgorithmTask), NULL);
 
-  /* definition and creation of USART1_RecTask */
-  osThreadDef(USART1_RecTask, USART1_RecEntry, osPriorityHigh, 0, 512);
-  USART1_RecTaskHandle = osThreadCreate(osThread(USART1_RecTask), NULL);
+  /* definition and creation of USART1RecTask */
+  osThreadDef(USART1RecTask, USART1RecTask_Entry, osPriorityHigh, 0, 256);
+  USART1RecTaskHandle = osThreadCreate(osThread(USART1RecTask), NULL);
 
   /* definition and creation of ChassisTask */
   osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 512);
@@ -144,12 +147,16 @@ void MX_FREERTOS_Init(void) {
   CmdTaskHandle = osThreadCreate(osThread(CmdTask), NULL);
 
   /* definition and creation of DMmotorTask */
-  osThreadDef(DMmotorTask, DMmotor_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(DMmotorTask, DMmotorTask_Entry, osPriorityHigh, 0, 512);
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, Referee_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(RefereeTask, RefereeTask_Entry, osPriorityHigh, 0, 256);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
+
+  /* definition and creation of TranmissionTask */
+  osThreadDef(TranmissionTask, TransmissionTask_Entry, osPriorityHigh, 0, 512);
+  TranmissionTaskHandle = osThreadCreate(osThread(TranmissionTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -166,6 +173,8 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_AlgorithmTask_Entry */
 __weak void AlgorithmTask_Entry(void const * argument)
 {
+  /* init code for USB_DEVICE */
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN AlgorithmTask_Entry */
   /* Infinite loop */
   for(;;)
@@ -175,22 +184,22 @@ __weak void AlgorithmTask_Entry(void const * argument)
   /* USER CODE END AlgorithmTask_Entry */
 }
 
-/* USER CODE BEGIN Header_USART1_RecEntry */
+/* USER CODE BEGIN Header_USART1RecTask_Entry */
 /**
-* @brief Function implementing the USART1_RecTask thread.
+* @brief Function implementing the USART1RecTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_USART1_RecEntry */
-__weak void USART1_RecEntry(void const * argument)
+/* USER CODE END Header_USART1RecTask_Entry */
+__weak void USART1RecTask_Entry(void const * argument)
 {
-  /* USER CODE BEGIN USART1_RecEntry */
+  /* USER CODE BEGIN USART1RecTask_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END USART1_RecEntry */
+  /* USER CODE END USART1RecTask_Entry */
 }
 
 /* USER CODE BEGIN Header_ChassisTask_Entry */
@@ -229,40 +238,58 @@ __weak void CmdTask_Entry(void const * argument)
   /* USER CODE END CmdTask_Entry */
 }
 
-/* USER CODE BEGIN Header_DMmotor_Entry */
+/* USER CODE BEGIN Header_DMmotorTask_Entry */
 /**
 * @brief Function implementing the DMmotorTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_DMmotor_Entry */
-__weak void DMmotor_Entry(void const * argument)
+/* USER CODE END Header_DMmotorTask_Entry */
+__weak void DMmotorTask_Entry(void const * argument)
 {
-  /* USER CODE BEGIN DMmotor_Entry */
+  /* USER CODE BEGIN DMmotorTask_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END DMmotor_Entry */
+  /* USER CODE END DMmotorTask_Entry */
 }
 
-/* USER CODE BEGIN Header_Referee_Entry */
+/* USER CODE BEGIN Header_RefereeTask_Entry */
 /**
 * @brief Function implementing the RefereeTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_Referee_Entry */
-__weak void Referee_Entry(void const * argument)
+/* USER CODE END Header_RefereeTask_Entry */
+__weak void RefereeTask_Entry(void const * argument)
 {
-  /* USER CODE BEGIN Referee_Entry */
+  /* USER CODE BEGIN RefereeTask_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END Referee_Entry */
+  /* USER CODE END RefereeTask_Entry */
+}
+
+/* USER CODE BEGIN Header_TransmissionTask_Entry */
+/**
+* @brief Function implementing the TranmissionTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_TransmissionTask_Entry */
+__weak void TransmissionTask_Entry(void const * argument)
+{
+  /* USER CODE BEGIN TransmissionTask_Entry */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END TransmissionTask_Entry */
 }
 
 /* Private application code --------------------------------------------------*/

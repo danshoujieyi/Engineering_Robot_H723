@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/USER/Module/DM_Motor_Fdcan/dm_motor_ctrl.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Module/DM_Motor_Fdcan/dm_motor_drv.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Module/can/bsp_fdcan.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/USER/Task/Referee/referee_task.c" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

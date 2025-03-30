@@ -90,7 +90,7 @@ void arm_cmd_state_machine(void) {
 /**
  * @brief 主任务入口函数
  */
-void DMmotor_Entry(void const * argument) {
+void DMmotorTask_Entry(void const * argument) {
     for (int i = 0; i < 6; i++) {
         motor_controls[i].last_angle = 0.0f;
         motor_controls[i].initial_offset = 0.0f;
