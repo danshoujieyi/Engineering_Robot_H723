@@ -118,12 +118,12 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
 
        # USER/Task/Imu
         USER/Task/Chassis
-        USER/Task/H_AND_CALLBACK
+        USER/Task/Robot_Config
         USER/Task/Cmd
-        USER/Task/Usart1_Rec
         USER/Task/DMmotor
        # USER/Task/Arm
         USER/Task/Referee
+        USER/Task/USART_Recive
 
 )
 
@@ -153,12 +153,12 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
 
        # "USER/Task/Imu/*.*"
         "USER/Task/Chassis/*.*"
-        "USER/Task/H_AND_CALLBACK/*.*"
+        "USER/Task/Robot_Config/*.*"
         "USER/Task/Cmd/*.*"
-        "USER/Task/Usart1_Rec/*.*"
         "USER/Task/DMmotor/*.*"
        # "USER/Task/Arm/*.*"
         "USER/Task/Referee/*.*"
+        "USER/Task/USART_Recive/*.*"
 
 )
 

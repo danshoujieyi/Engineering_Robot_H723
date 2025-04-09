@@ -19,7 +19,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DJ_Motor/dj_motor.c.obj: \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DJ_Motor\dj_motor.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/motor_def.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/motor_def.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/stm32h7xx_hal_conf.h \
@@ -81,7 +81,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DJ_Motor/dj_motor.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/malloc.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/machine/malloc.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_config.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_config.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h

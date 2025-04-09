@@ -42,13 +42,17 @@
 SemaphoreHandle_t xSemaphoreUART10 = NULL;
 SemaphoreHandle_t xSemaphoreUART1 = NULL;           // 通知任务处理信号量
 SemaphoreHandle_t xSemaphoreUART5 = NULL;
+QueueSetHandle_t xUartQueueSet = NULL; // 定义队列集句柄,统一管理串口中断信号量
 // 声明互斥锁句柄
 SemaphoreHandle_t  sbus_cmd_mutex = NULL;
+
+QueueHandle_t xControlQueue = NULL; // 队列句柄
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define CONTROL_QUEUE_LENGTH 10    // 队列长度，可根据需要调整
+#define CONTROL_QUEUE_ITEM_SIZE sizeof(float)*7 // 每个队列元素占用的字节数
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -71,16 +75,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//uint8_t data[8] = {1,2,3,4,5,6,7,8};
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//    /* USER CODE BEGIN Callback 0 */
-//    if (htim->Instance == TIM3) {
-////
-//        dm_motor_ctrl_send(&hfdcan1, &motor[Motor1]);
-////		read_all_motor_data(&motor[Motor1]);
-//    }
-//}
+
 /* USER CODE END 0 */
 
 /**
@@ -118,31 +113,36 @@ int main(void)
   MX_FDCAN3_Init();
   MX_USART1_UART_Init();
   MX_UART5_Init();
+  MX_USART10_UART_Init();
+  MX_UART7_Init();
   /* USER CODE BEGIN 2 */
     MX_USB_DEVICE_Init();
 
     // FreeRTOS 初始化
     xSemaphoreUART10 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    if (xSemaphoreUART10 == NULL) {
-        Error_Handler();  // 信号量创建失败处理
-    }
     xSemaphoreUART1 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    if (xSemaphoreUART1 == NULL) {
-        Error_Handler();  // 信号量创建失败处理
-    }
     xSemaphoreUART5 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    if (xSemaphoreUART5 == NULL) {
-        Error_Handler();  // 信号量创建失败处理
+    // 定义队列集（最多监听 3 个信号量）
+    xUartQueueSet = xQueueCreateSet(3);
+    // 将各串口信号量加入队列集
+    xQueueAddToSet(xSemaphoreUART1, xUartQueueSet);
+    xQueueAddToSet(xSemaphoreUART5, xUartQueueSet);
+    xQueueAddToSet(xSemaphoreUART10, xUartQueueSet);
+
+    // 创建队列
+    xControlQueue = xQueueCreate(CONTROL_QUEUE_LENGTH, CONTROL_QUEUE_ITEM_SIZE);
+    if (xControlQueue == NULL) {
+        // 队列创建失败，进入错误处理
+        Error_Handler();
     }
 
     sbus_cmd_mutex = xSemaphoreCreateMutex();  // 初始化互斥锁
 
-
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_GPIO_Port, PUMP2_Pin, GPIO_PIN_RESET);
-
     HAL_GPIO_WritePin(PUMP2_1_GPIO_Port, PUMP2_1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_RESET);
+
     dwt_init(480);
   // 达妙4310驱动设置
     power(1);

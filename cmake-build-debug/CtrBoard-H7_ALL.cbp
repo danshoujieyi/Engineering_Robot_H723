@@ -60,11 +60,11 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -122,11 +122,11 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -795,28 +795,25 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/HAL_Callback.c">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/motor_def.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/rm_config.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/rm_task.h">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec/usart1rec_task.c">
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/motor_def.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec/usart1rec_task.h">
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/rm_config.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/rm_task.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive/usart_recive_task.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive/usart_recive_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/CMakeLists.txt">

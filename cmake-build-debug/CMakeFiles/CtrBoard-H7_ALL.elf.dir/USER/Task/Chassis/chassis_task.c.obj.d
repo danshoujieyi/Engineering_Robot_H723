@@ -79,7 +79,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_ll_usb.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DJ_Motor/dj_motor.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/motor_def.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/motor_def.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/stdio.h \
  I:/ARM-GN~1.3/133167~1.3RE/lib/gcc/arm-none-eabi/13.3.1/include/stdarg.h \
@@ -87,9 +87,9 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_config.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_config.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Dwt/drv_dwt.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\User_Lib/user_lib.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Chassis/chassis_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Referee/referee_system.h

@@ -54,11 +54,11 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive"
   )
 
 # The set of dependency files which are needed:
@@ -136,9 +136,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Chassis/chassis_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd/cmd_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/H_AND_CALLBACK/HAL_Callback.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj.d"
-  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Usart1_Rec/usart1rec_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj.d"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive/usart_recive_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

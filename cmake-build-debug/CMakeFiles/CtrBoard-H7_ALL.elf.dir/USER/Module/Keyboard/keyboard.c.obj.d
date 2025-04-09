@@ -65,7 +65,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_ll_usb.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pcd_ex.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_config.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_config.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS/cmsis_os.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
@@ -79,7 +79,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\User_Lib/user_lib.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Ramp/ramp.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Chassis/chassis_task.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\H_AND_CALLBACK/rm_task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_task.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Pump/pump.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Keyboard/keyboard.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Task\DMmotor/DMmotor_task.h \

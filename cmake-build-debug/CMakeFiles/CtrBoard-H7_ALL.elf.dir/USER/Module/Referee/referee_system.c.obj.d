@@ -71,4 +71,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.obj: \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/string.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/_locale.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
- I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h
+ I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/list.h

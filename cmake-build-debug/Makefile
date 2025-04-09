@@ -1888,30 +1888,6 @@ USER/Task/DMmotor/DMmotor_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.s
 .PHONY : USER/Task/DMmotor/DMmotor_task.c.s
 
-USER/Task/H_AND_CALLBACK/HAL_Callback.obj: USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.obj
-
-# target to build an object file
-USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.obj
-
-USER/Task/H_AND_CALLBACK/HAL_Callback.i: USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.i
-
-# target to preprocess a source file
-USER/Task/H_AND_CALLBACK/HAL_Callback.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.i
-
-USER/Task/H_AND_CALLBACK/HAL_Callback.s: USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.s
-
-# target to generate assembly for a file
-USER/Task/H_AND_CALLBACK/HAL_Callback.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
-.PHONY : USER/Task/H_AND_CALLBACK/HAL_Callback.c.s
-
 USER/Task/Referee/referee_task.obj: USER/Task/Referee/referee_task.c.obj
 .PHONY : USER/Task/Referee/referee_task.obj
 
@@ -1936,29 +1912,29 @@ USER/Task/Referee/referee_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.s
 .PHONY : USER/Task/Referee/referee_task.c.s
 
-USER/Task/Usart1_Rec/usart1rec_task.obj: USER/Task/Usart1_Rec/usart1rec_task.c.obj
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.obj
+USER/Task/USART_Recive/usart_recive_task.obj: USER/Task/USART_Recive/usart_recive_task.c.obj
+.PHONY : USER/Task/USART_Recive/usart_recive_task.obj
 
 # target to build an object file
-USER/Task/Usart1_Rec/usart1rec_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.obj
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.c.obj
+USER/Task/USART_Recive/usart_recive_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.obj
+.PHONY : USER/Task/USART_Recive/usart_recive_task.c.obj
 
-USER/Task/Usart1_Rec/usart1rec_task.i: USER/Task/Usart1_Rec/usart1rec_task.c.i
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.i
+USER/Task/USART_Recive/usart_recive_task.i: USER/Task/USART_Recive/usart_recive_task.c.i
+.PHONY : USER/Task/USART_Recive/usart_recive_task.i
 
 # target to preprocess a source file
-USER/Task/Usart1_Rec/usart1rec_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.i
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.c.i
+USER/Task/USART_Recive/usart_recive_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.i
+.PHONY : USER/Task/USART_Recive/usart_recive_task.c.i
 
-USER/Task/Usart1_Rec/usart1rec_task.s: USER/Task/Usart1_Rec/usart1rec_task.c.s
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.s
+USER/Task/USART_Recive/usart_recive_task.s: USER/Task/USART_Recive/usart_recive_task.c.s
+.PHONY : USER/Task/USART_Recive/usart_recive_task.s
 
 # target to generate assembly for a file
-USER/Task/Usart1_Rec/usart1rec_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Usart1_Rec/usart1rec_task.c.s
-.PHONY : USER/Task/Usart1_Rec/usart1rec_task.c.s
+USER/Task/USART_Recive/usart_recive_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.s
+.PHONY : USER/Task/USART_Recive/usart_recive_task.c.s
 
 # Help Target
 help:
@@ -2189,15 +2165,12 @@ help:
 	@echo ... USER/Task/DMmotor/DMmotor_task.obj
 	@echo ... USER/Task/DMmotor/DMmotor_task.i
 	@echo ... USER/Task/DMmotor/DMmotor_task.s
-	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.obj
-	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.i
-	@echo ... USER/Task/H_AND_CALLBACK/HAL_Callback.s
 	@echo ... USER/Task/Referee/referee_task.obj
 	@echo ... USER/Task/Referee/referee_task.i
 	@echo ... USER/Task/Referee/referee_task.s
-	@echo ... USER/Task/Usart1_Rec/usart1rec_task.obj
-	@echo ... USER/Task/Usart1_Rec/usart1rec_task.i
-	@echo ... USER/Task/Usart1_Rec/usart1rec_task.s
+	@echo ... USER/Task/USART_Recive/usart_recive_task.obj
+	@echo ... USER/Task/USART_Recive/usart_recive_task.i
+	@echo ... USER/Task/USART_Recive/usart_recive_task.s
 .PHONY : help
 
 

@@ -7,13 +7,18 @@
 #include "crc8_crc16.h"
 #include "FreeRTOS.h"
 #include "string.h"
+#include "queue.h"
 
 /* --------------------------------裁判系统串口句柄 ------------------------------- */
 static referee_data_header_t referee_data_header;   //接收数据帧头结构体
 static referee_data_t referee_data;   //接收数据帧头结构体
 static unpack_data_t referee_unpack_obj;
+static float float_values[7] = {0}; // 存储转换后的7个float。改成队列传输
+
+extern QueueHandle_t xControlQueue;
 
 struct referee_fdb_msg referee_fdb;
+
 
 /*!结构体实例化*/
 static game_status_t                           game_status;
@@ -258,7 +263,12 @@ void referee_data_save(uint8_t* frame)
             break;
         case ARM_DATA_FROM_CONTROLLER_CMD_ID_2 :
             memcpy(&custom_robot_data, frame + index, sizeof(custom_robot_data_t));
-            memcpy(&(referee_fdb.custom_robot_data),&custom_robot_data, sizeof(custom_robot_data_t));
+            // 直接转存遥控数据
+            for (int i = 0; i < 7; i++) {
+                uint8_t *byte_ptr = &custom_robot_data.data[i * 4];
+                memcpy(&float_values[i], byte_ptr, sizeof(float));
+            }
+            xQueueSend(xControlQueue, float_values, 0);
             break;
         case PLAYER_MINIMAP_CMD_ID :
             memcpy(&map_command, frame + index, sizeof(map_command_t));
