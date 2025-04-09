@@ -131,31 +131,31 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of AlgorithmTask */
-  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(AlgorithmTask, AlgorithmTask_Entry, osPriorityHigh, 0, 2048);
   AlgorithmTaskHandle = osThreadCreate(osThread(AlgorithmTask), NULL);
 
   /* definition and creation of USART1RecTask */
-  osThreadDef(USART1RecTask, USART1RecTask_Entry, osPriorityHigh, 0, 256);
+  osThreadDef(USART1RecTask, USART1RecTask_Entry, osPriorityHigh, 0, 2048);
   USART1RecTaskHandle = osThreadCreate(osThread(USART1RecTask), NULL);
 
   /* definition and creation of ChassisTask */
-  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(ChassisTask, ChassisTask_Entry, osPriorityHigh, 0, 2048);
   ChassisTaskHandle = osThreadCreate(osThread(ChassisTask), NULL);
 
   /* definition and creation of CmdTask */
-  osThreadDef(CmdTask, CmdTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(CmdTask, CmdTask_Entry, osPriorityHigh, 0, 2048);
   CmdTaskHandle = osThreadCreate(osThread(CmdTask), NULL);
 
   /* definition and creation of DMmotorTask */
-  osThreadDef(DMmotorTask, DMmotorTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(DMmotorTask, DMmotorTask_Entry, osPriorityHigh, 0, 2048);
   DMmotorTaskHandle = osThreadCreate(osThread(DMmotorTask), NULL);
 
   /* definition and creation of RefereeTask */
-  osThreadDef(RefereeTask, RefereeTask_Entry, osPriorityHigh, 0, 256);
+  osThreadDef(RefereeTask, RefereeTask_Entry, osPriorityHigh, 0, 2048);
   RefereeTaskHandle = osThreadCreate(osThread(RefereeTask), NULL);
 
   /* definition and creation of TranmissionTask */
-  osThreadDef(TranmissionTask, TransmissionTask_Entry, osPriorityHigh, 0, 512);
+  osThreadDef(TranmissionTask, TransmissionTask_Entry, osPriorityHigh, 0, 2048);
   TranmissionTaskHandle = osThreadCreate(osThread(TranmissionTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
