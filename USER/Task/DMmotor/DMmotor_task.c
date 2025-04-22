@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <math.h>
 #include "DMmotor_task.h"
+#include "drv_dwt.h"
 
-static float dm_motor_angles[7] = {0}; // 从队列中读取的角度值（度数）
 static const int INTERPOLATION_STEPS = 1; // 插值步数，设置为1等于不再使用插值算法，降低延迟，不可以设置为0
-static const int TIME_STEP_MS = 1;//0;        // 每步插值的时间间隔（毫秒），没有使用
-static float current_angle = 0.0f;        // 当前插值角度
-static const float MAX_ANGLE_CHANGE = 0.5f;  // 提高角度限制幅度会提高跟手度
-
+static const int TIME_STEP_MS = 1;      // 每步插值的时间间隔（毫秒），没有使用
+static float current_angle[6] = {0.0f};        // 当前插值角度,实际的关节输出角度，也是需要滤波的值
+static float dm_motor_angles[6] = {0.0f};   // 队列读取值
+static const float MAX_ANGLE_CHANGE = 0.4f;  // 提高角度限制幅度会提高跟手度
 
 extern QueueHandle_t xControlQueue;
 
@@ -24,10 +24,6 @@ struct arm_cmd_msg arm_cmd = {
         .ctrl_mode = ARM_DISABLE,
         .last_mode = ARM_DISABLE
 };
-
-
-/* ------------------------------- 遥控数据转换为控制指令 ------------------------------ */
-static void remote_to_cmd_sbus(void);
 
 void arm_cmd_enable(void) {
     if (arm_cmd.last_mode == ARM_DISABLE && arm_cmd.ctrl_mode == ARM_ENABLE) {
@@ -86,9 +82,13 @@ void arm_cmd_state_machine(void) {
 }
 
 
-/**
- * @brief 主任务入口函数
- */
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+static uint32_t DMmotor_task_dwt = 0;   // 毫秒监测
+static float DMmotor_task_dt = 0;       // 线程实际运行时间dt
+static float DMmotor_task_delta = 0;    // 监测线程运行时间
+static float DMmotor_task_start_dt = 0; // 监测线程开始时间
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+
 void DMmotorTask_Entry(void const * argument) {
     for (int i = 0; i < 6; i++) {
         motor_controls[i].last_angle = 0.0f;
@@ -110,9 +110,21 @@ void DMmotorTask_Entry(void const * argument) {
     }
     arm_cmd.ctrl_mode = ARM_ENABLE; // 使能机械臂
     arm_cmd.last_mode = ARM_ENABLE;
-    for (;;) {
-        if (xQueueReceive(xControlQueue, dm_motor_angles, 0) == pdPASS) {
 
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+    DMmotor_task_dt = dwt_get_delta(&DMmotor_task_dwt);
+    DMmotor_task_start_dt = dwt_get_time_ms();
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+    for(;;)
+    {
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+        DMmotor_task_delta = dwt_get_time_ms() - DMmotor_task_start_dt;
+        DMmotor_task_start_dt = dwt_get_time_ms();
+
+        DMmotor_task_dt = dwt_get_delta(&DMmotor_task_dwt);
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+
+        if (xQueueReceive(xControlQueue, dm_motor_angles, 0) == pdPASS) {
             DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
             DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
             DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);
@@ -151,9 +163,9 @@ void smooth_motion_1(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[0] = start_angle + smooth_t * (target_angle - start_angle);
+
+        pos_ctrl(hcan, motor->id, -current_angle[0], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -162,9 +174,9 @@ void smooth_motion_2(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = ((roundf(current_angle * 1000.0f) / 1000.0f)*GEAR_RATIO_2);  //加上齿轮比
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[1] = (start_angle + smooth_t * (target_angle - start_angle))*GEAR_RATIO_2;//加上齿轮比
+
+        pos_ctrl(hcan, motor->id, -current_angle[1], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -173,9 +185,9 @@ void smooth_motion_3(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[2] = start_angle + smooth_t * (target_angle - start_angle);
+
+        pos_ctrl(hcan, motor->id, -current_angle[2], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -184,9 +196,9 @@ void smooth_motion_4(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[3] = start_angle + smooth_t * (target_angle - start_angle);
+
+        pos_ctrl(hcan, motor->id, -current_angle[3], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -195,9 +207,9 @@ void smooth_motion_5(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = roundf(current_angle * 1000.0f) / 1000.0f;
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[4] = start_angle + smooth_t * (target_angle - start_angle);
+
+        pos_ctrl(hcan, motor->id, -current_angle[4], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }
@@ -206,9 +218,9 @@ void smooth_motion_6(hcan_t* hcan, motor_t* motor, float start_angle, float targ
     for (int step = 0; step <= steps; step++) {
         float t = (float)step / steps;
         float smooth_t = ease_in_out(t);
-        current_angle = start_angle + smooth_t * (target_angle - start_angle);
-        current_angle = roundf(current_angle * 1000.0f) / 1000.0f; // 取三位小数
-        pos_ctrl(hcan, motor->id, -current_angle, 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
+        current_angle[5] = start_angle + smooth_t * (target_angle - start_angle);
+
+        pos_ctrl(hcan, motor->id, -current_angle[5], 30.0f);  // 仅current_angle符号不同，用于处理编码器与关节电机不同向问题
     //    vTaskDelay(pdMS_TO_TICKS(time_step_ms));
     }
 }

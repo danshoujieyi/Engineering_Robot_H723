@@ -10,7 +10,7 @@
 #define _RC_DBUS_H
 
 #include <rtthread.h>
-#include "rm_config.h"
+#include "robot_config.h"
 
 #define DBUS_RX_BUF_NUM        36u
 #define DBUS_FRAME_SIZE        18u     /* DBUS数据帧帧长 */

@@ -53,7 +53,8 @@ osThreadId CmdTaskHandle;
 osThreadId DMmotorTaskHandle;
 osThreadId RefereeTaskHandle;
 osThreadId TranmissionTaskHandle;
-osThreadId USARTRecTaskHandle;
+osThreadId UsartTaskHandle;
+osThreadId InsTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -66,7 +67,8 @@ void CmdTask_Entry(void const * argument);
 void DMmotorTask_Entry(void const * argument);
 void RefereeTask_Entry(void const * argument);
 void TransmissionTask_Entry(void const * argument);
-void USARTRecTask_Entry(void const * argument);
+void UsartTask_Entry(void const * argument);
+void InsTask_Entry(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -154,9 +156,13 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(TranmissionTask, TransmissionTask_Entry, osPriorityHigh, 0, 2048);
   TranmissionTaskHandle = osThreadCreate(osThread(TranmissionTask), NULL);
 
-  /* definition and creation of USARTRecTask */
-  osThreadDef(USARTRecTask, USARTRecTask_Entry, osPriorityHigh, 0, 2048);
-  USARTRecTaskHandle = osThreadCreate(osThread(USARTRecTask), NULL);
+  /* definition and creation of UsartTask */
+  osThreadDef(UsartTask, UsartTask_Entry, osPriorityHigh, 0, 2048);
+  UsartTaskHandle = osThreadCreate(osThread(UsartTask), NULL);
+
+  /* definition and creation of InsTask */
+  osThreadDef(InsTask, InsTask_Entry, osPriorityRealtime, 0, 2048);
+  InsTaskHandle = osThreadCreate(osThread(InsTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -274,22 +280,40 @@ __weak void TransmissionTask_Entry(void const * argument)
   /* USER CODE END TransmissionTask_Entry */
 }
 
-/* USER CODE BEGIN Header_USARTRecTask_Entry */
+/* USER CODE BEGIN Header_UsartTask_Entry */
 /**
-* @brief Function implementing the USARTRecTask thread.
+* @brief Function implementing the UsartTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_USARTRecTask_Entry */
-__weak void USARTRecTask_Entry(void const * argument)
+/* USER CODE END Header_UsartTask_Entry */
+__weak void UsartTask_Entry(void const * argument)
 {
-  /* USER CODE BEGIN USARTRecTask_Entry */
+  /* USER CODE BEGIN UsartTask_Entry */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END USARTRecTask_Entry */
+  /* USER CODE END UsartTask_Entry */
+}
+
+/* USER CODE BEGIN Header_InsTask_Entry */
+/**
+* @brief Function implementing the InsTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_InsTask_Entry */
+__weak void InsTask_Entry(void const * argument)
+{
+  /* USER CODE BEGIN InsTask_Entry */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END InsTask_Entry */
 }
 
 /* Private application code --------------------------------------------------*/

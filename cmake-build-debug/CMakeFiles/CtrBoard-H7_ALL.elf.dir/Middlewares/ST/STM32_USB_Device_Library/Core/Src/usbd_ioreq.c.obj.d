@@ -62,6 +62,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/Middlewares/ST/STM32_USB_Device_Library/Core/
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_i2c_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr_ex.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart.h \

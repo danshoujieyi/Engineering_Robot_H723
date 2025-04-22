@@ -4,7 +4,7 @@
 
 #include "keyboard.h"
 #include "FreeRTOS.h"
-#include "rm_config.h"
+#include "robot_config.h"
 #include "referee_system.h"
 #include "user_lib.h"
 #include "ramp.h"
@@ -22,8 +22,8 @@ extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
 extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
 
-static float base_delta = MAX_CHASSIS_VX_SPEED * GIMBAL_PERIOD / KEY_ACC_TIME;
-static float base_delta_w = MAX_CHASSIS_VW_SPEED * GIMBAL_PERIOD / KEY_ACC_TIME;
+static float base_delta = MAX_CHASSIS_VX_SPEED  / KEY_ACC_TIME;
+static float base_delta_w = MAX_CHASSIS_VW_SPEED  / KEY_ACC_TIME;
 
 /* 时间参数宏定义 */
 #define LONG_PRESS_DEFAULT_MS   800   // 默认长按时间
@@ -99,12 +99,12 @@ void key_state_machine(key_status_t *key, uint8_t key_input)
             {
                 if (key->state == mouse.lk_state)
                 {
-                    if (mouse.lk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
+                    if (mouse.lk_cnt++ > LONG_PRESS_TIME )
                         key->state = KEY_PRESS_LONG;
                 }
                 else
                 {
-                    if (mouse.rk_cnt++ > LONG_PRESS_TIME / GIMBAL_PERIOD)
+                    if (mouse.rk_cnt++ > LONG_PRESS_TIME )
                         key->state = KEY_PRESS_LONG;
                 }
             }

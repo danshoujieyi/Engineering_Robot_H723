@@ -15,7 +15,7 @@ static referee_data_t referee_data;   //接收数据帧头结构体
 static unpack_data_t referee_unpack_obj;
 static float float_values[7] = {0}; // 存储转换后的7个float。改成队列传输
 
-extern QueueHandle_t xControlQueue;
+extern QueueHandle_t xKalmanOneQueue;
 
 struct referee_fdb_msg referee_fdb;
 
@@ -268,7 +268,7 @@ void referee_data_save(uint8_t* frame)
                 uint8_t *byte_ptr = &custom_robot_data.data[i * 4];
                 memcpy(&float_values[i], byte_ptr, sizeof(float));
             }
-            xQueueSend(xControlQueue, float_values, 0);
+            xQueueSend(xKalmanOneQueue, float_values, 0);
             break;
         case PLAYER_MINIMAP_CMD_ID :
             memcpy(&map_command, frame + index, sizeof(map_command_t));

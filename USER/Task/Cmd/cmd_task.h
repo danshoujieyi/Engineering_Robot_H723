@@ -7,6 +7,6 @@
 #include "cmsis_os.h"
 
 void remote_to_cmd_sbus(void);
-void cmd_sbus_keyboard(void);
 void pum_ctrl(void);
+
 #endif //CTRBOARD_H7_ALL_CMD_TASK_H

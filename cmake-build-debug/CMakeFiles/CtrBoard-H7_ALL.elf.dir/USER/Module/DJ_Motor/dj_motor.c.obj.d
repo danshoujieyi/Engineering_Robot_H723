@@ -55,6 +55,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DJ_Motor/dj_motor.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_i2c_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr_ex.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart.h \
@@ -81,7 +83,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/DJ_Motor/dj_motor.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/malloc.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/machine/malloc.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_config.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/robot_config.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/fdcan.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/main.h

@@ -1,15 +1,10 @@
-/*
-* Change Logs:
-* Date            Author          Notes
-* 2023-08-23      ChuShicheng     first version
-*/
 #include <string.h>
 #include "dj_motor.h"
 #include <cmsis_os.h>
 #include <stm32h7xx_hal.h>
 #include <malloc.h>
 #include "motor_def.h"
-#include "rm_config.h"
+#include "robot_config.h"
 #include "bsp_fdcan.h"
 
 #define DJI_MOTOR_CNT 14             // 默认波特率下，实测挂载电机极限数量
@@ -110,7 +105,7 @@ void dji_motor_control()
 {
     dji_motor_object_t *motor;
     dji_motor_measure_t measure;
-    int16_t set; // 电机控制器计算得到的控制参数
+    int16_t motor_current_set; // 电机控制器计算得到的控制参数
     uint8_t id;  // 1~4 用于装填多电机CAN控制报文
     uint8_t data_buf[8];  // 用于多电机模式下合并一帧CAN报文
 
@@ -121,7 +116,7 @@ void dji_motor_control()
         motor = dji_motor_obj[i];
         id = motor->rx_id - 0x201;     // 对应多电机模式下的ID转换规则
         measure = motor->measure;
-        set = motor->control(measure); // 调用对接的电机控制器计算
+        motor_current_set = motor->control(measure); // 调用对接的电机控制器计算
         //LIMIT_MIN_MAX(set,  -2000,  2000);
 
         // 合并报文
@@ -132,8 +127,8 @@ void dji_motor_control()
         }
         else
         {
-            data_buf[id*2] = (uint8_t) (set >> 8);
-            data_buf[id*2 + 1] = (uint8_t) (set & 0x00ff);
+            data_buf[id*2] = (uint8_t) (motor_current_set >> 8);
+            data_buf[id*2 + 1] = (uint8_t) (motor_current_set & 0x00ff);
         }
         // 发送报文
         if(i == idx - 1)

@@ -272,6 +272,30 @@ Core/Src/memorymap.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/memorymap.c.s
 .PHONY : Core/Src/memorymap.c.s
 
+Core/Src/spi.obj: Core/Src/spi.c.obj
+.PHONY : Core/Src/spi.obj
+
+# target to build an object file
+Core/Src/spi.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.obj
+.PHONY : Core/Src/spi.c.obj
+
+Core/Src/spi.i: Core/Src/spi.c.i
+.PHONY : Core/Src/spi.i
+
+# target to preprocess a source file
+Core/Src/spi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.i
+.PHONY : Core/Src/spi.c.i
+
+Core/Src/spi.s: Core/Src/spi.c.s
+.PHONY : Core/Src/spi.s
+
+# target to generate assembly for a file
+Core/Src/spi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/spi.c.s
+.PHONY : Core/Src/spi.c.s
+
 Core/Src/stm32h7xx_hal_msp.obj: Core/Src/stm32h7xx_hal_msp.c.obj
 .PHONY : Core/Src/stm32h7xx_hal_msp.obj
 
@@ -415,6 +439,30 @@ Core/Src/system_stm32h7xx.s: Core/Src/system_stm32h7xx.c.s
 Core/Src/system_stm32h7xx.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/system_stm32h7xx.c.s
 .PHONY : Core/Src/system_stm32h7xx.c.s
+
+Core/Src/tim.obj: Core/Src/tim.c.obj
+.PHONY : Core/Src/tim.obj
+
+# target to build an object file
+Core/Src/tim.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.obj
+.PHONY : Core/Src/tim.c.obj
+
+Core/Src/tim.i: Core/Src/tim.c.i
+.PHONY : Core/Src/tim.i
+
+# target to preprocess a source file
+Core/Src/tim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.i
+.PHONY : Core/Src/tim.c.i
+
+Core/Src/tim.s: Core/Src/tim.c.s
+.PHONY : Core/Src/tim.s
+
+# target to generate assembly for a file
+Core/Src/tim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/tim.c.s
+.PHONY : Core/Src/tim.c.s
 
 Core/Src/usart.obj: Core/Src/usart.c.obj
 .PHONY : Core/Src/usart.obj
@@ -903,6 +951,54 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.s: Drivers/STM32H7xx_HAL_D
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.s
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj
+
+# target to build an object file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i
+
+# target to preprocess a source file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s
+
+# target to generate assembly for a file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.s
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj
+
+# target to build an object file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i
+
+# target to preprocess a source file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i
+
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s
+
+# target to generate assembly for a file
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
+.PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.s
 
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj: Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj
 .PHONY : Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj
@@ -1528,6 +1624,54 @@ USER/Algorithm/Filter/filter32.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Filter/filter32.c.s
 .PHONY : USER/Algorithm/Filter/filter32.c.s
 
+USER/Algorithm/KalmanFilter/kalman_filter.obj: USER/Algorithm/KalmanFilter/kalman_filter.c.obj
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.obj
+
+# target to build an object file
+USER/Algorithm/KalmanFilter/kalman_filter.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilter/kalman_filter.c.obj
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.c.obj
+
+USER/Algorithm/KalmanFilter/kalman_filter.i: USER/Algorithm/KalmanFilter/kalman_filter.c.i
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.i
+
+# target to preprocess a source file
+USER/Algorithm/KalmanFilter/kalman_filter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilter/kalman_filter.c.i
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.c.i
+
+USER/Algorithm/KalmanFilter/kalman_filter.s: USER/Algorithm/KalmanFilter/kalman_filter.c.s
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.s
+
+# target to generate assembly for a file
+USER/Algorithm/KalmanFilter/kalman_filter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilter/kalman_filter.c.s
+.PHONY : USER/Algorithm/KalmanFilter/kalman_filter.c.s
+
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.obj: USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.obj
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.obj
+
+# target to build an object file
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.obj
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.obj
+
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.i: USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.i
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.i
+
+# target to preprocess a source file
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.i
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.i
+
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.s: USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.s
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.s
+
+# target to generate assembly for a file
+USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.s
+.PHONY : USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c.s
+
 USER/Algorithm/MahonyAHRS/MahonyAHRS.obj: USER/Algorithm/MahonyAHRS/MahonyAHRS.c.obj
 .PHONY : USER/Algorithm/MahonyAHRS/MahonyAHRS.obj
 
@@ -1576,6 +1720,30 @@ USER/Algorithm/PID/PID.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/PID/PID.c.s
 .PHONY : USER/Algorithm/PID/PID.c.s
 
+USER/Algorithm/QuaternionEKF/QuaternionEKF.obj: USER/Algorithm/QuaternionEKF/QuaternionEKF.c.obj
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.obj
+
+# target to build an object file
+USER/Algorithm/QuaternionEKF/QuaternionEKF.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/QuaternionEKF/QuaternionEKF.c.obj
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.c.obj
+
+USER/Algorithm/QuaternionEKF/QuaternionEKF.i: USER/Algorithm/QuaternionEKF/QuaternionEKF.c.i
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.i
+
+# target to preprocess a source file
+USER/Algorithm/QuaternionEKF/QuaternionEKF.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/QuaternionEKF/QuaternionEKF.c.i
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.c.i
+
+USER/Algorithm/QuaternionEKF/QuaternionEKF.s: USER/Algorithm/QuaternionEKF/QuaternionEKF.c.s
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.s
+
+# target to generate assembly for a file
+USER/Algorithm/QuaternionEKF/QuaternionEKF.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/QuaternionEKF/QuaternionEKF.c.s
+.PHONY : USER/Algorithm/QuaternionEKF/QuaternionEKF.c.s
+
 USER/Algorithm/Ramp/ramp.obj: USER/Algorithm/Ramp/ramp.c.obj
 .PHONY : USER/Algorithm/Ramp/ramp.obj
 
@@ -1623,6 +1791,54 @@ USER/Algorithm/User_Lib/user_lib.s: USER/Algorithm/User_Lib/user_lib.c.s
 USER/Algorithm/User_Lib/user_lib.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/User_Lib/user_lib.c.s
 .PHONY : USER/Algorithm/User_Lib/user_lib.c.s
+
+USER/Module/Bmi088/BMI088Middleware.obj: USER/Module/Bmi088/BMI088Middleware.c.obj
+.PHONY : USER/Module/Bmi088/BMI088Middleware.obj
+
+# target to build an object file
+USER/Module/Bmi088/BMI088Middleware.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.obj
+.PHONY : USER/Module/Bmi088/BMI088Middleware.c.obj
+
+USER/Module/Bmi088/BMI088Middleware.i: USER/Module/Bmi088/BMI088Middleware.c.i
+.PHONY : USER/Module/Bmi088/BMI088Middleware.i
+
+# target to preprocess a source file
+USER/Module/Bmi088/BMI088Middleware.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.i
+.PHONY : USER/Module/Bmi088/BMI088Middleware.c.i
+
+USER/Module/Bmi088/BMI088Middleware.s: USER/Module/Bmi088/BMI088Middleware.c.s
+.PHONY : USER/Module/Bmi088/BMI088Middleware.s
+
+# target to generate assembly for a file
+USER/Module/Bmi088/BMI088Middleware.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088Middleware.c.s
+.PHONY : USER/Module/Bmi088/BMI088Middleware.c.s
+
+USER/Module/Bmi088/BMI088driver.obj: USER/Module/Bmi088/BMI088driver.c.obj
+.PHONY : USER/Module/Bmi088/BMI088driver.obj
+
+# target to build an object file
+USER/Module/Bmi088/BMI088driver.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.obj
+.PHONY : USER/Module/Bmi088/BMI088driver.c.obj
+
+USER/Module/Bmi088/BMI088driver.i: USER/Module/Bmi088/BMI088driver.c.i
+.PHONY : USER/Module/Bmi088/BMI088driver.i
+
+# target to preprocess a source file
+USER/Module/Bmi088/BMI088driver.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.i
+.PHONY : USER/Module/Bmi088/BMI088driver.c.i
+
+USER/Module/Bmi088/BMI088driver.s: USER/Module/Bmi088/BMI088driver.c.s
+.PHONY : USER/Module/Bmi088/BMI088driver.s
+
+# target to generate assembly for a file
+USER/Module/Bmi088/BMI088driver.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Bmi088/BMI088driver.c.s
+.PHONY : USER/Module/Bmi088/BMI088driver.c.s
 
 USER/Module/DJ_Motor/dj_motor.obj: USER/Module/DJ_Motor/dj_motor.c.obj
 .PHONY : USER/Module/DJ_Motor/dj_motor.obj
@@ -1816,6 +2032,30 @@ USER/Module/Referee/referee_system.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Referee/referee_system.c.s
 .PHONY : USER/Module/Referee/referee_system.c.s
 
+USER/Task/Algorithm/algorithm_task.obj: USER/Task/Algorithm/algorithm_task.c.obj
+.PHONY : USER/Task/Algorithm/algorithm_task.obj
+
+# target to build an object file
+USER/Task/Algorithm/algorithm_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Algorithm/algorithm_task.c.obj
+.PHONY : USER/Task/Algorithm/algorithm_task.c.obj
+
+USER/Task/Algorithm/algorithm_task.i: USER/Task/Algorithm/algorithm_task.c.i
+.PHONY : USER/Task/Algorithm/algorithm_task.i
+
+# target to preprocess a source file
+USER/Task/Algorithm/algorithm_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Algorithm/algorithm_task.c.i
+.PHONY : USER/Task/Algorithm/algorithm_task.c.i
+
+USER/Task/Algorithm/algorithm_task.s: USER/Task/Algorithm/algorithm_task.c.s
+.PHONY : USER/Task/Algorithm/algorithm_task.s
+
+# target to generate assembly for a file
+USER/Task/Algorithm/algorithm_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Algorithm/algorithm_task.c.s
+.PHONY : USER/Task/Algorithm/algorithm_task.c.s
+
 USER/Task/Chassis/chassis_task.obj: USER/Task/Chassis/chassis_task.c.obj
 .PHONY : USER/Task/Chassis/chassis_task.obj
 
@@ -1888,6 +2128,30 @@ USER/Task/DMmotor/DMmotor_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.s
 .PHONY : USER/Task/DMmotor/DMmotor_task.c.s
 
+USER/Task/Ins/ins_task.obj: USER/Task/Ins/ins_task.c.obj
+.PHONY : USER/Task/Ins/ins_task.obj
+
+# target to build an object file
+USER/Task/Ins/ins_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.obj
+.PHONY : USER/Task/Ins/ins_task.c.obj
+
+USER/Task/Ins/ins_task.i: USER/Task/Ins/ins_task.c.i
+.PHONY : USER/Task/Ins/ins_task.i
+
+# target to preprocess a source file
+USER/Task/Ins/ins_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.i
+.PHONY : USER/Task/Ins/ins_task.c.i
+
+USER/Task/Ins/ins_task.s: USER/Task/Ins/ins_task.c.s
+.PHONY : USER/Task/Ins/ins_task.s
+
+# target to generate assembly for a file
+USER/Task/Ins/ins_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.s
+.PHONY : USER/Task/Ins/ins_task.c.s
+
 USER/Task/Referee/referee_task.obj: USER/Task/Referee/referee_task.c.obj
 .PHONY : USER/Task/Referee/referee_task.obj
 
@@ -1912,29 +2176,77 @@ USER/Task/Referee/referee_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.s
 .PHONY : USER/Task/Referee/referee_task.c.s
 
-USER/Task/USART_Recive/usart_recive_task.obj: USER/Task/USART_Recive/usart_recive_task.c.obj
-.PHONY : USER/Task/USART_Recive/usart_recive_task.obj
+USER/Task/Robot_Config/robot.obj: USER/Task/Robot_Config/robot.c.obj
+.PHONY : USER/Task/Robot_Config/robot.obj
 
 # target to build an object file
-USER/Task/USART_Recive/usart_recive_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.obj
-.PHONY : USER/Task/USART_Recive/usart_recive_task.c.obj
+USER/Task/Robot_Config/robot.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.obj
+.PHONY : USER/Task/Robot_Config/robot.c.obj
 
-USER/Task/USART_Recive/usart_recive_task.i: USER/Task/USART_Recive/usart_recive_task.c.i
-.PHONY : USER/Task/USART_Recive/usart_recive_task.i
+USER/Task/Robot_Config/robot.i: USER/Task/Robot_Config/robot.c.i
+.PHONY : USER/Task/Robot_Config/robot.i
 
 # target to preprocess a source file
-USER/Task/USART_Recive/usart_recive_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.i
-.PHONY : USER/Task/USART_Recive/usart_recive_task.c.i
+USER/Task/Robot_Config/robot.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.i
+.PHONY : USER/Task/Robot_Config/robot.c.i
 
-USER/Task/USART_Recive/usart_recive_task.s: USER/Task/USART_Recive/usart_recive_task.c.s
-.PHONY : USER/Task/USART_Recive/usart_recive_task.s
+USER/Task/Robot_Config/robot.s: USER/Task/Robot_Config/robot.c.s
+.PHONY : USER/Task/Robot_Config/robot.s
 
 # target to generate assembly for a file
-USER/Task/USART_Recive/usart_recive_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART_Recive/usart_recive_task.c.s
-.PHONY : USER/Task/USART_Recive/usart_recive_task.c.s
+USER/Task/Robot_Config/robot.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.s
+.PHONY : USER/Task/Robot_Config/robot.c.s
+
+USER/Task/Transmission/transmission_task.obj: USER/Task/Transmission/transmission_task.c.obj
+.PHONY : USER/Task/Transmission/transmission_task.obj
+
+# target to build an object file
+USER/Task/Transmission/transmission_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Transmission/transmission_task.c.obj
+.PHONY : USER/Task/Transmission/transmission_task.c.obj
+
+USER/Task/Transmission/transmission_task.i: USER/Task/Transmission/transmission_task.c.i
+.PHONY : USER/Task/Transmission/transmission_task.i
+
+# target to preprocess a source file
+USER/Task/Transmission/transmission_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Transmission/transmission_task.c.i
+.PHONY : USER/Task/Transmission/transmission_task.c.i
+
+USER/Task/Transmission/transmission_task.s: USER/Task/Transmission/transmission_task.c.s
+.PHONY : USER/Task/Transmission/transmission_task.s
+
+# target to generate assembly for a file
+USER/Task/Transmission/transmission_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Transmission/transmission_task.c.s
+.PHONY : USER/Task/Transmission/transmission_task.c.s
+
+USER/Task/USART/usart_task.obj: USER/Task/USART/usart_task.c.obj
+.PHONY : USER/Task/USART/usart_task.obj
+
+# target to build an object file
+USER/Task/USART/usart_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART/usart_task.c.obj
+.PHONY : USER/Task/USART/usart_task.c.obj
+
+USER/Task/USART/usart_task.i: USER/Task/USART/usart_task.c.i
+.PHONY : USER/Task/USART/usart_task.i
+
+# target to preprocess a source file
+USER/Task/USART/usart_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART/usart_task.c.i
+.PHONY : USER/Task/USART/usart_task.c.i
+
+USER/Task/USART/usart_task.s: USER/Task/USART/usart_task.c.s
+.PHONY : USER/Task/USART/usart_task.s
+
+# target to generate assembly for a file
+USER/Task/USART/usart_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/USART/usart_task.c.s
+.PHONY : USER/Task/USART/usart_task.c.s
 
 # Help Target
 help:
@@ -1963,6 +2275,9 @@ help:
 	@echo ... Core/Src/memorymap.obj
 	@echo ... Core/Src/memorymap.i
 	@echo ... Core/Src/memorymap.s
+	@echo ... Core/Src/spi.obj
+	@echo ... Core/Src/spi.i
+	@echo ... Core/Src/spi.s
 	@echo ... Core/Src/stm32h7xx_hal_msp.obj
 	@echo ... Core/Src/stm32h7xx_hal_msp.i
 	@echo ... Core/Src/stm32h7xx_hal_msp.s
@@ -1981,6 +2296,9 @@ help:
 	@echo ... Core/Src/system_stm32h7xx.obj
 	@echo ... Core/Src/system_stm32h7xx.i
 	@echo ... Core/Src/system_stm32h7xx.s
+	@echo ... Core/Src/tim.obj
+	@echo ... Core/Src/tim.i
+	@echo ... Core/Src/tim.s
 	@echo ... Core/Src/usart.obj
 	@echo ... Core/Src/usart.i
 	@echo ... Core/Src/usart.s
@@ -2042,6 +2360,12 @@ help:
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.s
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.obj
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.i
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.s
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.obj
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.i
+	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.s
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.obj
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.i
 	@echo ... Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.s
@@ -2120,18 +2444,33 @@ help:
 	@echo ... USER/Algorithm/Filter/filter32.obj
 	@echo ... USER/Algorithm/Filter/filter32.i
 	@echo ... USER/Algorithm/Filter/filter32.s
+	@echo ... USER/Algorithm/KalmanFilter/kalman_filter.obj
+	@echo ... USER/Algorithm/KalmanFilter/kalman_filter.i
+	@echo ... USER/Algorithm/KalmanFilter/kalman_filter.s
+	@echo ... USER/Algorithm/KalmanFilterOne/KalmanFilterOne.obj
+	@echo ... USER/Algorithm/KalmanFilterOne/KalmanFilterOne.i
+	@echo ... USER/Algorithm/KalmanFilterOne/KalmanFilterOne.s
 	@echo ... USER/Algorithm/MahonyAHRS/MahonyAHRS.obj
 	@echo ... USER/Algorithm/MahonyAHRS/MahonyAHRS.i
 	@echo ... USER/Algorithm/MahonyAHRS/MahonyAHRS.s
 	@echo ... USER/Algorithm/PID/PID.obj
 	@echo ... USER/Algorithm/PID/PID.i
 	@echo ... USER/Algorithm/PID/PID.s
+	@echo ... USER/Algorithm/QuaternionEKF/QuaternionEKF.obj
+	@echo ... USER/Algorithm/QuaternionEKF/QuaternionEKF.i
+	@echo ... USER/Algorithm/QuaternionEKF/QuaternionEKF.s
 	@echo ... USER/Algorithm/Ramp/ramp.obj
 	@echo ... USER/Algorithm/Ramp/ramp.i
 	@echo ... USER/Algorithm/Ramp/ramp.s
 	@echo ... USER/Algorithm/User_Lib/user_lib.obj
 	@echo ... USER/Algorithm/User_Lib/user_lib.i
 	@echo ... USER/Algorithm/User_Lib/user_lib.s
+	@echo ... USER/Module/Bmi088/BMI088Middleware.obj
+	@echo ... USER/Module/Bmi088/BMI088Middleware.i
+	@echo ... USER/Module/Bmi088/BMI088Middleware.s
+	@echo ... USER/Module/Bmi088/BMI088driver.obj
+	@echo ... USER/Module/Bmi088/BMI088driver.i
+	@echo ... USER/Module/Bmi088/BMI088driver.s
 	@echo ... USER/Module/DJ_Motor/dj_motor.obj
 	@echo ... USER/Module/DJ_Motor/dj_motor.i
 	@echo ... USER/Module/DJ_Motor/dj_motor.s
@@ -2156,6 +2495,9 @@ help:
 	@echo ... USER/Module/Referee/referee_system.obj
 	@echo ... USER/Module/Referee/referee_system.i
 	@echo ... USER/Module/Referee/referee_system.s
+	@echo ... USER/Task/Algorithm/algorithm_task.obj
+	@echo ... USER/Task/Algorithm/algorithm_task.i
+	@echo ... USER/Task/Algorithm/algorithm_task.s
 	@echo ... USER/Task/Chassis/chassis_task.obj
 	@echo ... USER/Task/Chassis/chassis_task.i
 	@echo ... USER/Task/Chassis/chassis_task.s
@@ -2165,12 +2507,21 @@ help:
 	@echo ... USER/Task/DMmotor/DMmotor_task.obj
 	@echo ... USER/Task/DMmotor/DMmotor_task.i
 	@echo ... USER/Task/DMmotor/DMmotor_task.s
+	@echo ... USER/Task/Ins/ins_task.obj
+	@echo ... USER/Task/Ins/ins_task.i
+	@echo ... USER/Task/Ins/ins_task.s
 	@echo ... USER/Task/Referee/referee_task.obj
 	@echo ... USER/Task/Referee/referee_task.i
 	@echo ... USER/Task/Referee/referee_task.s
-	@echo ... USER/Task/USART_Recive/usart_recive_task.obj
-	@echo ... USER/Task/USART_Recive/usart_recive_task.i
-	@echo ... USER/Task/USART_Recive/usart_recive_task.s
+	@echo ... USER/Task/Robot_Config/robot.obj
+	@echo ... USER/Task/Robot_Config/robot.i
+	@echo ... USER/Task/Robot_Config/robot.s
+	@echo ... USER/Task/Transmission/transmission_task.obj
+	@echo ... USER/Task/Transmission/transmission_task.i
+	@echo ... USER/Task/Transmission/transmission_task.s
+	@echo ... USER/Task/USART/usart_task.obj
+	@echo ... USER/Task/USART/usart_task.i
+	@echo ... USER/Task/USART/usart_task.s
 .PHONY : help
 
 

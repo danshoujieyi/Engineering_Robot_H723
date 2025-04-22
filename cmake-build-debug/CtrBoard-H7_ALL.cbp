@@ -51,7 +51,11 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilterOne"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/QuaternionEKF"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
@@ -59,12 +63,15 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Algorithm"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Ins"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -113,7 +120,11 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilter"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilterOne"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Crc"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/QuaternionEKF"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DM_Motor_Fdcan"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor"/>
@@ -121,12 +132,15 @@
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Keyboard"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Pump"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Algorithm"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Ins"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor"/>
 					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"/>
-					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission"/>
+					<Add directory="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/arm-none-eabi"/>
 					<Add directory="I:/arm-gnu-gcc13.3/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/backward"/>
@@ -180,10 +194,16 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/memorymap.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/spi.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/stm32h7xx_hal_conf.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/stm32h7xx_it.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/tim.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Inc/usart.h">
@@ -207,6 +227,9 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/memorymap.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/spi.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/stm32h7xx_hal_msp.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -223,6 +246,9 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/system_stm32h7xx.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/tim.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Core/Src/usart.c">
@@ -384,6 +410,12 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -429,7 +461,13 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_rcc.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_spi.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_system.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_tim.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h">
@@ -499,6 +537,12 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c">
@@ -690,13 +734,22 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.md">
-			<Option target="CtrBoard-H7_ALL.elf"/>
-		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter/filter32.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Filter/filter32.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilter/kalman_filter.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilter/kalman_filter.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/MahonyAHRS/MahonyAHRS.c">
@@ -714,6 +767,12 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/PID/PID.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/QuaternionEKF/QuaternionEKF.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/QuaternionEKF/QuaternionEKF.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Ramp/ramp.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -724,6 +783,21 @@
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/User_Lib/user_lib.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088Middleware.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088Middleware.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088driver.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088driver.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Bmi088/BMI088reg.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/DJ_Motor/dj_motor.c">
@@ -777,6 +851,12 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Module/Referee/referee_system.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Algorithm/algorithm_task.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Algorithm/algorithm_task.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Chassis/chassis_task.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -795,6 +875,12 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Ins/ins_task.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Ins/ins_task.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
@@ -810,10 +896,22 @@
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/rm_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive/usart_recive_task.c">
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/robot.c">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
-		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART_Recive/usart_recive_task.h">
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/robot.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission/transmission_task.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission/transmission_task.h">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART/usart_task.c">
+			<Option target="CtrBoard-H7_ALL.elf"/>
+		</Unit>
+		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART/usart_task.h">
 			<Option target="CtrBoard-H7_ALL.elf"/>
 		</Unit>
 		<Unit filename="D:/GitHub_Project/Engineering_Robot_H723/CMakeLists.txt">

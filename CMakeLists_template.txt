@@ -103,10 +103,13 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Algorithm/User_Lib
         USER/Algorithm/Ramp
         USER/Algorithm/Filter
+        USER/Algorithm/KalmanFilter
+        USER/Algorithm/KalmanFilterOne
         USER/Algorithm/Crc
+        USER/Algorithm/QuaternionEKF
        # USER/Algorithm/Fifo
 
-       # USER/Module/Bmi088
+        USER/Module/Bmi088
        # USER/Module/Vofa+
         USER/Module/Fdcan
         USER/Module/DM_Motor_Fdcan
@@ -116,14 +119,15 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Module/Keyboard
         USER/Module/Pump
 
-       # USER/Task/Imu
+        USER/Task/Algorithm
+        USER/Task/Ins
         USER/Task/Chassis
         USER/Task/Robot_Config
         USER/Task/Cmd
         USER/Task/DMmotor
-       # USER/Task/Arm
         USER/Task/Referee
-        USER/Task/USART_Recive
+        USER/Task/Transmission
+        USER/Task/USART
 
 )
 
@@ -138,10 +142,13 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Algorithm/User_Lib/*.*"
         "USER/Algorithm/Ramp/*.*"
         "USER/Algorithm/Filter/*.*"
+        "USER/Algorithm/KalmanFilter/*.*"
+        "USER/Algorithm/KalmanFilterOne/*.*"
         "USER/Algorithm/Crc/*.*"
+        "USER/Algorithm/QuaternionEKF/*.*"
        # "USER/Algorithm/Fifo/*.*"
 
-       # "USER/Module/Bmi088/*.*"
+        "USER/Module/Bmi088/*.*"
        # "USER/Module/Vofa+/*.*"
         "USER/Module/Fdcan/*.*"
         "USER/Module/DM_Motor_Fdcan/*.*"
@@ -151,14 +158,15 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Module/Keyboard/*.*"
         "USER/Module/Pump/*.*"
 
-       # "USER/Task/Imu/*.*"
+        "USER/Task/Algorithm/*.*"
+        "USER/Task/Ins/*.*"
         "USER/Task/Chassis/*.*"
         "USER/Task/Robot_Config/*.*"
         "USER/Task/Cmd/*.*"
         "USER/Task/DMmotor/*.*"
-       # "USER/Task/Arm/*.*"
         "USER/Task/Referee/*.*"
-        "USER/Task/USART_Recive/*.*"
+        "USER/Task/Transmission/*.*"
+        "USER/Task/USART/*.*"
 
 )
 

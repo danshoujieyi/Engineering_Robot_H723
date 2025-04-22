@@ -37,7 +37,7 @@ typedef struct
     /* 以下是电调直接回传的数据 */
     uint16_t ecd;             // 0-8191
     uint16_t last_ecd;        // 上一次读取的编码器值
-    int16_t  speed_rpm;       // 电机的转速值
+    int16_t  speed_rpm;       // 电机转子的转速值，单位为:转/分，不是输出的轮子转速，除以19的减速比即轮子转速
     int16_t real_current;     // 实际转矩电流
     uint8_t temperature;      // Celsius
 } dji_motor_measure_t;
@@ -63,7 +63,7 @@ typedef struct dji_motor_object
     /* 监控线程相关 */
 
     /* 电机控制相关 */
-    void *controller;            // 电机控制器
+    void *controller;            // 电机控制器，发送的是电流值
     int16_t (*control)(dji_motor_measure_t measure);   // 控制电机的接口 用户可以自定义,返回值为16位的电压或电流值
 } dji_motor_object_t;
 

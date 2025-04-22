@@ -19,7 +19,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Ramp/ramp.c.obj: \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/strings.h \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Ramp\ramp.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/rm_config.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/robot_config.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/stm32h7xx_hal_conf.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_rcc.h \
@@ -54,6 +54,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Algorithm/Ramp/ramp.c.obj: \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_i2c_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_pwr_ex.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi.h \
+ D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_spi_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_tim_ex.h \
  D:\GitHub_Project\Engineering_Robot_H723\Drivers\STM32H7xx_HAL_Driver\Inc/stm32h7xx_hal_uart.h \

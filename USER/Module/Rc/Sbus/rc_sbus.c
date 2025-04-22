@@ -1,6 +1,6 @@
 // Tip: 遥控器接收模块
 #include "rc_sbus.h"
-#include "rm_config.h"
+#include "robot_config.h"
 #include <stm32h723xx.h>
 #include <string.h>
 #include "cmsis_os.h"
@@ -62,7 +62,7 @@ void sbus_data_unpack(uint8_t *data, uint16_t len){
     /* 拨杆值获取 */
     sbus_data.sw1 = ((data[9] >> 2 | data[10] << 6) & 0x07FF);
     sbus_data.sw2 = ((data[10] >> 5 | data[11] << 3) & 0x07FF);
-    sbus_data.sw3=((data[12] | data[13] << 8) & 0x07FF);
+    sbus_data.sw3 = ((data[12] | data[13] << 8) & 0x07FF);
     sbus_data.sw4 =((data[13] >> 3 | data[14] << 5) & 0x07FF);
 
     /* 数据有效性检查 */

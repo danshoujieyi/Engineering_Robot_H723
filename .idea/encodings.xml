@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/USER/Algorithm/KalmanFilterOne/KalmanFilterOne.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Algorithm/User_Lib/user_lib.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Algorithm/User_Lib/user_lib.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Module/Bmi088/BMI088driver.c" charset="GBK" />

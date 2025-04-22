@@ -8,7 +8,7 @@
 #include "dj_motor.h"
 #include "stdio.h"
 #include "bsp_fdcan.h"
-#include "rm_config.h"
+#include "robot_config.h"
 #include "drv_dwt.h"
 #include "user_lib.h"
 #include "motor_def.h"
@@ -25,20 +25,20 @@ static struct chassis_controller_t
     pid_obj_t *speed_pid;
 }chassis_controller[4];
 
-dji_motor_object_t *chassis_motor[4];  // 底盘电机实例
-static int16_t motor_ref[4]; // 电机控制期望值
+dji_motor_object_t *chassis_motor[4];
+
+static int16_t motor_target_speed_rpm[4];
 
 static void chassis_motor_init();
 static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed);
-void (*chassis_calc_moto_speed)(struct chassis_cmd_msg *cmd, int16_t* out_speed) = mecanum_calc;
 
 
 /* --------------------------------- 电机控制相关 --------------------------------- */
 #define CURRENT_POWER_LIMIT_RATE 80
 static int16_t motor_control_0(dji_motor_measure_t measure)
 {
-    static int16_t set = 0;
-    static int16_t chassis_max_current=0;
+    static int16_t motor_current_set = 0;
+    static int16_t motor_max_current=0;   // 电流值范围：-16380~0~16380
     static int16_t chassis_power_limit=0;
 //    /*传参给局部变量防止被更改抽风*/
 //    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
@@ -57,19 +57,18 @@ static int16_t motor_control_0(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        motor_max_current = 8000;
     }
-    set =(int16_t) pid_calculate(chassis_controller[0].speed_pid, measure.speed_rpm, motor_ref[0]);
-    VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
-    return set;
+    motor_current_set =(int16_t) pid_calculate(chassis_controller[0].speed_pid, measure.speed_rpm, motor_target_speed_rpm[0]);
+    VAL_LIMIT(motor_current_set , -motor_max_current, motor_max_current);
+    return motor_current_set;
 }
 
 static int16_t motor_control_1(dji_motor_measure_t measure)
 {
-
-    static int16_t set = 0;
-    static int16_t chassis_max_current=0;
-    static int16_t chassis_power_limit=0;
+    static int16_t motor_current_set = 0;
+    static int16_t motor_max_current = 0;   // 电流值范围：-16380~0~16380,电流值限幅变量
+    static int16_t chassis_power_limit = 0;
 //    /*传参给局部变量防止被更改抽风*/
 //    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
 //    /*底盘功率限制防止buffer溢出*/
@@ -87,18 +86,18 @@ static int16_t motor_control_1(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        motor_max_current = 8000;
     }
-    set =(int16_t) pid_calculate(chassis_controller[1].speed_pid, measure.speed_rpm, motor_ref[1]);
-    VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
-    return set;
+    motor_current_set =(int16_t) pid_calculate(chassis_controller[1].speed_pid, measure.speed_rpm, motor_target_speed_rpm[1]);
+    VAL_LIMIT(motor_current_set , -motor_max_current, motor_max_current);
+    return motor_current_set;
 }
 
 static int16_t motor_control_2(dji_motor_measure_t measure)
 {
-    static int16_t set = 0;
-    static int16_t chassis_max_current=0;
-    static int16_t chassis_power_limit=0;
+    static int16_t motor_current_set = 0;
+    static int16_t motor_max_current = 0;   // 电流值范围：-16380~0~16380
+    static int16_t chassis_power_limit = 0;
 //    /*传参给局部变量防止被更改抽风*/
 //    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
 //    /*底盘功率限制防止buffer溢出*/
@@ -116,18 +115,18 @@ static int16_t motor_control_2(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        motor_max_current = 8000;
     }
-    set =(int16_t) pid_calculate(chassis_controller[2].speed_pid, measure.speed_rpm, motor_ref[2]);
-    VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
-    return set;
+    motor_current_set =(int16_t) pid_calculate(chassis_controller[2].speed_pid, measure.speed_rpm, motor_target_speed_rpm[2]);
+    VAL_LIMIT(motor_current_set , -motor_max_current, motor_max_current);
+    return motor_current_set;
 }
 
 static int16_t motor_control_3(dji_motor_measure_t measure)
 {
-    static int16_t set = 0;
-    static int16_t chassis_max_current=0;
-    static int16_t chassis_power_limit=0;
+    static int16_t motor_current_set = 0;
+    static int16_t motor_max_current = 0;   // 电流值范围：-16380~0~16380
+    static int16_t chassis_power_limit = 0;
 //    /*传参给局部变量防止被更改抽风*/
 //    chassis_power_limit=(int16_t)referee_fdb.robot_status.chassis_power_limit;
 //    /*底盘功率限制防止buffer溢出*/
@@ -145,11 +144,11 @@ static int16_t motor_control_3(dji_motor_measure_t measure)
 //    }
     if (chassis_power_limit==0)
     {
-        chassis_max_current=8000;
+        motor_max_current = 8000;
     }
-    set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_ref[3]);
-    VAL_LIMIT(set , -chassis_max_current, chassis_max_current);
-    return set;
+    motor_current_set =(int16_t) pid_calculate(chassis_controller[3].speed_pid, measure.speed_rpm, motor_target_speed_rpm[3]);
+    VAL_LIMIT(motor_current_set , -motor_max_current, motor_max_current);
+    return motor_current_set;
 }
 
 /* 底盘每个电机对应的控制函数 */
@@ -208,18 +207,29 @@ static void chassis_motor_init()
 
 static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
 {
-    static float wheel_rpm_ratio = 60.0f / (WHEEL_PERIMETER * CHASSIS_DECELE_RATIO);
-    int16_t wheel_rpm[4];
+    // 轮子转速转换系数，转为轮子转速，为rpm/min，每分钟多少转,60是指60秒，转换成分钟，
+    // 空载转速482rpm，3Nm满载最高转速469rpm
+    // static float wheel_rpm_ratio = 60.0f * CHASSIS_MOTOR_REDUCTION_RATIO / WHEEL_PERIMETER ;
+    int16_t wheel_rpm[4];  // 转换电机转子的期望转速，而非实际输出轮子的转速
 
     //限制底盘各方向速度
-    VAL_LIMIT(cmd->vx, -MAX_CHASSIS_VX_SPEED, MAX_CHASSIS_VX_SPEED);  //mm/s
-    VAL_LIMIT(cmd->vy, -MAX_CHASSIS_VY_SPEED, MAX_CHASSIS_VY_SPEED);  //mm/s
-    VAL_LIMIT(cmd->vw, -MAX_CHASSIS_VR_SPEED, MAX_CHASSIS_VR_SPEED);  //rad/s
+    VAL_LIMIT(cmd->vx, -MAX_CHASSIS_VX_SPEED, MAX_CHASSIS_VX_SPEED);  //m/s
+    VAL_LIMIT(cmd->vy, -MAX_CHASSIS_VY_SPEED, MAX_CHASSIS_VY_SPEED);  //m/s
+    VAL_LIMIT(cmd->vw, -MAX_CHASSIS_VW_SPEED, MAX_CHASSIS_VW_SPEED);  //rad/s
 
-    wheel_rpm[0] = ( cmd->vx + cmd->vy + cmd->vw * (LENGTH_A + LENGTH_B)) * wheel_rpm_ratio;//left//x，y方向速度,w底盘转动速度
-    wheel_rpm[1] = ( cmd->vx - cmd->vy + cmd->vw * (LENGTH_A + LENGTH_B)) * wheel_rpm_ratio;//forward
-    wheel_rpm[2] = (-cmd->vx - cmd->vy + cmd->vw * (LENGTH_A + LENGTH_B)) * wheel_rpm_ratio;//right
-    wheel_rpm[3] = (-cmd->vx + cmd->vy + cmd->vw * (LENGTH_A + LENGTH_B)) * wheel_rpm_ratio;//back
+    // Vw的正负取决与遥感通道是否是正的还是负数的
+    // 前后运动相反，则反转vx的正负
+    // 左右运动相反，则反转vy的正负
+    wheel_rpm[0] = (int16_t)(( -cmd->vx - cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);    // 左前轮
+    wheel_rpm[1] = (int16_t)(( +cmd->vx - cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);     // 右前轮
+    wheel_rpm[2] = (int16_t)(( +cmd->vx + cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);     // 右後輪
+    wheel_rpm[3] = (int16_t)(( -cmd->vx + cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);    // 左後輪
+    /**计算公式
+    wheel_speeds[0] = (Vx - Vy - rotation_component);  // 右前轮
+    wheel_speeds[1] = (Vx + Vy + rotation_component);  // 左前轮
+    wheel_speeds[2] = (Vx + Vy - rotation_component);  // 左後輪
+    wheel_speeds[3] = (Vx - Vy + rotation_component);  // 右後輪
+     **/
 
     memcpy(out_speed, wheel_rpm, 4*sizeof(int16_t));//copy the rpm to out_speed
 }
@@ -256,7 +266,7 @@ void chassis_cmd_state_machine(void)
             chassis_cmd_enable();
             break;
         case CHASSIS_STOP:
-            memset(motor_ref, 0, sizeof(motor_ref));
+            memset(motor_target_speed_rpm, 0, sizeof(motor_target_speed_rpm));
             break;
         default:
            // chassis_cmd_disable();
@@ -264,8 +274,13 @@ void chassis_cmd_state_machine(void)
     }
 }
 
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+static uint32_t chassis_task_dwt = 0;   // 毫秒监测
+static float chassis_task_dt = 0;       // 线程实际运行时间dt
+static float chassis_task_delta = 0;    // 监测线程运行时间
+static float chassis_task_start_dt = 0; // 监测线程开始时间
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
 
-/* USER CODE END Header_ChassisTask_Entry */
 void ChassisTask_Entry(void const * argument)
 {
 
@@ -273,10 +288,20 @@ void ChassisTask_Entry(void const * argument)
     bsp_can_init();
     can_filter_init();
 
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+    chassis_task_dt = dwt_get_delta(&chassis_task_dwt);
+    chassis_task_start_dt = dwt_get_time_ms();
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
     for(;;)
     {
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+        chassis_task_delta = dwt_get_time_ms() - chassis_task_start_dt;
+        chassis_task_start_dt = dwt_get_time_ms();
 
-        chassis_calc_moto_speed(&chassis_cmd, motor_ref);
+        chassis_task_dt = dwt_get_delta(&chassis_task_dwt);
+/* ------------------------------ 调试监测线程调度 ------------------------------ */
+
+        mecanum_calc(&chassis_cmd, motor_target_speed_rpm);
         dji_motor_control();
 
         vTaskDelay(1);

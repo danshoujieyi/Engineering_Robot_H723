@@ -2,7 +2,7 @@
 #define BMI088DRIVER_H
 
 #include "stdint.h"
-#include "main.h"
+#include "spi.h"
 
 #define BMI088_TEMP_FACTOR 0.125f
 #define BMI088_TEMP_OFFSET 23.0f
@@ -17,52 +17,19 @@
 #define BMI088_LONG_DELAY_TIME 80
 #define BMI088_COM_WAIT_SENSOR_TIME 150
 
-
 #define BMI088_ACCEL_IIC_ADDRESSE (0x18 << 1)
 #define BMI088_GYRO_IIC_ADDRESSE (0x68 << 1)
-
-#define BMI088_ACCEL_RANGE_3G
-//#define BMI088_ACCEL_RANGE_6G
-//#define BMI088_ACCEL_RANGE_12G
-//#define BMI088_ACCEL_RANGE_24G
-
-#define BMI088_GYRO_RANGE_2000
-//#define BMI088_GYRO_RANGE_1000
-//#define BMI088_GYRO_RANGE_500
-//#define BMI088_GYRO_RANGE_250
-//#define BMI088_GYRO_RANGE_125
-
 
 #define BMI088_ACCEL_3G_SEN 0.0008974358974f
 #define BMI088_ACCEL_6G_SEN 0.00179443359375f
 #define BMI088_ACCEL_12G_SEN 0.0035888671875f
 #define BMI088_ACCEL_24G_SEN 0.007177734375f
 
-
 #define BMI088_GYRO_2000_SEN 0.00106526443603169529841533860381f
 #define BMI088_GYRO_1000_SEN 0.00053263221801584764920766930190693f
 #define BMI088_GYRO_500_SEN 0.00026631610900792382460383465095346f
 #define BMI088_GYRO_250_SEN 0.00013315805450396191230191732547673f
 #define BMI088_GYRO_125_SEN 0.000066579027251980956150958662738366f
-
-
-typedef struct __attribute__((packed)) BMI088_RAW_DATA
-{
-    uint8_t status;
-    int16_t accel[3];
-    int16_t temp;
-    int16_t gyro[3];
-} bmi088_raw_data_t;
-
-typedef struct BMI088_REAL_DATA
-{
-    uint8_t status;
-    float accel[3];
-    float temp;
-    float gyro[3];
-    float time;
-} bmi088_real_data_t;
-
 
 enum
 {
@@ -86,16 +53,73 @@ enum
     BMI088_NO_SENSOR = 0xFF,
 };
 
+// 宏定义函数
+#define BMI088_accel_write_single_reg(reg, data) \
+    {                                            \
+        BMI088_ACCEL_NS_L();                     \
+        BMI088_write_single_reg((reg), (data));  \
+        BMI088_ACCEL_NS_H();                     \
+    }
+#define BMI088_accel_read_single_reg(reg, data) \
+    {                                           \
+        BMI088_ACCEL_NS_L();                    \
+        BMI088_read_write_byte((reg) | 0x80);   \
+        BMI088_read_write_byte(0x55);           \
+        (data) = BMI088_read_write_byte(0x55);  \
+        BMI088_ACCEL_NS_H();                    \
+    }
+//#define BMI088_accel_write_muli_reg( reg,  data, len) { BMI088_ACCEL_NS_L(); BMI088_write_muli_reg(reg, data, len); BMI088_ACCEL_NS_H(); }
+#define BMI088_accel_read_muli_reg(reg, data, len) \
+    {                                              \
+        BMI088_ACCEL_NS_L();                       \
+        BMI088_read_write_byte((reg) | 0x80);      \
+        BMI088_read_muli_reg(reg, data, len);      \
+        BMI088_ACCEL_NS_H();                       \
+    }
 
+#define BMI088_gyro_write_single_reg(reg, data) \
+    {                                           \
+        BMI088_GYRO_NS_L();                     \
+        BMI088_write_single_reg((reg), (data)); \
+        BMI088_GYRO_NS_H();                     \
+    }
+#define BMI088_gyro_read_single_reg(reg, data)  \
+    {                                           \
+        BMI088_GYRO_NS_L();                     \
+        BMI088_read_single_reg((reg), &(data)); \
+        BMI088_GYRO_NS_H();                     \
+    }
+//#define BMI088_gyro_write_muli_reg( reg,  data, len) { BMI088_GYRO_NS_L(); BMI088_write_muli_reg( ( reg ), ( data ), ( len ) ); BMI088_GYRO_NS_H(); }
+#define BMI088_gyro_read_muli_reg(reg, data, len)   \
+    {                                               \
+        BMI088_GYRO_NS_L();                         \
+        BMI088_read_muli_reg((reg), (data), (len)); \
+        BMI088_GYRO_NS_H();                         \
+    }
 
+typedef struct
+{
+    float accel[3];
+    float gyro[3];
 
+    float temp_when_cali;
+    float temperature;
 
-extern uint8_t BMI088_init(void);
-extern uint8_t bmi088_accel_init(void);
-extern uint8_t bmi088_gyro_init(void);
+    float accel_scale;
+    float gyro_offset[3];
 
-extern void BMI088_read(float gyro[3], float accel[3], float *temperate);
+    float g_norm;
+} ImuDataTypeDef;
 
+//TODO:手动校准处理
+#define GxOFFSET  0.0062725395f
+#define GyOFFSET -0.00260246126f
+#define GzOFFSET -0.00418537389f
+#define gNORM 9.67727184f
 
+uint8_t BMI088_init(SPI_HandleTypeDef *bmi088_SPI);
+uint8_t bmi088_accel_init(void);
+uint8_t bmi088_gyro_init(void);
+void BMI088_Read(ImuDataTypeDef *bmi088);
 
 #endif

@@ -69,6 +69,8 @@ typedef struct __attribute__((packed))
 } first_order_filter_type_t;
 //快速开方
 extern float invSqrt(float num);
+// 快速开方
+float Sqrt(float x);
 
 ////斜波函数初始化
 //void ramp_init(ramp_function_source_t *ramp_source_type, float frame_period, float max, float min);
@@ -95,6 +97,19 @@ extern int16_t int16_constrain(int16_t Value, int16_t minValue, int16_t maxValue
 extern float loop_float_constrain(float Input, float minValue, float maxValue);
 //角度 °限幅 180 ~ -180
 extern float theta_format(float Ang);
+
+int float_rounding(float raw);
+
+float *Norm3d(float *v);
+
+float NormOf3d(float *v);
+
+void Cross3d(float *v1, float *v2, float *res);
+
+float Dot3d(float *v1, float *v2);
+
+float AverageFilter(float new_data, float *buf, uint8_t len);
+
 
 //弧度格式化为-PI~PI
 #define rad_format(Ang) loop_float_constrain((Ang), -PI, PI)

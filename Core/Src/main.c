@@ -22,6 +22,8 @@
 #include "dma.h"
 #include "fdcan.h"
 #include "memorymap.h"
+#include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
@@ -33,6 +35,7 @@
 #include "bsp_fdcan.h"
 #include "dm_motor_drv.h"
 #include "dm_motor_ctrl.h"
+#include "BMI088driver.h"
 
 /* USER CODE END Includes */
 
@@ -46,6 +49,7 @@ QueueSetHandle_t xUartQueueSet = NULL; // 定义队列集句柄,统一管理串�
 // 声明互斥锁句柄
 SemaphoreHandle_t  sbus_cmd_mutex = NULL;
 
+QueueHandle_t xKalmanOneQueue = NULL; // 队列句柄
 QueueHandle_t xControlQueue = NULL; // 队列句柄
 /* USER CODE END PTD */
 
@@ -115,8 +119,22 @@ int main(void)
   MX_UART5_Init();
   MX_USART10_UART_Init();
   MX_UART7_Init();
+  MX_SPI2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
     MX_USB_DEVICE_Init();
+    dwt_init();
+
+    BMI088_init(&hspi2);  // 陀螺仪已经校准
+    // 达妙4310驱动设置
+    power(1);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
+    bsp_fdcan_set_baud(&hfdcan1, CAN_CLASS, CAN_BR_1M);
+    bsp_fdcan_set_baud(&hfdcan2, CAN_CLASS, CAN_BR_1M);
+    bsp_fdcan_set_baud(&hfdcan3, CAN_CLASS, CAN_BR_1M);
+////	bsp_fdcan_set_baud(&hfdcan1, CAN_FD_BRS, CAN_BR_1M);
+    bsp_can_init();
+    dm_motor_init();
 
     // FreeRTOS 初始化
     xSemaphoreUART10 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
@@ -130,6 +148,12 @@ int main(void)
     xQueueAddToSet(xSemaphoreUART10, xUartQueueSet);
 
     // 创建队列
+    xKalmanOneQueue = xQueueCreate(CONTROL_QUEUE_LENGTH, CONTROL_QUEUE_ITEM_SIZE);
+    if (xKalmanOneQueue == NULL) {
+        // 队列创建失败，进入错误处理
+        Error_Handler();
+    }
+
     xControlQueue = xQueueCreate(CONTROL_QUEUE_LENGTH, CONTROL_QUEUE_ITEM_SIZE);
     if (xControlQueue == NULL) {
         // 队列创建失败，进入错误处理
@@ -143,26 +167,11 @@ int main(void)
     HAL_GPIO_WritePin(PUMP2_1_GPIO_Port, PUMP2_1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_RESET);
 
-    dwt_init(480);
-  // 达妙4310驱动设置
-    power(1);
-    bsp_fdcan_set_baud(&hfdcan1, CAN_CLASS, CAN_BR_1M);
-    bsp_fdcan_set_baud(&hfdcan2, CAN_CLASS, CAN_BR_1M);
-    bsp_fdcan_set_baud(&hfdcan3, CAN_CLASS, CAN_BR_1M);
-////	bsp_fdcan_set_baud(&hfdcan1, CAN_FD_BRS, CAN_BR_1M);
-    bsp_can_init();
-    dm_motor_init();
-
-
 //    write_motor_data(motor[Motor1].id, 10, mit_mode, 0, 0, 0);
 //	write_motor_data(motor[Motor1].id, 35, CAN_BR_5M, 0, 0, 0);
 //    	read_motor_data(motor[Motor1].id, RID_CAN_BR);
 //    dm_motor_disable(&hfdcan2, &motor[Motor1]);
-
 //    save_motor_data(motor[Motor1].id, 10);
-
-
-
 //    HAL_TIM_Base_Start_IT(&htim3);
 //	read_all_motor_data(&motor[Motor1]);
   /* USER CODE END 2 */

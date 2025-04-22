@@ -53,19 +53,19 @@
 #endif /* BSP_USING_REFEREE_TASK */
 
 
-/* --------------------------------- 话题的数据格式 -------------------------------- */
+/* ------------------------------- ipc uMCN 相关 ------------------------------ */
 struct ins_msg
 {
     // IMU量测值
     float gyro[3];  // 角速度
     float accel[3]; // 加速度
+    float motion_accel_b[3]; // 机体坐标加速度
     // 位姿
     float roll;
     float pitch;
     float yaw;
     float yaw_total_angle;
 };
-
 /* ----------------CMD应用发布的控制数据,应当由gimbal/chassis/shoot订阅---------------- */
 /**
  * @brief cmd发布的底盘控制数据,由chassis订阅

@@ -1,5 +1,46 @@
 #include "user_lib.h"
+#include "kalman_filter.h"
 
+
+#ifdef _CMSIS_OS_H
+#define user_malloc pvPortMalloc
+#else
+#define user_malloc malloc
+#endif
+
+void *zmalloc(size_t size)
+{
+    void *ptr = malloc(size);
+    memset(ptr, 0, size);
+    return ptr;
+}
+
+// 快速开方
+float Sqrt(float x)
+{
+    float y;
+    float delta;
+    float maxError;
+
+    if (x <= 0)
+    {
+        return 0;
+    }
+
+    // initial guess
+    y = x / 2;
+
+    // refine
+    maxError = x * 0.001f;
+
+    do
+    {
+        delta = (y * y) - x;
+        y -= delta / (2 * y);
+    } while (delta > maxError || delta < -maxError);
+
+    return y;
+}
 
 /**
   * @brief          斜波函数初始化
@@ -172,3 +213,60 @@ float theta_format(float Ang)
 {
     return loop_float_constrain(Ang, -180.0f, 180.0f);
 }
+
+
+int float_rounding(float raw)
+{
+    static int integer;
+    static float decimal;
+    integer = (int)raw;
+    decimal = raw - integer;
+    if (decimal > 0.5f)
+        integer++;
+    return integer;
+}
+
+// 三维向量归一化
+float *Norm3d(float *v)
+{
+    float len = Sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    v[0] /= len;
+    v[1] /= len;
+    v[2] /= len;
+    return v;
+}
+
+// 计算模长
+float NormOf3d(float *v)
+{
+    return Sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+}
+
+// 三维向量叉乘v1 x v2
+void Cross3d(float *v1, float *v2, float *res)
+{
+    res[0] = v1[1] * v2[2] - v1[2] * v2[1];
+    res[1] = v1[2] * v2[0] - v1[0] * v2[2];
+    res[2] = v1[0] * v2[1] - v1[1] * v2[0];
+}
+
+// 三维向量点乘
+float Dot3d(float *v1, float *v2)
+{
+    return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
+}
+
+// 均值滤波,删除buffer中的最后一个元素,填入新的元素并求平均值
+float AverageFilter(float new_data, float *buf, uint8_t len)
+{
+    float sum = 0;
+    for (uint8_t i = 0; i < len - 1; i++)
+    {
+        buf[i] = buf[i + 1];
+        sum += buf[i];
+    }
+    buf[len - 1] = new_data;
+    sum += new_data;
+    return sum / len;
+}
+

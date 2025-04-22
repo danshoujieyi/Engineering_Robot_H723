@@ -1,35 +1,20 @@
-/**
- ******************************************************************************
- * @file    bsp_dwt.h
- * @author  Wang Hongxi
- * @author  modified by NeoZng
- * @version V1.2.0
- * @date    2022/3/8
- * @brief
- ******************************************************************************
- * @attention
- *
- ******************************************************************************
- */
 
- /*
- * Change Logs:
- * Date            Author          Notes
- * 2023-08-23      ChuShicheng     first version
- */
 #ifndef _DRV_DWT_H
 #define _DRV_DWT_H
 
-#include "main.h"
-
+#include "stm32h7xx_hal.h"
 //寄存器基地址
 #define    DWT_CR    *(uint32_t*)0xE0001000
-#define    DWT_CYCCNT    *(uint32_t*)0xE0001004
 #define    DEM_CR    *(uint32_t*)0xE000EDFC
-
 //定义需使能位
 #define    DEM_CR_TRCENA    (1<<24)
 #define    DWT_CR_CYCCNTENA    (1<<0)
+
+//// *取地址，取该地址处的dwt计数器计数值
+//#define    DWT_CYCCNT    *(uint32_t*)0xE0001004)
+
+//// 直接通过结构体访问DWT寄存器
+#define DWT_CYCCNT    DWT->CYCCNT
 
 typedef struct
 {
@@ -49,7 +34,6 @@ typedef struct
         float tstart = dwt_get_time_s();      \
         code;                                    \
         dt = dwt_get_time_s() - tstart;       \
-        LOG_I("" #dt " = %f s\r\n", dt); \
     } while (0)
 
 /**
@@ -57,7 +41,7 @@ typedef struct
  *
  * @param cpu_freq_mhz c板为168MHz,A板为180MHz
  */
-void dwt_init(uint32_t cpu_freq_mhz);
+void dwt_init(void);
 
 /**
  * @brief 获取两次调用之间的时间间隔,单位为秒/s
@@ -110,5 +94,7 @@ void dwt_delay_s(float delay);
  * @attention 如果长时间不调用timeline函数,则需要手动调用该函数更新时间轴,否则CYCCNT溢出后定时和时间轴不准确
  */
 void dwt_systime_update(void);
+
+uint64_t dwt_get_time_ns(void);
 
 #endif /* _DRV_DWT_H */
