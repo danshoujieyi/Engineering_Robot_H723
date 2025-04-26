@@ -3,19 +3,9 @@
 //
 
 #include "referee_task.h"
-#include "FreeRTOS.h"
-#include "usart.h"
+#include "cmsis_os.h"
 #include "referee_system.h"
-#include "semphr.h"
-#include <string.h>
-#include "cmd_task.h"
-#include "rc_sbus.h"
-#include "arm_math.h"
 #include "drv_dwt.h"
-
-
-extern sbus_data_t sbus_data_fdb;
-
 
 
 /* ------------------------------ 调试监测线程调度 ------------------------------ */

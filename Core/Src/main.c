@@ -31,23 +31,14 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drv_dwt.h"
-#include "rc_sbus.h"
 #include "bsp_fdcan.h"
-#include "dm_motor_drv.h"
 #include "dm_motor_ctrl.h"
 #include "BMI088driver.h"
-
+#include "robot.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-// 全局声明信号量
-SemaphoreHandle_t xSemaphoreUART10 = NULL;
-SemaphoreHandle_t xSemaphoreUART1 = NULL;           // 通知任务处理信号量
-SemaphoreHandle_t xSemaphoreUART5 = NULL;
-QueueSetHandle_t xUartQueueSet = NULL; // 定义队列集句柄,统一管理串口中断信号量
-// 声明互斥锁句柄
-SemaphoreHandle_t  sbus_cmd_mutex = NULL;
 
 QueueHandle_t xKalmanOneQueue = NULL; // 队列句柄
 QueueHandle_t xControlQueue = NULL; // 队列句柄
@@ -136,16 +127,7 @@ int main(void)
     bsp_can_init();
     dm_motor_init();
 
-    // FreeRTOS 初始化
-    xSemaphoreUART10 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    xSemaphoreUART1 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    xSemaphoreUART5 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
-    // 定义队列集（最多监听 3 个信号量）
-    xUartQueueSet = xQueueCreateSet(3);
-    // 将各串口信号量加入队列集
-    xQueueAddToSet(xSemaphoreUART1, xUartQueueSet);
-    xQueueAddToSet(xSemaphoreUART5, xUartQueueSet);
-    xQueueAddToSet(xSemaphoreUART10, xUartQueueSet);
+    robot_init();
 
     // 创建队列
     xKalmanOneQueue = xQueueCreate(CONTROL_QUEUE_LENGTH, CONTROL_QUEUE_ITEM_SIZE);
@@ -159,8 +141,6 @@ int main(void)
         // 队列创建失败，进入错误处理
         Error_Handler();
     }
-
-    sbus_cmd_mutex = xSemaphoreCreateMutex();  // 初始化互斥锁
 
     HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(PUMP2_GPIO_Port, PUMP2_Pin, GPIO_PIN_RESET);

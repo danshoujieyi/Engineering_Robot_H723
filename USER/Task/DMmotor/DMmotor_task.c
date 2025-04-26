@@ -7,7 +7,7 @@ static const int INTERPOLATION_STEPS = 1; // 插值步数，设置为1等于不再使用插值算
 static const int TIME_STEP_MS = 1;      // 每步插值的时间间隔（毫秒），没有使用
 static float current_angle[6] = {0.0f};        // 当前插值角度,实际的关节输出角度，也是需要滤波的值
 static float dm_motor_angles[6] = {0.0f};   // 队列读取值
-static const float MAX_ANGLE_CHANGE = 0.4f;  // 提高角度限制幅度会提高跟手度
+static const float MAX_ANGLE_CHANGE = 0.2f;  // 提高角度限制幅度会提高跟手度
 
 extern QueueHandle_t xControlQueue;
 

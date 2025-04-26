@@ -115,14 +115,26 @@ void remote_to_cmd_sbus(void)
     }
 }
 
+//void pum_ctrl(void)
+//{
+//    if (pump_mode == PUMP_OPEN)
+//    {
+//        HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_SET);
+//    }
+//    else if (pump_mode == PUMP_CLOSE)
+//    {
+//        HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
+//    }
+//}
+
 void pum_ctrl(void)
 {
     if (pump_mode == PUMP_OPEN)
     {
-        HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_SET);
     }
     else if (pump_mode == PUMP_CLOSE)
     {
-        HAL_GPIO_WritePin(PUMP1_GPIO_Port, PUMP1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(PUMP2_2_GPIO_Port, PUMP2_2_Pin, GPIO_PIN_RESET);
     }
 }

@@ -277,7 +277,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan,uint32_t RxFifo0ITs)
         if (hfdcan == &hfdcan1)
         {
             HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &rx_header, rx_data);
-            dji_motot_rx_callback(rx_header.Identifier, rx_data);
+            dji_motor_rx_callback(rx_header.Identifier, rx_data);
             //             if(dji_motot_rx_callback(rx_header.Identifier, rx_data) == 0)
 //                 return;
         }

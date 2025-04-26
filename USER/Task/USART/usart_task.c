@@ -14,24 +14,37 @@
 static volatile uint8_t usart1_rx_buffer_index;  // 当前使用的接收缓冲区
 static volatile uint16_t usart1_rx_size;
 static uint8_t usart1_rx_buffer[2][CUSTOMER_CONTROLLER_BUF_SIZE];
-extern SemaphoreHandle_t xSemaphoreUART1;
+static SemaphoreHandle_t xSemaphoreUART1 = NULL;           // 通知任务处理信号量
 
 // 福斯遥控器
 static volatile uint8_t usart5_rx_buffer_index;  // 当前使用的接收缓冲区
 static volatile uint16_t usart5_rx_size;
 static uint8_t usart5_rx_buffer[2][SBUS_RX_BUF_SIZE];
-extern SemaphoreHandle_t xSemaphoreUART5;
+static SemaphoreHandle_t xSemaphoreUART5 = NULL;
 
 // 裁判系统串口 10
 static volatile uint8_t referee_rx_buffer_index;  // 当前使用的接收缓冲区
 static volatile uint16_t referee_rx_size;
 static uint8_t referee_rx_buffer[2][REFEREE_RX_BUF_SIZE];
-extern SemaphoreHandle_t xSemaphoreUART10;
+static SemaphoreHandle_t xSemaphoreUART10 = NULL;
 
-// 外部引用
-extern QueueSetHandle_t xUartQueueSet; // 定义队列集句柄,统一管理串口中断信号量
+static QueueSetHandle_t xUartQueueSet = NULL; // 定义队列集句柄,统一管理串口中断信号量
+
 extern struct referee_fdb_msg referee_fdb;
 
+void usart_semaphore_init(void)
+{
+    // FreeRTOS 初始化
+    xSemaphoreUART10 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    xSemaphoreUART1 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    xSemaphoreUART5 = xSemaphoreCreateBinary();  // <-- 在此处创建信号量
+    // 定义队列集（最多监听 3 个信号量）
+    xUartQueueSet = xQueueCreateSet(3);
+    // 将各串口信号量加入队列集
+    xQueueAddToSet(xSemaphoreUART1, xUartQueueSet);
+    xQueueAddToSet(xSemaphoreUART5, xUartQueueSet);
+    xQueueAddToSet(xSemaphoreUART10, xUartQueueSet);
+}
 
 void USART1_DMA_Init(void) {
     memset(usart1_rx_buffer, 0, sizeof(usart1_rx_buffer));

@@ -97,9 +97,8 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/Core/Src/main.c.obj: \
  I:/ARM-GN~1.3/133167~1.3RE/arm-none-eabi/include/sys/string.h \
  D:\GitHub_Project\Engineering_Robot_H723\Core\Inc/gpio.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Algorithm\Dwt/drv_dwt.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Rc\Sbus/rc_sbus.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Fdcan/bsp_fdcan.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_ctrl.h \
  D:\GitHub_Project\Engineering_Robot_H723\USER\Module\DM_Motor_Fdcan/dm_motor_drv.h \
- D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Bmi088/BMI088driver.h
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Module\Bmi088/BMI088driver.h \
+ D:\GitHub_Project\Engineering_Robot_H723\USER\Task\Robot_Config/robot.h
