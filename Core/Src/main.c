@@ -46,8 +46,11 @@ QueueHandle_t xControlQueue = NULL; // 队列句柄
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define CONTROL_QUEUE_LENGTH 10    // 队列长度，可根据需要调整
-#define CONTROL_QUEUE_ITEM_SIZE sizeof(float)*7 // 每个队列元素占用的字节数
+#define CONTROL_QUEUE_LENGTH 12    // 队列长度，可根据需要调整
+#define CONTROL_QUEUE_ITEM_SIZE sizeof(float)*6 // 每个队列元素占用的字节数
+
+#define KalmanOne_QUEUE_LENGTH 14    // 队列长度，可根据需要调整
+#define KalmanOne_QUEUE_ITEM_SIZE sizeof(float)*7 // 每个队列元素占用的字节数
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -130,7 +133,7 @@ int main(void)
     robot_init();
 
     // 创建队列
-    xKalmanOneQueue = xQueueCreate(CONTROL_QUEUE_LENGTH, CONTROL_QUEUE_ITEM_SIZE);
+    xKalmanOneQueue = xQueueCreate(KalmanOne_QUEUE_LENGTH, KalmanOne_QUEUE_ITEM_SIZE);
     if (xKalmanOneQueue == NULL) {
         // 队列创建失败，进入错误处理
         Error_Handler();

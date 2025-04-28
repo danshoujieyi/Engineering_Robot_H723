@@ -6,6 +6,7 @@
 static const int INTERPOLATION_STEPS = 1; // 插值步数，设置为1等于不再使用插值算法，降低延迟，不可以设置为0
 static const int TIME_STEP_MS = 1;      // 每步插值的时间间隔（毫秒），没有使用
 static float current_angle[6] = {0.0f};        // 当前插值角度,实际的关节输出角度，也是需要滤波的值
+static float dm_angles[6] = {0.0f};   // 队列读取值
 static float dm_motor_angles[6] = {0.0f};   // 队列读取值
 static const float MAX_ANGLE_CHANGE = 0.2f;  // 提高角度限制幅度会提高跟手度
 
@@ -124,7 +125,10 @@ void DMmotorTask_Entry(void const * argument) {
         DMmotor_task_dt = dwt_get_delta(&DMmotor_task_dwt);
 /* ------------------------------ 调试监测线程调度 ------------------------------ */
 
-        if (xQueueReceive(xControlQueue, dm_motor_angles, 0) == pdPASS) {
+        if (xQueueReceive(xControlQueue, dm_angles, 0) == pdPASS) {
+            for(uint8_t i=0;i<6;i++){
+                dm_motor_angles[i] = dm_angles[i];
+            }
             DMcontrol_motor_1(&hfdcan3, &motor_controls[Motor1], dm_motor_angles[Motor1]);
             DMcontrol_motor_2(&hfdcan2, &motor_controls[Motor2], dm_motor_angles[Motor2]);
             DMcontrol_motor_3(&hfdcan2, &motor_controls[Motor3], dm_motor_angles[Motor3]);

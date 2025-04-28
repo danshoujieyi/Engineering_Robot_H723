@@ -20,8 +20,8 @@ typedef float mat_type_t;
 /* -------------------------------------------------------*/
 #define KALMAN_F  1.0f     // 状态转移矩阵（一维时为标量）
 #define KALMAN_H  1.0f     // 观测矩阵（一维时为标量）
-#define KALMAN_Q  0.006f
-#define KALMAN_R  0.024f
+#define KALMAN_Q  0.08f
+#define KALMAN_R  0.3f
 
 //Q（过程噪声）：反映预测模型的不确定性。
 //Q调大：系统认为预测模型不可靠，更依赖测量值（响应快，但噪声敏感）。
