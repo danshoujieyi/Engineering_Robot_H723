@@ -25,7 +25,7 @@ static struct chassis_controller_t
     pid_obj_t *speed_pid;
 }chassis_controller[4];
 
-dji_motor_object_t *chassis_motor[4];
+static dji_motor_object_t *chassis_motor[4];
 
 static int16_t motor_target_speed_rpm[4];
 
@@ -200,6 +200,7 @@ static void chassis_motor_init()
     {
         chassis_controller[i].speed_pid = pid_register(&chassis_speed_config);
         chassis_motor[i] = dji_motor_register(&chassis_motor_config[i], motor_control[i]);
+
         chassis_cmd.ctrl_mode = CHASSIS_ENABLE;
         chassis_cmd.last_mode = CHASSIS_ENABLE;
     }
@@ -220,19 +221,56 @@ static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
     // Vw的正负取决与遥感通道是否是正的还是负数的
     // 前后运动相反，则反转vx的正负
     // 左右运动相反，则反转vy的正负
-    wheel_rpm[0] = (int16_t)(( -cmd->vx - cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);    // 左前轮
-    wheel_rpm[1] = (int16_t)(( +cmd->vx - cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);     // 右前轮
-    wheel_rpm[2] = (int16_t)(( +cmd->vx + cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);     // 右後輪
-    wheel_rpm[3] = (int16_t)(( -cmd->vx + cmd->vy - cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2)) * WHELL_RPM_RATIO);    // 左後輪
-    /**计算公式
-    wheel_speeds[0] = (Vx - Vy - rotation_component);  // 右前轮
-    wheel_speeds[1] = (Vx + Vy + rotation_component);  // 左前轮
-    wheel_speeds[2] = (Vx + Vy - rotation_component);  // 左後輪
-    wheel_speeds[3] = (Vx - Vy + rotation_component);  // 右後輪
-     **/
+    wheel_rpm[3] = (int16_t)(( -cmd->vx - cmd->vy + cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2.0f)) * WHELL_RPM_RATIO);    // 左後輪
+    wheel_rpm[0] = (int16_t)(( -cmd->vx + cmd->vy + cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2.0f)) * WHELL_RPM_RATIO);    // 左前轮
+    wheel_rpm[1] = (int16_t)(( +cmd->vx + cmd->vy + cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2.0f)) * WHELL_RPM_RATIO);     // 右前轮
+    wheel_rpm[2] = (int16_t)(( +cmd->vx - cmd->vy + cmd->vw * ((WHEEL_TRACK + WHEEL_BASE)/2.0f)) * WHELL_RPM_RATIO);     // 右後輪
 
     memcpy(out_speed, wheel_rpm, 4*sizeof(int16_t));//copy the rpm to out_speed
 }
+
+// 定义结构体存储里程计数据
+typedef struct {
+    float x;           // X轴位移 (m)
+    float y;           // Y轴位移 (m)
+    float yaw;         // 航向角 (rad)
+    float vx;          // X轴速度 (m/s)
+    float vy;          // Y轴速度 (m/s)
+    float vw;          // 角速度 (rad/s)
+    uint32_t last_cyccnt; // DWT时间戳（用于积分）
+} odometry_t;
+
+
+void odometry_update(int16_t *wheel_rpm_actual, odometry_t *odom) {
+    // 参数定义
+    const float K = (WHEEL_TRACK + WHEEL_BASE) / 2.0f;
+    const float ratio_inv = 1.0f / WHELL_RPM_RATIO;
+
+    // 转换电机转速为线速度（m/s）
+    float wheel_speed[4];
+    for (int i = 0; i < 4; i++) {
+        wheel_speed[i] = wheel_rpm_actual[i] * ratio_inv;
+    }
+
+    // 计算瞬时速度（逆解核心公式）
+    odom->vx = (wheel_speed[1] + wheel_speed[2] - wheel_speed[0] - wheel_speed[3]) / 4.0f;
+    odom->vy = (wheel_speed[0] + wheel_speed[1] - wheel_speed[2] - wheel_speed[3]) / 4.0f;
+    odom->vw = (wheel_speed[0] + wheel_speed[1] + wheel_speed[2] + wheel_speed[3]) / (4.0f * K);
+
+    // 使用DWT计算积分周期（自动处理32位溢出）
+    float dt = dwt_get_delta(&odom->last_cyccnt); // 获取精确时间差
+
+    // 更新位姿（带坐标系旋转）
+    odom->yaw += odom->vw * dt; // 航向角积分
+    const float cos_yaw = cosf(odom->yaw);
+    const float sin_yaw = sinf(odom->yaw);
+
+    // 将底盘坐标系速度转换到全局坐标系
+    odom->x += (odom->vx * cos_yaw - odom->vy * sin_yaw) * dt;
+    odom->y += (odom->vx * sin_yaw + odom->vy * cos_yaw) * dt;
+}
+
+
 
 void chassis_cmd_enable(void) {
     if (chassis_cmd.last_mode == CHASSIS_RELAX && chassis_cmd.ctrl_mode == CHASSIS_ENABLE)

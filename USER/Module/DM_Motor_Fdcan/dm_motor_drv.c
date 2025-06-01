@@ -143,7 +143,7 @@ void dm_motor_clear_err(hcan_t* hcan, motor_t *motor)
 *               状态、位置、速度、扭矩以及相关温度参数
 ************************************************************************
 **/
-void dm_motor_fbdata(motor_t *motor, uint8_t *rx_data)
+void dm_motor_fbdata(motor_t *motor, uint8_t *rx_data)  //:TODO
 {
 	motor->para.id = (rx_data[0])&0x0F;
 	motor->para.state = (rx_data[0])>>4;

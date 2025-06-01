@@ -320,11 +320,4 @@ void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorSt
 	}
 }
 
-//
-//
-//
-//
-//
-//
-//
 

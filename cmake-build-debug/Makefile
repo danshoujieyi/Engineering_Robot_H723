@@ -2152,6 +2152,30 @@ USER/Task/Ins/ins_task.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.s
 .PHONY : USER/Task/Ins/ins_task.c.s
 
+USER/Task/OneNet_ESP8266/onenet_task.obj: USER/Task/OneNet_ESP8266/onenet_task.c.obj
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.obj
+
+# target to build an object file
+USER/Task/OneNet_ESP8266/onenet_task.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.c.obj
+
+USER/Task/OneNet_ESP8266/onenet_task.i: USER/Task/OneNet_ESP8266/onenet_task.c.i
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.i
+
+# target to preprocess a source file
+USER/Task/OneNet_ESP8266/onenet_task.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.i
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.c.i
+
+USER/Task/OneNet_ESP8266/onenet_task.s: USER/Task/OneNet_ESP8266/onenet_task.c.s
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.s
+
+# target to generate assembly for a file
+USER/Task/OneNet_ESP8266/onenet_task.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.s
+.PHONY : USER/Task/OneNet_ESP8266/onenet_task.c.s
+
 USER/Task/Referee/referee_task.obj: USER/Task/Referee/referee_task.c.obj
 .PHONY : USER/Task/Referee/referee_task.obj
 
@@ -2510,6 +2534,9 @@ help:
 	@echo ... USER/Task/Ins/ins_task.obj
 	@echo ... USER/Task/Ins/ins_task.i
 	@echo ... USER/Task/Ins/ins_task.s
+	@echo ... USER/Task/OneNet_ESP8266/onenet_task.obj
+	@echo ... USER/Task/OneNet_ESP8266/onenet_task.i
+	@echo ... USER/Task/OneNet_ESP8266/onenet_task.s
 	@echo ... USER/Task/Referee/referee_task.obj
 	@echo ... USER/Task/Referee/referee_task.i
 	@echo ... USER/Task/Referee/referee_task.s

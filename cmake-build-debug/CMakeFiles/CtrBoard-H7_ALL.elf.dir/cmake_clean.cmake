@@ -168,6 +168,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.obj.d"
+  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj"
+  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.obj"

@@ -6,6 +6,7 @@
 #include "cmsis_os.h"
 #include "referee_system.h"
 #include "drv_dwt.h"
+#include "dj_motor.h"
 
 
 /* ------------------------------ 调试监测线程调度 ------------------------------ */
@@ -33,6 +34,7 @@ void RefereeTask_Entry(void const * argument)
         referee_task_dt = dwt_get_delta(&referee_task_dwt);
 /* ------------------------------ 调试监测线程调度 ------------------------------ */
 
+      //  dji_motor_control();
 
         vTaskDelay(1);
     }

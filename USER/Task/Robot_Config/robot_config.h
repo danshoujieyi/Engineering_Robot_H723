@@ -97,6 +97,28 @@ extern FDCAN_HandleTypeDef hfdcan3;
 
 /* 电机角度环 */
 
+
+
+// --------------------- 里程计控制参数宏定义 ---------------------
+// 目标点定义
+#define WAYPOINT_A_X          0.0f    // 点A坐标X（米）
+#define WAYPOINT_B_X          2.0f    // 点B坐标X（米）
+#define POSITION_TOLERANCE    0.02f   // 到达目标点的位置误差容忍度（米）
+
+// 位置控制PID参数（外环）
+#define POSITION_KP           1.5f    // 比例系数
+#define POSITION_KI           0.05f   // 积分系数
+#define POSITION_KD           0.2f    // 微分系数
+#define POSITION_MAX_OUTPUT   (CHASSIS_MAX_V_MOTOR * 0.8f)  // 限制外环输出速度
+
+// 航向角控制PID参数
+#define YAW_KP                0.8f    // 航向比例系数
+#define YAW_KI                0.0f    // 航向积分系数
+#define YAW_KD                0.1f    // 航向微分系数
+
+
+
+
 /* -------------------------------- 基于IMU的底盘数电机PID参数 ------------------------------- */
 /* imu速度环 */
 #define YAW_KP_V_IMU             5000

@@ -66,6 +66,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/OneNet_ESP8266"
   )
 
 # The set of dependency files which are needed:
@@ -154,6 +155,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Cmd/cmd_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Cmd/cmd_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/DMmotor/DMmotor_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/DMmotor/DMmotor_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Ins/ins_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Ins/ins_task.c.obj.d"
+  "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/OneNet_ESP8266/onenet_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Referee/referee_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Referee/referee_task.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Robot_Config/robot.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Robot_Config/robot.c.obj.d"
   "D:/GitHub_Project/Engineering_Robot_H723/USER/Task/Transmission/transmission_task.c" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Transmission/transmission_task.c.obj" "gcc" "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/Transmission/transmission_task.c.obj.d"

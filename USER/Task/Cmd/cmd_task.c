@@ -101,8 +101,8 @@ void remote_to_cmd_sbus(void)
 
     // TODO:右手系，逆时针为正。遥控器部分为美国手(左倾斜为正，上抬头为正，左转为正）
     chassis_cmd.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE  + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y );
-    chassis_cmd.vy = -(sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
-    chassis_cmd.vw = -(sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
+    chassis_cmd.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
+    chassis_cmd.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
     //chassis_cmd.vx = text_vx;
 
     if (sbus_data_fdb.sw3 == RC_MI)

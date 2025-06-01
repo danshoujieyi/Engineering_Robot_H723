@@ -55,6 +55,7 @@ osThreadId RefereeTaskHandle;
 osThreadId TranmissionTaskHandle;
 osThreadId UsartTaskHandle;
 osThreadId InsTaskHandle;
+osThreadId OnenetTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -69,6 +70,7 @@ void RefereeTask_Entry(void const * argument);
 void TransmissionTask_Entry(void const * argument);
 void UsartTask_Entry(void const * argument);
 void InsTask_Entry(void const * argument);
+void OnenetTask_Entry(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -163,6 +165,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of InsTask */
   osThreadDef(InsTask, InsTask_Entry, osPriorityRealtime, 0, 2048);
   InsTaskHandle = osThreadCreate(osThread(InsTask), NULL);
+
+  /* definition and creation of OnenetTask */
+  osThreadDef(OnenetTask, OnenetTask_Entry, osPriorityAboveNormal, 0, 1024);
+  OnenetTaskHandle = osThreadCreate(osThread(OnenetTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -314,6 +320,24 @@ __weak void InsTask_Entry(void const * argument)
     osDelay(1);
   }
   /* USER CODE END InsTask_Entry */
+}
+
+/* USER CODE BEGIN Header_OnenetTask_Entry */
+/**
+* @brief Function implementing the OnenetTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OnenetTask_Entry */
+__weak void OnenetTask_Entry(void const * argument)
+{
+  /* USER CODE BEGIN OnenetTask_Entry */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OnenetTask_Entry */
 }
 
 /* Private application code --------------------------------------------------*/
