@@ -29,6 +29,7 @@ UART_HandleTypeDef huart7;
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart10;
 DMA_HandleTypeDef hdma_uart5_rx;
+DMA_HandleTypeDef hdma_uart7_tx;
 DMA_HandleTypeDef hdma_usart1_rx;
 DMA_HandleTypeDef hdma_usart10_rx;
 
@@ -306,6 +307,25 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     GPIO_InitStruct.Alternate = GPIO_AF7_UART7;
     HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
+    /* UART7 DMA Init */
+    /* UART7_TX Init */
+    hdma_uart7_tx.Instance = DMA1_Stream3;
+    hdma_uart7_tx.Init.Request = DMA_REQUEST_UART7_TX;
+    hdma_uart7_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    hdma_uart7_tx.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_uart7_tx.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_uart7_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    hdma_uart7_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+    hdma_uart7_tx.Init.Mode = DMA_NORMAL;
+    hdma_uart7_tx.Init.Priority = DMA_PRIORITY_MEDIUM;
+    hdma_uart7_tx.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
+    if (HAL_DMA_Init(&hdma_uart7_tx) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(uartHandle,hdmatx,hdma_uart7_tx);
+
   /* USER CODE BEGIN UART7_MspInit 1 */
 
   /* USER CODE END UART7_MspInit 1 */
@@ -473,6 +493,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOE, GPIO_PIN_7|GPIO_PIN_8);
 
+    /* UART7 DMA DeInit */
+    HAL_DMA_DeInit(uartHandle->hdmatx);
   /* USER CODE BEGIN UART7_MspDeInit 1 */
 
   /* USER CODE END UART7_MspDeInit 1 */
@@ -526,17 +548,17 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-#define LOG_UART_HANDLE huart7
-
-#ifdef __GNUC__
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
-
-PUTCHAR_PROTOTYPE
-{
-    HAL_UART_Transmit(&LOG_UART_HANDLE, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-    return ch;
-}
+//#define LOG_UART_HANDLE huart7
+//
+//#ifdef __GNUC__
+//#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+//#else
+//#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+//#endif /* __GNUC__ */
+//
+//PUTCHAR_PROTOTYPE
+//{
+//    HAL_UART_Transmit(&LOG_UART_HANDLE, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+//    return ch;
+//}
 /* USER CODE END 1 */

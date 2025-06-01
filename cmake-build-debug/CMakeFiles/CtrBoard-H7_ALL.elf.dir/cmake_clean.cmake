@@ -152,6 +152,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Fdcan/bsp_fdcan.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.obj.d"
+  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj"
+  "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Pump/pump.c.obj"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Pump/pump.c.obj.d"
   "CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Rc/Sbus/rc_sbus.c.obj"

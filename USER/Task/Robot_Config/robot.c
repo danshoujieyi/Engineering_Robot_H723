@@ -11,7 +11,8 @@ void robot_init(void)
     // 请不要在初始化过程中使用中断和延时函数！
     // 若必须,则只允许使用 dwt 进行延时
 //    __disable_irq();
-    usart_semaphore_init(); // 串口信号量初始化
+    usart_rx_semaphore_init(); // 串口信号量初始化
+    usart_tx_semaphore_init(); // 串口信号量初始化
 //    OS_task_init(); // 创建基础任务
 //    MX_FREERTOS_Init(); // 任务创建由cubemax此函数生成
 

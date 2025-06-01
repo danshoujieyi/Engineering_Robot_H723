@@ -118,6 +118,7 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Module/Referee
         USER/Module/Keyboard
         USER/Module/Pump
+        USER/Module/Msg/msg_FreeRTOS
 
         USER/Task/Algorithm
         USER/Task/Ins
@@ -158,6 +159,7 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Module/Referee/*.*"
         "USER/Module/Keyboard/*.*"
         "USER/Module/Pump/*.*"
+        "USER/Module/Msg/msg_FreeRTOS/*.*"
 
         "USER/Task/Algorithm/*.*"
         "USER/Task/Ins/*.*"

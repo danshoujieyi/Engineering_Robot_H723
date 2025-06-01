@@ -33,7 +33,7 @@ typedef struct sublisher
     const char *topic_name;
     topic_t *tp;               // 话题的指针
     uint8_t len;               // 消息类型长度
-    StaticSemaphore_t sem_buffer; // 静态分配信号量内存
+   // StaticSemaphore_t sem_buffer; // 静态分配信号量内存
 } subscriber_t;
 
 /**
@@ -45,6 +45,7 @@ typedef struct publisher
     const char *topic_name;
     topic_t *tp;               // 话题的指针
     uint8_t len;               // 消息类型长度
+   // StaticSemaphore_t sem_buffer; // 静态分配信号量内存
 } publisher_t;
 
 /**

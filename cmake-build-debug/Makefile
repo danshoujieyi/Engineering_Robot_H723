@@ -1960,6 +1960,30 @@ USER/Module/Keyboard/keyboard.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Keyboard/keyboard.c.s
 .PHONY : USER/Module/Keyboard/keyboard.c.s
 
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.obj: USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.obj
+
+# target to build an object file
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.obj
+
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.i: USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.i
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.i
+
+# target to preprocess a source file
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.i
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.i
+
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.s: USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.s
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.s
+
+# target to generate assembly for a file
+USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CtrBoard-H7_ALL.elf.dir\build.make CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.s
+.PHONY : USER/Module/Msg/msg_FreeRTOS/msg_freertos.c.s
+
 USER/Module/Pump/pump.obj: USER/Module/Pump/pump.c.obj
 .PHONY : USER/Module/Pump/pump.obj
 
@@ -2510,6 +2534,9 @@ help:
 	@echo ... USER/Module/Keyboard/keyboard.obj
 	@echo ... USER/Module/Keyboard/keyboard.i
 	@echo ... USER/Module/Keyboard/keyboard.s
+	@echo ... USER/Module/Msg/msg_FreeRTOS/msg_freertos.obj
+	@echo ... USER/Module/Msg/msg_FreeRTOS/msg_freertos.i
+	@echo ... USER/Module/Msg/msg_FreeRTOS/msg_freertos.s
 	@echo ... USER/Module/Pump/pump.obj
 	@echo ... USER/Module/Pump/pump.i
 	@echo ... USER/Module/Pump/pump.s
