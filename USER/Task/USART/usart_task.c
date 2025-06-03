@@ -34,7 +34,7 @@ static SemaphoreHandle_t xSemaphoreUART10_RX = NULL;
 static QueueSetHandle_t xUartQueueSet = NULL; // 定义接收队列集句柄,统一管理串口中断信号量
 
 // usart7双缓冲发送
-#define USART7_TX_DEBUG_BUFFER_SIZE 256 // printf发送缓冲区大小
+#define USART7_TX_DEBUG_BUFFER_SIZE 512 // printf发送缓冲区大小
 static char usart7_tx_debug_buffer[2][USART7_TX_DEBUG_BUFFER_SIZE];
 static volatile uint8_t usart7_tx_buffer_index = 0;  // 当前使用的缓冲区
 static SemaphoreHandle_t xSemaphoreUART7_TX = NULL; // 串口1发送信号量
@@ -225,7 +225,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
 // DMA发送完成回调函数
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
     // 检查是否是USART1的DMA发送完成
-    if (huart == &huart1) {
+    if (huart == &huart7) {
         // 释放信号量，表示DMA可以处理下一个缓冲区
         BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 //        // 在中断中切换缓冲区
@@ -277,7 +277,7 @@ void USART7_DebugPrintf(const char *format, ...) {
         // 确保字符串长度有效
         if (length > 0) {
             // 使用DMA异步发送当前缓冲区数据
-            HAL_UART_Transmit_DMA(&huart1, (uint8_t*)usart7_tx_debug_buffer[usart7_tx_buffer_index], length);
+            HAL_UART_Transmit_DMA(&huart7, (uint8_t*)usart7_tx_debug_buffer[usart7_tx_buffer_index], length);
         } else {
             // 长度无效时直接释放信号量
             xSemaphoreGive(xSemaphoreUART7_TX);
