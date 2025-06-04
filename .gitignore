@@ -1,0 +1,13 @@
+# 忽略编译生成的所有文件和目录
+cmake-build-debug/
+*.hex
+*.bin
+*.elf
+*.map
+*.obj
+*.obj.d
+*.log
+
+# 忽略 IDE 临时文件（可选）
+.idea/
+mx.scratch
