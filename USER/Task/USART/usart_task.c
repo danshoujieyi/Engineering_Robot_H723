@@ -260,6 +260,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef * huart)
 }
 
 // 自定义DebugPrintf函数（类似printf）
+//TODO:实际双缓冲区切换无效，不能做到一个buff[0]发送，另一个buff[1]接收，目前是buff[0]接收完立刻发送，同时切换到buff[1]接收完立刻发送
 void USART7_DebugPrintf(const char *format, ...) {
     va_list args;
     uint16_t length;
@@ -277,7 +278,7 @@ void USART7_DebugPrintf(const char *format, ...) {
         // 确保字符串长度有效
         if (length > 0) {
             // 使用DMA异步发送当前缓冲区数据
-            HAL_UART_Transmit_DMA(&huart7, (uint8_t*)usart7_tx_debug_buffer[usart7_tx_buffer_index], length);
+            HAL_UART_Transmit_DMA(&huart7, (uint8_t*)usart7_tx_debug_buffer[finishedBuffer], length);
         } else {
             // 长度无效时直接释放信号量
             xSemaphoreGive(xSemaphoreUART7_TX);

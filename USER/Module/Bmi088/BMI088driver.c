@@ -123,7 +123,7 @@ void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
             break;
         }
 
-        dwt_delay_s(0.005);
+        dwt_delay_ms(5);
         bmi088->g_norm = 0;
         bmi088->gyro_offset[0] = 0;
         bmi088->gyro_offset[1] = 0;
@@ -196,7 +196,7 @@ void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
                 gyroDiff[1] > 0.1f ||
                 gyroDiff[2] > 0.1f)
                 break;
-            dwt_delay_s(0.0005); // 微小延时（避免采样过于密集）
+            dwt_delay_us(500);; // 微小延时（避免采样过于密集）
 
             Count++; // 采集次数计数（外部变量，需自行定义）
         }

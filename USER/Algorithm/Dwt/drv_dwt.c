@@ -128,9 +128,52 @@ uint64_t dwt_get_time_us(void)
  * @brief DWT延时函数（修正循环条件，核心错误修复）
  * @note 不建议超过4秒延时（32位计数器最大周期），超长延时需分段
  */
-void dwt_delay_s(float delay) {
+void dwt_delay_s(uint32_t s) {
+    uint32_t start = DWT->CYCCNT;
+    uint32_t target_cycles = s * cpu_freq_hz;
+
+    while (1) {
+        uint32_t now = DWT->CYCCNT;
+        uint32_t delta = (now >= start) ?
+                         (now - start) :
+                         (UINT32_MAX - start) + now + 1;
+
+        if (delta >= target_cycles) break;
+    }
+}
+
+void dwt_delay_us(uint32_t us) {
+    uint32_t start = DWT->CYCCNT;
+    uint32_t target_cycles = us * cpu_freq_hz_us;
+
+    while (1) {
+        uint32_t now = DWT->CYCCNT;
+        uint32_t delta = (now >= start) ?
+                         (now - start) :
+                         (UINT32_MAX - start) + now + 1;
+
+        if (delta >= target_cycles) break;
+    }
+}
+
+void dwt_delay_ms(uint32_t ms) {
+    uint32_t start = DWT->CYCCNT;
+    uint32_t target_cycles = ms * cpu_freq_hz_ms;
+
+    while (1) {
+        uint32_t now = DWT->CYCCNT;
+        uint32_t delta = (now >= start) ?
+                         (now - start) :
+                         (UINT32_MAX - start) + now + 1;
+
+        if (delta >= target_cycles) break;
+    }
+}
+// 上三个为精确延时（不会有浮点数转换成整数带来的误差）
+// 下面为非高精度延时，但大多数时候也是对的。支持4s甚至0.000001s的延时（1微妙到4秒），输入浮点参数
+void dwt_delay_fs(float delay) {
     uint32_t start = DWT_CYCCNT;
-    uint64_t target_cycles = (uint64_t)delay * (uint64_t)cpu_freq_hz + 0.5;  // 四舍五入防误差
+    uint64_t target_cycles = (uint64_t)(delay * cpu_freq_hz + 0.5f);  // 四舍五入防误差
 
     // 循环直到计数值差 >= 目标周期数（处理溢出）
     while (1) {

@@ -87,8 +87,14 @@ uint64_t dwt_get_time_us(void);
  *
  * @param delay 延时时间,单位为秒/s
  */
-void dwt_delay_s(float delay);
+void dwt_delay_s(uint32_t s);
 
+void dwt_delay_us(uint32_t us);
+
+void dwt_delay_ms(uint32_t ms);
+// 上三个为精确延时（不会有浮点数转换成整数带来的误差）
+// 下面为非高精度延时，但大多数时候也是对的。支持4s甚至0.000001s的延时（1微妙到4秒），输入浮点参数
+void dwt_delay_fs(float delay);
 /**
  * @brief DWT更新时间轴函数,会被三个timeline函数调用
  * @attention 如果长时间不调用timeline函数,则需要手动调用该函数更新时间轴,否则CYCCNT溢出后定时和时间轴不准确

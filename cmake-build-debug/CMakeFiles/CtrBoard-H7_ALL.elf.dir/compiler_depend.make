@@ -5175,6 +5175,7 @@ CMakeFiles/CtrBoard-H7_ALL.elf.dir/USER/Task/OneNet_ESP8266/onenet_task.c.obj: D
   D:/GitHub_Project/Engineering_Robot_H723/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
   D:/GitHub_Project/Engineering_Robot_H723/USER/Algorithm/Dwt/drv_dwt.h \
   D:/GitHub_Project/Engineering_Robot_H723/USER/Task/OneNet_ESP8266/onenet_task.h \
+  D:/GitHub_Project/Engineering_Robot_H723/USER/Task/USART/usart_task.h \
   I:/arm-gnu-gcc13.3/13.3\ rel1/arm-none-eabi/include/_ansi.h \
   I:/arm-gnu-gcc13.3/13.3\ rel1/arm-none-eabi/include/_newlib_version.h \
   I:/arm-gnu-gcc13.3/13.3\ rel1/arm-none-eabi/include/machine/_default_types.h \
