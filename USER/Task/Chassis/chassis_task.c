@@ -15,7 +15,27 @@
 #include "rm_task.h"
 #include "referee_system.h"
 
-/* -------------------------------- 线程间通讯话题相关 ------------------------------- */
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+//static struct chassis_cmd_msg chassis_cmd;
+//static struct chassis_fdb_msg chassis_fdb;
+//static struct trans_fdb_msg trans_fdb;
+//static struct ins_msg ins_data;
+//
+//static publisher_t *pub_chassis;
+//static subscriber_t *sub_cmd,*sub_ins,*sub_trans;
+//
+//static void chassis_pub_init(void);
+//static void chassis_sub_init(void);
+//static void chassis_pub_push(void);
+//static void chassis_sub_pull(void);
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+/* -------------------------------- 调试监测线程相关 --------------------------------- */
+static uint32_t chassis_task_dwt = 0;   // 毫秒监测
+static float chassis_task_dt = 0;       // 线程实际运行时间dt
+static float chassis_task_delta = 0;    // 监测线程运行时间
+static float chassis_task_start_dt = 0; // 监测线程开始时间
+/* -------------------------------- 调试监测线程相关 --------------------------------- */
+
 struct chassis_cmd_msg chassis_cmd;
 
 extern struct referee_fdb_msg referee_fdb;
@@ -312,37 +332,80 @@ void chassis_cmd_state_machine(void)
     }
 }
 
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
-static uint32_t chassis_task_dwt = 0;   // 毫秒监测
-static float chassis_task_dt = 0;       // 线程实际运行时间dt
-static float chassis_task_delta = 0;    // 监测线程运行时间
-static float chassis_task_start_dt = 0; // 监测线程开始时间
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
-
+/* -------------------------------- 线程入口 ------------------------------- */
 void ChassisTask_Entry(void const * argument)
 {
-
+/* -------------------------------- 外设初始化段落 ------------------------------- */
     chassis_motor_init();
     bsp_can_init();
     can_filter_init();
+/* -------------------------------- 外设初始化段落 ------------------------------- */
 
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 线程间Topics初始化 ------------------------------- */
+//    chassis_pub_init();
+//    chassis_sub_init();
+/* -------------------------------- 线程间Topics初始化 ------------------------------- */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
     chassis_task_dt = dwt_get_delta(&chassis_task_dwt);
     chassis_task_start_dt = dwt_get_time_ms();
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
     for(;;)
     {
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
         chassis_task_delta = dwt_get_time_ms() - chassis_task_start_dt;
         chassis_task_start_dt = dwt_get_time_ms();
-
         chassis_task_dt = dwt_get_delta(&chassis_task_dwt);
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
+/* -------------------------------- 线程订阅Topics信息 ------------------------------- */
+//        chassis_sub_pull();
+/* -------------------------------- 线程订阅Topics信息 ------------------------------- */
 
+/* -------------------------------- 线程代码编写段落 ------------------------------- */
         mecanum_calc(&chassis_cmd, motor_target_speed_rpm);
         dji_motor_control();
+/* -------------------------------- 线程代码编写段落 ------------------------------- */
 
+/* -------------------------------- 线程发布Topics信息 ------------------------------- */
+//        chassis_pub_push();
+/* -------------------------------- 线程发布Topics信息 ------------------------------- */
         vTaskDelay(1);
     }
-    /* USER CODE END ChassisTask_Entry */
 }
+/* -------------------------------- 线程结束 ------------------------------- */
+
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+///**
+// * @brief chassis 线程中所有发布者初始化
+// */
+//static void chassis_pub_init(void)
+//{
+//    pub_chassis = pub_register("chassis_fdb",sizeof(struct chassis_fdb_msg));
+//}
+//
+///**
+// * @brief chassis 线程中所有订阅者初始化
+// */
+//static void chassis_sub_init(void)
+//{
+//    sub_cmd = sub_register("chassis_cmd", sizeof(struct chassis_cmd_msg));
+//    sub_trans= sub_register("trans_fdb", sizeof(struct trans_fdb_msg));
+//    sub_ins = sub_register("ins_msg", sizeof(struct ins_msg));
+//}
+//
+///**
+// * @brief chassis 线程中所有发布者推送更新话题
+// */
+//static void chassis_pub_push(void)
+//{
+//    pub_push_msg(pub_chassis,&chassis_fdb);
+//}
+///**
+// * @brief chassis 线程中所有订阅者获取更新话题
+// */
+//static void chassis_sub_pull(void)
+//{
+//    sub_get_msg(sub_cmd, &chassis_cmd);
+//    sub_get_msg(sub_trans, &trans_fdb);
+//    sub_get_msg(sub_ins, &ins_data);
+//}
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */

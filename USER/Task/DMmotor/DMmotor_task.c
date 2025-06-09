@@ -3,6 +3,27 @@
 #include "DMmotor_task.h"
 #include "drv_dwt.h"
 
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+//static struct chassis_cmd_msg chassis_cmd;
+//static struct chassis_fdb_msg chassis_fdb;
+//static struct trans_fdb_msg trans_fdb;
+//static struct ins_msg ins_data;
+//
+//static publisher_t *pub_chassis;
+//static subscriber_t *sub_cmd,*sub_ins,*sub_trans;
+//
+//static void chassis_pub_init(void);
+//static void chassis_sub_init(void);
+//static void chassis_pub_push(void);
+//static void chassis_sub_pull(void);
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+/* -------------------------------- 调试监测线程相关 --------------------------------- */
+static uint32_t DMmotor_task_dwt = 0;   // 毫秒监测
+static float DMmotor_task_dt = 0;       // 线程实际运行时间dt
+static float DMmotor_task_delta = 0;    // 监测线程运行时间
+static float DMmotor_task_start_dt = 0; // 监测线程开始时间
+/* -------------------------------- 调试监测线程相关 --------------------------------- */
+
 static const int INTERPOLATION_STEPS = 1; // 插值步数，设置为1等于不再使用插值算法，降低延迟，不可以设置为0
 static const int TIME_STEP_MS = 1;      // 每步插值的时间间隔（毫秒），没有使用
 static float current_angle[6] = {0.0f};        // 当前插值角度,实际的关节输出角度，也是需要滤波的值
@@ -83,14 +104,11 @@ void arm_cmd_state_machine(void) {
 }
 
 
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
-static uint32_t DMmotor_task_dwt = 0;   // 毫秒监测
-static float DMmotor_task_dt = 0;       // 线程实际运行时间dt
-static float DMmotor_task_delta = 0;    // 监测线程运行时间
-static float DMmotor_task_start_dt = 0; // 监测线程开始时间
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
 
-void DMmotorTask_Entry(void const * argument) {
+/* -------------------------------- 线程入口 ------------------------------- */
+void DMmotorTask_Entry(void const * argument)
+{
+/* -------------------------------- 外设初始化段落 ------------------------------- */
     for (int i = 0; i < 6; i++) {
         motor_controls[i].last_angle = 0.0f;
         motor_controls[i].initial_offset = 0.0f;
@@ -111,20 +129,29 @@ void DMmotorTask_Entry(void const * argument) {
     }
     arm_cmd.ctrl_mode = ARM_ENABLE; // 使能机械臂
     arm_cmd.last_mode = ARM_ENABLE;
+/* -------------------------------- 外设初始化段落 ------------------------------- */
 
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 线程间Topics初始化 ------------------------------- */
+//    chassis_pub_init();
+//    chassis_sub_init();
+/* -------------------------------- 线程间Topics初始化 ------------------------------- */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
     DMmotor_task_dt = dwt_get_delta(&DMmotor_task_dwt);
     DMmotor_task_start_dt = dwt_get_time_ms();
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
     for(;;)
     {
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
         DMmotor_task_delta = dwt_get_time_ms() - DMmotor_task_start_dt;
         DMmotor_task_start_dt = dwt_get_time_ms();
 
         DMmotor_task_dt = dwt_get_delta(&DMmotor_task_dwt);
-/* ------------------------------ 调试监测线程调度 ------------------------------ */
+/* -------------------------------- 调试监测线程调度 --------------------------------- */
+/* -------------------------------- 线程订阅Topics信息 ------------------------------- */
+//        chassis_sub_pull();
+/* -------------------------------- 线程订阅Topics信息 ------------------------------- */
 
+/* -------------------------------- 线程代码编写段落 ------------------------------- */
         if (xQueueReceive(xControlQueue, dm_angles, 0) == pdPASS) {
             for(uint8_t i=0;i<6;i++){
                 dm_motor_angles[i] = dm_angles[i];
@@ -136,10 +163,52 @@ void DMmotorTask_Entry(void const * argument) {
             DMcontrol_motor_5(&hfdcan2, &motor_controls[Motor5], dm_motor_angles[Motor5]);
             DMcontrol_motor_6(&hfdcan2, &motor_controls[Motor6], dm_motor_angles[Motor6]);
         }
+/* -------------------------------- 线程代码编写段落 ------------------------------- */
+
+/* -------------------------------- 线程发布Topics信息 ------------------------------- */
+//        chassis_pub_push();
+/* -------------------------------- 线程发布Topics信息 ------------------------------- */
         vTaskDelay(1);
     }
 }
+/* -------------------------------- 线程结束 ------------------------------- */
 
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
+///**
+// * @brief chassis 线程中所有发布者初始化
+// */
+//static void chassis_pub_init(void)
+//{
+//    pub_chassis = pub_register("chassis_fdb",sizeof(struct chassis_fdb_msg));
+//}
+//
+///**
+// * @brief chassis 线程中所有订阅者初始化
+// */
+//static void chassis_sub_init(void)
+//{
+//    sub_cmd = sub_register("chassis_cmd", sizeof(struct chassis_cmd_msg));
+//    sub_trans= sub_register("trans_fdb", sizeof(struct trans_fdb_msg));
+//    sub_ins = sub_register("ins_msg", sizeof(struct ins_msg));
+//}
+//
+///**
+// * @brief chassis 线程中所有发布者推送更新话题
+// */
+//static void chassis_pub_push(void)
+//{
+//    pub_push_msg(pub_chassis,&chassis_fdb);
+//}
+///**
+// * @brief chassis 线程中所有订阅者获取更新话题
+// */
+//static void chassis_sub_pull(void)
+//{
+//    sub_get_msg(sub_cmd, &chassis_cmd);
+//    sub_get_msg(sub_trans, &trans_fdb);
+//    sub_get_msg(sub_ins, &ins_data);
+//}
+/* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
 
 float normalize_radians(float radians) {
     while (radians >= M_PI) radians -= 2.0f * M_PI;

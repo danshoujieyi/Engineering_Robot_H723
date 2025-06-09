@@ -45,7 +45,6 @@
      PB0   ------> OCTOSPIM_P1_IO1
      PB2   ------> OCTOSPIM_P1_CLK
      PE11   ------> OCTOSPIM_P1_NCS
-     PB15   ------> S_TIM12_CH2
      PD11   ------> OCTOSPIM_P1_IO0
      PA8   ------> RCC_MCO_1
      PD4   ------> USART2_DE
@@ -192,14 +191,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(DCMI_REST_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF2_TIM12;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
   /*Configure GPIO pin : LCD_DC_Pin */
   GPIO_InitStruct.Pin = LCD_DC_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -223,11 +214,11 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PA15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
+  /*Configure GPIO pin : BOARD_KEY_Pin */
+  GPIO_InitStruct.Pin = BOARD_KEY_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(BOARD_KEY_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PD4 PD5 PD6 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6;
