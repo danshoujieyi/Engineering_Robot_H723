@@ -2,7 +2,7 @@
 #define RTTHREAD_KEYBOARD_H
 
 #include <rtthread.h>
-#include "robot_config.h"
+#include "robot.h"
 
 /**
   * @brief     底盘运动速度快慢模式

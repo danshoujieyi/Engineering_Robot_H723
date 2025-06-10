@@ -1,6 +1,6 @@
 // Tip: 遥控器接收模块
 #include "rc_sbus.h"
-#include "robot_config.h"
+#include "robot.h"
 #include <stm32h723xx.h>
 #include <string.h>
 #include "cmsis_os.h"

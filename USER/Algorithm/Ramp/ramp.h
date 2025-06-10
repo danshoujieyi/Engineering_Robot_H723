@@ -5,7 +5,7 @@
 #ifndef _RAMP_H
 #define _RAMP_H
 
-#include "robot_config.h"
+#include "robot.h"
 
 #define RAMP_NUM_MAX 30      // 最大RAMP实例数
 

@@ -4,7 +4,7 @@
 #include <stm32h7xx_hal.h>
 #include <malloc.h>
 #include "motor_def.h"
-#include "robot_config.h"
+#include "robot.h"
 #include "bsp_fdcan.h"
 
 #define DJI_MOTOR_CNT 14             // 默认波特率下，实测挂载电机极限数量

@@ -4,7 +4,7 @@
 
 #include "keyboard.h"
 #include "FreeRTOS.h"
-#include "robot_config.h"
+#include "robot.h"
 #include "referee_system.h"
 #include "user_lib.h"
 #include "ramp.h"

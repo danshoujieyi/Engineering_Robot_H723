@@ -1,14 +1,25 @@
-//
-// Created by 刘嘉俊 on 25-1-2.
-//
-
+/**
+  ******************************************************************************
+  * @file    algorithm_task.c
+  * @author  Liu JiaJun(187353224@qq.com)
+  * @version V1.0.0
+  * @date    2025-01-10
+  * @brief   机器人算法任务线程，处理复杂算法，避免在其他线程中计算造成阻塞
+  ******************************************************************************
+  * @attention
+  *
+  * 本代码遵循GPLv3开源协议，仅供学习交流使用
+  * 未经许可不得用于商业用途
+  *
+  ******************************************************************************
+  */
 #include <string.h>
 #include "chassis_task.h"
 #include "PID.h"
 #include "dj_motor.h"
 #include "stdio.h"
 #include "bsp_fdcan.h"
-#include "robot_config.h"
+#include "robot.h"
 #include "drv_dwt.h"
 #include "user_lib.h"
 #include "motor_def.h"

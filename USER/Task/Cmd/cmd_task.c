@@ -1,14 +1,22 @@
-/*
-* Change Logs:
-* Date            Author          Notes
-* 2023-09-24      ChuShicheng     first version
-* 2023-10-10      ChenSihan       发射模块状态机
-*/
-
+/**
+  ******************************************************************************
+  * @file    algorithm_task.c
+  * @author  Liu JiaJun(187353224@qq.com)
+  * @version V1.0.0
+  * @date    2025-01-10
+  * @brief   机器人算法任务线程，处理复杂算法，避免在其他线程中计算造成阻塞
+  ******************************************************************************
+  * @attention
+  *
+  * 本代码遵循GPLv3开源协议，仅供学习交流使用
+  * 未经许可不得用于商业用途
+  *
+  ******************************************************************************
+  */
 #include <stdio.h>
 #include <string.h>
 #include "cmd_task.h"
-#include "robot_config.h"
+#include "robot.h"
 #include "rm_task.h"
 #include "stm32h7xx_hal.h"
 #include "rc_sbus.h"

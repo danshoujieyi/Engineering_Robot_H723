@@ -7,7 +7,7 @@
 *                 ChenSihan
 */
 #include "rc_dbus.h"
-#include "robot_config.h"
+#include "robot.h"
 #include <stm32f4xx.h>
 
 #define DBG_TAG           "rc.dbus"
