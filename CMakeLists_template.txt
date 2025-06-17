@@ -96,81 +96,82 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
 
         Middlewares/ST/ARM/DSP/Inc # 矩阵运算库
 
-        USER/Algorithm/MahonyAHRS
-        USER/Algorithm/MyType
-        USER/Algorithm/PID
-        USER/Algorithm/Dwt
-        USER/Algorithm/User_Lib
-        USER/Algorithm/Ramp
+        USER/Algorithm/Crc8_Crc16
         USER/Algorithm/Filter
         USER/Algorithm/KalmanFilter
         USER/Algorithm/KalmanFilterOne
-        USER/Algorithm/Crc
+        USER/Algorithm/MahonyAHRS
+        USER/Algorithm/MyType
+        USER/Algorithm/PID
         USER/Algorithm/QuaternionEKF
-       # USER/Algorithm/Fifo
+        USER/Algorithm/Ramp
+        USER/Algorithm/User_Lib
 
-        USER/Module/Bmi088
-       # USER/Module/Vofa+
+        USER/Module/Board_Device/Board_Bmi088
+        USER/Module/Board_Device/Board_Passive_Buzzer
+        USER/Module/Board_Device/Board_WS2812
+        USER/Module/Dwt
         USER/Module/Fdcan
-        USER/Module/DM_Motor_Fdcan
-        USER/Module/DJ_Motor
-        USER/Module/Rc/Sbus
-        USER/Module/Referee
-        USER/Module/Keyboard
+        USER/Module/Motor/DJ_Motor_can
+        USER/Module/Motor/DM_Motor_Fdcan
+        USER/Module/Msg_Topics/Msg_Topics_FreeRTOS
         USER/Module/Pump
-        USER/Module/Msg/msg_FreeRTOS
+        USER/Module/Referee_System
+        USER/Module/Remote_Control/FS_SBUS
+        USER/Module/Remote_Control/Keyboard
 
         USER/Task/Algorithm
-        USER/Task/Ins
         USER/Task/Chassis
-        USER/Task/Robot_Config
         USER/Task/Cmd
+        USER/Task/DJmotor
         USER/Task/DMmotor
-        USER/Task/Referee
+        USER/Task/Ins
+        #USER/Task/OneNet_ESP8266
+        USER/Task/Referee_System
+        USER/Task/Robot_Config
         USER/Task/Transmission
         USER/Task/USART
-        #USER/Task/OneNet_ESP8266
-
 )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -DUSE_PWR_LDO_SUPPLY)
 
 # 源文件
 file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE/*.*"
-        "USER/Algorithm/MahonyAHRS/*.*"
-        "USER/Algorithm/MyType/*.*"
-        "USER/Algorithm/PID/*.*"
-        "USER/Algorithm/Dwt/*.*"
-        "USER/Algorithm/User_Lib/*.*"
-        "USER/Algorithm/Ramp/*.*"
+        "USER/Algorithm/Crc8_Crc16/*.*"
         "USER/Algorithm/Filter/*.*"
         "USER/Algorithm/KalmanFilter/*.*"
         "USER/Algorithm/KalmanFilterOne/*.*"
-        "USER/Algorithm/Crc/*.*"
+        "USER/Algorithm/MahonyAHRS/*.*"
+        "USER/Algorithm/MyType/*.*"
+        "USER/Algorithm/PID/*.*"
         "USER/Algorithm/QuaternionEKF/*.*"
-       # "USER/Algorithm/Fifo/*.*"
+        "USER/Algorithm/Ramp/*.*"
+        "USER/Algorithm/User_Lib/*.*"
 
-        "USER/Module/Bmi088/*.*"
-       # "USER/Module/Vofa+/*.*"
+        "USER/Module/Board_Device/Board_Bmi088/*.*"
+        "USER/Module/Board_Device/Board_Passive_Buzzer/*.*"
+        "USER/Module/Board_Device/Board_WS2812/*.*"
+        "USER/Module/Dwt/*.*"
         "USER/Module/Fdcan/*.*"
-        "USER/Module/DM_Motor_Fdcan/*.*"
-        "USER/Module/DJ_Motor/*.*"
-        "USER/Module/Rc/Sbus/*.*"
-        "USER/Module/Referee/*.*"
-        "USER/Module/Keyboard/*.*"
+        "USER/Module/Motor/DJ_Motor_can/*.*"
+        "USER/Module/Motor/DM_Motor_Fdcan/*.*"
+        "USER/Module/Msg_Topics/Msg_Topics_FreeRTOS/*.*"
         "USER/Module/Pump/*.*"
-        "USER/Module/Msg/msg_FreeRTOS/*.*"
+        "USER/Module/Referee_System/*.*"
+        "USER/Module/Remote_Control/FS_SBUS/*.*"
+        "USER/Module/Remote_Control/Keyboard/*.*"
 
         "USER/Task/Algorithm/*.*"
-        "USER/Task/Ins/*.*"
         "USER/Task/Chassis/*.*"
-        "USER/Task/Robot_Config/*.*"
         "USER/Task/Cmd/*.*"
+        "USER/Task/DJmotor/*.*"
         "USER/Task/DMmotor/*.*"
-        "USER/Task/Referee/*.*"
+        "USER/Task/Ins/*.*"
+        #"USER/Task/OneNet_ESP8266/*.*"
+        "USER/Task/Referee_System/*.*"
+        "USER/Task/Robot_Config/*.*"
         "USER/Task/Transmission/*.*"
         "USER/Task/USART/*.*"
-        #"USER/Task/OneNet_ESP8266/*.*"
 
 )
 

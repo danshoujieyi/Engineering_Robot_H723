@@ -17,7 +17,6 @@
 #include "cmsis_os.h"
 #include "referee_system.h"
 #include "drv_dwt.h"
-#include "dj_motor.h"
 
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
 //static struct chassis_cmd_msg chassis_cmd;

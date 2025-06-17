@@ -57,7 +57,7 @@
     #define ENABLE_MODULE_DM_MOTOR_FDCAN     1   // DM电机（FDCAN总线）
     #define ENABLE_MODULE_FDCAN              1   // FDCAN总线驱动
     #define ENABLE_MODULE_KEYBOARD           1   // 键盘输入
-    #define ENABLE_MODULE_MSG                1   // 消息协议（如自定义通信）
+    #define ENABLE_MODULE_MSG                1   // 自编写类ROS的线程间话题通信方式
     #define ENABLE_MODULE_PUMP               1   // 泵控制
     #define ENABLE_MODULE_RC                 1   // 遥控器解析
     #define ENABLE_MODULE_REFEREE            1   // 裁判系统（如比赛协议）
