@@ -24,5 +24,6 @@ uint8_t BMI088_read_write_byte(uint8_t txdata)
 {
     uint8_t rx_data;
     HAL_SPI_TransmitReceive(BMI088_SPI, &txdata, &rx_data, 1, 1000);
+  //  HAL_SPI_TransmitReceive_DMA(BMI088_SPI, &txdata, &rx_data, 1);   // 不能使用
     return rx_data;
 }

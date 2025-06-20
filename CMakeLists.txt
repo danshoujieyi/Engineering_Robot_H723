@@ -100,7 +100,7 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Algorithm/Filter
         USER/Algorithm/KalmanFilter
         USER/Algorithm/KalmanFilterOne
-        USER/Algorithm/MahonyAHRS
+        #USER/Algorithm/MahonyAHRS
         USER/Algorithm/MyType
         USER/Algorithm/PID
         USER/Algorithm/QuaternionEKF
@@ -111,6 +111,7 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Module/Board_Device/Board_Passive_Buzzer
         USER/Module/Board_Device/Board_WS2812
         USER/Module/Dwt
+        USER/Module/Expansion_Board_Device/Expansion_Board_LCD_169
         USER/Module/Fdcan
         USER/Module/Motor/DJ_Motor_can
         USER/Module/Motor/DM_Motor_Fdcan
@@ -131,7 +132,6 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Task/Robot_Config
         USER/Task/Transmission
         USER/Task/USART
-
 )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -DUSE_PWR_LDO_SUPPLY)
@@ -142,7 +142,7 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Algorithm/Filter/*.*"
         "USER/Algorithm/KalmanFilter/*.*"
         "USER/Algorithm/KalmanFilterOne/*.*"
-        "USER/Algorithm/MahonyAHRS/*.*"
+        #"USER/Algorithm/MahonyAHRS/*.*"
         "USER/Algorithm/MyType/*.*"
         "USER/Algorithm/PID/*.*"
         "USER/Algorithm/QuaternionEKF/*.*"
@@ -153,6 +153,7 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Module/Board_Device/Board_Passive_Buzzer/*.*"
         "USER/Module/Board_Device/Board_WS2812/*.*"
         "USER/Module/Dwt/*.*"
+        "USER/Module/Expansion_Board_Device/Expansion_Board_LCD_169/*.*"
         "USER/Module/Fdcan/*.*"
         "USER/Module/Motor/DJ_Motor_can/*.*"
         "USER/Module/Motor/DM_Motor_Fdcan/*.*"

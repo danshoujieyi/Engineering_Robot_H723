@@ -95,7 +95,7 @@ static void BMI088_read_muli_reg(uint8_t reg, uint8_t *buf, uint8_t len)
 void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
 {
     static float startTime;
-    static uint16_t CaliTimes = 10000;   // 需要足够多的数据才能得到有效陀螺仪零偏校准结果
+    static uint16_t CaliTimes = 5000;   // 需要足够多的数据才能得到有效陀螺仪零偏校准结果
     uint8_t buf[8] = {0, 0, 0, 0, 0, 0};
     int16_t bmi088_raw_temp;
 

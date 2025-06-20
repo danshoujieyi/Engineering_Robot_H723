@@ -8,9 +8,9 @@
 #include "main.h"
 
 #define HEADER_SOF 0xA5
-#define REFEREE_RX_BUF_SIZE (127+9+68+5)        // 209
+#define REFEREE_RX_BUF_SIZE (127+9+136+68+5)   // DMA一次性接收两帧半数据
 
-#define CUSTOMER_CONTROLLER_BUF_SIZE (30+9+20+4)   // 63
+#define CUSTOMER_CONTROLLER_BUF_SIZE (30+9+39+39+4) // DMA一次性接收三帧数据
 
 
 /**

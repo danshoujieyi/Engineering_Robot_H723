@@ -56,7 +56,7 @@ static void EularAngleToQuaternion(float Yaw, float Pitch, float Roll, float *q)
 static void InitQuaternion(float *init_q4);
 
 /* ----------------------------- IMU_TEMPRETURE ----------------------------- */
-#define IMU_TARGET_TEMP           35            /* imu期望恒温温度 */  // 依据当天环境温度调整，同时需要调整PID的参数
+#define IMU_TARGET_TEMP           32            /* imu期望恒温温度 */  // 依据当天环境温度调整，同时需要调整PID的参数
 
 void TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, uint16_t value)
 {

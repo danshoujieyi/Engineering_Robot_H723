@@ -8,7 +8,7 @@
 
 #define SBUS_HEAD 0X0F
 #define SBUS_END 0X00
-#define SBUS_RX_BUF_SIZE (25+12+4) //41
+#define SBUS_RX_BUF_SIZE (25+25+12+4) //41
 
 
 /**
