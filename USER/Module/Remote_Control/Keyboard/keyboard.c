@@ -9,7 +9,7 @@
 #include "user_lib.h"
 #include "ramp.h"
 #include "chassis_task.h"
-#include "rm_task.h"
+#include "robot_task.h"
 #include "pump.h"
 #include "DMmotor_task.h"
 
@@ -17,7 +17,7 @@
 #define KEY_ACC_TIME     1700  //ms
 
 extern struct referee_fdb_msg referee_fdb;
-extern struct chassis_cmd_msg chassis_cmd;
+extern struct cmd_chassis_msg cmd_chassis;
 extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
 extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
@@ -179,15 +179,15 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
     key_state_machine(&keyboard.g,pc_control->keyboard.bit.G);
     if (keyboard.g.state == KEY_PRESS_ONCE)
     {
-        chassis_cmd.last_mode= chassis_cmd.ctrl_mode;
-        chassis_cmd.ctrl_mode =CHASSIS_RELAX;
+        cmd_chassis.last_mode= cmd_chassis.ctrl_mode;
+        cmd_chassis.ctrl_mode =CHASSIS_RELAX;
     }
 
     key_state_machine(&keyboard.f,pc_control->keyboard.bit.F);
     if (keyboard.f.state == KEY_PRESS_ONCE)
     {
-        chassis_cmd.last_mode= chassis_cmd.ctrl_mode;
-        chassis_cmd.ctrl_mode=CHASSIS_ENABLE;
+        cmd_chassis.last_mode= cmd_chassis.ctrl_mode;
+        cmd_chassis.ctrl_mode=CHASSIS_ENABLE;
     }
 
     key_state_machine(&keyboard.b,pc_control->keyboard.bit.B);

@@ -22,22 +22,18 @@
 #include "tim.h"
 #include "drv_dwt.h"
 #include "user_lib.h"
-#include "rm_task.h"
+#include "robot_task.h"
 #include "QuaternionEKF.h"
-
+#include "msg_freertos.h"
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
-//static struct chassis_cmd_msg chassis_cmd;
-//static struct chassis_fdb_msg chassis_fdb;
-//static struct trans_fdb_msg trans_fdb;
-//static struct ins_msg ins_data;
-//
-//static publisher_t *pub_chassis;
-//static subscriber_t *sub_cmd,*sub_ins,*sub_trans;
-//
-//static void chassis_pub_init(void);
-//static void chassis_sub_init(void);
-//static void chassis_pub_push(void);
-//static void chassis_sub_pull(void);
+static struct ins_msg ins_publish_data;
+
+static publisher_t *ins_topic_publish;
+
+static void ins_topic_publish_init(void);
+static void ins_topic_subscribe_init(void);
+static void ins_topic_publish_push(void);
+static void ins_topic_subscribe_pull(void);
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
 /* -------------------------------- 调试监测线程相关 --------------------------------- */
 static uint32_t ins_task_dwt = 0;   // 毫秒监测
@@ -92,8 +88,6 @@ static pid_config_t imu_temp_config = INIT_PID_CONFIG(200, 3, 0, 10, 500, PID_In
 #define Y 1
 #define Z 2
 static ins_t ins;
-static struct ins_msg ins_data;  // 发送出去的数据
-
 static imu_param_t imu_param;
 
 const float xb[3] = {1, 0, 0};
@@ -119,8 +113,7 @@ void InsTask_Entry(void const * argument)
 /* -------------------------------- 外设初始化段落 ------------------------------- */
 
 /* -------------------------------- 线程间Topics初始化 ------------------------------- */
-//    chassis_pub_init();
-//    chassis_sub_init();
+    ins_topic_publish_init();
 /* -------------------------------- 线程间Topics初始化 ------------------------------- */
 /* -------------------------------- 调试监测线程调度 --------------------------------- */
     ins_task_dt = dwt_get_delta(&ins_task_dwt);
@@ -173,19 +166,20 @@ void InsTask_Entry(void const * argument)
         {/* publish msg */
             // FIXME:/* 根据陀螺仪安装情况进行调整 */
             // TODO:右手系，逆时针旋转为正
-            ins_data.yaw = ins.yaw;
-            ins_data.roll = -ins.roll;
-            ins_data.yaw_total_angle = ins.yaw_total_angle;
-            ins_data.pitch = ins.pitch;
-            ins_data.gyro[0] = ins.gyro[0];
-            ins_data.gyro[1] = ins.gyro[1];
-            ins_data.gyro[2] = ins.gyro[2];
-            ins_data.accel[0] = ins.accel[0];
-            ins_data.accel[1] = ins.accel[1];
-            ins_data.accel[2] = ins.accel[2];
-            ins_data.motion_accel_b[0] = ins.motion_accel_b[0];
-            ins_data.motion_accel_b[1] = ins.motion_accel_b[1];
-            ins_data.motion_accel_b[2] = ins.motion_accel_b[2];
+            ins_publish_data.yaw = ins.yaw;
+            ins_publish_data.roll = -ins.roll;
+            ins_publish_data.yaw_total_angle = ins.yaw_total_angle;
+            ins_publish_data.pitch = ins.pitch;
+            ins_publish_data.gyro[0] = ins.gyro[0];
+            ins_publish_data.gyro[1] = ins.gyro[1];
+            ins_publish_data.gyro[2] = ins.gyro[2];
+            ins_publish_data.accel[0] = ins.accel[0];
+            ins_publish_data.accel[1] = ins.accel[1];
+            ins_publish_data.accel[2] = ins.accel[2];
+            ins_publish_data.motion_accel_b[0] = ins.motion_accel_b[0];
+            ins_publish_data.motion_accel_b[1] = ins.motion_accel_b[1];
+            ins_publish_data.motion_accel_b[2] = ins.motion_accel_b[2];
+            ins_topic_publish_push();
         }
 
         // temperature control
@@ -208,40 +202,25 @@ void InsTask_Entry(void const * argument)
 /* -------------------------------- 线程结束 ------------------------------- */
 
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
-///**
-// * @brief chassis 线程中所有发布者初始化
-// */
-//static void chassis_pub_init(void)
-//{
-//    pub_chassis = pub_register("chassis_fdb",sizeof(struct chassis_fdb_msg));
-//}
-//
-///**
-// * @brief chassis 线程中所有订阅者初始化
-// */
-//static void chassis_sub_init(void)
-//{
-//    sub_cmd = sub_register("chassis_cmd", sizeof(struct chassis_cmd_msg));
-//    sub_trans= sub_register("trans_fdb", sizeof(struct trans_fdb_msg));
-//    sub_ins = sub_register("ins_msg", sizeof(struct ins_msg));
-//}
-//
-///**
-// * @brief chassis 线程中所有发布者推送更新话题
-// */
-//static void chassis_pub_push(void)
-//{
-//    pub_push_msg(pub_chassis,&chassis_fdb);
-//}
-///**
-// * @brief chassis 线程中所有订阅者获取更新话题
-// */
-//static void chassis_sub_pull(void)
-//{
-//    sub_get_msg(sub_cmd, &chassis_cmd);
-//    sub_get_msg(sub_trans, &trans_fdb);
-//    sub_get_msg(sub_ins, &ins_data);
-//}
+static void ins_topic_publish_init(void)
+{
+    ins_topic_publish = pub_register("ins_pub",sizeof(struct ins_msg));
+}
+
+static void ins_topic_subscribe_init(void)
+{
+
+}
+
+static void ins_topic_publish_push(void)
+{
+    pub_push_msg(ins_topic_publish,&ins_publish_data);
+}
+
+static void ins_topic_subscribe_pull(void)
+{
+
+}
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
 
 /**

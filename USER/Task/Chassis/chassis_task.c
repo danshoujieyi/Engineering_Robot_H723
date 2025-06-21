@@ -23,7 +23,7 @@
 #include "drv_dwt.h"
 #include "user_lib.h"
 #include "motor_def.h"
-#include "rm_task.h"
+#include "robot_task.h"
 #include "referee_system.h"
 
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
@@ -47,7 +47,7 @@ static float chassis_task_delta = 0;    // 监测线程运行时间
 static float chassis_task_start_dt = 0; // 监测线程开始时间
 /* -------------------------------- 调试监测线程相关 --------------------------------- */
 
-struct chassis_cmd_msg chassis_cmd;
+struct cmd_chassis_msg cmd_chassis;
 
 extern struct referee_fdb_msg referee_fdb;
 
@@ -61,7 +61,7 @@ static dji_motor_object_t *chassis_motor[4];
 static int16_t motor_target_speed_rpm[4];
 
 static void chassis_motor_init();
-static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed);
+static void mecanum_calc(struct cmd_chassis_msg *cmd, int16_t* out_speed);
 
 
 /* --------------------------------- 电机控制相关 --------------------------------- */
@@ -232,12 +232,12 @@ static void chassis_motor_init()
         chassis_controller[i].speed_pid = pid_register(&chassis_speed_config);
         chassis_motor[i] = dji_motor_register(&chassis_motor_config[i], motor_control[i]);
 
-        chassis_cmd.ctrl_mode = CHASSIS_ENABLE;
-        chassis_cmd.last_mode = CHASSIS_ENABLE;
+        cmd_chassis.ctrl_mode = CHASSIS_ENABLE;
+        cmd_chassis.last_mode = CHASSIS_ENABLE;
     }
 }
 
-static void mecanum_calc(struct chassis_cmd_msg *cmd, int16_t* out_speed)
+static void mecanum_calc(struct cmd_chassis_msg *cmd, int16_t* out_speed)
 {
     // 轮子转速转换系数，转为轮子转速，为rpm/min，每分钟多少转,60是指60秒，转换成分钟，
     // 空载转速482rpm，3Nm满载最高转速469rpm
@@ -304,29 +304,29 @@ void odometry_update(int16_t *wheel_rpm_actual, odometry_t *odom) {
 
 
 void chassis_cmd_enable(void) {
-    if (chassis_cmd.last_mode == CHASSIS_RELAX && chassis_cmd.ctrl_mode == CHASSIS_ENABLE)
+    if (cmd_chassis.last_mode == CHASSIS_RELAX && cmd_chassis.ctrl_mode == CHASSIS_ENABLE)
     {
         for (uint8_t i = 0; i < 4; i++)
         {
             dji_motor_enable(chassis_motor[i]);
         }
     }
-    chassis_cmd.last_mode = CHASSIS_ENABLE;
+    cmd_chassis.last_mode = CHASSIS_ENABLE;
 }
 
 void chassis_cmd_disable(void) {
-    if (chassis_cmd.last_mode == CHASSIS_ENABLE && chassis_cmd.ctrl_mode == CHASSIS_RELAX) {
+    if (cmd_chassis.last_mode == CHASSIS_ENABLE && cmd_chassis.ctrl_mode == CHASSIS_RELAX) {
         for (uint8_t i = 0; i < 4; i++)
         {
             dji_motor_relax(chassis_motor[i]);
         }
-        chassis_cmd.last_mode = CHASSIS_RELAX;
+        cmd_chassis.last_mode = CHASSIS_RELAX;
     }
 }
 
 void chassis_cmd_state_machine(void)
 {
-    switch (chassis_cmd.ctrl_mode)
+    switch (cmd_chassis.ctrl_mode)
     {
         case CHASSIS_RELAX:
             chassis_cmd_disable();
@@ -372,7 +372,7 @@ void ChassisTask_Entry(void const * argument)
 /* -------------------------------- 线程订阅Topics信息 ------------------------------- */
 
 /* -------------------------------- 线程代码编写段落 ------------------------------- */
-        mecanum_calc(&chassis_cmd, motor_target_speed_rpm);
+        mecanum_calc(&cmd_chassis, motor_target_speed_rpm);
         dji_motor_control();
 /* -------------------------------- 线程代码编写段落 ------------------------------- */
 

@@ -17,7 +17,7 @@
 #include <string.h>
 #include "cmd_task.h"
 #include "robot.h"
-#include "rm_task.h"
+#include "robot_task.h"
 #include "stm32h7xx_hal.h"
 #include "rc_sbus.h"
 #include "ramp.h"
@@ -54,7 +54,7 @@ static pc_control_t pc_data;
 
 extern struct referee_fdb_msg referee_fdb;
 
-extern struct chassis_cmd_msg chassis_cmd;
+extern struct cmd_chassis_msg cmd_chassis;
 
 
 /* 外部变量声明 */
@@ -164,7 +164,7 @@ extern pump_mode_e pump_mode;
  */
 void remote_to_cmd_sbus(void)
 {
-    chassis_cmd.last_mode = chassis_cmd.ctrl_mode;
+    cmd_chassis.last_mode = cmd_chassis.ctrl_mode;
 
     /*底盘命令*/
 //    chassis_cmd.vx = tmp_data.ch4 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE * MAX_CHASSIS_VX_SPEED + keyboard.vx * CHASSIS_PC_MOVE_RATIO_X;
@@ -172,9 +172,9 @@ void remote_to_cmd_sbus(void)
 //    chassis_cmd.vw = tmp_data.ch1 * CHASSIS_RC_MOVE_RATIO_R / RC_MAX_VALUE * MAX_CHASSIS_VR_SPEED + keyboard.vw * 1.0f;
 
     // TODO:右手系，逆时针为正。遥控器部分为美国手(左倾斜为正，上抬头为正，左转为正）
-    chassis_cmd.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE  + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y );
-    chassis_cmd.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
-    chassis_cmd.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
+    cmd_chassis.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE  + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y );
+    cmd_chassis.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
+    cmd_chassis.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
     //chassis_cmd.vx = text_vx;
 
     if (sbus_data_fdb.sw3 == RC_MI)

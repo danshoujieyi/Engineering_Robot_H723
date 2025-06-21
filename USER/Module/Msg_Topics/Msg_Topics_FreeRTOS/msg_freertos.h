@@ -5,9 +5,7 @@
 #ifndef CTRBOARD_H7_ALL_MSG_FREERTOS_H
 #define CTRBOARD_H7_ALL_MSG_FREERTOS_H
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "semphr.h"
+#include "cmsis_os.h"
 #include "string.h"
 
 #define MAX_TOPIC_COUNT 20    // 最多支持的话题数量
