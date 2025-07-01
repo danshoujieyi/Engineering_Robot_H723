@@ -53,6 +53,7 @@ typedef struct {
 void JY61P_Init(void);
 void JY61P_Data_Unpack(uint8_t *data, uint16_t len);
 void JY61P_Data_Save(uint8_t packet_type, int16_t *raw_data);
+JY61P_data_t *JY61P_GetData(void);
 
 //unsigned char KOY[5] = {0xFF,0xAA,0x69,0x88,0x55};				//解锁指令
 //unsigned char Save[5] = {0xFF,0xAA,0x00,0x00,0x00};				//保存指令

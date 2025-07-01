@@ -933,5 +933,5 @@ struct referee_fdb_msg
     remote_control_t remote_control;
     custom_robot_data_t custom_robot_data;
 };
-
+//JY61P_data_t *JY61P_GetData(void);
 #endif //CTRBOARD_H7_ALL_REFEREE_SYSTEM_H

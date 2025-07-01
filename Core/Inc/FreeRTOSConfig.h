@@ -47,6 +47,54 @@
 /* Section where include file can be added */
 #define configUSE_TASK_FPU_SUPPORT 1       // 启用单精度浮点数支持
 #define configUSE_QUEUE_SETS    1   // 启用队列集功能
+// #define configUSE_TIME_SLICING  1   // 启用时间片轮转调度，默认不启用，使用vTaskDelay(1)强制每一个tick切换任务，
+// 即使启用也只能设置1个tick的时间片，并不能如RT-Thread那样设置任意时间片长度，比如10个TICK
+/**
+当FreeRTOSConfig.h中未定义configUSE_TIME_SLICING 时，时间片轮转调度机制不会启用，此时同优先级任务的调度行为与时间片无关。以下是具体分析：
+1. configUSE_TIME_SLICING的作用
+        启用时：同优先级任务按时间片（1 个 tick）强制轮转，无论任务是否执行完毕，时间片用完即切换。
+未启用时：同优先级任务不会被强制切换，仅在以下情况才会让出 CPU：
+任务主动调用vTaskDelay()、xQueueReceive()等阻塞 API；
+任务执行完毕（退出）；
+任务通过taskYIELD()主动让步。
+2. 任务运行时间的决定因素
+        当configUSE_TIME_SLICING = 0时：
+
+任务运行时间不固定为 1ms，而是由任务自身逻辑决定：
+若任务执行快（如 0.5ms 完成），则立即释放 CPU；
+若任务无阻塞操作且不主动让步，则会一直占用 CPU（导致同优先级其他任务饥饿）。
+*/
+/**10个tick的时间片，执行一次代码0.5个tick，然后延时挂起1tick时间，那么剩余时间片会变为9.5tick吗？还是说依旧是10个tick？此时挂起时间结束了，任务又变为就绪状态，时间片会被重置为10tick吗？
+在 RT-Thread 中，当任务调用rt_thread_delay()主动挂起时，时间片机制的行为如下：
+一、核心结论
+时间片不会保留剩余值，挂起结束后会重置为初始值。具体规则：
+
+调用延时函数时：
+任务立即让出 CPU，当前时间片剩余值被丢弃（无论剩余多少）。
+延时结束后：
+任务重新进入就绪队列时，时间片重置为初始值（如 10 tick）。
+二、详细执行过程示例
+假设任务配置：
+
+时间片 = 10 tick
+单次循环执行时间 = 0.5 tick
+延时函数 = rt_thread_delay(1)
+1. 第一轮调度
+plaintext
+时间点   事件                              时间片状态
+0-0.5   任务执行0.5 tick操作              剩余9.5 tick
+0.5     调用rt_thread_delay(1)            时间片剩余值被丢弃
+0.5-1.5 任务处于挂起状态，CPU让给其他任务  时间片机制暂停
+1.5     延时结束，任务进入就绪队列          时间片重置为10 tick
+
+2. 第二轮调度
+plaintext
+时间点   事件                              时间片状态
+1.5-2.0 任务被调度，执行0.5 tick操作       剩余9.5 tick
+2.0     再次调用rt_thread_delay(1)         时间片剩余值被丢弃
+2.0-3.0 任务挂起                          时间片机制暂停
+3.0     延时结束，任务就绪                 时间片重置为10 tick
+ */
 /* USER CODE END Includes */
 
 /* Ensure definitions are only used by the compiler, and not by the assembler. */

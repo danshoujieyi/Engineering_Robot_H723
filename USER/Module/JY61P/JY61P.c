@@ -6,8 +6,8 @@
 #include <math.h>
 #include <string.h>
 
-jy61p_unpack_obj_t jy61p_unpack_obj = {0};
-JY61P_data_t JY61P_data = {0};
+static jy61p_unpack_obj_t jy61p_unpack_obj = {0};
+static JY61P_data_t JY61P_data = {0};
 
 // 初始化解析状态机
 void JY61P_Init(void) {
@@ -119,3 +119,14 @@ void JY61P_Data_Save(uint8_t packet_type, int16_t *raw_data) {
             break;
     }
 }
+
+JY61P_data_t *JY61P_GetData(void) {
+    return &JY61P_data;
+}
+/**
+*  // 获取并打印数据
+    JY61P_data_t *data = JY61P_GetData();
+    printf("加速度: X=%.2f Y=%.2f Z=%.2f\n", data->acc[0], data->acc[1], data->acc[2]);
+    printf("角速度: X=%.2f Y=%.2f Z=%.2f\n", data->gyro[0], data->gyro[1], data->gyro[2]);
+    printf("角度: 滚转=%.2f 俯仰=%.2f 偏航=%.2f\n", data->angle[0], data->angle[1], data->angle[2]);
+*/

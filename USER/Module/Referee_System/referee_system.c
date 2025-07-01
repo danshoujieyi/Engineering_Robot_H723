@@ -296,3 +296,14 @@ void referee_data_save(uint8_t* frame)
             break;
     }
 }
+// 需要什么数据就，定义什么数据结构体，并且使用以下类型函数指针传出去
+//JY61P_data_t *JY61P_GetData(void) {
+//    return &JY61P_data;
+//}
+/**
+*  // 获取并打印数据
+    JY61P_data_t *data = JY61P_GetData();
+    printf("加速度: X=%.2f Y=%.2f Z=%.2f\n", data->acc[0], data->acc[1], data->acc[2]);
+    printf("角速度: X=%.2f Y=%.2f Z=%.2f\n", data->gyro[0], data->gyro[1], data->gyro[2]);
+    printf("角度: 滚转=%.2f 俯仰=%.2f 偏航=%.2f\n", data->angle[0], data->angle[1], data->angle[2]);
+*/
