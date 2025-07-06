@@ -5,9 +5,18 @@
 #ifndef F407VGT6_CARARM_ENCODER_H
 #define F407VGT6_CARARM_ENCODER_H
 
-#include "stm32f4xx_hal.h"
+#include "ti_msp_dl_config.h"
 
-#define TIM10_CLK_FREQ       84000000
+// 编码器参数配置
+#define ENCODER_PPR           11      // 编码器原始线数
+#define ENCODER_MULTIPLIER    4       // 4倍频
+#define ENCODER_RESOLUTION    (ENCODER_PPR * ENCODER_MULTIPLIER)  // 44脉冲/转
+#define GEAR_RATIO            30.0f   // 减速比
+#define ENCODER_COUNTS_PER_OUTPUT_REV 1320 //(ENCODER_RESOLUTION * MOTOR_GEAR_RATIO) // 输出轴每转计数 = 1320
+
+// M法配置参数
+#define SPEED_FILTER_FACTOR   0.3f    // 速度滤波系数(0.0~1.0)
+#define ANGLE_FILTER_FACTOR   0.15f    // 速度滤波系数(0.0~1.0)
 
 /* 编码器工作模式 */
 typedef enum {
@@ -22,29 +31,30 @@ typedef enum {
     ENCODER_DIR_REVERSE   // 正方向计数递减
 } Encoder_Direction_e;
 
-/* 高频定时器结构体 */
-typedef struct {
-    TIM_HandleTypeDef *htim;       // 定时器句柄
-    uint32_t clk_freq;             // 定时器时钟频率（Hz）
-    volatile uint32_t overflow;    // 溢出计数器
-    volatile uint16_t last_count;  // 上次计数值
-} HighFreqTimer_HandleTypeDef;
-
 /* 编码器配置结构体 */
 typedef struct {
-    TIM_HandleTypeDef *enc_tim;    // 编码器定时器
-    HighFreqTimer_HandleTypeDef *hf_timer; // 高频定时器
-    uint32_t pulses_per_rev;       // 每转总脉冲数
-    int32_t last_count;            // 上次编码器计数值
+    Encoder_Mode_e mode;           // 编码器工作模式
     Encoder_Direction_e direction; // 计数方向
-} Encoder_HandleTypeDef;
 
-/* 初始化函数 */
-void Encoder_Init(Encoder_HandleTypeDef *henc);
-float Encoder_GetRPM_MT(Encoder_HandleTypeDef *henc);
+    volatile int64_t temp_count; //保存实时计数值
+    volatile int64_t count;      //根据定时器时间更新的计数值
+    int32_t last_count;             // 上次采样时的计数值
 
-/* 高频定时器接口 */
-void HFTimer_Init(HighFreqTimer_HandleTypeDef *hft);
-uint32_t HFTimer_GetTotalCount(HighFreqTimer_HandleTypeDef *hft);
+    volatile int64_t total_count;       // 编码器累计总计数（用于位置计算）
+
+    uint32_t DWT_CNT;             // 上次采样的时间戳
+
+    float speed_rpm;                // 当前速度(rpm)
+    float filtered_speed_rpm;       // 滤波后的速度(rpm)
+    float angle_deg;
+    float filtered_angle_deg;
+    float angle_rad;
+    float filtered_angle_rad;
+} Encoder_Speed_t;
+
+void encoder_init(Encoder_Speed_t *left_encoder, Encoder_Speed_t *right_encoder);
+void encoder_update(Encoder_Speed_t *left_encoder, Encoder_Speed_t *right_encoder);
+
+void calculate_speed_M_method(Encoder_Speed_t *encoder);
 
 #endif //F407VGT6_CARARM_ENCODER_H

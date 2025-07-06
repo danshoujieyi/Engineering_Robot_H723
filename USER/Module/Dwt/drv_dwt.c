@@ -4,7 +4,7 @@ static dwt_time_t systime;
 static uint32_t cpu_freq_hz, cpu_freq_hz_ms, cpu_freq_hz_us; // CPU频率（Hz，动态获取）
 static uint32_t CYCCNT_last = 0;       // 上次DWT计数值
 static uint64_t CYCCNT_overflow = 0;   // 溢出次数（64位，处理32位回绕）
-
+static uint64_t CYCCNT64;
 /**
  * @brief 用于检查DWT CYCCNT寄存器是否溢出,并更新CYCCNT_rount_count
  * @attention 此函数假设两次调用之间的时间间隔不超过一次溢出
@@ -88,13 +88,15 @@ void dwt_systime_update(void)
     dwt_cnt_update();
 
     volatile uint32_t cnt_now = DWT_CYCCNT;
-    uint64_t total_cycles = CYCCNT_overflow * ((uint64_t)UINT32_MAX + 1) + (uint64_t)cnt_now;  // 64位总计数，处理溢出
+    volatile static uint64_t CNT_TEMP1, CNT_TEMP2, CNT_TEMP3;
 
-    // 拆分秒、毫秒、微秒（基于CPU频率精确计算）
-    systime.s = total_cycles / cpu_freq_hz;
-    uint64_t remainder = total_cycles % cpu_freq_hz;
-    systime.ms = remainder / cpu_freq_hz_ms;        // 毫秒部分
-    systime.us = (remainder % cpu_freq_hz_ms) / cpu_freq_hz_us;  // 微秒部分
+    CYCCNT64 = (uint64_t)CYCCNT_overflow * (uint64_t)UINT32_MAX + (uint64_t)cnt_now;
+    CNT_TEMP1 = CYCCNT64 / cpu_freq_hz;
+    CNT_TEMP2 = CYCCNT64 - CNT_TEMP1 * cpu_freq_hz;
+    systime.s = CNT_TEMP1;
+    systime.ms = CNT_TEMP2 / cpu_freq_hz_ms;
+    CNT_TEMP3 = CNT_TEMP2 - systime.ms * cpu_freq_hz_ms;
+    systime.us = CNT_TEMP3 / cpu_freq_hz_us;
 }
 
 float dwt_get_time_s(void)

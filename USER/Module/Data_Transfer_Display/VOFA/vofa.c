@@ -51,19 +51,19 @@
 /**
  * 发送浮点数数据到VOFA+上位机（使用JUSTFLOAT协议）
  * @param data 待发送的浮点数数组
- * @param count 待发送的数据数量（最大支持16个，受缓冲区大小限制）
+ * @param count 待发送的数据数量（最大支持20个，受缓冲区大小限制）
  */
 // JUSTFLOAT协议：只发送浮点数数据。专用函数
 uint8_t Vofa_Send_Float(const float* data, uint8_t channel)
 {
     // 检查参数有效性
-    if (data == NULL || channel == 0 || channel > 16) {
+    if (data == NULL || channel == 0 || channel > 20) {
         return -1; // 无效参数
     }
 
     // 计算缓冲区大小（每个float占4字节，再加4字节结束符）
     const uint8_t bufferSize = channel * 4 + 4;
-    uint8_t tempData[68];   // 传输缓冲区，最大16*4+4=68字节
+    uint8_t tempData[84];   // 传输缓冲区，最大16*4+4=68字节
 
     // 复制浮点数数据到发送缓冲区
     memcpy(tempData, (uint8_t *)data, (sizeof(float)*channel));
