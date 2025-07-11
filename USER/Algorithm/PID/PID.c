@@ -1,13 +1,3 @@
-/**
- * @file controller.c
- * @author wanghongxi
- * @author modified by neozng
- * @brief  PID控制器定义
- * @version beta
- * @date 2022-11-01
- *
- * @copyrightCopyright (c) 2022 HNU YueLu EC all rights reserved
- */
 
 #include <string.h>
 #include <malloc.h>

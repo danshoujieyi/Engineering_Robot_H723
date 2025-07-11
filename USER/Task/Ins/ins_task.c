@@ -257,9 +257,9 @@ static void InitQuaternion(float *init_q4)
     for (uint8_t i = 0; i < 100; ++i)
     {
         BMI088_Read(&BMI088);
-        acc_init[0] = BMI088.accel[0];
-        acc_init[1] = BMI088.accel[1];
-        acc_init[3] = BMI088.accel[2];
+        acc_init[0] += BMI088.accel[0];
+        acc_init[1] += BMI088.accel[1];
+        acc_init[2] += BMI088.accel[2];
         dwt_delay_ms(1);
     }
     for (uint8_t i = 0; i < 3; ++i)
