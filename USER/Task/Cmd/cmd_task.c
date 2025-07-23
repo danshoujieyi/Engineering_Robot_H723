@@ -26,6 +26,7 @@
 #include "keyboard.h"
 #include "DMmotor_task.h"
 #include "pump.h"
+#include "vt13_vt03.h"
 
 /* -------------------------------- 线程间通讯Topics相关 ------------------------------- */
 //static struct chassis_cmd_msg chassis_cmd;
@@ -50,7 +51,11 @@ static float cmd_task_start_dt = 0; // 监测线程开始时间
 
 extern sbus_data_t sbus_data_fdb;
 extern keyboard_control_t keyboard;
+
+extern vt13_remote_parsed_data_t vt13_remote_parsed_data_fdb;
+
 static pc_control_t pc_data;
+
 
 extern struct referee_fdb_msg referee_fdb;
 
@@ -75,6 +80,9 @@ void CmdTask_Entry(void const * argument)
     sbus_data_fdb.sw2 = RC_UP;
     sbus_data_fdb.sw3 = RC_UP;
     sbus_data_fdb.sw4 = RC_UP;
+
+    vt13_remote_data_init();
+
     km_vx_ramp = ramp_register(0, 200); //2500000
     km_vy_ramp = ramp_register(0, 200);  // 0 -2的累加次数
     km_vw_ramp = ramp_register(0, 200);
@@ -159,33 +167,70 @@ void CmdTask_Entry(void const * argument)
 float text_vx = 0;
 extern pump_mode_e pump_mode;
 /* ------------------------------ 将遥控器数据转换为控制指令 ----------------------------- */
+void remote_to_cmd_sbus(void) {
+    cmd_chassis.last_mode = cmd_chassis.ctrl_mode;
+
+
+    if (vt13_remote_parsed_data_fdb.online) {
+        // 新遥控器（vt13）通道映射
+        cmd_chassis.vx = (vt13_remote_parsed_data_fdb.ch[1] * CHASSIS_VT13_RC_MOVE_RATIO_X / VT13_RC_MAX_VALUE
+                          + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y);
+        cmd_chassis.vy = (vt13_remote_parsed_data_fdb.ch[3] * CHASSIS_VT13_RC_MOVE_RATIO_Y / VT13_RC_MAX_VALUE
+                          + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X);
+        cmd_chassis.vw = (vt13_remote_parsed_data_fdb.ch[0] * CHASSIS_VT13_RC_MOVE_RATIO_W / VT13_RC_MAX_VALUE
+                          + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W);
+
+
+        if (vt13_remote_parsed_data_fdb.mode_sw == 0) {  // 假设mode_sw=0为关闭
+            pump_mode = PUMP_CLOSE;
+        } else if (vt13_remote_parsed_data_fdb.mode_sw == 1) {  // mode_sw=1为打开
+            pump_mode = PUMP_OPEN;
+        }
+    } else {
+        // 原SBUS遥控器数据（保持原有逻辑）
+        cmd_chassis.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE
+                          + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y);
+        cmd_chassis.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE
+                          + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X);
+        cmd_chassis.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE
+                          + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W);
+
+        // 原SBUS遥控器泵模式控制（保持原有逻辑）
+        if (sbus_data_fdb.sw3 == RC_MI) {
+            pump_mode = PUMP_CLOSE;
+        } else if (sbus_data_fdb.sw3 == RC_DN) {
+            pump_mode = PUMP_OPEN;
+        }
+    }
+}
+
 /**
  * @brief 将遥控数据转换为控制指令（包含键盘与福斯遥控器数据）
  */
-void remote_to_cmd_sbus(void)
-{
-    cmd_chassis.last_mode = cmd_chassis.ctrl_mode;
-
-    /*底盘命令*/
-//    chassis_cmd.vx = tmp_data.ch4 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE * MAX_CHASSIS_VX_SPEED + keyboard.vx * CHASSIS_PC_MOVE_RATIO_X;
-//    chassis_cmd.vy = tmp_data.ch2 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE * MAX_CHASSIS_VY_SPEED + keyboard.vy * CHASSIS_PC_MOVE_RATIO_Y;
-//    chassis_cmd.vw = tmp_data.ch1 * CHASSIS_RC_MOVE_RATIO_R / RC_MAX_VALUE * MAX_CHASSIS_VR_SPEED + keyboard.vw * 1.0f;
-
-    // TODO:右手系，逆时针为正。遥控器部分为美国手(左倾斜为正，上抬头为正，左转为正）
-    cmd_chassis.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE  + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y );
-    cmd_chassis.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
-    cmd_chassis.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
-    //chassis_cmd.vx = text_vx;
-
-    if (sbus_data_fdb.sw3 == RC_MI)
-    {
-        pump_mode = PUMP_CLOSE;
-    }
-    else if (sbus_data_fdb.sw3 == RC_DN)
-    {
-        pump_mode = PUMP_OPEN;
-    }
-}
+//void remote_to_cmd_sbus(void)
+//{
+//    cmd_chassis.last_mode = cmd_chassis.ctrl_mode;
+//
+//    /*底盘命令*/
+////    chassis_cmd.vx = tmp_data.ch4 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE * MAX_CHASSIS_VX_SPEED + keyboard.vx * CHASSIS_PC_MOVE_RATIO_X;
+////    chassis_cmd.vy = tmp_data.ch2 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE * MAX_CHASSIS_VY_SPEED + keyboard.vy * CHASSIS_PC_MOVE_RATIO_Y;
+////    chassis_cmd.vw = tmp_data.ch1 * CHASSIS_RC_MOVE_RATIO_R / RC_MAX_VALUE * MAX_CHASSIS_VR_SPEED + keyboard.vw * 1.0f;
+//
+//    // TODO:右手系，逆时针为正。遥控器部分为美国手(左倾斜为正，上抬头为正，左转为正）
+//    cmd_chassis.vx = (sbus_data_fdb.ch2 * CHASSIS_RC_MOVE_RATIO_X / RC_MAX_VALUE  + keyboard.vx * CHASSIS_PC_MOVE_RATIO_Y );
+//    cmd_chassis.vy = (sbus_data_fdb.ch4 * CHASSIS_RC_MOVE_RATIO_Y / RC_MAX_VALUE  + keyboard.vy * CHASSIS_PC_MOVE_RATIO_X );
+//    cmd_chassis.vw = (sbus_data_fdb.ch1 * CHASSIS_RC_MOVE_RATIO_W / RC_MAX_VALUE  + keyboard.vw * CHASSIS_PC_MOVE_RATIO_W );
+//    //chassis_cmd.vx = text_vx;
+//
+//    if (sbus_data_fdb.sw3 == RC_MI)
+//    {
+//        pump_mode = PUMP_CLOSE;
+//    }
+//    else if (sbus_data_fdb.sw3 == RC_DN)
+//    {
+//        pump_mode = PUMP_OPEN;
+//    }
+//}
 
 //void pum_ctrl(void)
 //{

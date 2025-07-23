@@ -49,11 +49,23 @@ extern FDCAN_HandleTypeDef hfdcan3;
 #define CHASSIS_RC_MOVE_RATIO_Y 2.0f
 /* 底盘旋转速度比例(rad/s) */
 #define CHASSIS_RC_MOVE_RATIO_W 5.0f
+/* ---------------------------------- 福斯遥控器相关 --------------------------------- */
 
-/* 鼠标键盘模式下的底盘最大速度比例 */  //TODO：取决于键盘手感
-#define CHASSIS_PC_MOVE_RATIO_X 1.0f
+/* ---------------------------------- VT13_VT03遥控器相关 --------------------------------- */
+#define VT13_RC_MAX_VALUE      784.0f  /* 遥控器通道最大值 */
+/* 遥控器模式下的底盘最大速度比例 */ // TODO：此时表示遥控器输出满值，也只能到达1.0f m/s的速度
+/* 底盘前进速度比例(m/s) */
+#define CHASSIS_VT13_RC_MOVE_RATIO_X 2.0f
 /* 底盘平移速度比例(m/s) */
-#define CHASSIS_PC_MOVE_RATIO_Y 1.0f
+#define CHASSIS_VT13_RC_MOVE_RATIO_Y 2.0f
+/* 底盘旋转速度比例(rad/s) */
+#define CHASSIS_VT13_RC_MOVE_RATIO_W 5.0f
+
+/* ---------------------------------- VT13_VT03遥控器相关 --------------------------------- */
+/* 鼠标键盘模式下的底盘最大速度比例 */  //TODO：取决于键盘手感
+#define CHASSIS_PC_MOVE_RATIO_X 0.5f
+/* 底盘平移速度比例(m/s) */
+#define CHASSIS_PC_MOVE_RATIO_Y 0.5f
 /* 底盘旋转速度比例(rad/s) */
 #define CHASSIS_PC_MOVE_RATIO_W 1.0f
 

@@ -109,9 +109,9 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
 
         USER/Module/Board_Device/Board_Bmi088
         USER/Module/Board_Device/Board_Passive_Buzzer
-        USER/Module/Board_Device/Board_WS2812
-        USER/Module/Board_Expansion_Device/Expansion_Board_LCD_169
-        USER/Module/Data_Transfer_Display/VOFA
+        #USER/Module/Board_Device/Board_WS2812
+        #USER/Module/Board_Expansion_Device/Expansion_Board_LCD_169
+        # USER/Module/Data_Transfer_Display/VOFA
         USER/Module/Dwt
         USER/Module/Fdcan
         USER/Module/Motor/DJ_Motor_can
@@ -121,6 +121,7 @@ include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_
         USER/Module/Referee_System
         USER/Module/Remote_Control/FS_SBUS
         USER/Module/Remote_Control/Keyboard
+        USER/Module/Remote_Control/VT13_VT03
 
         USER/Task/Algorithm
         USER/Task/Chassis
@@ -152,9 +153,9 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
 
         "USER/Module/Board_Device/Board_Bmi088/*.*"
         "USER/Module/Board_Device/Board_Passive_Buzzer/*.*"
-        "USER/Module/Board_Device/Board_WS2812/*.*"
-        "USER/Module/Board_Expansion_Device/Expansion_Board_LCD_169/*.*"
-        "USER/Module/Data_Transfer_Display/VOFA/*.*"
+        #"USER/Module/Board_Device/Board_WS2812/*.*"
+        #"USER/Module/Board_Expansion_Device/Expansion_Board_LCD_169/*.*"
+        # "USER/Module/Data_Transfer_Display/VOFA/*.*"
         "USER/Module/Dwt/*.*"
         "USER/Module/Fdcan/*.*"
         "USER/Module/Motor/DJ_Motor_can/*.*"
@@ -164,6 +165,7 @@ file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "USB_DEVICE
         "USER/Module/Referee_System/*.*"
         "USER/Module/Remote_Control/FS_SBUS/*.*"
         "USER/Module/Remote_Control/Keyboard/*.*"
+        "USER/Module/Remote_Control/VT13_VT03/*.*"
 
         "USER/Task/Algorithm/*.*"
         "USER/Task/Chassis/*.*"

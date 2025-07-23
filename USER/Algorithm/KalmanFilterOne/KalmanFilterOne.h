@@ -33,12 +33,12 @@ typedef float mat_type_t;
 
 // 定义宏来表示串口第一次接收的数据
 // 避免x0初始状态每次都从0.0f开始，直接从自定义控制器第一次传回来的数据开始收敛，加快收敛速度，需要根据自定义控制器实时修改
-#define FIRST_MEASUREMENT_1 182.248f
-#define FIRST_MEASUREMENT_2 312.626f
-#define FIRST_MEASUREMENT_3 108.368f
-#define FIRST_MEASUREMENT_4 143.085f
-#define FIRST_MEASUREMENT_5 261.453f
-#define FIRST_MEASUREMENT_6 124.232f
+#define FIRST_MEASUREMENT_1 183.51561f
+#define FIRST_MEASUREMENT_2 232.055664f
+#define FIRST_MEASUREMENT_3 109.68734f
+#define FIRST_MEASUREMENT_4 173.320312f
+#define FIRST_MEASUREMENT_5 250.751953f
+#define FIRST_MEASUREMENT_6 138.779297f
 
 typedef struct {
     // 系统模型矩阵

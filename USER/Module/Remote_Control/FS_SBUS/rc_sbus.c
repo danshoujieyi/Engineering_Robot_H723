@@ -15,7 +15,7 @@ static SemaphoreHandle_t  sbus_mutex;
 static sbus_data_t sbus_data;
 sbus_data_t sbus_data_fdb;
 
-void sbus_data_init()
+void sbus_data_init(void)
 {
     memset(&sbus_data, 0, sizeof(sbus_data_t));
     memset(&sbus_data_fdb, 0, sizeof(sbus_data_t));

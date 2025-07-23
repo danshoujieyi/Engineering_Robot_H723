@@ -74,11 +74,12 @@ void AlgorithmTask_Entry(void const * argument)
 /* -------------------------------- 线程订阅Topics信息 ------------------------------- */
 
 /* -------------------------------- 线程代码编写段落 ------------------------------- */
-//        if (xQueueReceive(xKalmanOneQueue, angles, 0) == pdTRUE) {
-//            // 对接收的数据进行滤波处理
-//            KalmanFilterOne_Data(angles, filtered_data);
-//            xQueueSend(xControlQueue, filtered_data, 0);
-//        }
+
+        if (xQueueReceive(xKalmanOneQueue, angles, 0) == pdTRUE) {
+            // 对接收的数据进行滤波处理
+            KalmanFilterOne_Data(angles, filtered_data);
+            xQueueSend(xControlQueue, filtered_data, 0);
+        }
 //printf("AlgorithmTask_Entry: algorithm_task_dt = %f\n", algorithm_task_dt);
 //printf("AlgorithmTask_Entry: algorithm_task_delta = %f\n", algorithm_task_delta);
 /* -------------------------------- 线程代码编写段落 ------------------------------- */
@@ -86,7 +87,7 @@ void AlgorithmTask_Entry(void const * argument)
 /* -------------------------------- 线程发布Topics信息 ------------------------------- */
 //        chassis_pub_push();
 /* -------------------------------- 线程发布Topics信息 ------------------------------- */
-        vTaskDelay(100);
+        vTaskDelay(1);
     }
 }
 /* -------------------------------- 线程结束 ------------------------------- */

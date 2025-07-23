@@ -103,11 +103,11 @@ void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
 
     float gNormTemp, gNormMax, gNormMin;  // 加速度计极值
 
-//#ifndef BSP_BMI088_CALI  // 更换开发板或定期校准，以便快速启动
-//    static uint8_t cali_dt_max = 0;   // 对于不同开发板都需要定期校准，此处，已经校准故cali_dt_max = 0
-//#elif
+#ifndef BSP_BMI088_CALI  // 更换开发板或定期校准，以便快速启动
+    static uint8_t cali_dt_max = 0;   // 对于不同开发板都需要定期校准，此处，已经校准故cali_dt_max = 0
+#elif
     static uint8_t cali_dt_max = 20;
-//#endif /* BSP_BMI088_CALI */
+#endif /* BSP_BMI088_CALI */
 
     startTime = dwt_get_time_s();
     do
@@ -119,7 +119,7 @@ void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
             bmi088->gyro_offset[1] = GyOFFSET;
             bmi088->gyro_offset[2] = GzOFFSET;
             bmi088->g_norm = gNORM;
-            bmi088->temp_when_cali = 43;
+            bmi088->temp_when_cali = 40;
             break;
         }
 
@@ -196,7 +196,7 @@ void Calibrate_MPU_Offset(ImuDataTypeDef *bmi088)
                 gyroDiff[1] > 0.1f ||
                 gyroDiff[2] > 0.1f)
                 break;
-            dwt_delay_us(500);; // 微小延时（避免采样过于密集）
+            dwt_delay_ms(1);; // 微小延时（避免采样过于密集）
 
             Count++; // 采集次数计数（外部变量，需自行定义）
         }

@@ -15,7 +15,10 @@
   */
 #include "usart_task.h"
 #include "FreeRTOS.h"
+
 #include "rc_sbus.h"
+#include "vt13_vt03.h"
+
 #include "referee_system.h"
 #include "usart.h"
 #include <string.h>
@@ -124,9 +127,9 @@ void process_usart1_rx_data(void) {
         finishedBuffer = usart1_rx_buffer_index ^ 1;
         /* 数据解析 */
         referee_data_unpack(usart1_rx_buffer[finishedBuffer], usart1_rx_size);
-
+        vt13_remote_data_process(usart1_rx_buffer[finishedBuffer], usart1_rx_size);
         // 清零所有接收缓冲区数据
-        memset(usart1_rx_buffer[finishedBuffer], 0, CUSTOMER_CONTROLLER_BUF_SIZE);
+        //memset(usart1_rx_buffer[finishedBuffer], 0, CUSTOMER_CONTROLLER_BUF_SIZE);
         // 只清零当前使用的缓冲区数据
        // memset(usart1_rx_buffer[finishedBuffer], 0, usart1_rx_size);
 

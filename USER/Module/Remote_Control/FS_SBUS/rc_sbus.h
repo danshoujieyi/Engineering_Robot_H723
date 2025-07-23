@@ -38,7 +38,7 @@ typedef struct __attribute__((__packed__))
     uint8_t sw4;   //SWD，二档
 } sbus_data_t;
 
-void sbus_data_init();
+void sbus_data_init(void);
 void sbus_data_unpack(uint8_t *data, uint16_t len);
 
 #endif /* _RC_SBUS_H */

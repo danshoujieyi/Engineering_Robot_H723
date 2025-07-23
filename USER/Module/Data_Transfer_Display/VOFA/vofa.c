@@ -24,6 +24,7 @@
     }
     含义：将 float 变量的地址强制转换为uint8_t*类型，使我们可以逐个字节地访问 float 的内存表示，即访问四个字节的每一个地址。
     借助memcpy函数，把 4 个字节的数据从src复制到tx_data->data数组对应的位置，每次都会塞满四个字节数据（传地址实现）。
+
  * 解析小端格式的浮点数数据：
     for (int i = 0; i < 7; i++) {
         uint8_t *byte_ptr = &buffer[i * 4];
@@ -63,7 +64,7 @@ uint8_t Vofa_Send_Float(const float* data, uint8_t channel)
 
     // 计算缓冲区大小（每个float占4字节，再加4字节结束符）
     const uint8_t bufferSize = channel * 4 + 4;
-    uint8_t tempData[84];   // 传输缓冲区，最大16*4+4=68字节
+    uint8_t tempData[84];   // 传输缓冲区，最大16*4+4=68字节   4*20 + 4  bufferSize 8
 
     // 复制浮点数数据到发送缓冲区
     memcpy(tempData, (uint8_t *)data, (sizeof(float)*channel));
@@ -168,7 +169,7 @@ void VofaParser_ProcessData(uint8_t *data, uint16_t len) {
                 break;
 
             case STEP_TAIL: // 验证帧尾
-
+//TODO: 已经得到完整一帧数据
                 // 验证成功，处理数据
                 Vofa_Packet_Data_Save();
 

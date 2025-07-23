@@ -42,6 +42,7 @@ typedef struct __attribute__((__packed__))
     uint16_t frame_tail;                      /*! frame_tail */
 } referee_data_t;
 
+
 typedef enum
 {
     STEP_HEADER_SOF  = 0,

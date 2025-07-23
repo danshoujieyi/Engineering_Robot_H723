@@ -88,7 +88,6 @@ void referee_system_init()
     memset(&referee_fdb, 0, sizeof(struct referee_fdb_msg));
 }
 
-
 /**
  * @brief 裁判系统数据解包函数
  */

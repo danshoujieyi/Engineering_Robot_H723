@@ -112,10 +112,10 @@ typedef struct
 } ImuDataTypeDef;
 
 //TODO:手动校准处理
-#define GxOFFSET  0.0062725395f
-#define GyOFFSET -0.00260246126f
-#define GzOFFSET -0.00418537389f
-#define gNORM 9.67727184f
+#define GxOFFSET  0.00640784856f
+#define GyOFFSET -0.00318170991f
+#define GzOFFSET -0.00443236018f
+#define gNORM 9.6669426f
 
 uint8_t BMI088_init(SPI_HandleTypeDef *bmi088_SPI);
 uint8_t bmi088_accel_init(void);

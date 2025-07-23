@@ -16,10 +16,7 @@
 #include "transmission_task.h"
 #include "cmsis_os.h"
 #include "drv_dwt.h"
-#include "ws2812.h"
 #include "adc.h"
-#include "LCDPicture.h"
-#include "LCD_169.h"
 #include "msg_freertos.h"
 #include "robot_task.h"
 
@@ -47,13 +44,13 @@ float vbus;
 void TransmissionTask_Entry(void const * argument)
 {
 /* -------------------------------- 外设初始化段落 ------------------------------- */
-    WS2812_SetBrightness(10);
-    WS2812_SetRGB(COLOR_RED);
-    HAL_ADCEx_Calibration_Start(&hadc1, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED);
-    HAL_ADC_Start_DMA(&hadc1, &adc_val,1);
-    // 开启LCD背光
-    LCD_Init();//LCD初始化
-    LCD_Fill(0,0,LCD_W, LCD_H,BLACK);
+//    WS2812_SetBrightness(10);
+//    WS2812_SetRGB(COLOR_RED);
+//    HAL_ADCEx_Calibration_Start(&hadc1, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED);
+//    HAL_ADC_Start_DMA(&hadc1, &adc_val,1);
+//    // 开启LCD背光
+//    LCD_Init();//LCD初始化
+//    LCD_Fill(0,0,LCD_W, LCD_H,BLACK);
 /* -------------------------------- 外设初始化段落 ------------------------------- */
 
 /* -------------------------------- 线程间Topics初始化 ------------------------------- */
@@ -76,7 +73,7 @@ void TransmissionTask_Entry(void const * argument)
 /* -------------------------------- 线程订阅Topics信息 ------------------------------- */
 
 /* -------------------------------- 线程代码编写段落 ------------------------------- */
-        WS2812_Show(); // 显示设置的颜色
+//        WS2812_Show(); // 显示设置的颜色
 //        vbus = (adc_val*3.3f/65535)*11.0f;
 //        LCD_ShowString(120, 72,(uint8_t *)"dmBot", BRRED, BLACK, 24, 0);
 //        LCD_ShowChinese(84, 100, (uint8_t *)"达妙科技", WHITE, BLACK, 32, 0);

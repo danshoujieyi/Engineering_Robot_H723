@@ -22,7 +22,7 @@ extern ramp_obj_t *km_vx_ramp;//x轴控制斜坡
 extern ramp_obj_t *km_vy_ramp;//y周控制斜坡
 extern ramp_obj_t *km_vw_ramp; // 旋转控制斜坡，需在外部定义
 
-static float base_delta = MAX_CHASSIS_VX_SPEED  / KEY_ACC_TIME;
+static float base_delta = 500.0f  / KEY_ACC_TIME;
 static float base_delta_w = MAX_CHASSIS_VW_SPEED  / KEY_ACC_TIME;
 
 /* 时间参数宏定义 */
@@ -233,20 +233,20 @@ void PC_keyboard_mouse(const pc_control_t *pc_control)
 
     // 前后方向（W/S -> vy）
     if(pc_control->keyboard.bit.W) {
-        keyboard.vy += delta;
+        keyboard.vx += delta;
     } else if(pc_control->keyboard.bit.S) {
-        keyboard.vy -= delta;
+        keyboard.vx -= delta;
     } else {
-        keyboard.vy *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
+        keyboard.vx *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
     }
 
     // 左右方向（A/D -> vx）
     if(pc_control->keyboard.bit.A) {
-        keyboard.vx -= delta;
+        keyboard.vy -= delta;
     } else if(pc_control->keyboard.bit.D) {
-        keyboard.vx += delta;
+        keyboard.vy += delta;
     } else {     //TODO: 加速斜坡函数反转，变成减速斜坡函数，加速阶段不使用斜坡函数
-        keyboard.vx *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
+        keyboard.vy *= (1 - km_vy_ramp->calc(km_vy_ramp) * decay);
     }
 
     // 旋转控制（Q/E）

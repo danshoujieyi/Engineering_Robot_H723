@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/USER/Module/can/bsp_fdcan.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Task/Ins/ins_task.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/USER/Task/Referee/referee_task.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/USER/Task/Transmission/transmission_task.c" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
